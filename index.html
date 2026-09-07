@@ -1006,7 +1006,7 @@
             });
         });
 
-        // ===== КАРТА =====
+        // ===== КАРТА С ОГРАНИЧЕНИЕМ ПЕРЕМЕЩЕНИЯ =====
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
 
@@ -1021,7 +1021,19 @@
         const MIN_SCALE = 1.0;
         const ZOOM_STEP = 0.2;
 
+        // ===== ФУНКЦИЯ ОГРАНИЧЕНИЯ ПЕРЕМЕЩЕНИЯ =====
+        function clampPosition() {
+            const containerRect = container.getBoundingClientRect();
+            const imgWidth = containerRect.width * scale;
+            const imgHeight = containerRect.height * scale;
+            const maxX = Math.max(0, (imgWidth - containerRect.width) / 2);
+            const maxY = Math.max(0, (imgHeight - containerRect.height) / 2);
+            translateX = Math.min(Math.max(translateX, -maxX), maxX);
+            translateY = Math.min(Math.max(translateY, -maxY), maxY);
+        }
+
         function updateMap() {
+            clampPosition();
             mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
 
