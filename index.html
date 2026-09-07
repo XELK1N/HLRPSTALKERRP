@@ -17,12 +17,14 @@
             justify-content: center;
             align-items: center;
             padding: 30px;
+            background-color: #050a12;
+            overflow-x: hidden;
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-color: #050a12;
-            overflow-x: hidden;
+            transition: background-position 0.15s ease-out;
+            will-change: background-position;
         }
 
         body::before {
@@ -32,8 +34,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(2, 6, 14, 0.82);
-            background: radial-gradient(ellipse at center, rgba(2, 6, 14, 0.65) 0%, rgba(0, 2, 6, 0.92) 100%);
+            background: rgba(2, 6, 14, 0.75);
+            background: radial-gradient(ellipse at center, rgba(2, 6, 14, 0.60) 0%, rgba(0, 2, 6, 0.88) 100%);
             z-index: 0;
             pointer-events: none;
         }
@@ -47,6 +49,8 @@
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
+            transition: transform 0.15s ease-out;
+            will-change: transform;
         }
 
         .particle {
@@ -317,7 +321,6 @@
             font-size: 1rem;
         }
 
-        /* ===== ПРАВИЛА ===== */
         .rules-wrapper {
             display: flex;
             flex-direction: column;
@@ -492,7 +495,6 @@
             text-align: center;
         }
 
-        /* ===== КАРТА ===== */
         .map-container {
             position: relative;
             width: 100%;
@@ -518,7 +520,6 @@
             pointer-events: none;
         }
 
-        /* ===== КАСТОМНЫЕ КНОПКИ УПРАВЛЕНИЯ КАРТОЙ ===== */
         .map-controls {
             display: flex;
             justify-content: center;
@@ -566,7 +567,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== ЛОР ===== */
         .lore-story {
             color: rgba(160, 200, 240, 0.30);
             font-weight: 300;
@@ -652,7 +652,6 @@
             gap: 30px;
         }
 
-        /* ===== ФУТЕР ===== */
         .footer {
             text-align: center;
             margin-top: 35px;
@@ -671,7 +670,6 @@
             color: rgba(160, 200, 240, 0.35);
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 700px) {
             body { padding: 15px; }
             .header { flex-direction: column; align-items: center; text-align: center; padding: 0; gap: 12px; }
@@ -746,7 +744,6 @@
             <div id="rules" class="tab-page">
                 <div class="rules-wrapper">
 
-                    <!-- Раздел 1 — 🚪 Порог вхождения -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -766,7 +763,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 2 — ⚖️ Общие правила -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -795,7 +791,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 3 — 🔫 Предупредительный выстрел -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -815,7 +810,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 4 — 🛡️ Зелёные зоны -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -840,7 +834,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 5 — ⚔️ Рейды и штурмы -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -861,7 +854,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 6 — 💰 Гоп-стопы -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -881,7 +873,6 @@
                         </div>
                     </div>
 
-                    <!-- Раздел 7 — 🚫 Общие запреты -->
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1026,20 +1017,25 @@
         let isDragging = false;
         let startX, startY, startTranslateX, startTranslateY;
 
+        // ===== НАСТРОЙКИ ЗУМА =====
+        const MAX_SCALE = 5.0;   // МАКСИМАЛЬНОЕ ПРИБЛИЖЕНИЕ (было 3.0)
+        const MIN_SCALE = 0.5;
+        const ZOOM_STEP = 0.2;
+
         function updateMap() {
             mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
 
         function zoomIn() {
-            if (scale < 3) {
-                scale += 0.2;
+            if (scale < MAX_SCALE) {
+                scale = Math.min(scale + ZOOM_STEP, MAX_SCALE);
                 updateMap();
             }
         }
 
         function zoomOut() {
-            if (scale > 0.5) {
-                scale -= 0.2;
+            if (scale > MIN_SCALE) {
+                scale = Math.max(scale - ZOOM_STEP, MIN_SCALE);
                 updateMap();
             }
         }
@@ -1051,12 +1047,18 @@
             updateMap();
         }
 
+        // Колесико мыши
         container.addEventListener('wheel', function(e) {
             e.preventDefault();
-            if (e.deltaY < 0) zoomIn();
-            else zoomOut();
-        });
+            const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
+            const newScale = Math.min(Math.max(scale + delta, MIN_SCALE), MAX_SCALE);
+            if (newScale !== scale) {
+                scale = newScale;
+                updateMap();
+            }
+        }, { passive: false });
 
+        // Перетаскивание мышью
         container.addEventListener('mousedown', function(e) {
             isDragging = true;
             startX = e.clientX;
@@ -1080,6 +1082,7 @@
             container.style.cursor = 'grab';
         });
 
+        // Touch support для мобильных
         let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
 
         container.addEventListener('touchstart', function(e) {
@@ -1098,9 +1101,23 @@
             translateX = touchTranslateX + dx;
             translateY = touchTranslateY + dy;
             updateMap();
-        });
+        }, { passive: false });
 
+        // Двойной клик для сброса
         container.addEventListener('dblclick', resetZoom);
+
+        // ===== ДИНАМИЧЕСКИЙ ФОН (движение мыши) =====
+        document.addEventListener('mousemove', function(e) {
+            const x = (e.clientX / window.innerWidth - 0.5) * 15;
+            const y = (e.clientY / window.innerHeight - 0.5) * 15;
+            document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+            
+            // Частицы тоже слегка двигаются
+            const particles = document.getElementById('particles-container');
+            if (particles) {
+                particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            }
+        });
 
         // ===== ЧАСТИЦЫ =====
         function createParticles() {
