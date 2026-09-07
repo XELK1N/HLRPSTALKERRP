@@ -967,7 +967,6 @@
 
     </div>
 
-    <!-- ===== СКРИПТЫ ===== -->
     <script>
         // ===== СВОРАЧИВАНИЕ РАЗДЕЛОВ =====
         function toggleSection(header) {
@@ -1018,8 +1017,8 @@
         let startX, startY, startTranslateX, startTranslateY;
 
         // ===== НАСТРОЙКИ ЗУМА =====
-        const MAX_SCALE = 5.0;   // МАКСИМАЛЬНОЕ ПРИБЛИЖЕНИЕ (было 3.0)
-        const MIN_SCALE = 0.5;
+        const MAX_SCALE = 5.0;
+        const MIN_SCALE = 1.0;
         const ZOOM_STEP = 0.2;
 
         function updateMap() {
@@ -1112,7 +1111,6 @@
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
             document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
             
-            // Частицы тоже слегка двигаются
             const particles = document.getElementById('particles-container');
             if (particles) {
                 particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
