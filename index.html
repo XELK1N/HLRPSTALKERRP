@@ -538,7 +538,7 @@
             border: 1px solid rgba(60, 140, 220, 0.04);
         }
 
-        /* ===== ПОМЕХИ НА ЭКРАНЕ КПК ===== */
+        /* ===== ПОМЕХИ НА ЭКРАНЕ КПК (НОВЫЙ ШУМ) ===== */
         .kpk-noise {
             position: absolute;
             top: 0;
@@ -548,13 +548,50 @@
             pointer-events: none;
             z-index: 10;
             mix-blend-mode: screen;
+            opacity: 0.7;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.8"/></svg>');
+            background-size: 200px 200px;
+            animation: noiseMove 0.8s steps(3) infinite;
+        }
+
+        @keyframes noiseMove {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(5%, 5%); }
+            30% { transform: translate(-10%, 10%); }
+            40% { transform: translate(10%, -5%); }
+            50% { transform: translate(-5%, 5%); }
+            60% { transform: translate(5%, -10%); }
+            70% { transform: translate(-10%, -5%); }
+            80% { transform: translate(10%, 10%); }
+            90% { transform: translate(-5%, -10%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Дополнительный слой шума — горизонтальные полосы */
+        .kpk-noise-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 11;
             opacity: 0.3;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 40%),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 3px),
-                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(255,255,255,0.01) 3px, rgba(255,255,255,0.01) 4px);
-            animation: noiseFlicker 0.5s steps(3) infinite;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(255, 255, 255, 0.03) 3px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+            animation: linesMove 0.3s linear infinite;
+        }
+
+        @keyframes linesMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
         }
 
         .kpk-scanline {
@@ -562,22 +599,19 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(60, 140, 220, 0.03), transparent);
-            animation: scanMove 4s ease-in-out infinite;
-            z-index: 5;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(120, 200, 255, 0.15), rgba(120, 200, 255, 0.3), rgba(120, 200, 255, 0.15), transparent);
+            animation: scanMove 3s ease-in-out infinite;
+            z-index: 12;
             pointer-events: none;
-        }
-
-        @keyframes noiseFlicker {
-            0% { opacity: 0.2; }
-            50% { opacity: 0.5; }
-            100% { opacity: 0.2; }
+            box-shadow: 0 0 15px rgba(120, 200, 255, 0.05);
         }
 
         @keyframes scanMove {
             0% { top: 0; opacity: 0.2; }
-            50% { top: 100%; opacity: 0.6; }
+            10% { opacity: 1; }
+            50% { top: 100%; opacity: 1; }
+            90% { opacity: 0.2; }
             100% { top: 100%; opacity: 0.2; }
         }
 
@@ -1076,14 +1110,13 @@
                     <p style="color: rgba(160, 200, 240, 0.20); font-size: 0.85rem; font-weight: 300;">Карта зоны на момент 2020 года.</p>
                 </div>
 
-                <!-- РАМКА КПК -->
                 <div class="kpk-frame">
                     <div class="kpk-frame-inner">
                         <div class="map-container" id="mapContainer">
                             <img src="map.jpg" alt="Карта Зоны" id="mapImage">
                         </div>
-                        <!-- ПОМЕХИ НА ЭКРАНЕ КПК -->
                         <div class="kpk-noise"></div>
+                        <div class="kpk-noise-lines"></div>
                         <div class="kpk-scanline"></div>
                         <div class="kpk-corner kpk-corner-tl"></div>
                         <div class="kpk-corner kpk-corner-tr"></div>
