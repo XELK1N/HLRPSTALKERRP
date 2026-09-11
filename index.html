@@ -268,6 +268,18 @@
         .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
         .menu-item.danger svg { fill: rgba(255, 120, 120, 0.7); }
 
+        /* Стиль для админ-пункта */
+        .menu-item.admin-item {
+            color: #ffd88b;
+        }
+
+        .menu-item.admin-item:hover {
+            background: rgba(255, 200, 80, 0.10);
+            color: #ffe0a0;
+        }
+
+        .menu-item.admin-item svg { fill: rgba(255, 200, 80, 0.7); }
+
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -1042,11 +1054,7 @@
             border: 1px solid rgba(60, 140, 220, 0.08);
         }
 
-        .admin-stat {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .admin-stat { display: flex; flex-direction: column; gap: 4px; }
 
         .admin-stat-label {
             font-size: 0.7rem;
@@ -1056,17 +1064,9 @@
             font-weight: 600;
         }
 
-        .admin-stat-value {
-            font-size: 1.4rem;
-            color: #8cc4ff;
-            font-weight: 800;
-        }
+        .admin-stat-value { font-size: 1.4rem; color: #8cc4ff; font-weight: 800; }
 
-        .admin-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
 
         .admin-tab {
             padding: 8px 18px;
@@ -1222,10 +1222,7 @@
             color: #8be6b0;
         }
 
-        .admin-btn-give:hover {
-            background: rgba(80, 220, 130, 0.18);
-            border-color: rgba(80, 220, 130, 0.35);
-        }
+        .admin-btn-give:hover { background: rgba(80, 220, 130, 0.18); border-color: rgba(80, 220, 130, 0.35); }
 
         .admin-btn-take {
             background: rgba(255, 200, 80, 0.08);
@@ -1233,10 +1230,7 @@
             color: #ffd88b;
         }
 
-        .admin-btn-take:hover {
-            background: rgba(255, 200, 80, 0.18);
-            border-color: rgba(255, 200, 80, 0.35);
-        }
+        .admin-btn-take:hover { background: rgba(255, 200, 80, 0.18); border-color: rgba(255, 200, 80, 0.35); }
 
         .admin-btn-set {
             background: rgba(60, 140, 220, 0.08);
@@ -1244,10 +1238,7 @@
             color: #8cc4ff;
         }
 
-        .admin-btn-set:hover {
-            background: rgba(60, 140, 220, 0.18);
-            border-color: rgba(60, 140, 220, 0.35);
-        }
+        .admin-btn-set:hover { background: rgba(60, 140, 220, 0.18); border-color: rgba(60, 140, 220, 0.35); }
 
         .admin-btn-ban {
             background: rgba(255, 80, 80, 0.08);
@@ -1255,10 +1246,7 @@
             color: #ff8b8b;
         }
 
-        .admin-btn-ban:hover {
-            background: rgba(255, 80, 80, 0.18);
-            border-color: rgba(255, 80, 80, 0.35);
-        }
+        .admin-btn-ban:hover { background: rgba(255, 80, 80, 0.18); border-color: rgba(255, 80, 80, 0.35); }
 
         .admin-btn-unban {
             background: rgba(80, 220, 130, 0.08);
@@ -1266,10 +1254,7 @@
             color: #8be6b0;
         }
 
-        .admin-btn-unban:hover {
-            background: rgba(80, 220, 130, 0.18);
-            border-color: rgba(80, 220, 130, 0.35);
-        }
+        .admin-btn-unban:hover { background: rgba(80, 220, 130, 0.18); border-color: rgba(80, 220, 130, 0.35); }
 
         .admin-empty {
             text-align: center;
@@ -1371,6 +1356,10 @@
             <div class="menu-item" onclick="openSettingsModal()">
                 <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                 Настройки
+            </div>
+            <div class="menu-item admin-item" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1z"/></svg>
+                Админ-панель
             </div>
             <div class="menu-divider"></div>
             <div class="menu-item danger" onclick="logout()">
@@ -1696,7 +1685,6 @@
         </div>
     </div>
 
-    <!-- ===== АДМИН-ПАНЕЛЬ ===== -->
     <div class="modal-overlay" id="adminModal">
         <div class="modal wide">
             <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
@@ -1722,9 +1710,6 @@
     </div>
 
     <script>
-        // ============================================================
-        // ХРАНИЛИЩЕ
-        // ============================================================
         const DB = {
             getUsers() {
                 try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
@@ -1796,7 +1781,14 @@
 
         function toggleProfileMenu(e) {
             e.stopPropagation();
-            document.getElementById('profileMenu').classList.toggle('active');
+            const menu = document.getElementById('profileMenu');
+            
+            const adminItem = document.getElementById('adminMenuItem');
+            if (adminItem) {
+                adminItem.style.display = isAdmin() ? 'flex' : 'none';
+            }
+            
+            menu.classList.toggle('active');
         }
 
         document.addEventListener('click', function(e) {
@@ -1962,7 +1954,6 @@
                 + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // DRAG & DROP ДЛЯ АВАТАРА
         const avatarDropZone = document.getElementById('avatarPreviewBig');
 
         avatarDropZone.addEventListener('dragover', function(e) {
@@ -2168,6 +2159,7 @@
 
         function openAdminPanel() {
             if (!isAdmin()) return;
+            document.getElementById('profileMenu').classList.remove('active');
             renderAdminStats();
             renderAdminUsers();
             document.getElementById('adminModal').classList.add('active');
@@ -2209,17 +2201,14 @@
 
             let entries = Object.entries(users).map(([username, data]) => ({ username, ...data }));
 
-            // Фильтр по вкладке
             if (adminCurrentTab === 'banned') {
                 entries = entries.filter(u => u.isBanned);
             }
 
-            // Поиск по юзернейму
             if (search) {
                 entries = entries.filter(u => u.username.toLowerCase().includes(search));
             }
 
-            // Сортировка: сначала новые
             entries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
             if (entries.length === 0) {
@@ -2244,23 +2233,7 @@
                         Забанить
                       </button>`;
 
-                const actionsBlock = isSelf ? '' : `
-                    <div class="admin-user-actions">
-                        <button class="admin-btn admin-btn-give" onclick="giveHls('${user.username}')">
-                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                            Дать ХЛС
-                        </button>
-                        <button class="admin-btn admin-btn-take" onclick="takeHls('${user.username}')">
-                            <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
-                            Отнять
-                        </button>
-                        <button class="admin-btn admin-btn-set" onclick="setHls('${user.username}')">
-                            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                            Изменить
-                        </button>
-                        ${banBtn}
-                    </div>
-                `;
+                const finalBanBtn = isSelf ? '' : banBtn;
 
                 return `
                     <div class="admin-user-row">
@@ -2274,7 +2247,21 @@
                             <div class="admin-user-username">@${escapeHtml(user.username)}</div>
                         </div>
                         <div class="admin-user-balance">${balance} <span>ХЛС</span></div>
-                        ${actionsBlock}
+                        <div class="admin-user-actions">
+                            <button class="admin-btn admin-btn-give" onclick="giveHls('${user.username}')">
+                                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                Дать ХЛС
+                            </button>
+                            <button class="admin-btn admin-btn-take" onclick="takeHls('${user.username}')">
+                                <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+                                Отнять
+                            </button>
+                            <button class="admin-btn admin-btn-set" onclick="setHls('${user.username}')">
+                                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                Изменить
+                            </button>
+                            ${finalBanBtn}
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -2290,7 +2277,7 @@
 
             renderAdminStats();
             renderAdminUsers();
-            if (DB.getCurrentUsername() === username) renderProfileCorner();
+            renderProfileCorner();
         }
 
         function takeHls(username) {
@@ -2304,7 +2291,7 @@
 
             renderAdminStats();
             renderAdminUsers();
-            if (DB.getCurrentUsername() === username) renderProfileCorner();
+            renderProfileCorner();
         }
 
         function setHls(username) {
@@ -2317,7 +2304,7 @@
 
             renderAdminStats();
             renderAdminUsers();
-            if (DB.getCurrentUsername() === username) renderProfileCorner();
+            renderProfileCorner();
         }
 
         function banUser(username) {
@@ -2339,26 +2326,8 @@
             renderAdminUsers();
         }
 
-        // Открытие админ-панели по клавише M
-        document.addEventListener('keydown', function(e) {
-            if (e.key.toLowerCase() === 'm' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-                // Проверяем, что фокус не в input
-                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
-
-                if (isAdmin()) {
-                    e.preventDefault();
-                    const modal = document.getElementById('adminModal');
-                    if (modal.classList.contains('active')) {
-                        closeModal('adminModal');
-                    } else {
-                        openAdminPanel();
-                    }
-                }
-            }
-        });
-
         // ============================================================
-        // ОСТАЛЬНОЕ (правила, карта, частицы, глюки)
+        // ОСТАЛЬНОЕ
         // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
