@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HLRP | Helkin Roleplay</title>
+    <link rel="icon" href="fovicon.jpg" type="image/jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -23,8 +24,98 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            transition: background-position 0.15s ease-out;
+            transition: background-position 0.15s ease-out, background-image 0.3s ease, background-color 0.3s ease;
             will-change: background-position;
+        }
+
+        body.light-theme {
+            background-color: #d4e4f0;
+        }
+
+        body.light-theme::before {
+            background: radial-gradient(ellipse at center, rgba(220, 235, 250, 0.40) 0%, rgba(180, 210, 240, 0.75) 100%);
+        }
+
+        body.light-theme .tab-page {
+            background: rgba(255, 255, 255, 0.70);
+            border-color: rgba(0, 80, 160, 0.10);
+        }
+
+        body.light-theme .logo,
+        body.light-theme .hero h1,
+        body.light-theme .rules-header h2,
+        body.light-theme .info-block h2 {
+            color: #001f3f;
+        }
+
+        body.light-theme .hero-desc,
+        body.light-theme .rules-body .rule-item,
+        body.light-theme .lore-story,
+        body.light-theme .footer {
+            color: rgba(0, 30, 60, 0.75);
+        }
+
+        body.light-theme .tab-link { color: rgba(0, 60, 130, 0.5); }
+        body.light-theme .tab-link.active { color: #0066cc; }
+        body.light-theme .tab-link:hover { color: rgba(0, 60, 130, 0.9); }
+
+        body.light-theme .profile-corner,
+        body.light-theme .profile-menu,
+        body.light-theme .modal {
+            background: rgba(240, 248, 255, 0.95);
+            border-color: rgba(0, 80, 160, 0.15);
+        }
+
+        body.light-theme .profile-name-corner,
+        body.light-theme .menu-item,
+        body.light-theme .modal h3 {
+            color: #003366;
+        }
+
+        body.light-theme .form-group label,
+        body.light-theme .settings-section h4 {
+            color: rgba(0, 60, 130, 0.55);
+        }
+
+        body.light-theme .form-group input {
+            background: rgba(255, 255, 255, 0.9);
+            color: #003366;
+            border-color: rgba(0, 80, 160, 0.15);
+        }
+
+        body.light-theme .rules-section {
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        body.light-theme .rules-body .rule-item {
+            color: rgba(0, 30, 60, 0.80);
+        }
+
+        body.light-theme .rules-body .rule-item strong {
+            color: #0055aa;
+        }
+
+        body.light-theme .rules-body .rule-item .highlight {
+            color: #0066cc;
+        }
+
+        body.light-theme .theme-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #003366;
+            border-color: rgba(0, 80, 160, 0.15);
+        }
+
+        body.light-theme .bg-upload-area {
+            background: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 60, 130, 0.55);
+        }
+
+        body.light-theme .profile-stat-label {
+            color: rgba(0, 60, 130, 0.55);
+        }
+
+        body.light-theme .profile-stat-value {
+            color: #003366;
         }
 
         body::before {
@@ -34,10 +125,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(2, 6, 14, 0.75);
             background: radial-gradient(ellipse at center, rgba(2, 6, 14, 0.60) 0%, rgba(0, 2, 6, 0.88) 100%);
             z-index: 0;
             pointer-events: none;
+            transition: background 0.3s ease;
         }
 
         #particles-container {
@@ -63,16 +154,10 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-10px) translateX(0) scale(1);
-                opacity: 0.2;
-            }
+            0% { transform: translateY(-10px) translateX(0) scale(1); opacity: 0.2; }
             20% { opacity: 0.6; }
             80% { opacity: 0.6; }
-            100% {
-                transform: translateY(110vh) translateX(80px) scale(0.3);
-                opacity: 0;
-            }
+            100% { transform: translateY(110vh) translateX(80px) scale(0.3); opacity: 0; }
         }
 
         .main-card {
@@ -99,11 +184,7 @@
             gap: 12px;
         }
 
-        .logo-img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
+        .logo-img { height: 40px; width: auto; display: block; }
 
         .logo {
             font-size: 2.2rem;
@@ -113,10 +194,7 @@
             text-shadow: 0 0 40px rgba(40, 140, 255, 0.08);
         }
 
-        .logo span {
-            color: #4a9eff;
-            text-shadow: 0 0 40px rgba(40, 140, 255, 0.15);
-        }
+        .logo span { color: #4a9eff; }
 
         .logo-sub {
             font-size: 0.7rem;
@@ -162,12 +240,449 @@
 
         .tab-link:hover::after { width: 100%; }
         .tab-link:hover { color: rgba(120, 180, 240, 0.50); }
-        .tab-link.active {
-            color: #8cc4ff;
-            text-shadow: 0 0 30px rgba(40, 140, 255, 0.10);
-        }
+        .tab-link.active { color: #8cc4ff; text-shadow: 0 0 30px rgba(40, 140, 255, 0.10); }
         .tab-link.active::after { width: 100%; }
 
+        /* ===== ПРОФИЛЬ В УГЛУ ===== */
+        .profile-corner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(2, 8, 18, 0.60);
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            border-radius: 12px;
+            padding: 8px 14px 8px 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(8px);
+            user-select: none;
+        }
+
+        .profile-corner:hover {
+            background: rgba(2, 8, 18, 0.80);
+            border-color: rgba(60, 140, 220, 0.20);
+            transform: translateY(-2px);
+        }
+
+        .profile-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            background: rgba(60, 140, 220, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-avatar svg { width: 100%; height: 100%; }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .profile-info-block {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .profile-name-corner {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #b0d0f0;
+            letter-spacing: 0.3px;
+        }
+
+        .profile-balance-corner {
+            font-size: 0.7rem;
+            color: rgba(160, 200, 240, 0.55);
+            font-weight: 400;
+        }
+
+        .profile-balance-corner span {
+            color: #8cc4ff;
+            font-weight: 700;
+        }
+
+        .profile-login-btn {
+            background: linear-gradient(135deg, #0a2a4a, #061a30);
+            color: #b0d0f0;
+            padding: 10px 22px;
+            border-radius: 10px;
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-login-btn:hover {
+            background: linear-gradient(135deg, #0f3a5e, #08203a);
+            border-color: rgba(60, 140, 220, 0.20);
+            transform: translateY(-2px);
+        }
+
+        /* ===== БУРГЕР-МЕНЮ ПРОФИЛЯ ===== */
+        .profile-menu {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            background: rgba(4, 10, 20, 0.95);
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            border-radius: 16px;
+            min-width: 260px;
+            padding: 12px;
+            z-index: 999;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: 0.3s ease;
+        }
+
+        .profile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            color: #b0d0f0;
+            font-weight: 500;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: rgba(60, 140, 220, 0.10);
+            color: #dceaff;
+        }
+
+        .menu-item svg {
+            width: 18px;
+            height: 18px;
+            fill: rgba(160, 200, 240, 0.55);
+            flex-shrink: 0;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: rgba(60, 140, 220, 0.10);
+            margin: 6px 0;
+        }
+
+        .menu-item.danger { color: #ff8b8b; }
+        .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
+        .menu-item.danger svg { fill: rgba(255, 120, 120, 0.7); }
+
+        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: rgba(6, 14, 24, 0.98);
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            border-radius: 22px;
+            padding: 32px 36px;
+            max-width: 460px;
+            width: 100%;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: 0.3s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal { transform: scale(1); }
+
+        .modal h3 {
+            color: #a0c8f0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal h3 svg { width: 22px; height: 22px; fill: #8cc4ff; }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(60, 140, 220, 0.08);
+            border: none;
+            cursor: pointer;
+            color: rgba(160, 200, 240, 0.5);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(60, 140, 220, 0.15);
+            color: #dceaff;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-group label {
+            display: block;
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: rgba(2, 8, 18, 0.60);
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #dceaff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: rgba(60, 140, 220, 0.35);
+            background: rgba(2, 8, 18, 0.85);
+            box-shadow: 0 0 0 3px rgba(60, 140, 220, 0.08);
+        }
+
+        .form-group input::placeholder { color: rgba(160, 200, 240, 0.25); }
+
+        .form-group .hint {
+            font-size: 0.72rem;
+            color: rgba(160, 200, 240, 0.35);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .form-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0a2a4a, #061a30);
+            color: #b0d0f0;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        .form-btn:hover {
+            background: linear-gradient(135deg, #0f3a5e, #08203a);
+            border-color: rgba(60, 140, 220, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.82rem;
+            color: rgba(160, 200, 240, 0.45);
+        }
+
+        .form-switch a {
+            color: #8cc4ff;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .form-switch a:hover { text-decoration: underline; }
+
+        .form-error, .form-success {
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .form-error {
+            background: rgba(255, 80, 80, 0.10);
+            border: 1px solid rgba(255, 80, 80, 0.20);
+            color: #ff8b8b;
+        }
+
+        .form-success {
+            background: rgba(80, 220, 130, 0.10);
+            border: 1px solid rgba(80, 220, 130, 0.20);
+            color: #8be6b0;
+        }
+
+        .form-error.active, .form-success.active { display: block; }
+
+        /* ===== ПРОФИЛЬ (статистика) ===== */
+        .profile-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(60, 140, 220, 0.08);
+            font-size: 0.88rem;
+        }
+
+        .profile-stat:last-child { border-bottom: none; }
+
+        .profile-stat-label { color: rgba(160, 200, 240, 0.5); font-weight: 400; }
+
+        .profile-stat-value {
+            color: #b0d0f0;
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .avatar-preview-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: rgba(60, 140, 220, 0.10);
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-preview-large svg { width: 100%; height: 100%; }
+        .avatar-preview-large img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ===== НАСТРОЙКИ ===== */
+        .settings-section { margin-bottom: 24px; }
+
+        .settings-section h4 {
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .theme-switcher { display: flex; gap: 10px; }
+
+        .theme-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 10px;
+            background: rgba(2, 8, 18, 0.60);
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            color: #b0d0f0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .theme-btn:hover {
+            background: rgba(2, 8, 18, 0.85);
+            border-color: rgba(60, 140, 220, 0.20);
+        }
+
+        .theme-btn.active {
+            background: linear-gradient(135deg, #0a2a4a, #061a30);
+            border-color: rgba(60, 140, 220, 0.35);
+            color: #dceaff;
+            box-shadow: 0 0 20px rgba(60, 140, 220, 0.15);
+        }
+
+        .bg-upload-area {
+            background: rgba(2, 8, 18, 0.60);
+            border: 2px dashed rgba(60, 140, 220, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.85rem;
+        }
+
+        .bg-upload-area:hover {
+            background: rgba(2, 8, 18, 0.85);
+            border-color: rgba(60, 140, 220, 0.30);
+            color: #b0d0f0;
+        }
+
+        .bg-upload-area svg {
+            width: 32px;
+            height: 32px;
+            fill: rgba(160, 200, 240, 0.35);
+            margin-bottom: 8px;
+        }
+
+        .bg-reset-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 80, 80, 0.08);
+            border: 1px solid rgba(255, 80, 80, 0.15);
+            color: #ff8b8b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .bg-reset-btn:hover { background: rgba(255, 80, 80, 0.15); }
+
+        /* ===== ПРОЧЕЕ ===== */
         .tab-content { margin-top: 10px; }
 
         .tab-page {
@@ -178,6 +693,7 @@
             border-radius: 28px;
             border: 1px solid rgba(60, 140, 220, 0.04);
             box-shadow: 0 8px 80px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease;
         }
 
         .tab-page.active {
@@ -273,18 +789,6 @@
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-primary .icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            line-height: 1;
-        }
-
         .btn-social {
             padding: 14px 44px;
             border-radius: 50px;
@@ -304,33 +808,24 @@
         .btn-telegram {
             background: linear-gradient(135deg, #0088cc, #006699);
             color: #ffffff;
-            box-shadow: 0 4px 30px rgba(0, 136, 204, 0.15);
-            border-color: rgba(0, 136, 204, 0.15);
         }
 
         .btn-telegram:hover {
             background: linear-gradient(135deg, #0099dd, #0077aa);
             transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(0, 136, 204, 0.25);
-            border-color: rgba(0, 136, 204, 0.25);
         }
 
         .btn-discord {
             background: linear-gradient(135deg, #5865F2, #4752c4);
             color: #ffffff;
-            box-shadow: 0 4px 30px rgba(88, 101, 242, 0.15);
-            border-color: rgba(88, 101, 242, 0.15);
         }
 
         .btn-discord:hover {
             background: linear-gradient(135deg, #6a77f5, #4f5ad4);
             transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.25);
-            border-color: rgba(88, 101, 242, 0.25);
         }
 
         .btn-social .icon {
-            display: inline-block;
             width: 20px;
             height: 20px;
             display: flex;
@@ -339,17 +834,9 @@
             flex-shrink: 0;
         }
 
-        .btn-social .icon svg {
-            width: 20px;
-            height: 20px;
-            fill: #ffffff;
-        }
+        .btn-social .icon svg { width: 20px; height: 20px; fill: #ffffff; }
 
-        .rules-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .rules-wrapper { display: flex; flex-direction: column; gap: 12px; }
 
         .rules-section {
             background: rgba(2, 8, 18, 0.35);
@@ -392,9 +879,7 @@
             z-index: 1;
         }
 
-        .rules-header:hover {
-            background: rgba(60, 140, 220, 0.03);
-        }
+        .rules-header:hover { background: rgba(60, 140, 220, 0.03); }
 
         .rules-header h2 {
             font-size: 1.1rem;
@@ -409,18 +894,8 @@
             padding: 0;
         }
 
-        .rules-header .icon-svg {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            opacity: 0.7;
-        }
-
-        .rules-header .icon-svg svg {
-            width: 100%;
-            height: 100%;
-            fill: #8cc4ff;
-        }
+        .rules-header .icon-svg { width: 24px; height: 24px; flex-shrink: 0; opacity: 0.7; }
+        .rules-header .icon-svg svg { width: 100%; height: 100%; fill: #8cc4ff; }
 
         .rules-header .arrow {
             font-size: 0.8rem;
@@ -430,9 +905,7 @@
             font-weight: 300;
         }
 
-        .rules-header .arrow.open {
-            transform: rotate(180deg);
-        }
+        .rules-header .arrow.open { transform: rotate(180deg); }
 
         .rules-body {
             max-height: 0;
@@ -457,9 +930,7 @@
             transition: 0.2s;
         }
 
-        .rules-body .rule-item:hover {
-            color: rgba(160, 200, 240, 0.45);
-        }
+        .rules-body .rule-item:hover { color: rgba(160, 200, 240, 0.45); }
 
         .rules-body .rule-item::before {
             content: '▸';
@@ -475,10 +946,7 @@
             transform: translateX(2px);
         }
 
-        .rules-body .rule-item strong {
-            color: rgba(120, 180, 240, 0.30);
-            font-weight: 600;
-        }
+        .rules-body .rule-item strong { color: rgba(120, 180, 240, 0.30); font-weight: 600; }
 
         .rules-body .rule-item .highlight {
             color: rgba(100, 170, 240, 0.40);
@@ -538,114 +1006,64 @@
             border: 1px solid rgba(60, 140, 220, 0.04);
         }
 
-        /* ===== ГЛЮКИ — ПОЛОСЫ, КОТОРЫЕ ИНОГДА ПОЯВЛЯЮТСЯ ===== */
+        /* ===== ГЛЮКИ ===== */
         .kpk-glitch {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 15;
             opacity: 0;
             background: repeating-linear-gradient(
                 0deg,
-                transparent 0px,
-                transparent 2px,
-                rgba(0, 0, 0, 0.05) 2px,
-                rgba(0, 0, 0, 0.05) 4px,
-                transparent 4px,
-                transparent 6px
+                transparent 0px, transparent 2px,
+                rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px,
+                transparent 4px, transparent 6px
             );
             animation: glitchFlash 0.15s ease-out;
         }
 
-        .kpk-glitch.active {
-            opacity: 1;
-            animation: glitchFlash 0.3s ease-out;
-        }
+        .kpk-glitch.active { opacity: 1; animation: glitchFlash 0.3s ease-out; }
 
         @keyframes glitchFlash {
-            0% {
-                opacity: 0;
-                transform: translateX(-2px);
-            }
-            20% {
-                opacity: 0.8;
-                transform: translateX(2px);
-            }
-            40% {
-                opacity: 0.4;
-                transform: translateX(-1px);
-            }
-            60% {
-                opacity: 0.9;
-                transform: translateX(1px);
-            }
-            80% {
-                opacity: 0.3;
-                transform: translateX(-2px);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(0);
-            }
+            0% { opacity: 0; transform: translateX(-2px); }
+            20% { opacity: 0.8; transform: translateX(2px); }
+            40% { opacity: 0.4; transform: translateX(-1px); }
+            60% { opacity: 0.9; transform: translateX(1px); }
+            80% { opacity: 0.3; transform: translateX(-2px); }
+            100% { opacity: 0; transform: translateX(0); }
         }
 
-        /* Второй слой глюков — разноцветные полосы */
         .kpk-glitch-color {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 14;
             opacity: 0;
             background: linear-gradient(
                 180deg,
-                transparent 0%,
-                transparent 30%,
-                rgba(0, 200, 255, 0.03) 30%,
-                rgba(0, 200, 255, 0.03) 32%,
-                transparent 32%,
-                transparent 60%,
-                rgba(255, 0, 100, 0.02) 60%,
-                rgba(255, 0, 100, 0.02) 62%,
-                transparent 62%,
-                transparent 100%
+                transparent 0%, transparent 30%,
+                rgba(0, 200, 255, 0.03) 30%, rgba(0, 200, 255, 0.03) 32%,
+                transparent 32%, transparent 60%,
+                rgba(255, 0, 100, 0.02) 60%, rgba(255, 0, 100, 0.02) 62%,
+                transparent 62%, transparent 100%
             );
             transform: skewX(-2deg);
         }
 
-        .kpk-glitch-color.active {
-            opacity: 1;
-            animation: glitchColor 0.4s ease-out;
-        }
+        .kpk-glitch-color.active { opacity: 1; animation: glitchColor 0.4s ease-out; }
 
         @keyframes glitchColor {
-            0% {
-                opacity: 0;
-                transform: skewX(0deg) translateX(0);
-            }
-            30% {
-                opacity: 0.6;
-                transform: skewX(-3deg) translateX(3px);
-            }
-            60% {
-                opacity: 0.3;
-                transform: skewX(2deg) translateX(-2px);
-            }
-            100% {
-                opacity: 0;
-                transform: skewX(0deg) translateX(0);
-            }
+            0% { opacity: 0; transform: skewX(0deg) translateX(0); }
+            30% { opacity: 0.6; transform: skewX(-3deg) translateX(3px); }
+            60% { opacity: 0.3; transform: skewX(2deg) translateX(-2px); }
+            100% { opacity: 0; transform: skewX(0deg) translateX(0); }
         }
 
         .kpk-scanline {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, transparent, rgba(120, 200, 255, 0.05), rgba(120, 200, 255, 0.10), rgba(120, 200, 255, 0.05), transparent);
@@ -673,33 +1091,10 @@
             pointer-events: none;
         }
 
-        .kpk-corner-tl {
-            top: 10px;
-            left: 10px;
-            border-top-width: 1px;
-            border-left-width: 1px;
-        }
-
-        .kpk-corner-tr {
-            top: 10px;
-            right: 10px;
-            border-top-width: 1px;
-            border-right-width: 1px;
-        }
-
-        .kpk-corner-bl {
-            bottom: 10px;
-            left: 10px;
-            border-bottom-width: 1px;
-            border-left-width: 1px;
-        }
-
-        .kpk-corner-br {
-            bottom: 10px;
-            right: 10px;
-            border-bottom-width: 1px;
-            border-right-width: 1px;
-        }
+        .kpk-corner-tl { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+        .kpk-corner-tr { top: 10px; right: 10px; border-top-width: 1px; border-right-width: 1px; }
+        .kpk-corner-bl { bottom: 10px; left: 10px; border-bottom-width: 1px; border-left-width: 1px; }
+        .kpk-corner-br { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
 
         .map-container {
             position: relative;
@@ -710,16 +1105,12 @@
             background: rgba(2, 6, 14, 0.30);
         }
 
-        .map-container:active {
-            cursor: grabbing;
-        }
+        .map-container:active { cursor: grabbing; }
 
         .map-container img {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             object-fit: contain;
             transition: none;
             transform-origin: center;
@@ -753,16 +1144,8 @@
             transform: translateY(-2px);
         }
 
-        .map-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: rgba(160, 200, 240, 0.40);
-            transition: 0.3s;
-        }
-
-        .map-btn:hover svg {
-            fill: rgba(160, 200, 240, 0.60);
-        }
+        .map-btn svg { width: 24px; height: 24px; fill: rgba(160, 200, 240, 0.40); transition: 0.3s; }
+        .map-btn:hover svg { fill: rgba(160, 200, 240, 0.60); }
 
         .map-hint {
             text-align: center;
@@ -821,22 +1204,12 @@
             transition: 0.3s;
         }
 
-        .lore-block:hover {
-            background: rgba(60, 140, 220, 0.05);
-            border-left-color: rgba(60, 140, 220, 0.20);
-        }
-
         .info-block {
             background: rgba(2, 8, 18, 0.35);
             padding: 30px 32px;
             border-radius: 22px;
             border: 1px solid rgba(60, 140, 220, 0.02);
             transition: 0.3s;
-        }
-
-        .info-block:hover {
-            background: rgba(2, 8, 18, 0.50);
-            border-color: rgba(60, 140, 220, 0.04);
         }
 
         .info-block h2 {
@@ -852,12 +1225,6 @@
             letter-spacing: 1px;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
         .footer {
             text-align: center;
             margin-top: 35px;
@@ -867,14 +1234,9 @@
             font-size: 0.75rem;
             font-weight: 300;
             letter-spacing: 2px;
-            transition: 0.3s;
         }
 
-        .footer:hover { color: rgba(160, 200, 240, 0.45); }
-        .footer strong {
-            font-weight: 600;
-            color: rgba(160, 200, 240, 0.35);
-        }
+        .footer strong { font-weight: 600; color: rgba(160, 200, 240, 0.35); }
 
         @media (max-width: 700px) {
             body { padding: 15px; }
@@ -891,12 +1253,11 @@
             .rules-body { padding: 0 18px; }
             .rules-body.open { padding: 0 18px 16px 18px; }
             .info-block { padding: 20px; }
-            .green-zone-image img { max-width: 100%; }
             .kpk-frame { padding: 10px; }
             .map-container { height: 320px; }
             .map-btn { width: 42px; height: 42px; }
             .map-btn svg { width: 20px; height: 20px; }
-            .map-controls { gap: 10px; }
+            .profile-menu { right: 15px; left: 15px; min-width: auto; }
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -911,20 +1272,43 @@
 
     <div class="main-card">
 
+        <!-- ===== ШАПКА ===== -->
         <div class="header">
             <div class="logo-area">
                 <img src="logo.jpg" alt="HLRP Logo" class="logo-img">
                 <div class="logo">HL<span>RP</span></div>
                 <div class="logo-sub">Helkin Roleplay</div>
             </div>
+
             <div class="nav-tabs">
                 <button class="tab-link active" data-tab="main">Главная</button>
                 <button class="tab-link" data-tab="rules">Правила</button>
                 <button class="tab-link" data-tab="lore">Лор</button>
                 <button class="tab-link" data-tab="map">Карта</button>
             </div>
+
+            <!-- ===== ПРОФИЛЬ В УГЛУ ===== -->
+            <div id="profileCorner"></div>
         </div>
 
+        <!-- ===== БУРГЕР-МЕНЮ ПРОФИЛЯ ===== -->
+        <div class="profile-menu" id="profileMenu">
+            <div class="menu-item" onclick="openProfileModal()">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                Профиль
+            </div>
+            <div class="menu-item" onclick="openSettingsModal()">
+                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                Настройки
+            </div>
+            <div class="menu-divider"></div>
+            <div class="menu-item danger" onclick="logout()">
+                <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                Выйти
+            </div>
+        </div>
+
+        <!-- ===== КОНТЕНТ ===== -->
         <div class="tab-content">
 
             <!-- ======== ГЛАВНАЯ ======== -->
@@ -959,7 +1343,6 @@
             <!-- ======== ПРАВИЛА ======== -->
             <div id="rules" class="tab-page">
                 <div class="rules-wrapper">
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -974,8 +1357,7 @@
                             <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП на нашем проекте строго с <span class="highlight">16 лет</span>. Если вы младше, но готовы серьёзно играть и относиться ко всему с ответственностью — мы можем вас принять.</div>
                             <div class="rule-item"><strong>1.2.1.</strong> Согласно лору сервера — текущий год и вся хронология событий описаны в разделе <span class="highlight">«Лор»</span>. Настоятельно рекомендуем ознакомиться с ним перед началом игры.</div>
                             <div class="rule-item"><strong>1.3.1.</strong> Если у вас отсутствует микрофон или он ужасного качества — стоит понимать, что вы портите игровой процесс другим людям.</div>
-                            <div class="rule-item"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны (например, имена поп-звёзд, политиков, мемов).</div>
-                            <div class="rule-item"><strong>1.5.1.</strong> Перед началом игры рекомендуется ознакомиться с лором сервера и основными группировками — это поможет глубже погрузиться в атмосферу и избежать случайных нарушений.</div>
+                            <div class="rule-item"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны.</div>
                         </div>
                     </div>
 
@@ -990,39 +1372,18 @@
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP. Запрещены действия, не соответствующие вашей роли и реальности игрового мира. Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.</div>
-                            <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Проект старается придерживаться канона, поэтому любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
-                            <div class="rule-item"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения после написания используйте <span class="highlight">«//»</span>. Например: <span class="example">«Админ нужна помощь//»</span></div>
-                            <div class="rule-item"><strong>2.2.1. DM (Death Match)</strong> — убийство другого игрока без РП-причины. Например: вы встретили игрока вражеской группировки, однако вы находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</div>
-                            <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас на сервере (в РП-процессе), то вы имеете право убить его, даже если он полностью безоружен.</div>
-                            <div class="rule-item"><strong>2.3.2.</strong> Однако если людей много или 1, но с направленным оружием — вы уже нарушаете правило <span class="highlight">Пауэргейминг</span>.</div>
-                            <div class="rule-item"><strong>2.4.1. Пауэргейминг (Powergaming)</strong> — действие, где игрок описывает/совершает нечто нереалистичное (мгновенное убийство без причины или игнорирование окружения). Нарушает правило реализма.</div>
-                            <div class="rule-item"><strong>2.5.1. Метагейминг (MG)</strong> — применение информации, полученной нон-рп путём (например, из Telegram или Discord в нон-рп чатах).</div>
-                            <div class="rule-item"><strong>2.6.1. Спавнкилл (Spawn Kill)</strong> — убийство на спавне группировок или сталкеров. Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право его убить или он вас.</div>
-                            <div class="rule-item"><strong>2.6.2.</strong> Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда. (Подробные правила рейдов — ниже).</div>
-                            <div class="rule-item"><strong>2.7.1. Горный геймплей (Mountain Play)</strong> — запрещено залазить на горы и передвигаться по ним, а тем более вести из них огонь (касается только очень больших гор, которые определяют границы карты).</div>
-                            <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
-                            <div class="rule-item"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
-                            <div class="rule-item"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
-                        </div>
-                    </div>
-
-                    <div class="rules-section">
-                        <div class="rules-header" onclick="toggleSection(this)">
-                            <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
-                                </span>
-                                Раздел 3. Предупредительный выстрел
-                            </h2>
-                            <span class="arrow">▼</span>
-                        </div>
-                        <div class="rules-body">
-                            <div class="rule-item"><strong>3.1.1.</strong> Предупредительным выстрелом считается, когда игрок стреляет в сторону врага, либо в небо, либо под ноги.</div>
-                            <div class="rule-item"><strong>3.2.1.</strong> Если после предупредительного выстрела убегающий человек не останавливается через <span class="highlight">5 секунд</span> — вы можете его убивать.</div>
-                            <div class="rule-item"><strong>3.3.1.</strong> Предупредительный выстрел по машине осуществляется по колёсам транспортного средства и имеет такие же правила, как и по людям.</div>
-                            <div class="rule-item"><strong>3.4.1.</strong> Если в машине находятся пассажиры — предупредительный выстрел делается по капоту или колёсам. Стрельба по салону без предупреждения считается DM.</div>
-                            <div class="rule-item"><strong>3.5.1.</strong> Запрещено делать более одного предупредительного выстрела в одного и того же игрока в течение короткого времени — это считается фейковым РП.</div>
+                            <div class="rule-item"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP.</div>
+                            <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
+                            <div class="rule-item"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения используйте <span class="highlight">«//»</span>.</div>
+                            <div class="rule-item"><strong>2.2.1. DM (Death Match)</strong> — убийство игрока без РП-причины.</div>
+                            <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас (в РП-процессе), вы имеете право убить его.</div>
+                            <div class="rule-item"><strong>2.4.1. Пауэргейминг</strong> — нереалистичные действия.</div>
+                            <div class="rule-item"><strong>2.5.1. Метагейминг</strong> — использование нон-рп информации.</div>
+                            <div class="rule-item"><strong>2.6.1. Спавнкилл</strong> — убийство на спавне (минимум 15 секунд после спавна).</div>
+                            <div class="rule-item"><strong>2.7.1. Горный геймплей</strong> — запрещено залазить на большие горы.</div>
+                            <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки.</div>
+                            <div class="rule-item"><strong>2.9.1.</strong> После смерти нельзя вернуться на то же место 15 минут.</div>
+                            <div class="rule-item"><strong>2.10.1.</strong> Запрещены нереалистичные движения во время ПВП.</div>
                         </div>
                     </div>
 
@@ -1032,21 +1393,19 @@
                                 <span class="icon-svg">
                                     <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
                                 </span>
-                                Раздел 4. Правила зелёных зон
+                                Раздел 3. Правила зелёных зон
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>4.1.1.</strong> Зелёная зона — это безопасное пространство, где боевые действия и насилие строго запрещены правилами сервера. Зелёная зона начинается от забора баз группировок <span class="highlight">+ 10 метров</span> от него. <span class="example">(Исключение: во время рейда или штурма боевые действия возможны)</span></div>
-
+                            <div class="rule-item"><strong>3.1.1.</strong> Зелёная зона — безопасное пространство, где боевые действия запрещены. Начинается от забора баз группировок <span class="highlight">+ 10 метров</span>.</div>
                             <div class="green-zone-image">
-                                <img src="green_zone.jpg" alt="Зелёная зона — КПП военных">
+                                <img src="green_zone.jpg" alt="Зелёная зона">
                                 <div class="caption">Пример зелёной зоны (КПП военных)</div>
                             </div>
-
-                            <div class="rule-item"><strong>4.2.1.</strong> На территории зелёной зоны можно проводить кулачные бои, но только после одобрения главного на территории ЗЗ.</div>
-                            <div class="rule-item"><strong>4.3.1.</strong> Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div>
-                            <div class="rule-item"><strong>4.4.1.</strong> Провокации, оскорбления и угрозы в зелёной зоне разрешены, но любые боевые действия (даже ответные) караются баном. Если вас оскорбляют — вызывайте администратора.</div>
+                            <div class="rule-item"><strong>3.2.1.</strong> На территории ЗЗ можно проводить кулачные бои с одобрения главного.</div>
+                            <div class="rule-item"><strong>3.3.1.</strong> Запрещено носить оружие в руках в ЗЗ.</div>
+                            <div class="rule-item"><strong>3.4.1.</strong> Провокации разрешены, но боевые действия — бан.</div>
                         </div>
                     </div>
 
@@ -1056,17 +1415,17 @@
                                 <span class="icon-svg">
                                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
                                 </span>
-                                Раздел 5. Правила рейдов и штурма
+                                Раздел 4. Правила рейдов и штурма
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>5.1.1.</strong> Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере.</div>
-                            <div class="rule-item"><strong>5.2.1.</strong> Во время рейда или штурма запрещается покидать место столкновения.</div>
-                            <div class="rule-item"><strong>5.3.1.</strong> После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div>
-                            <div class="rule-item"><strong>5.4.1.</strong> Рейд нельзя начать против группировки, которой нету на сервере, или если их количество в меньшинстве.</div>
-                            <div class="rule-item"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
-                            <div class="rule-item"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
+                            <div class="rule-item"><strong>4.1.1.</strong> Рейд — только после <span class="highlight">одобрения администрации</span>.</div>
+                            <div class="rule-item"><strong>4.2.1.</strong> Во время рейда запрещено покидать место столкновения.</div>
+                            <div class="rule-item"><strong>4.3.1.</strong> После смерти — оставаться на спавне до окончания рейда.</div>
+                            <div class="rule-item"><strong>4.4.1.</strong> Рейд нельзя начать против отсутствующей группировки.</div>
+                            <div class="rule-item"><strong>4.5.1.</strong> Перед рейдом — предупреждение за <span class="highlight">5 минут</span>.</div>
+                            <div class="rule-item"><strong>4.6.1.</strong> Рейд не дольше <span class="highlight">40 минут</span>.</div>
                         </div>
                     </div>
 
@@ -1076,16 +1435,16 @@
                                 <span class="icon-svg">
                                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
                                 </span>
-                                Раздел 6. Правила ГОП-СТОПОВ
+                                Раздел 5. Правила ГОП-СТОПОВ
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>6.1.1.</strong> Одиночкам запрещено проводить гоп-стопы в любом виде.</div>
-                            <div class="rule-item"><strong>6.2.1.</strong> Гоп-стоп может совершиться только если в группе тех, кто собирается гоп-стопить, не менее <span class="highlight">3-х человек</span>.</div>
-                            <div class="rule-item"><strong>6.3.1.</strong> При гоп-стопе запрещено отбирать всё имущество жертвы — максимум <span class="highlight">2 предмета</span> или оружие с патронами. Полный обдир считается NRP.</div>
-                            <div class="rule-item"><strong>6.4.1.</strong> Если жертва оказывает сопротивление и погибает — гоп-стоп считается завершённым. Добивать лежачего без причины запрещено.</div>
-                            <div class="rule-item"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
+                            <div class="rule-item"><strong>5.1.1.</strong> Одиночкам запрещено проводить гоп-стопы.</div>
+                            <div class="rule-item"><strong>5.2.1.</strong> Гоп-стоп — только группой от <span class="highlight">3-х человек</span>.</div>
+                            <div class="rule-item"><strong>5.3.1.</strong> Запрещено отбирать всё имущество — максимум <span class="highlight">2 предмета</span>.</div>
+                            <div class="rule-item"><strong>5.4.1.</strong> Добивать лежачего без причины запрещено.</div>
+                            <div class="rule-item"><strong>5.5.1.</strong> Повторный гоп-стоп одного игрока в течение <span class="highlight">1 часа</span> запрещён.</div>
                         </div>
                     </div>
 
@@ -1095,57 +1454,37 @@
                                 <span class="icon-svg">
                                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                 </span>
-                                Раздел 7. Общие запреты
+                                Раздел 6. Общие запреты
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>7.1.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
-                            <div class="rule-item"><strong>7.2.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
-                            <div class="rule-item"><strong>7.3.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
-                            <div class="rule-item"><strong>7.4.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
-                            <div class="rule-item"><strong>7.5.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
-                            <div class="rule-item"><strong>7.6.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
+                            <div class="rule-item"><strong>6.1.1.</strong> Запрещены читы, баги, эксплойты — <span class="highlight">перманентный бан</span>.</div>
+                            <div class="rule-item"><strong>6.2.1.</strong> Запрещён Rage Quit во время боя.</div>
+                            <div class="rule-item"><strong>6.3.1.</strong> Запрещён спам и нецензурная лексика вне РП.</div>
+                            <div class="rule-item"><strong>6.4.1.</strong> Запрещены ники, нарушающие сеттинг.</div>
+                            <div class="rule-item"><strong>6.5.1.</strong> Запрещено блокирование проходов без РП-причины.</div>
+                            <div class="rule-item"><strong>6.6.1.</strong> Запрещён сленг и отсылки к поп-культуре в РП.</div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
             <!-- ======== ЛОР ======== -->
             <div id="lore" class="tab-page">
-                <div class="content-grid">
-                    <div class="info-block">
-                        <h2>📖 Лор Зоны</h2>
-                        <div class="lore-story">
-
-                            <p>Слушай, новичок. Всё началось не с аварии, нет. Та, чернобыльская, была лишь ширмой.</p>
-
-                            <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое? Они думали, что управляют мыслями, а на самом деле копали могилу.</p>
-
-                            <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, которые плюют на законы физики, с мутантами, что и снятся только в кошмарах, и с артефактами, за которые люди убивают друг друга. А те учёные... они не умерли. Стали единым О-Сознанием. И создали Монолит, чтобы дурить сталкерам головы, уводя их от правды к центру.</p>
-
-                            <hr class="lore-divider">
-
-                            <p><span class="year">✦ 2011 год</span> — Зону лихорадило. Выбросы шли один за другим. Группировка «Чистое небо» отправила к ЧАЭС бойца по прозвищу Шрам. Им нужно было остановить одного настырного сталкера – Стрелка. Этот псих решил, что дойдёт до самого сердца. Шрам его ранил, но опоздал. Грянул Второй Сверхвыброс – и «Чистое небо» стёрло с карты Зоны.</p>
-
-                            <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет этого самого Стрелка. А когда нашёл... понял, что Стрелок – это он сам. О-Сознание промыло ему мозги и сделало марионеткой. Но Меченый выстоял. Он уничтожил Выжигатель Мозгов, прорвался к центру и разбил купол Монолита. Открыл дорогу к ЧАЭС для всех – и для людей, и для тварей. Это был переломный год.</p>
-
-                            <p><span class="year">✦ 2012 год</span> — Военные решили: «Хватит, Зона будет нашей». Операция «Фарватер». Послали вертолёты. Красиво, грозно... Ни один не вернулся. В Припять отправили майора Дегтярёва – умного, злого, с упёртым взглядом. Он раскопал, что вертушки побили новые аномалии. Вместе с тем же Стрелком он выбрался из города живым, а Стрелка потом пристроили к учёным. С тех пор его имя стало легендой.</p>
-
-                            <hr class="lore-divider">
-
-                            <p>А потом настала тишина. Не добрая, нет. Зубы скрежещет тишина.</p>
-
-                            <p>Зона жила своей жизнью. Сталкеры шли за хабаром, «Долг» грызся со «Свободой» за то, что делать с этой землёй. Монолитовцы, которых Меченый вырубил из-под контроля, очнулись и бродили вокруг, потерянные, ища новую веру. Проходили годы. Кто-то умирал, кто-то уходил, кто-то сходил с ума. Зона менялась медленно, но неумолимо – как старый зверь, который зализывает раны и ждёт.</p>
-
-                            <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Всё те же аномалии, те же твари, тот же запах горелого металла и мокрой земли по утрам. Никто не знает, что будет дальше. Зона молчит. И это молчание страшнее любого Выброса.</p>
-
-                            <div class="lore-block">
-                                «Зона не прощает ошибок. Но она даёт шанс тем, кто готов рискнуть...»
-                            </div>
-
-                        </div>
+                <div class="info-block">
+                    <h2>📖 Лор Зоны</h2>
+                    <div class="lore-story">
+                        <p>Слушай, новичок. Всё началось не с аварии, нет. Та, чернобыльская, была лишь ширмой.</p>
+                        <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое? Они думали, что управляют мыслями, а на самом деле копали могилу.</p>
+                        <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, с мутантами, и с артефактами, за которые люди убивают друг друга. А те учёные... они не умерли. Стали единым О-Сознанием. И создали Монолит.</p>
+                        <hr class="lore-divider">
+                        <p><span class="year">✦ 2011 год</span> — Зону лихорадило. Группировка «Чистое небо» отправила к ЧАЭС бойца по прозвищу Шрам. Им нужно было остановить сталкера – Стрелка. Шрам его ранил, но опоздал. Грянул Второй Сверхвыброс – и «Чистое небо» стёрло с карты Зоны.</p>
+                        <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет Стрелка. А когда нашёл... понял, что Стрелок – это он сам. Но Меченый выстоял. Он уничтожил Выжигатель Мозгов и разбил купол Монолита.</p>
+                        <hr class="lore-divider">
+                        <p>А потом настала тишина. Не добрая, нет. Зубы скрежещет тишина.</p>
+                        <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Всё те же аномалии, те же твари, тот же запах горелого металла и мокрой земли по утрам. Никто не знает, что будет дальше. Зона молчит. И это молчание страшнее любого Выброса.</p>
+                        <div class="lore-block">«Зона не прощает ошибок. Но она даёт шанс тем, кто готов рискнуть...»</div>
                     </div>
                 </div>
             </div>
@@ -1162,7 +1501,6 @@
                         <div class="map-container" id="mapContainer">
                             <img src="map.jpg" alt="Карта Зоны" id="mapImage">
                         </div>
-                        <!-- ГЛЮКИ -->
                         <div class="kpk-glitch" id="glitchLayer"></div>
                         <div class="kpk-glitch-color" id="glitchColorLayer"></div>
                         <div class="kpk-scanline"></div>
@@ -1184,7 +1522,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
-                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.</div>
+                <div class="map-hint">🖱️ Зажми и тащи · Колесико для зума · Двойной клик — сброс</div>
             </div>
 
         </div>
@@ -1195,13 +1533,539 @@
 
     </div>
 
+    <!-- ===== МОДАЛКА: ВХОД/РЕГИСТРАЦИЯ ===== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+            <h3 id="authTitle">🔑 Вход</h3>
+            <div class="form-error" id="authError"></div>
+            <div class="form-group" id="usernameGroup">
+                <label>Юзернейм</label>
+                <input type="text" id="authUsername" placeholder="Введите юзернейм" maxlength="20">
+                <div class="hint" id="usernameHint" style="display:none;">Юзернейм нельзя будет изменить</div>
+            </div>
+            <div class="form-group" id="displayNameGroup" style="display:none;">
+                <label>Отображаемый ник</label>
+                <input type="text" id="authDisplayName" placeholder="Введите ник" maxlength="25">
+                <div class="hint">Этот ник можно будет менять позже</div>
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" id="authPassword" placeholder="Введите пароль">
+            </div>
+            <button class="form-btn" onclick="submitAuth()" id="authSubmitBtn">Войти</button>
+            <div class="form-switch">
+                <span id="authSwitchText">Нет аккаунта?</span> 
+                <a onclick="toggleAuthMode()" id="authSwitchLink">Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛКА: ПРОФИЛЬ ===== -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
+            <h3>
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                Мой профиль
+            </h3>
+            <div class="avatar-preview-large" id="profileAvatarLarge"></div>
+            
+            <div class="form-group">
+                <label>Отображаемый ник (можно менять)</label>
+                <input type="text" id="profileDisplayName" placeholder="Ваш ник" maxlength="25">
+            </div>
+
+            <div class="form-group">
+                <label>Аватар (URL картинки)</label>
+                <input type="text" id="profileAvatarUrl" placeholder="https://...">
+                <div class="hint">Оставьте пустым — будет стандартный</div>
+            </div>
+            
+            <button class="form-btn" onclick="saveProfile()">Сохранить изменения</button>
+            <div class="form-success" id="profileSuccess">✅ Профиль обновлён!</div>
+
+            <div class="menu-divider" style="margin: 20px 0;"></div>
+
+            <div class="profile-stat">
+                <span class="profile-stat-label">Юзернейм</span>
+                <span class="profile-stat-value" id="statUsername">—</span>
+            </div>
+            <div class="profile-stat">
+                <span class="profile-stat-label">ХЛС</span>
+                <span class="profile-stat-value" id="statHls">0</span>
+            </div>
+            <div class="profile-stat">
+                <span class="profile-stat-label">Дата регистрации</span>
+                <span class="profile-stat-value" id="statCreated">—</span>
+            </div>
+            <div class="profile-stat">
+                <span class="profile-stat-label">Последний вход</span>
+                <span class="profile-stat-value" id="statLastLogin">—</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛКА: НАСТРОЙКИ ===== -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('settingsModal')">✕</button>
+            <h3>
+                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                Настройки
+            </h3>
+
+            <div class="settings-section">
+                <h4>Тема сайта</h4>
+                <div class="theme-switcher">
+                    <button class="theme-btn" id="themeDark" onclick="setTheme('dark')">🌙 Тёмная</button>
+                    <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀️ Светлая</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>Свой фон</h4>
+                <div class="bg-upload-area" onclick="document.getElementById('bgFileInput').click()">
+                    <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                    <div>Нажми, чтобы загрузить картинку</div>
+                    <div style="font-size:0.7rem; margin-top:6px; opacity:0.6;">JPG, PNG, WEBP</div>
+                </div>
+                <input type="file" id="bgFileInput" accept="image/*" style="display:none;" onchange="uploadBg(event)">
+                <button class="bg-reset-btn" onclick="resetBg()">Сбросить фон</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ===== СВОРАЧИВАНИЕ РАЗДЕЛОВ =====
+        // ============================================================
+        // ХРАНИЛИЩЕ (localStorage — потом заменим на Netlify DB API)
+        // ============================================================
+        const DB = {
+            getUsers() {
+                try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
+            },
+            saveUsers(users) {
+                localStorage.setItem('hlrp_users', JSON.stringify(users));
+            },
+            getCurrentUsername() {
+                return localStorage.getItem('hlrp_current');
+            },
+            setCurrentUser(username) {
+                if (username) localStorage.setItem('hlrp_current', username);
+                else localStorage.removeItem('hlrp_current');
+            },
+            getCurrentUser() {
+                const username = this.getCurrentUsername();
+                if (!username) return null;
+                const users = this.getUsers();
+                return users[username] ? { username, ...users[username] } : null;
+            },
+            updateUser(username, data) {
+                const users = this.getUsers();
+                if (users[username]) {
+                    users[username] = { ...users[username], ...data };
+                    this.saveUsers(users);
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        // ============================================================
+        // АВАТАР ПО УМОЛЧАНИЮ (SVG сталкер)
+        // ============================================================
+        const DEFAULT_AVATAR = `
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0a2a4a"/>
+                        <stop offset="100%" stop-color="#051520"/>
+                    </linearGradient>
+                </defs>
+                <rect width="100" height="100" fill="url(#bgGrad)"/>
+                <!-- Капюшон -->
+                <path d="M 20 90 Q 20 45 50 40 Q 80 45 80 90 Z" fill="#1a4a70" opacity="0.9"/>
+                <!-- Лицо -->
+                <ellipse cx="50" cy="55" rx="18" ry="20" fill="#c8a878"/>
+                <!-- Тени на лице -->
+                <ellipse cx="50" cy="50" rx="16" ry="15" fill="#a08050" opacity="0.4"/>
+                <!-- Противогаз -->
+                <ellipse cx="50" cy="62" rx="14" ry="10" fill="#2a2a2a"/>
+                <circle cx="43" cy="62" r="5" fill="#4a9eff" opacity="0.8"/>
+                <circle cx="57" cy="62" r="5" fill="#4a9eff" opacity="0.8"/>
+                <circle cx="43" cy="62" r="3" fill="#6ab0ff"/>
+                <circle cx="57" cy="62" r="3" fill="#6ab0ff"/>
+                <!-- Глаза -->
+                <circle cx="43" cy="62" r="1.5" fill="#0a1a2a"/>
+                <circle cx="57" cy="62" r="1.5" fill="#0a1a2a"/>
+                <!-- Крепление -->
+                <path d="M 36 62 Q 50 75 64 62" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                <!-- Блик -->
+                <circle cx="41" cy="59" r="1" fill="white" opacity="0.6"/>
+                <circle cx="55" cy="59" r="1" fill="white" opacity="0.6"/>
+            </svg>
+        `;
+
+        function getAvatarHtml(user) {
+            if (user && user.avatarUrl) {
+                return `<img src="${user.avatarUrl}" alt="Avatar" onerror="this.parentElement.innerHTML='${DEFAULT_AVATAR.replace(/'/g, "\\'")}'">`;
+            }
+            return DEFAULT_AVATAR;
+        }
+
+        // ============================================================
+        // ОТРИСОВКА ПРОФИЛЯ В УГЛУ
+        // ============================================================
+        function renderProfileCorner() {
+            const corner = document.getElementById('profileCorner');
+            const user = DB.getCurrentUser();
+
+            if (user) {
+                const displayName = user.displayName || user.username;
+                const balance = user.hlsBalance || 0;
+                corner.innerHTML = `
+                    <div class="profile-corner" onclick="toggleProfileMenu(event)">
+                        <div class="profile-avatar">${getAvatarHtml(user)}</div>
+                        <div class="profile-info-block">
+                            <div class="profile-name-corner">${escapeHtml(displayName)}</div>
+                            <div class="profile-balance-corner"><span>${balance}</span> ХЛС</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                corner.innerHTML = `
+                    <button class="profile-login-btn" onclick="openAuthModal('login')">Войти</button>
+                `;
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ============================================================
+        // БУРГЕР-МЕНЮ
+        // ============================================================
+        function toggleProfileMenu(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('profileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('profileMenu');
+            const corner = document.getElementById('profileCorner');
+            if (menu.classList.contains('active') && !corner.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // ============================================================
+        // МОДАЛКИ
+        // ============================================================
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Закрытие по клику на оверлей
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        });
+
+        // ============================================================
+        // ВХОД / РЕГИСТРАЦИЯ
+        // ============================================================
+        let authMode = 'login';
+
+        function openAuthModal(mode) {
+            authMode = mode;
+            updateAuthModal();
+            document.getElementById('authModal').classList.add('active');
+            document.getElementById('authError').classList.remove('active');
+            // Очистка полей
+            document.getElementById('authUsername').value = '';
+            document.getElementById('authPassword').value = '';
+            document.getElementById('authDisplayName').value = '';
+        }
+
+        function updateAuthModal() {
+            const title = document.getElementById('authTitle');
+            const submitBtn = document.getElementById('authSubmitBtn');
+            const switchText = document.getElementById('authSwitchText');
+            const switchLink = document.getElementById('authSwitchLink');
+            const displayGroup = document.getElementById('displayNameGroup');
+            const usernameHint = document.getElementById('usernameHint');
+
+            if (authMode === 'login') {
+                title.innerHTML = '🔑 Вход';
+                submitBtn.textContent = 'Войти';
+                switchText.textContent = 'Нет аккаунта?';
+                switchLink.textContent = 'Зарегистрироваться';
+                displayGroup.style.display = 'none';
+                usernameHint.style.display = 'none';
+            } else {
+                title.innerHTML = '✨ Регистрация';
+                submitBtn.textContent = 'Создать аккаунт';
+                switchText.textContent = 'Уже есть аккаунт?';
+                switchLink.textContent = 'Войти';
+                displayGroup.style.display = 'block';
+                usernameHint.style.display = 'block';
+            }
+        }
+
+        function toggleAuthMode() {
+            authMode = authMode === 'login' ? 'register' : 'login';
+            updateAuthModal();
+            document.getElementById('authError').classList.remove('active');
+        }
+
+        function showAuthError(msg) {
+            const err = document.getElementById('authError');
+            err.textContent = msg;
+            err.classList.add('active');
+        }
+
+        function submitAuth() {
+            const username = document.getElementById('authUsername').value.trim();
+            const displayName = document.getElementById('authDisplayName').value.trim();
+            const password = document.getElementById('authPassword').value;
+
+            document.getElementById('authError').classList.remove('active');
+
+            if (!username || !password) {
+                showAuthError('Заполните все поля');
+                return;
+            }
+
+            if (username.length < 3) {
+                showAuthError('Юзернейм должен быть минимум 3 символа');
+                return;
+            }
+
+            if (password.length < 4) {
+                showAuthError('Пароль должен быть минимум 4 символа');
+                return;
+            }
+
+            const users = DB.getUsers();
+
+            if (authMode === 'register') {
+                if (users[username]) {
+                    showAuthError('Этот юзернейм уже занят');
+                    return;
+                }
+
+                if (!displayName) {
+                    showAuthError('Введите отображаемый ник');
+                    return;
+                }
+
+                // ВНИМАНИЕ: сохраняем пароль в открытом виде только для прототипа!
+                // Потом заменим на сервер с хэшированием (bcrypt).
+                users[username] = {
+                    password: btoa(password), // base64 (не безопасно, но для прототипа)
+                    displayName: displayName,
+                    avatarUrl: null,
+                    hlsBalance: 0,
+                    theme: 'dark',
+                    customBackground: null,
+                    createdAt: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    isAdmin: false
+                };
+                DB.saveUsers(users);
+                DB.setCurrentUser(username);
+                closeModal('authModal');
+                renderProfileCorner();
+                applyUserTheme();
+                applyUserBackground();
+                return;
+            }
+
+            // Вход
+            if (!users[username]) {
+                showAuthError('Пользователь не найден');
+                return;
+            }
+
+            if (users[username].password !== btoa(password)) {
+                showAuthError('Неверный пароль');
+                return;
+            }
+
+            // Обновляем lastLogin
+            users[username].lastLogin = new Date().toISOString();
+            DB.saveUsers(users);
+            DB.setCurrentUser(username);
+            closeModal('authModal');
+            renderProfileCorner();
+            applyUserTheme();
+            applyUserBackground();
+        }
+
+        // ============================================================
+        // ВЫХОД
+        // ============================================================
+        function logout() {
+            DB.setCurrentUser(null);
+            document.getElementById('profileMenu').classList.remove('active');
+            renderProfileCorner();
+            // Сбрасываем тему и фон на дефолт
+            document.body.classList.remove('light-theme');
+            document.body.style.backgroundImage = "url('background.jpg')";
+        }
+
+        // ============================================================
+        // ПРОФИЛЬ
+        // ============================================================
+        function openProfileModal() {
+            const user = DB.getCurrentUser();
+            if (!user) return;
+            document.getElementById('profileMenu').classList.remove('active');
+
+            document.getElementById('profileAvatarLarge').innerHTML = getAvatarHtml(user);
+            document.getElementById('profileDisplayName').value = user.displayName || user.username;
+            document.getElementById('profileAvatarUrl').value = user.avatarUrl || '';
+
+            document.getElementById('statUsername').textContent = user.username;
+            document.getElementById('statHls').textContent = user.hlsBalance || 0;
+            document.getElementById('statCreated').textContent = formatDate(user.createdAt);
+            document.getElementById('statLastLogin').textContent = formatDate(user.lastLogin);
+
+            document.getElementById('profileSuccess').classList.remove('active');
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function saveProfile() {
+            const user = DB.getCurrentUser();
+            if (!user) return;
+
+            const newDisplayName = document.getElementById('profileDisplayName').value.trim();
+            const newAvatarUrl = document.getElementById('profileAvatarUrl').value.trim();
+
+            if (!newDisplayName) {
+                alert('Ник не может быть пустым');
+                return;
+            }
+
+            DB.updateUser(user.username, {
+                displayName: newDisplayName,
+                avatarUrl: newAvatarUrl || null
+            });
+
+            renderProfileCorner();
+            document.getElementById('profileSuccess').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('profileSuccess').classList.remove('active');
+            }, 2500);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) 
+                + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // ============================================================
+        // НАСТРОЙКИ
+        // ============================================================
+        function openSettingsModal() {
+            document.getElementById('profileMenu').classList.remove('active');
+            const user = DB.getCurrentUser();
+            
+            // Отметка текущей темы
+            document.getElementById('themeDark').classList.remove('active');
+            document.getElementById('themeLight').classList.remove('active');
+            
+            const currentTheme = user ? (user.theme || 'dark') : 'dark';
+            if (currentTheme === 'light') {
+                document.getElementById('themeLight').classList.add('active');
+            } else {
+                document.getElementById('themeDark').classList.add('active');
+            }
+
+            document.getElementById('settingsModal').classList.add('active');
+        }
+
+        function setTheme(theme) {
+            document.getElementById('themeDark').classList.remove('active');
+            document.getElementById('themeLight').classList.remove('active');
+
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeLight').classList.add('active');
+            } else {
+                document.body.classList.remove('light-theme');
+                document.getElementById('themeDark').classList.add('active');
+            }
+
+            const user = DB.getCurrentUser();
+            if (user) {
+                DB.updateUser(user.username, { theme: theme });
+            }
+        }
+
+        function applyUserTheme() {
+            const user = DB.getCurrentUser();
+            const theme = user ? (user.theme || 'dark') : 'dark';
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+            } else {
+                document.body.classList.remove('light-theme');
+            }
+        }
+
+        function uploadBg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 3 * 1024 * 1024) {
+                alert('Файл слишком большой. Максимум 3 МБ.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                document.body.style.backgroundImage = `url(${dataUrl})`;
+                
+                const user = DB.getCurrentUser();
+                if (user) {
+                    DB.updateUser(user.username, { customBackground: dataUrl });
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetBg() {
+            document.body.style.backgroundImage = "url('background.jpg')";
+            const user = DB.getCurrentUser();
+            if (user) {
+                DB.updateUser(user.username, { customBackground: null });
+            }
+        }
+
+        function applyUserBackground() {
+            const user = DB.getCurrentUser();
+            if (user && user.customBackground) {
+                document.body.style.backgroundImage = `url(${user.customBackground})`;
+            } else {
+                document.body.style.backgroundImage = "url('background.jpg')";
+            }
+        }
+
+        // ============================================================
+        // СВОРАЧИВАНИЕ РАЗДЕЛОВ ПРАВИЛ
+        // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
             const body = section.querySelector('.rules-body');
             const arrow = header.querySelector('.arrow');
-
             if (body.classList.contains('open')) {
                 body.classList.remove('open');
                 arrow.classList.remove('open');
@@ -1211,7 +2075,9 @@
             }
         }
 
-        // ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК =====
+        // ============================================================
+        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+        // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
             main: document.getElementById('main'),
@@ -1224,36 +2090,25 @@
             btn.addEventListener('click', function() {
                 tabs.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-
                 Object.values(pages).forEach(page => page.classList.remove('active'));
-
                 const tabName = this.getAttribute('data-tab');
-                if (pages[tabName]) {
-                    pages[tabName].classList.add('active');
-                }
+                if (pages[tabName]) pages[tabName].classList.add('active');
             });
         });
 
-        // ===== КАРТА С ОГРАНИЧЕНИЕМ ПЕРЕМЕЩЕНИЯ =====
+        // ============================================================
+        // КАРТА
+        // ============================================================
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
-
-        let scale = 1;
-        let translateX = 0;
-        let translateY = 0;
-        let isDragging = false;
+        let scale = 1, translateX = 0, translateY = 0, isDragging = false;
         let startX, startY, startTranslateX, startTranslateY;
-
-        const MAX_SCALE = 5.0;
-        const MIN_SCALE = 1.0;
-        const ZOOM_STEP = 0.2;
+        const MAX_SCALE = 5.0, MIN_SCALE = 1.0, ZOOM_STEP = 0.2;
 
         function clampPosition() {
-            const containerRect = container.getBoundingClientRect();
-            const imgWidth = containerRect.width * scale;
-            const imgHeight = containerRect.height * scale;
-            const maxX = Math.max(0, (imgWidth - containerRect.width) / 2);
-            const maxY = Math.max(0, (imgHeight - containerRect.height) / 2);
+            const rect = container.getBoundingClientRect();
+            const maxX = Math.max(0, (rect.width * scale - rect.width) / 2);
+            const maxY = Math.max(0, (rect.height * scale - rect.height) / 2);
             translateX = Math.min(Math.max(translateX, -maxX), maxX);
             translateY = Math.min(Math.max(translateY, -maxY), maxY);
         }
@@ -1263,186 +2118,133 @@
             mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
 
-        function zoomIn() {
-            if (scale < MAX_SCALE) {
-                scale = Math.min(scale + ZOOM_STEP, MAX_SCALE);
-                updateMap();
-            }
-        }
+        function zoomIn() { if (scale < MAX_SCALE) { scale = Math.min(scale + ZOOM_STEP, MAX_SCALE); updateMap(); } }
+        function zoomOut() { if (scale > MIN_SCALE) { scale = Math.max(scale - ZOOM_STEP, MIN_SCALE); updateMap(); } }
+        function resetZoom() { scale = 1; translateX = 0; translateY = 0; updateMap(); }
 
-        function zoomOut() {
-            if (scale > MIN_SCALE) {
-                scale = Math.max(scale - ZOOM_STEP, MIN_SCALE);
-                updateMap();
-            }
-        }
-
-        function resetZoom() {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            updateMap();
-        }
-
-        // ===== МЫШЬ =====
-        container.addEventListener('wheel', function(e) {
+        container.addEventListener('wheel', e => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
             const newScale = Math.min(Math.max(scale + delta, MIN_SCALE), MAX_SCALE);
-            if (newScale !== scale) {
-                scale = newScale;
-                updateMap();
-            }
+            if (newScale !== scale) { scale = newScale; updateMap(); }
         }, { passive: false });
 
-        container.addEventListener('mousedown', function(e) {
+        container.addEventListener('mousedown', e => {
             isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            startTranslateX = translateX;
-            startTranslateY = translateY;
+            startX = e.clientX; startY = e.clientY;
+            startTranslateX = translateX; startTranslateY = translateY;
             container.style.cursor = 'grabbing';
         });
 
-        window.addEventListener('mousemove', function(e) {
+        window.addEventListener('mousemove', e => {
             if (!isDragging) return;
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            translateX = startTranslateX + dx;
-            translateY = startTranslateY + dy;
+            translateX = startTranslateX + (e.clientX - startX);
+            translateY = startTranslateY + (e.clientY - startY);
             updateMap();
         });
 
-        window.addEventListener('mouseup', function() {
+        window.addEventListener('mouseup', () => {
             isDragging = false;
             container.style.cursor = 'grab';
         });
 
         container.addEventListener('dblclick', resetZoom);
 
-        // ===== МУЛЬТИТАЧ ДЛЯ ТЕЛЕФОНА =====
+        // Мультитач
         let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
-        let lastTouchDistance = 0;
-        let lastTouchScale = 1;
+        let lastTouchDistance = 0, lastTouchScale = 1;
 
-        container.addEventListener('touchstart', function(e) {
+        container.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                lastTouchDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
+                const t1 = e.touches[0], t2 = e.touches[1];
+                lastTouchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
                 lastTouchScale = scale;
-                touchStartX = (touch1.clientX + touch2.clientX) / 2;
-                touchStartY = (touch1.clientY + touch2.clientY) / 2;
+                touchStartX = (t1.clientX + t2.clientX) / 2;
+                touchStartY = (t1.clientY + t2.clientY) / 2;
                 touchTranslateX = translateX;
                 touchTranslateY = translateY;
             } else if (e.touches.length === 1) {
-                const touch = e.touches[0];
-                touchStartX = touch.clientX;
-                touchStartY = touch.clientY;
-                touchTranslateX = translateX;
-                touchTranslateY = translateY;
+                const t = e.touches[0];
+                touchStartX = t.clientX; touchStartY = t.clientY;
+                touchTranslateX = translateX; touchTranslateY = translateY;
             }
         }, { passive: true });
 
-        container.addEventListener('touchmove', function(e) {
+        container.addEventListener('touchmove', e => {
             e.preventDefault();
-            
             if (e.touches.length === 2) {
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                const currentDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
-                
+                const t1 = e.touches[0], t2 = e.touches[1];
+                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
                 if (lastTouchDistance > 0) {
-                    const delta = currentDistance / lastTouchDistance;
-                    const newScale = Math.min(Math.max(lastTouchScale * delta, MIN_SCALE), MAX_SCALE);
-                    if (newScale !== scale) {
-                        scale = newScale;
-                        updateMap();
-                    }
+                    const newScale = Math.min(Math.max(lastTouchScale * (dist / lastTouchDistance), MIN_SCALE), MAX_SCALE);
+                    if (newScale !== scale) { scale = newScale; updateMap(); }
                 }
-                
-                const centerX = (touch1.clientX + touch2.clientX) / 2;
-                const centerY = (touch1.clientY + touch2.clientY) / 2;
-                const dx = centerX - touchStartX;
-                const dy = centerY - touchStartY;
-                translateX = touchTranslateX + dx;
-                translateY = touchTranslateY + dy;
+                const cx = (t1.clientX + t2.clientX) / 2;
+                const cy = (t1.clientY + t2.clientY) / 2;
+                translateX = touchTranslateX + (cx - touchStartX);
+                translateY = touchTranslateY + (cy - touchStartY);
                 updateMap();
-                
             } else if (e.touches.length === 1) {
-                const touch = e.touches[0];
-                const dx = touch.clientX - touchStartX;
-                const dy = touch.clientY - touchStartY;
-                translateX = touchTranslateX + dx;
-                translateY = touchTranslateY + dy;
+                const t = e.touches[0];
+                translateX = touchTranslateX + (t.clientX - touchStartX);
+                translateY = touchTranslateY + (t.clientY - touchStartY);
                 updateMap();
             }
         }, { passive: false });
 
-        // ===== ДИНАМИЧЕСКИЙ ФОН =====
-        document.addEventListener('mousemove', function(e) {
+        // ============================================================
+        // ГЛЮКИ
+        // ============================================================
+        function triggerGlitch() {
+            const g = document.getElementById('glitchLayer');
+            const gc = document.getElementById('glitchColorLayer');
+            if (g) { g.classList.remove('active'); void g.offsetWidth; g.classList.add('active'); }
+            if (gc) { gc.classList.remove('active'); void gc.offsetWidth; gc.classList.add('active'); }
+            setTimeout(triggerGlitch, Math.random() * 5000 + 3000);
+        }
+        setTimeout(triggerGlitch, 2000);
+
+        // ============================================================
+        // ДИНАМИЧЕСКИЙ ФОН
+        // ============================================================
+        document.addEventListener('mousemove', e => {
             const x = (e.clientX / window.innerWidth - 0.5) * 15;
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
             document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-            
-            const particles = document.getElementById('particles-container');
-            if (particles) {
-                particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            }
+            const p = document.getElementById('particles-container');
+            if (p) p.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
 
-        // ===== ГЛЮКИ (случайные полосы) =====
-        function triggerGlitch() {
-            const glitch = document.getElementById('glitchLayer');
-            const glitchColor = document.getElementById('glitchColorLayer');
-            
-            if (glitch) {
-                glitch.classList.remove('active');
-                // Trigger reflow for animation restart
-                void glitch.offsetWidth;
-                glitch.classList.add('active');
-            }
-            
-            if (glitchColor) {
-                glitchColor.classList.remove('active');
-                void glitchColor.offsetWidth;
-                glitchColor.classList.add('active');
-            }
-            
-            // Случайный интервал от 3 до 8 секунд
-            const nextGlitch = Math.random() * 5000 + 3000;
-            setTimeout(triggerGlitch, nextGlitch);
-        }
-
-        // Запускаем глюки через 2 секунды после загрузки
-        setTimeout(triggerGlitch, 2000);
-
-        // ===== ЧАСТИЦЫ =====
+        // ============================================================
+        // ЧАСТИЦЫ
+        // ============================================================
         function createParticles() {
-            const container = document.getElementById('particles-container');
-            const count = 35;
-
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+            const c = document.getElementById('particles-container');
+            for (let i = 0; i < 35; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
                 const size = Math.random() * 4 + 1.5;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = Math.random() * 20 + 15 + 's';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.opacity = Math.random() * 0.3 + 0.1;
-                container.appendChild(particle);
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = Math.random() * 20 + 15 + 's';
+                p.style.animationDelay = Math.random() * 20 + 's';
+                p.style.opacity = Math.random() * 0.3 + 0.1;
+                c.appendChild(p);
             }
         }
 
-        createParticles();
+        // ============================================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ============================================================
+        function init() {
+            renderProfileCorner();
+            applyUserTheme();
+            applyUserBackground();
+            createParticles();
+        }
+
+        init();
     </script>
 
 </body>
