@@ -145,7 +145,6 @@
         .tab-link.active { color: #8cc4ff; text-shadow: 0 0 30px rgba(40, 140, 255, 0.10); }
         .tab-link.active::after { width: 100%; }
 
-        /* ===== ПРОФИЛЬ В УГЛУ ===== */
         .profile-corner {
             display: flex;
             align-items: center;
@@ -232,7 +231,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== БУРГЕР-МЕНЮ ===== */
         .profile-menu {
             position: fixed;
             top: 90px; right: 30px;
@@ -290,7 +288,6 @@
         .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
         .menu-item.danger svg { fill: rgba(255, 120, 120, 0.7); }
 
-        /* ===== МОДАЛКИ ===== */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -324,7 +321,6 @@
         }
 
         .modal-overlay.active .modal { transform: scale(1); }
-        .modal.wide { max-width: 560px; }
 
         .modal h3 {
             color: #a0c8f0;
@@ -393,13 +389,6 @@
 
         .form-group input::placeholder { color: rgba(160, 200, 240, 0.25); }
 
-        .form-group .hint {
-            font-size: 0.72rem;
-            color: rgba(160, 200, 240, 0.35);
-            margin-top: 6px;
-            font-style: italic;
-        }
-
         .form-btn {
             width: 100%;
             background: linear-gradient(135deg, #0a2a4a, #061a30);
@@ -460,7 +449,6 @@
 
         .form-error.active, .form-success.active { display: block; }
 
-        /* ===== СТАТИСТИКА ===== */
         .profile-stat {
             display: flex;
             justify-content: space-between;
@@ -480,7 +468,7 @@
             text-overflow: ellipsis;
         }
 
-        /* ===== AVATAR UPLOAD ===== */
+        /* ===== AVATAR ===== */
         .avatar-upload-area {
             display: flex;
             flex-direction: column;
@@ -499,13 +487,19 @@
             justify-content: center;
             cursor: pointer;
             transition: 0.3s;
-            margin-bottom: 12px;
             position: relative;
         }
 
         .avatar-preview-big:hover {
             border-color: rgba(60, 140, 220, 0.45);
             transform: scale(1.03);
+        }
+
+        .avatar-preview-big.dragover {
+            border-color: #4a9eff;
+            border-style: dashed;
+            background: rgba(74, 158, 255, 0.10);
+            transform: scale(1.05);
         }
 
         .avatar-preview-big img { width: 100%; height: 100%; object-fit: cover; }
@@ -528,14 +522,6 @@
             letter-spacing: 0.5px;
         }
 
-        .avatar-hint {
-            font-size: 0.75rem;
-            color: rgba(160, 200, 240, 0.35);
-            text-align: center;
-            font-style: italic;
-        }
-
-        /* ===== РЕДАКТОР КАДРИРОВАНИЯ ===== */
         .crop-wrapper {
             display: flex;
             flex-direction: column;
@@ -621,7 +607,6 @@
             border: none;
         }
 
-        /* ===== ПРОЧЕЕ ===== */
         .tab-content { margin-top: 10px; }
 
         .tab-page {
@@ -889,16 +874,6 @@
             text-shadow: 0 0 20px rgba(60, 140, 220, 0.05);
         }
 
-        .rules-body .rule-item .example {
-            display: block;
-            padding-left: 16px;
-            margin-top: 4px;
-            color: rgba(160, 200, 240, 0.15);
-            font-style: italic;
-            font-size: 0.85rem;
-            border-left: 1px solid rgba(60, 140, 220, 0.04);
-        }
-
         .green-zone-image {
             padding: 10px;
             background: rgba(2, 8, 18, 0.50);
@@ -922,7 +897,6 @@
             text-align: center;
         }
 
-        /* ===== КПК ===== */
         .kpk-frame {
             background: rgba(2, 8, 18, 0.60);
             border-radius: 18px;
@@ -1076,15 +1050,6 @@
 
         .map-btn svg { width: 24px; height: 24px; fill: rgba(160, 200, 240, 0.40); transition: 0.3s; }
         .map-btn:hover svg { fill: rgba(160, 200, 240, 0.60); }
-
-        .map-hint {
-            text-align: center;
-            margin-top: 12px;
-            color: rgba(160, 200, 240, 0.15);
-            font-size: 0.8rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
 
         .lore-story {
             color: rgba(160, 200, 240, 0.30);
@@ -1403,7 +1368,7 @@
             <div id="map" class="tab-page">
                 <div style="text-align: center; margin-bottom: 16px;">
                     <h2 style="color: #a0c8f0; font-weight: 700; letter-spacing: 1px; font-size: 1.5rem;">🗺️ Карта Зоны</h2>
-                    <p style="color: rgba(160, 200, 240, 0.20); font-size: 0.85rem; font-weight: 300;">Карта зоны на момент 2020 года.</p>
+                    <p style="color: rgba(160, 200, 240, 0.20); font-size: 0.85rem; font-weight: 300;">Карта всей зоны</p>
                 </div>
 
                 <div class="kpk-frame">
@@ -1432,7 +1397,6 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
-                <div class="map-hint">🖱️ Зажми и тащи · Колесико для зума</div>
             </div>
 
         </div>
@@ -1451,12 +1415,10 @@
             <div class="form-group" id="usernameGroup">
                 <label>Юзернейм</label>
                 <input type="text" id="authUsername" placeholder="Введите юзернейм" maxlength="20">
-                <div class="hint" id="usernameHint" style="display:none;">Юзернейм нельзя будет изменить</div>
             </div>
             <div class="form-group" id="displayNameGroup" style="display:none;">
                 <label>Отображаемый ник</label>
                 <input type="text" id="authDisplayName" placeholder="Введите ник" maxlength="25">
-                <div class="hint">Этот ник можно менять позже</div>
             </div>
             <div class="form-group">
                 <label>Пароль</label>
@@ -1483,13 +1445,11 @@
                 <div class="avatar-preview-big" id="avatarPreviewBig" onclick="openAvatarEditor()">
                     <div class="edit-overlay">ИЗМЕНИТЬ</div>
                 </div>
-                <div class="avatar-hint">Нажми чтобы загрузить и кадрировать</div>
             </div>
 
             <div class="form-group">
                 <label>Отображаемый ник</label>
                 <input type="text" id="profileDisplayName" placeholder="Ваш ник" maxlength="25">
-                <div class="hint">Ник можно менять, юзернейм — нет</div>
             </div>
 
             <button class="form-btn" onclick="saveProfile()">Сохранить</button>
@@ -1594,9 +1554,6 @@
             }
         };
 
-        // ============================================================
-        // АВАТАР ПО УМОЛЧАНИЮ (буква юзернейма)
-        // ============================================================
         function getAvatarHtml(user) {
             if (user && user.avatarUrl) {
                 return `<img src="${user.avatarUrl}" alt="Avatar">`;
@@ -1685,7 +1642,6 @@
             const switchText = document.getElementById('authSwitchText');
             const switchLink = document.getElementById('authSwitchLink');
             const displayGroup = document.getElementById('displayNameGroup');
-            const usernameHint = document.getElementById('usernameHint');
 
             if (authMode === 'login') {
                 title.innerHTML = '🔑 Вход';
@@ -1693,14 +1649,12 @@
                 switchText.textContent = 'Нет аккаунта?';
                 switchLink.textContent = 'Зарегистрироваться';
                 displayGroup.style.display = 'none';
-                usernameHint.style.display = 'none';
             } else {
                 title.innerHTML = '✨ Регистрация';
                 submitBtn.textContent = 'Создать аккаунт';
                 switchText.textContent = 'Уже есть аккаунт?';
                 switchLink.textContent = 'Войти';
                 displayGroup.style.display = 'block';
-                usernameHint.style.display = 'block';
             }
         }
 
@@ -1802,7 +1756,7 @@
             document.getElementById('profileMenu').classList.remove('active');
 
             document.getElementById('avatarPreviewBig').innerHTML = 
-                (user.avatarUrl ? `<img src="${user.avatarUrl}" alt="Avatar">` : '') +
+                (user.avatarUrl ? `<img src="${user.avatarUrl}" alt="Avatar">` : `<div class="avatar-placeholder">${(user.displayName || user.username).charAt(0).toUpperCase()}</div>`) +
                 `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
             
             document.getElementById('profileDisplayName').value = user.displayName || user.username;
@@ -1841,7 +1795,40 @@
         }
 
         // ============================================================
-        // РЕДАКТОР АВАТАРА (КАДРИРОВАНИЕ)
+        // DRAG & DROP ДЛЯ АВАТАРА
+        // ============================================================
+        const avatarDropZone = document.getElementById('avatarPreviewBig');
+
+        avatarDropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.add('dragover');
+        });
+
+        avatarDropZone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.remove('dragover');
+        });
+
+        avatarDropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('Можно загрузить только изображение');
+                return;
+            }
+
+            processAvatarFile(file);
+        });
+
+        // ============================================================
+        // РЕДАКТОР АВАТАРА
         // ============================================================
         let cropImage = null;
         let cropOffsetX = 0;
@@ -1858,7 +1845,11 @@
         function loadAvatarFile(event) {
             const file = event.target.files[0];
             if (!file) return;
+            processAvatarFile(file);
+            event.target.value = '';
+        }
 
+        function processAvatarFile(file) {
             if (file.size > 5 * 1024 * 1024) {
                 alert('Файл слишком большой. Максимум 5 МБ.');
                 return;
@@ -1874,28 +1865,24 @@
                     cropOffsetY = 0;
                     document.getElementById('cropZoom').value = 1;
                     drawCrop();
+                    closeModal('profileModal');
                     document.getElementById('avatarEditorModal').classList.add('active');
                 };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(file);
-            event.target.value = '';
         }
 
         function drawCrop() {
             const canvas = document.getElementById('cropCanvas');
             const ctx = canvas.getContext('2d');
-            const W = canvas.width;
-            const H = canvas.height;
+            const W = canvas.width, H = canvas.height;
 
             ctx.clearRect(0, 0, W, H);
-
             if (!cropImage) return;
 
-            // Рассчитываем базовый масштаб, чтобы картинка заполнила canvas
             const baseScale = Math.max(W / cropImage.width, H / cropImage.height);
             const scale = baseScale * cropScale;
-
             const imgW = cropImage.width * scale;
             const imgH = cropImage.height * scale;
             const x = (W - imgW) / 2 + cropOffsetX;
@@ -1904,64 +1891,57 @@
             ctx.drawImage(cropImage, x, y, imgW, imgH);
         }
 
-        // Зум
-        document.getElementById('cropZoom')?.addEventListener('input', function() {
+        document.getElementById('cropZoom').addEventListener('input', function() {
             cropScale = parseFloat(this.value);
             drawCrop();
         });
 
-        // Перетаскивание
         const cropArea = document.getElementById('cropArea');
-        if (cropArea) {
-            cropArea.addEventListener('mousedown', function(e) {
-                if (!cropImage) return;
-                isCropDragging = true;
-                cropStartX = e.clientX;
-                cropStartY = e.clientY;
-                cropStartOffsetX = cropOffsetX;
-                cropStartOffsetY = cropOffsetY;
-            });
+        cropArea.addEventListener('mousedown', function(e) {
+            if (!cropImage) return;
+            isCropDragging = true;
+            cropStartX = e.clientX;
+            cropStartY = e.clientY;
+            cropStartOffsetX = cropOffsetX;
+            cropStartOffsetY = cropOffsetY;
+        });
 
-            window.addEventListener('mousemove', function(e) {
-                if (!isCropDragging) return;
-                cropOffsetX = cropStartOffsetX + (e.clientX - cropStartX) * 2;
-                cropOffsetY = cropStartOffsetY + (e.clientY - cropStartY) * 2;
-                drawCrop();
-            });
+        window.addEventListener('mousemove', function(e) {
+            if (!isCropDragging) return;
+            cropOffsetX = cropStartOffsetX + (e.clientX - cropStartX) * 2;
+            cropOffsetY = cropStartOffsetY + (e.clientY - cropStartY) * 2;
+            drawCrop();
+        });
 
-            window.addEventListener('mouseup', function() {
-                isCropDragging = false;
-            });
+        window.addEventListener('mouseup', function() {
+            isCropDragging = false;
+        });
 
-            // Touch
-            cropArea.addEventListener('touchstart', function(e) {
-                if (!cropImage || e.touches.length !== 1) return;
-                isCropDragging = true;
-                cropStartX = e.touches[0].clientX;
-                cropStartY = e.touches[0].clientY;
-                cropStartOffsetX = cropOffsetX;
-                cropStartOffsetY = cropOffsetY;
-            }, { passive: true });
+        cropArea.addEventListener('touchstart', function(e) {
+            if (!cropImage || e.touches.length !== 1) return;
+            isCropDragging = true;
+            cropStartX = e.touches[0].clientX;
+            cropStartY = e.touches[0].clientY;
+            cropStartOffsetX = cropOffsetX;
+            cropStartOffsetY = cropOffsetY;
+        }, { passive: true });
 
-            cropArea.addEventListener('touchmove', function(e) {
-                if (!isCropDragging || e.touches.length !== 1) return;
-                e.preventDefault();
-                cropOffsetX = cropStartOffsetX + (e.touches[0].clientX - cropStartX) * 2;
-                cropOffsetY = cropStartOffsetY + (e.touches[0].clientY - cropStartY) * 2;
-                drawCrop();
-            }, { passive: false });
+        cropArea.addEventListener('touchmove', function(e) {
+            if (!isCropDragging || e.touches.length !== 1) return;
+            e.preventDefault();
+            cropOffsetX = cropStartOffsetX + (e.touches[0].clientX - cropStartX) * 2;
+            cropOffsetY = cropStartOffsetY + (e.touches[0].clientY - cropStartY) * 2;
+            drawCrop();
+        }, { passive: false });
 
-            cropArea.addEventListener('touchend', function() {
-                isCropDragging = false;
-            });
-        }
+        cropArea.addEventListener('touchend', function() {
+            isCropDragging = false;
+        });
 
-        // Сохранение кадрированного аватара
         function applyAvatarCrop() {
             const user = DB.getCurrentUser();
             if (!user || !cropImage) return;
 
-            // Создаём финальный canvas 256x256 (квадрат — обрезаем по кругу на стороне отображения)
             const finalSize = 256;
             const finalCanvas = document.createElement('canvas');
             finalCanvas.width = finalSize;
@@ -1972,22 +1952,15 @@
             const W = cropCanvas.width;
             const H = cropCanvas.height;
 
-            // Находим область круга (70% от 260px визуально = 182px в реальных координатах canvas)
-            // Canvas 520x520, circle 70% => 364px
             const circleSize = W * 0.70;
             const circleX = (W - circleSize) / 2;
             const circleY = (H - circleSize) / 2;
 
-            ctx.drawImage(
-                cropCanvas,
-                circleX, circleY, circleSize, circleSize,
-                0, 0, finalSize, finalSize
-            );
+            ctx.drawImage(cropCanvas, circleX, circleY, circleSize, circleSize, 0, 0, finalSize, finalSize);
 
             const dataUrl = finalCanvas.toDataURL('image/jpeg', 0.9);
             DB.updateUser(user.username, { avatarUrl: dataUrl });
 
-            // Обновляем аватар в профиле
             document.getElementById('avatarPreviewBig').innerHTML = 
                 `<img src="${dataUrl}" alt="Avatar"><div class="edit-overlay">ИЗМЕНИТЬ</div>`;
             
@@ -1996,7 +1969,7 @@
         }
 
         // ============================================================
-        // НАСТРОЙКИ (только фон, темы убраны)
+        // НАСТРОЙКИ
         // ============================================================
         function openSettingsModal() {
             document.getElementById('profileMenu').classList.remove('active');
@@ -2006,12 +1979,10 @@
         function uploadBg(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             if (file.size > 3 * 1024 * 1024) {
                 alert('Файл слишком большой. Максимум 3 МБ.');
                 return;
             }
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
@@ -2038,7 +2009,7 @@
         }
 
         // ============================================================
-        // РАЗДЕЛЫ ПРАВИЛ
+        // ПРАВИЛА И ВКЛАДКИ
         // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
@@ -2053,9 +2024,6 @@
             }
         }
 
-        // ============================================================
-        // ВКЛАДКИ
-        // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
             main: document.getElementById('main'),
@@ -2128,7 +2096,6 @@
 
         container.addEventListener('dblclick', resetZoom);
 
-        // Мультитач
         let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
         let lastTouchDistance = 0, lastTouchScale = 1;
 
