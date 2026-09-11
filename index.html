@@ -522,6 +522,39 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== КНОПКА УДАЛЕНИЯ АВАТАРА ===== */
+        .avatar-delete-btn {
+            display: none;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 80, 80, 0.08);
+            border: 1px solid rgba(255, 80, 80, 0.18);
+            color: #ff8b8b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .avatar-delete-btn:hover {
+            background: rgba(255, 80, 80, 0.15);
+            border-color: rgba(255, 80, 80, 0.30);
+            color: #ffb0b0;
+            transform: translateY(-1px);
+        }
+
+        .avatar-delete-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .avatar-delete-btn.visible { display: inline-flex; }
+
         .crop-wrapper {
             display: flex;
             flex-direction: column;
@@ -1406,7 +1439,6 @@
         </div>
     </div>
 
-    <!-- ===== МОДАЛКА: ВХОД/РЕГИСТРАЦИЯ ===== -->
     <div class="modal-overlay" id="authModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('authModal')">✕</button>
@@ -1432,7 +1464,6 @@
         </div>
     </div>
 
-    <!-- ===== МОДАЛКА: ПРОФИЛЬ ===== -->
     <div class="modal-overlay" id="profileModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
@@ -1445,6 +1476,10 @@
                 <div class="avatar-preview-big" id="avatarPreviewBig" onclick="openAvatarEditor()">
                     <div class="edit-overlay">ИЗМЕНИТЬ</div>
                 </div>
+                <button class="avatar-delete-btn" id="avatarDeleteBtn" onclick="deleteAvatar()">
+                    <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                    Удалить аватар
+                </button>
             </div>
 
             <div class="form-group">
@@ -1476,7 +1511,6 @@
         </div>
     </div>
 
-    <!-- ===== МОДАЛКА: РЕДАКТОР АВАТАРА ===== -->
     <div class="modal-overlay" id="avatarEditorModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('avatarEditorModal')">✕</button>
@@ -1501,7 +1535,6 @@
         </div>
     </div>
 
-    <!-- ===== МОДАЛКА: НАСТРОЙКИ ===== -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('settingsModal')">✕</button>
@@ -1524,9 +1557,6 @@
     </div>
 
     <script>
-        // ============================================================
-        // ХРАНИЛИЩЕ
-        // ============================================================
         const DB = {
             getUsers() {
                 try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
@@ -1562,9 +1592,6 @@
             return `<div class="avatar-placeholder">${letter}</div>`;
         }
 
-        // ============================================================
-        // ПРОФИЛЬ В УГЛУ
-        // ============================================================
         function renderProfileCorner() {
             const corner = document.getElementById('profileCorner');
             const user = DB.getCurrentUser();
@@ -1592,9 +1619,6 @@
             return div.innerHTML;
         }
 
-        // ============================================================
-        // БУРГЕР-МЕНЮ
-        // ============================================================
         function toggleProfileMenu(e) {
             e.stopPropagation();
             document.getElementById('profileMenu').classList.toggle('active');
@@ -1608,9 +1632,6 @@
             }
         });
 
-        // ============================================================
-        // МОДАЛКИ
-        // ============================================================
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
         }
@@ -1621,9 +1642,6 @@
             });
         });
 
-        // ============================================================
-        // ВХОД / РЕГИСТРАЦИЯ
-        // ============================================================
         let authMode = 'login';
 
         function openAuthModal(mode) {
@@ -1677,30 +1695,15 @@
 
             document.getElementById('authError').classList.remove('active');
 
-            if (!username || !password) {
-                showAuthError('Заполните все поля');
-                return;
-            }
-            if (username.length < 3) {
-                showAuthError('Юзернейм должен быть минимум 3 символа');
-                return;
-            }
-            if (password.length < 4) {
-                showAuthError('Пароль должен быть минимум 4 символа');
-                return;
-            }
+            if (!username || !password) { showAuthError('Заполните все поля'); return; }
+            if (username.length < 3) { showAuthError('Юзернейм должен быть минимум 3 символа'); return; }
+            if (password.length < 4) { showAuthError('Пароль должен быть минимум 4 символа'); return; }
 
             const users = DB.getUsers();
 
             if (authMode === 'register') {
-                if (users[username]) {
-                    showAuthError('Этот юзернейм уже занят');
-                    return;
-                }
-                if (!displayName) {
-                    showAuthError('Введите отображаемый ник');
-                    return;
-                }
+                if (users[username]) { showAuthError('Этот юзернейм уже занят'); return; }
+                if (!displayName) { showAuthError('Введите отображаемый ник'); return; }
 
                 users[username] = {
                     password: btoa(password),
@@ -1720,14 +1723,8 @@
                 return;
             }
 
-            if (!users[username]) {
-                showAuthError('Пользователь не найден');
-                return;
-            }
-            if (users[username].password !== btoa(password)) {
-                showAuthError('Неверный пароль');
-                return;
-            }
+            if (!users[username]) { showAuthError('Пользователь не найден'); return; }
+            if (users[username].password !== btoa(password)) { showAuthError('Неверный пароль'); return; }
 
             users[username].lastLogin = new Date().toISOString();
             DB.saveUsers(users);
@@ -1737,9 +1734,6 @@
             applyUserBackground();
         }
 
-        // ============================================================
-        // ВЫХОД
-        // ============================================================
         function logout() {
             DB.setCurrentUser(null);
             document.getElementById('profileMenu').classList.remove('active');
@@ -1747,9 +1741,6 @@
             document.body.style.backgroundImage = "url('background.jpg')";
         }
 
-        // ============================================================
-        // ПРОФИЛЬ
-        // ============================================================
         function openProfileModal() {
             const user = DB.getCurrentUser();
             if (!user) return;
@@ -1758,6 +1749,13 @@
             document.getElementById('avatarPreviewBig').innerHTML = 
                 (user.avatarUrl ? `<img src="${user.avatarUrl}" alt="Avatar">` : `<div class="avatar-placeholder">${(user.displayName || user.username).charAt(0).toUpperCase()}</div>`) +
                 `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
+            
+            const deleteBtn = document.getElementById('avatarDeleteBtn');
+            if (user.avatarUrl) {
+                deleteBtn.classList.add('visible');
+            } else {
+                deleteBtn.classList.remove('visible');
+            }
             
             document.getElementById('profileDisplayName').value = user.displayName || user.username;
             document.getElementById('statUsername').textContent = user.username;
@@ -1794,9 +1792,7 @@
                 + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // ============================================================
         // DRAG & DROP ДЛЯ АВАТАРА
-        // ============================================================
         const avatarDropZone = document.getElementById('avatarPreviewBig');
 
         avatarDropZone.addEventListener('dragover', function(e) {
@@ -1818,18 +1814,13 @@
 
             const file = e.dataTransfer.files[0];
             if (!file) return;
-
             if (!file.type.startsWith('image/')) {
                 alert('Можно загрузить только изображение');
                 return;
             }
-
             processAvatarFile(file);
         });
 
-        // ============================================================
-        // РЕДАКТОР АВАТАРА
-        // ============================================================
         let cropImage = null;
         let cropOffsetX = 0;
         let cropOffsetY = 0;
@@ -1964,13 +1955,33 @@
             document.getElementById('avatarPreviewBig').innerHTML = 
                 `<img src="${dataUrl}" alt="Avatar"><div class="edit-overlay">ИЗМЕНИТЬ</div>`;
             
+            document.getElementById('avatarDeleteBtn').classList.add('visible');
+            
             renderProfileCorner();
             closeModal('avatarEditorModal');
         }
 
         // ============================================================
-        // НАСТРОЙКИ
+        // УДАЛЕНИЕ АВАТАРА
         // ============================================================
+        function deleteAvatar() {
+            const user = DB.getCurrentUser();
+            if (!user) return;
+
+            if (!confirm('Удалить аватар?')) return;
+
+            DB.updateUser(user.username, { avatarUrl: null });
+
+            const firstLetter = (user.displayName || user.username).charAt(0).toUpperCase();
+            document.getElementById('avatarPreviewBig').innerHTML = 
+                `<div class="avatar-placeholder">${firstLetter}</div>` +
+                `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
+            
+            document.getElementById('avatarDeleteBtn').classList.remove('visible');
+
+            renderProfileCorner();
+        }
+
         function openSettingsModal() {
             document.getElementById('profileMenu').classList.remove('active');
             document.getElementById('settingsModal').classList.add('active');
@@ -2008,9 +2019,6 @@
             }
         }
 
-        // ============================================================
-        // ПРАВИЛА И ВКЛАДКИ
-        // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
             const body = section.querySelector('.rules-body');
@@ -2042,9 +2050,6 @@
             });
         });
 
-        // ============================================================
-        // КАРТА
-        // ============================================================
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
         let scale = 1, translateX = 0, translateY = 0, isDragging = false;
@@ -2137,9 +2142,6 @@
             }
         }, { passive: false });
 
-        // ============================================================
-        // ГЛЮКИ
-        // ============================================================
         function triggerGlitch() {
             const g = document.getElementById('glitchLayer');
             const gc = document.getElementById('glitchColorLayer');
@@ -2149,9 +2151,6 @@
         }
         setTimeout(triggerGlitch, 2000);
 
-        // ============================================================
-        // ДИНАМИЧЕСКИЙ ФОН
-        // ============================================================
         document.addEventListener('mousemove', e => {
             const x = (e.clientX / window.innerWidth - 0.5) * 15;
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
@@ -2160,9 +2159,6 @@
             if (p) p.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
 
-        // ============================================================
-        // ЧАСТИЦЫ
-        // ============================================================
         function createParticles() {
             const c = document.getElementById('particles-container');
             for (let i = 0; i < 35; i++) {
@@ -2179,9 +2175,6 @@
             }
         }
 
-        // ============================================================
-        // ИНИЦИАЛИЗАЦИЯ
-        // ============================================================
         function init() {
             renderProfileCorner();
             applyUserBackground();
