@@ -24,119 +24,23 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            transition: background-position 0.15s ease-out, background-image 0.3s ease, background-color 0.3s ease;
+            transition: background-position 0.15s ease-out, background-image 0.3s ease;
             will-change: background-position;
-        }
-
-        body.light-theme {
-            background-color: #d4e4f0;
-        }
-
-        body.light-theme::before {
-            background: radial-gradient(ellipse at center, rgba(220, 235, 250, 0.40) 0%, rgba(180, 210, 240, 0.75) 100%);
-        }
-
-        body.light-theme .tab-page {
-            background: rgba(255, 255, 255, 0.70);
-            border-color: rgba(0, 80, 160, 0.10);
-        }
-
-        body.light-theme .logo,
-        body.light-theme .hero h1,
-        body.light-theme .rules-header h2,
-        body.light-theme .info-block h2 {
-            color: #001f3f;
-        }
-
-        body.light-theme .hero-desc,
-        body.light-theme .rules-body .rule-item,
-        body.light-theme .lore-story,
-        body.light-theme .footer {
-            color: rgba(0, 30, 60, 0.75);
-        }
-
-        body.light-theme .tab-link { color: rgba(0, 60, 130, 0.5); }
-        body.light-theme .tab-link.active { color: #0066cc; }
-        body.light-theme .tab-link:hover { color: rgba(0, 60, 130, 0.9); }
-
-        body.light-theme .profile-corner,
-        body.light-theme .profile-menu,
-        body.light-theme .modal {
-            background: rgba(240, 248, 255, 0.95);
-            border-color: rgba(0, 80, 160, 0.15);
-        }
-
-        body.light-theme .profile-name-corner,
-        body.light-theme .menu-item,
-        body.light-theme .modal h3 {
-            color: #003366;
-        }
-
-        body.light-theme .form-group label,
-        body.light-theme .settings-section h4 {
-            color: rgba(0, 60, 130, 0.55);
-        }
-
-        body.light-theme .form-group input {
-            background: rgba(255, 255, 255, 0.9);
-            color: #003366;
-            border-color: rgba(0, 80, 160, 0.15);
-        }
-
-        body.light-theme .rules-section {
-            background: rgba(255, 255, 255, 0.55);
-        }
-
-        body.light-theme .rules-body .rule-item {
-            color: rgba(0, 30, 60, 0.80);
-        }
-
-        body.light-theme .rules-body .rule-item strong {
-            color: #0055aa;
-        }
-
-        body.light-theme .rules-body .rule-item .highlight {
-            color: #0066cc;
-        }
-
-        body.light-theme .theme-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: #003366;
-            border-color: rgba(0, 80, 160, 0.15);
-        }
-
-        body.light-theme .bg-upload-area {
-            background: rgba(255, 255, 255, 0.9);
-            color: rgba(0, 60, 130, 0.55);
-        }
-
-        body.light-theme .profile-stat-label {
-            color: rgba(0, 60, 130, 0.55);
-        }
-
-        body.light-theme .profile-stat-value {
-            color: #003366;
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(ellipse at center, rgba(2, 6, 14, 0.60) 0%, rgba(0, 2, 6, 0.88) 100%);
             z-index: 0;
             pointer-events: none;
-            transition: background 0.3s ease;
         }
 
         #particles-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
@@ -230,10 +134,8 @@
         .tab-link::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
             background: #4a9eff;
             transition: 0.4s;
         }
@@ -277,8 +179,17 @@
             justify-content: center;
         }
 
-        .profile-avatar svg { width: 100%; height: 100%; }
         .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .profile-avatar .avatar-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: rgba(140, 190, 240, 0.35);
+            font-weight: 700;
+        }
 
         .profile-info-block {
             display: flex;
@@ -299,10 +210,7 @@
             font-weight: 400;
         }
 
-        .profile-balance-corner span {
-            color: #8cc4ff;
-            font-weight: 700;
-        }
+        .profile-balance-corner span { color: #8cc4ff; font-weight: 700; }
 
         .profile-login-btn {
             background: linear-gradient(135deg, #0a2a4a, #061a30);
@@ -324,11 +232,10 @@
             transform: translateY(-2px);
         }
 
-        /* ===== БУРГЕР-МЕНЮ ПРОФИЛЯ ===== */
+        /* ===== БУРГЕР-МЕНЮ ===== */
         .profile-menu {
             position: fixed;
-            top: 90px;
-            right: 30px;
+            top: 90px; right: 30px;
             background: rgba(4, 10, 20, 0.95);
             border: 1px solid rgba(60, 140, 220, 0.15);
             border-radius: 16px;
@@ -368,8 +275,7 @@
         }
 
         .menu-item svg {
-            width: 18px;
-            height: 18px;
+            width: 18px; height: 18px;
             fill: rgba(160, 200, 240, 0.55);
             flex-shrink: 0;
         }
@@ -384,7 +290,7 @@
         .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
         .menu-item.danger svg { fill: rgba(255, 120, 120, 0.7); }
 
-        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
+        /* ===== МОДАЛКИ ===== */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -400,10 +306,7 @@
             backdrop-filter: blur(8px);
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal {
             background: rgba(6, 14, 24, 0.98);
@@ -415,12 +318,13 @@
             box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
             transform: scale(0.95);
             transition: 0.3s ease;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
         }
 
         .modal-overlay.active .modal { transform: scale(1); }
+        .modal.wide { max-width: 560px; }
 
         .modal h3 {
             color: #a0c8f0;
@@ -437,10 +341,8 @@
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
+            top: 20px; right: 20px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             background: rgba(60, 140, 220, 0.08);
             border: none;
@@ -558,7 +460,7 @@
 
         .form-error.active, .form-success.active { display: block; }
 
-        /* ===== ПРОФИЛЬ (статистика) ===== */
+        /* ===== СТАТИСТИКА ===== */
         .profile-stat {
             display: flex;
             justify-content: space-between;
@@ -568,9 +470,7 @@
         }
 
         .profile-stat:last-child { border-bottom: none; }
-
         .profile-stat-label { color: rgba(160, 200, 240, 0.5); font-weight: 400; }
-
         .profile-stat-value {
             color: #b0d0f0;
             font-weight: 600;
@@ -580,107 +480,146 @@
             text-overflow: ellipsis;
         }
 
-        .avatar-preview-large {
-            width: 80px;
-            height: 80px;
-            border-radius: 16px;
-            background: rgba(60, 140, 220, 0.10);
-            border: 1px solid rgba(60, 140, 220, 0.15);
+        /* ===== AVATAR UPLOAD ===== */
+        .avatar-upload-area {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .avatar-preview-big {
+            width: 100px; height: 100px;
+            border-radius: 50%;
             overflow: hidden;
-            margin: 0 auto 20px;
-        }
-
-        .avatar-preview-large svg { width: 100%; height: 100%; }
-        .avatar-preview-large img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* ===== НАСТРОЙКИ ===== */
-        .settings-section { margin-bottom: 24px; }
-
-        .settings-section h4 {
-            color: rgba(160, 200, 240, 0.55);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .theme-switcher { display: flex; gap: 10px; }
-
-        .theme-btn {
-            flex: 1;
-            padding: 14px;
-            border-radius: 10px;
+            border: 2px solid rgba(60, 140, 220, 0.20);
             background: rgba(2, 8, 18, 0.60);
-            border: 1px solid rgba(60, 140, 220, 0.10);
-            color: #b0d0f0;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-        }
-
-        .theme-btn:hover {
-            background: rgba(2, 8, 18, 0.85);
-            border-color: rgba(60, 140, 220, 0.20);
-        }
-
-        .theme-btn.active {
-            background: linear-gradient(135deg, #0a2a4a, #061a30);
-            border-color: rgba(60, 140, 220, 0.35);
-            color: #dceaff;
-            box-shadow: 0 0 20px rgba(60, 140, 220, 0.15);
-        }
-
-        .bg-upload-area {
-            background: rgba(2, 8, 18, 0.60);
-            border: 2px dashed rgba(60, 140, 220, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
             cursor: pointer;
             transition: 0.3s;
-            color: rgba(160, 200, 240, 0.55);
-            font-size: 0.85rem;
+            margin-bottom: 12px;
+            position: relative;
         }
 
-        .bg-upload-area:hover {
-            background: rgba(2, 8, 18, 0.85);
-            border-color: rgba(60, 140, 220, 0.30);
-            color: #b0d0f0;
+        .avatar-preview-big:hover {
+            border-color: rgba(60, 140, 220, 0.45);
+            transform: scale(1.03);
         }
 
-        .bg-upload-area svg {
-            width: 32px;
-            height: 32px;
-            fill: rgba(160, 200, 240, 0.35);
-            margin-bottom: 8px;
+        .avatar-preview-big img { width: 100%; height: 100%; object-fit: cover; }
+
+        .avatar-preview-big .avatar-placeholder {
+            font-size: 2rem;
+            color: rgba(140, 190, 240, 0.35);
+            font-weight: 700;
         }
 
-        .bg-reset-btn {
-            margin-top: 10px;
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(255, 80, 80, 0.08);
-            border: 1px solid rgba(255, 80, 80, 0.15);
-            color: #ff8b8b;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
+        .avatar-preview-big .edit-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #8cc4ff;
+            font-size: 0.7rem;
+            text-align: center;
+            padding: 4px;
             font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
+            letter-spacing: 0.5px;
         }
 
-        .bg-reset-btn:hover { background: rgba(255, 80, 80, 0.15); }
+        .avatar-hint {
+            font-size: 0.75rem;
+            color: rgba(160, 200, 240, 0.35);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ===== РЕДАКТОР КАДРИРОВАНИЯ ===== */
+        .crop-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .crop-area {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(60, 140, 220, 0.20);
+            cursor: grab;
+            user-select: none;
+        }
+
+        .crop-area:active { cursor: grabbing; }
+
+        .crop-area canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .crop-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            border: 2px solid rgba(140, 200, 255, 0.8);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
+            pointer-events: none;
+        }
+
+        .crop-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 260px;
+        }
+
+        .crop-controls label {
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .crop-controls input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: rgba(60, 140, 220, 0.20);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .crop-controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a9eff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+        }
+
+        .crop-controls input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a9eff;
+            cursor: pointer;
+            border: none;
+        }
 
         /* ===== ПРОЧЕЕ ===== */
         .tab-content { margin-top: 10px; }
@@ -693,7 +632,6 @@
             border-radius: 28px;
             border: 1px solid rgba(60, 140, 220, 0.04);
             box-shadow: 0 8px 80px rgba(0, 0, 0, 0.6);
-            transition: background 0.3s ease;
         }
 
         .tab-page.active {
@@ -826,8 +764,7 @@
         }
 
         .btn-social .icon {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -850,10 +787,8 @@
         .rules-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
             background: linear-gradient(180deg, #4a9eff, transparent);
             opacity: 0.2;
             transition: 0.3s;
@@ -987,7 +922,7 @@
             text-align: center;
         }
 
-        /* ===== РАМКА КПК ===== */
+        /* ===== КПК ===== */
         .kpk-frame {
             background: rgba(2, 8, 18, 0.60);
             border-radius: 18px;
@@ -1006,7 +941,6 @@
             border: 1px solid rgba(60, 140, 220, 0.04);
         }
 
-        /* ===== ГЛЮКИ ===== */
         .kpk-glitch {
             position: absolute;
             top: 0; left: 0;
@@ -1020,10 +954,9 @@
                 rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px,
                 transparent 4px, transparent 6px
             );
-            animation: glitchFlash 0.15s ease-out;
         }
 
-        .kpk-glitch.active { opacity: 1; animation: glitchFlash 0.3s ease-out; }
+        .kpk-glitch.active { animation: glitchFlash 0.3s ease-out; }
 
         @keyframes glitchFlash {
             0% { opacity: 0; transform: translateX(-2px); }
@@ -1049,10 +982,9 @@
                 rgba(255, 0, 100, 0.02) 60%, rgba(255, 0, 100, 0.02) 62%,
                 transparent 62%, transparent 100%
             );
-            transform: skewX(-2deg);
         }
 
-        .kpk-glitch-color.active { opacity: 1; animation: glitchColor 0.4s ease-out; }
+        .kpk-glitch-color.active { animation: glitchColor 0.4s ease-out; }
 
         @keyframes glitchColor {
             0% { opacity: 0; transform: skewX(0deg) translateX(0); }
@@ -1082,8 +1014,7 @@
 
         .kpk-corner {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             border-color: rgba(60, 140, 220, 0.06);
             border-style: solid;
             border-width: 0;
@@ -1128,8 +1059,7 @@
             background: rgba(2, 8, 18, 0.60);
             border: 1px solid rgba(60, 140, 220, 0.06);
             border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1201,7 +1131,6 @@
             font-style: italic;
             color: rgba(140, 190, 240, 0.25);
             font-weight: 300;
-            transition: 0.3s;
         }
 
         .info-block {
@@ -1209,7 +1138,6 @@
             padding: 30px 32px;
             border-radius: 22px;
             border: 1px solid rgba(60, 140, 220, 0.02);
-            transition: 0.3s;
         }
 
         .info-block h2 {
@@ -1258,6 +1186,9 @@
             .map-btn { width: 42px; height: 42px; }
             .map-btn svg { width: 20px; height: 20px; }
             .profile-menu { right: 15px; left: 15px; min-width: auto; }
+            .modal { padding: 24px 20px; }
+            .crop-area { width: 220px; height: 220px; }
+            .crop-controls { width: 220px; }
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -1272,7 +1203,6 @@
 
     <div class="main-card">
 
-        <!-- ===== ШАПКА ===== -->
         <div class="header">
             <div class="logo-area">
                 <img src="logo.jpg" alt="HLRP Logo" class="logo-img">
@@ -1287,11 +1217,9 @@
                 <button class="tab-link" data-tab="map">Карта</button>
             </div>
 
-            <!-- ===== ПРОФИЛЬ В УГЛУ ===== -->
             <div id="profileCorner"></div>
         </div>
 
-        <!-- ===== БУРГЕР-МЕНЮ ПРОФИЛЯ ===== -->
         <div class="profile-menu" id="profileMenu">
             <div class="menu-item" onclick="openProfileModal()">
                 <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -1308,10 +1236,8 @@
             </div>
         </div>
 
-        <!-- ===== КОНТЕНТ ===== -->
         <div class="tab-content">
 
-            <!-- ======== ГЛАВНАЯ ======== -->
             <div id="main" class="tab-page active">
                 <div class="hero">
                     <div class="hero-badge">⚡ Добро пожаловать</div>
@@ -1340,91 +1266,81 @@
                 </div>
             </div>
 
-            <!-- ======== ПРАВИЛА ======== -->
             <div id="rules" class="tab-page">
                 <div class="rules-wrapper">
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                                </span>
-                                Раздел 1. Порог вхождения на сервер
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                                Раздел 1. Порог вхождения
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП на нашем проекте строго с <span class="highlight">16 лет</span>. Если вы младше, но готовы серьёзно играть и относиться ко всему с ответственностью — мы можем вас принять.</div>
-                            <div class="rule-item"><strong>1.2.1.</strong> Согласно лору сервера — текущий год и вся хронология событий описаны в разделе <span class="highlight">«Лор»</span>. Настоятельно рекомендуем ознакомиться с ним перед началом игры.</div>
-                            <div class="rule-item"><strong>1.3.1.</strong> Если у вас отсутствует микрофон или он ужасного качества — стоит понимать, что вы портите игровой процесс другим людям.</div>
-                            <div class="rule-item"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны.</div>
+                            <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП строго с <span class="highlight">16 лет</span>.</div>
+                            <div class="rule-item"><strong>1.2.1.</strong> Год в игре описан в разделе <span class="highlight">«Лор»</span>.</div>
+                            <div class="rule-item"><strong>1.3.1.</strong> Отсутствие микрофона портит игровой процесс другим.</div>
+                            <div class="rule-item"><strong>1.4.1.</strong> Запрещены ники, нарушающие атмосферу Зоны.</div>
                         </div>
                     </div>
 
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg>
-                                </span>
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg></span>
                                 Раздел 2. Общие правила
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP.</div>
-                            <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
-                            <div class="rule-item"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения используйте <span class="highlight">«//»</span>.</div>
-                            <div class="rule-item"><strong>2.2.1. DM (Death Match)</strong> — убийство игрока без РП-причины.</div>
-                            <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас (в РП-процессе), вы имеете право убить его.</div>
-                            <div class="rule-item"><strong>2.4.1. Пауэргейминг</strong> — нереалистичные действия.</div>
-                            <div class="rule-item"><strong>2.5.1. Метагейминг</strong> — использование нон-рп информации.</div>
-                            <div class="rule-item"><strong>2.6.1. Спавнкилл</strong> — убийство на спавне (минимум 15 секунд после спавна).</div>
-                            <div class="rule-item"><strong>2.7.1. Горный геймплей</strong> — запрещено залазить на большие горы.</div>
-                            <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки.</div>
-                            <div class="rule-item"><strong>2.9.1.</strong> После смерти нельзя вернуться на то же место 15 минут.</div>
-                            <div class="rule-item"><strong>2.10.1.</strong> Запрещены нереалистичные движения во время ПВП.</div>
+                            <div class="rule-item"><strong>2.1.1.</strong> Запрещён NRP — действия вне роли.</div>
+                            <div class="rule-item"><strong>2.1.2.</strong> GRP приветствуется и вознаграждается.</div>
+                            <div class="rule-item"><strong>2.1.3.</strong> Нон-РП сообщения — через <span class="highlight">«//»</span>.</div>
+                            <div class="rule-item"><strong>2.2.1.</strong> DM — убийство без РП-причины — запрещён.</div>
+                            <div class="rule-item"><strong>2.4.1.</strong> Пауэргейминг — нереалистичные действия.</div>
+                            <div class="rule-item"><strong>2.5.1.</strong> Метагейминг — использование нон-рп информации.</div>
+                            <div class="rule-item"><strong>2.6.1.</strong> Спавнкилл — убийство на спавне (15 сек).</div>
+                            <div class="rule-item"><strong>2.7.1.</strong> Запрещено залазить на большие горы.</div>
+                            <div class="rule-item"><strong>2.8.1.</strong> Запрещён выход во время РП.</div>
+                            <div class="rule-item"><strong>2.9.1.</strong> После смерти — 15 минут на то же место.</div>
+                            <div class="rule-item"><strong>2.10.1.</strong> Запрещены нереалистичные движения в ПВП.</div>
                         </div>
                     </div>
 
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-                                </span>
-                                Раздел 3. Правила зелёных зон
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></span>
+                                Раздел 3. Зелёные зоны
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>3.1.1.</strong> Зелёная зона — безопасное пространство, где боевые действия запрещены. Начинается от забора баз группировок <span class="highlight">+ 10 метров</span>.</div>
+                            <div class="rule-item"><strong>3.1.1.</strong> Зелёная зона — от забора базы <span class="highlight">+ 10 метров</span>.</div>
                             <div class="green-zone-image">
                                 <img src="green_zone.jpg" alt="Зелёная зона">
-                                <div class="caption">Пример зелёной зоны (КПП военных)</div>
+                                <div class="caption">Пример зелёной зоны</div>
                             </div>
-                            <div class="rule-item"><strong>3.2.1.</strong> На территории ЗЗ можно проводить кулачные бои с одобрения главного.</div>
+                            <div class="rule-item"><strong>3.2.1.</strong> Кулачные бои — с одобрения главного.</div>
                             <div class="rule-item"><strong>3.3.1.</strong> Запрещено носить оружие в руках в ЗЗ.</div>
-                            <div class="rule-item"><strong>3.4.1.</strong> Провокации разрешены, но боевые действия — бан.</div>
+                            <div class="rule-item"><strong>3.4.1.</strong> Провокации разрешены, боевые действия — бан.</div>
                         </div>
                     </div>
 
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
-                                </span>
-                                Раздел 4. Правила рейдов и штурма
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg></span>
+                                Раздел 4. Рейды и штурмы
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>4.1.1.</strong> Рейд — только после <span class="highlight">одобрения администрации</span>.</div>
-                            <div class="rule-item"><strong>4.2.1.</strong> Во время рейда запрещено покидать место столкновения.</div>
-                            <div class="rule-item"><strong>4.3.1.</strong> После смерти — оставаться на спавне до окончания рейда.</div>
-                            <div class="rule-item"><strong>4.4.1.</strong> Рейд нельзя начать против отсутствующей группировки.</div>
-                            <div class="rule-item"><strong>4.5.1.</strong> Перед рейдом — предупреждение за <span class="highlight">5 минут</span>.</div>
+                            <div class="rule-item"><strong>4.1.1.</strong> Рейд — только после <span class="highlight">одобрения админов</span>.</div>
+                            <div class="rule-item"><strong>4.2.1.</strong> Запрещено покидать место столкновения.</div>
+                            <div class="rule-item"><strong>4.3.1.</strong> После смерти — оставаться на спавне.</div>
+                            <div class="rule-item"><strong>4.4.1.</strong> Рейд против отсутствующей группировки запрещён.</div>
+                            <div class="rule-item"><strong>4.5.1.</strong> Предупреждение за <span class="highlight">5 минут</span> до рейда.</div>
                             <div class="rule-item"><strong>4.6.1.</strong> Рейд не дольше <span class="highlight">40 минут</span>.</div>
                         </div>
                     </div>
@@ -1432,64 +1348,58 @@
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
-                                </span>
-                                Раздел 5. Правила ГОП-СТОПОВ
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+                                Раздел 5. Гоп-стопы
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
                             <div class="rule-item"><strong>5.1.1.</strong> Одиночкам запрещено проводить гоп-стопы.</div>
-                            <div class="rule-item"><strong>5.2.1.</strong> Гоп-стоп — только группой от <span class="highlight">3-х человек</span>.</div>
-                            <div class="rule-item"><strong>5.3.1.</strong> Запрещено отбирать всё имущество — максимум <span class="highlight">2 предмета</span>.</div>
+                            <div class="rule-item"><strong>5.2.1.</strong> Гоп-стоп — группой от <span class="highlight">3-х человек</span>.</div>
+                            <div class="rule-item"><strong>5.3.1.</strong> Максимум <span class="highlight">2 предмета</span>.</div>
                             <div class="rule-item"><strong>5.4.1.</strong> Добивать лежачего без причины запрещено.</div>
-                            <div class="rule-item"><strong>5.5.1.</strong> Повторный гоп-стоп одного игрока в течение <span class="highlight">1 часа</span> запрещён.</div>
+                            <div class="rule-item"><strong>5.5.1.</strong> Повторный гоп-стоп — через <span class="highlight">1 час</span>.</div>
                         </div>
                     </div>
 
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                                </span>
+                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
                                 Раздел 6. Общие запреты
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>6.1.1.</strong> Запрещены читы, баги, эксплойты — <span class="highlight">перманентный бан</span>.</div>
+                            <div class="rule-item"><strong>6.1.1.</strong> Читы, баги, эксплойты — <span class="highlight">перманентный бан</span>.</div>
                             <div class="rule-item"><strong>6.2.1.</strong> Запрещён Rage Quit во время боя.</div>
-                            <div class="rule-item"><strong>6.3.1.</strong> Запрещён спам и нецензурная лексика вне РП.</div>
-                            <div class="rule-item"><strong>6.4.1.</strong> Запрещены ники, нарушающие сеттинг.</div>
-                            <div class="rule-item"><strong>6.5.1.</strong> Запрещено блокирование проходов без РП-причины.</div>
+                            <div class="rule-item"><strong>6.3.1.</strong> Запрещён спам и нецензурная лексика.</div>
+                            <div class="rule-item"><strong>6.4.1.</strong> Ники, нарушающие сеттинг, запрещены.</div>
+                            <div class="rule-item"><strong>6.5.1.</strong> Запрещено блокирование проходов.</div>
                             <div class="rule-item"><strong>6.6.1.</strong> Запрещён сленг и отсылки к поп-культуре в РП.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ======== ЛОР ======== -->
             <div id="lore" class="tab-page">
                 <div class="info-block">
                     <h2>📖 Лор Зоны</h2>
                     <div class="lore-story">
                         <p>Слушай, новичок. Всё началось не с аварии, нет. Та, чернобыльская, была лишь ширмой.</p>
-                        <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое? Они думали, что управляют мыслями, а на самом деле копали могилу.</p>
-                        <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, с мутантами, и с артефактами, за которые люди убивают друг друга. А те учёные... они не умерли. Стали единым О-Сознанием. И создали Монолит.</p>
+                        <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое?</p>
+                        <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, мутантами и артефактами. А те учёные стали единым О-Сознанием и создали Монолит.</p>
                         <hr class="lore-divider">
                         <p><span class="year">✦ 2011 год</span> — Зону лихорадило. Группировка «Чистое небо» отправила к ЧАЭС бойца по прозвищу Шрам. Им нужно было остановить сталкера – Стрелка. Шрам его ранил, но опоздал. Грянул Второй Сверхвыброс – и «Чистое небо» стёрло с карты Зоны.</p>
-                        <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет Стрелка. А когда нашёл... понял, что Стрелок – это он сам. Но Меченый выстоял. Он уничтожил Выжигатель Мозгов и разбил купол Монолита.</p>
+                        <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет Стрелка. А когда нашёл... понял, что Стрелок – это он сам.</p>
                         <hr class="lore-divider">
                         <p>А потом настала тишина. Не добрая, нет. Зубы скрежещет тишина.</p>
-                        <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Всё те же аномалии, те же твари, тот же запах горелого металла и мокрой земли по утрам. Никто не знает, что будет дальше. Зона молчит. И это молчание страшнее любого Выброса.</p>
+                        <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Зона молчит. И это молчание страшнее любого Выброса.</p>
                         <div class="lore-block">«Зона не прощает ошибок. Но она даёт шанс тем, кто готов рискнуть...»</div>
                     </div>
                 </div>
             </div>
 
-            <!-- ======== КАРТА ======== -->
             <div id="map" class="tab-page">
                 <div style="text-align: center; margin-bottom: 16px;">
                     <h2 style="color: #a0c8f0; font-weight: 700; letter-spacing: 1px; font-size: 1.5rem;">🗺️ Карта Зоны</h2>
@@ -1522,7 +1432,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
-                <div class="map-hint">🖱️ Зажми и тащи · Колесико для зума · Двойной клик — сброс</div>
+                <div class="map-hint">🖱️ Зажми и тащи · Колесико для зума</div>
             </div>
 
         </div>
@@ -1530,7 +1440,6 @@
         <div class="footer">
             <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны</p>
         </div>
-
     </div>
 
     <!-- ===== МОДАЛКА: ВХОД/РЕГИСТРАЦИЯ ===== -->
@@ -1547,7 +1456,7 @@
             <div class="form-group" id="displayNameGroup" style="display:none;">
                 <label>Отображаемый ник</label>
                 <input type="text" id="authDisplayName" placeholder="Введите ник" maxlength="25">
-                <div class="hint">Этот ник можно будет менять позже</div>
+                <div class="hint">Этот ник можно менять позже</div>
             </div>
             <div class="form-group">
                 <label>Пароль</label>
@@ -1569,20 +1478,21 @@
                 <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 Мой профиль
             </h3>
-            <div class="avatar-preview-large" id="profileAvatarLarge"></div>
-            
-            <div class="form-group">
-                <label>Отображаемый ник (можно менять)</label>
-                <input type="text" id="profileDisplayName" placeholder="Ваш ник" maxlength="25">
+
+            <div class="avatar-upload-area">
+                <div class="avatar-preview-big" id="avatarPreviewBig" onclick="openAvatarEditor()">
+                    <div class="edit-overlay">ИЗМЕНИТЬ</div>
+                </div>
+                <div class="avatar-hint">Нажми чтобы загрузить и кадрировать</div>
             </div>
 
             <div class="form-group">
-                <label>Аватар (URL картинки)</label>
-                <input type="text" id="profileAvatarUrl" placeholder="https://...">
-                <div class="hint">Оставьте пустым — будет стандартный</div>
+                <label>Отображаемый ник</label>
+                <input type="text" id="profileDisplayName" placeholder="Ваш ник" maxlength="25">
+                <div class="hint">Ник можно менять, юзернейм — нет</div>
             </div>
-            
-            <button class="form-btn" onclick="saveProfile()">Сохранить изменения</button>
+
+            <button class="form-btn" onclick="saveProfile()">Сохранить</button>
             <div class="form-success" id="profileSuccess">✅ Профиль обновлён!</div>
 
             <div class="menu-divider" style="margin: 20px 0;"></div>
@@ -1606,6 +1516,31 @@
         </div>
     </div>
 
+    <!-- ===== МОДАЛКА: РЕДАКТОР АВАТАРА ===== -->
+    <div class="modal-overlay" id="avatarEditorModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('avatarEditorModal')">✕</button>
+            <h3>
+                <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                Кадрировать аватар
+            </h3>
+
+            <div class="crop-wrapper">
+                <div class="crop-area" id="cropArea">
+                    <canvas id="cropCanvas" width="520" height="520"></canvas>
+                    <div class="crop-circle"></div>
+                </div>
+                <div class="crop-controls">
+                    <label>Зум</label>
+                    <input type="range" id="cropZoom" min="0.5" max="3" step="0.01" value="1">
+                </div>
+            </div>
+
+            <button class="form-btn" onclick="applyAvatarCrop()">Сохранить аватар</button>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display:none;" onchange="loadAvatarFile(event)">
+        </div>
+    </div>
+
     <!-- ===== МОДАЛКА: НАСТРОЙКИ ===== -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
@@ -1615,50 +1550,38 @@
                 Настройки
             </h3>
 
-            <div class="settings-section">
-                <h4>Тема сайта</h4>
-                <div class="theme-switcher">
-                    <button class="theme-btn" id="themeDark" onclick="setTheme('dark')">🌙 Тёмная</button>
-                    <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀️ Светлая</button>
-                </div>
-            </div>
-
-            <div class="settings-section">
-                <h4>Свой фон</h4>
-                <div class="bg-upload-area" onclick="document.getElementById('bgFileInput').click()">
-                    <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+            <div style="margin-bottom: 24px;">
+                <h4 style="color: rgba(160, 200, 240, 0.55); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Свой фон</h4>
+                <div class="bg-upload-area" onclick="document.getElementById('bgFileInput').click()" style="background: rgba(2, 8, 18, 0.60); border: 2px dashed rgba(60, 140, 220, 0.15); border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: 0.3s; color: rgba(160, 200, 240, 0.55); font-size: 0.85rem;">
+                    <svg viewBox="0 0 24 24" style="width:32px;height:32px;fill:rgba(160,200,240,0.35);margin-bottom:8px;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
                     <div>Нажми, чтобы загрузить картинку</div>
                     <div style="font-size:0.7rem; margin-top:6px; opacity:0.6;">JPG, PNG, WEBP</div>
                 </div>
                 <input type="file" id="bgFileInput" accept="image/*" style="display:none;" onchange="uploadBg(event)">
-                <button class="bg-reset-btn" onclick="resetBg()">Сбросить фон</button>
+                <button class="bg-reset-btn" onclick="resetBg()" style="margin-top: 10px; width: 100%; padding: 10px; border-radius: 8px; background: rgba(255, 80, 80, 0.08); border: 1px solid rgba(255, 80, 80, 0.15); color: #ff8b8b; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer;">Сбросить фон</button>
             </div>
         </div>
     </div>
 
     <script>
         // ============================================================
-        // ХРАНИЛИЩЕ (localStorage — потом заменим на Netlify DB API)
+        // ХРАНИЛИЩЕ
         // ============================================================
         const DB = {
             getUsers() {
                 try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
             },
-            saveUsers(users) {
-                localStorage.setItem('hlrp_users', JSON.stringify(users));
-            },
-            getCurrentUsername() {
-                return localStorage.getItem('hlrp_current');
-            },
+            saveUsers(users) { localStorage.setItem('hlrp_users', JSON.stringify(users)); },
+            getCurrentUsername() { return localStorage.getItem('hlrp_current'); },
             setCurrentUser(username) {
                 if (username) localStorage.setItem('hlrp_current', username);
                 else localStorage.removeItem('hlrp_current');
             },
             getCurrentUser() {
-                const username = this.getCurrentUsername();
-                if (!username) return null;
+                const u = this.getCurrentUsername();
+                if (!u) return null;
                 const users = this.getUsers();
-                return users[username] ? { username, ...users[username] } : null;
+                return users[u] ? { username: u, ...users[u] } : null;
             },
             updateUser(username, data) {
                 const users = this.getUsers();
@@ -1672,49 +1595,18 @@
         };
 
         // ============================================================
-        // АВАТАР ПО УМОЛЧАНИЮ (SVG сталкер)
+        // АВАТАР ПО УМОЛЧАНИЮ (буква юзернейма)
         // ============================================================
-        const DEFAULT_AVATAR = `
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0a2a4a"/>
-                        <stop offset="100%" stop-color="#051520"/>
-                    </linearGradient>
-                </defs>
-                <rect width="100" height="100" fill="url(#bgGrad)"/>
-                <!-- Капюшон -->
-                <path d="M 20 90 Q 20 45 50 40 Q 80 45 80 90 Z" fill="#1a4a70" opacity="0.9"/>
-                <!-- Лицо -->
-                <ellipse cx="50" cy="55" rx="18" ry="20" fill="#c8a878"/>
-                <!-- Тени на лице -->
-                <ellipse cx="50" cy="50" rx="16" ry="15" fill="#a08050" opacity="0.4"/>
-                <!-- Противогаз -->
-                <ellipse cx="50" cy="62" rx="14" ry="10" fill="#2a2a2a"/>
-                <circle cx="43" cy="62" r="5" fill="#4a9eff" opacity="0.8"/>
-                <circle cx="57" cy="62" r="5" fill="#4a9eff" opacity="0.8"/>
-                <circle cx="43" cy="62" r="3" fill="#6ab0ff"/>
-                <circle cx="57" cy="62" r="3" fill="#6ab0ff"/>
-                <!-- Глаза -->
-                <circle cx="43" cy="62" r="1.5" fill="#0a1a2a"/>
-                <circle cx="57" cy="62" r="1.5" fill="#0a1a2a"/>
-                <!-- Крепление -->
-                <path d="M 36 62 Q 50 75 64 62" stroke="#1a1a1a" stroke-width="2" fill="none"/>
-                <!-- Блик -->
-                <circle cx="41" cy="59" r="1" fill="white" opacity="0.6"/>
-                <circle cx="55" cy="59" r="1" fill="white" opacity="0.6"/>
-            </svg>
-        `;
-
         function getAvatarHtml(user) {
             if (user && user.avatarUrl) {
-                return `<img src="${user.avatarUrl}" alt="Avatar" onerror="this.parentElement.innerHTML='${DEFAULT_AVATAR.replace(/'/g, "\\'")}'">`;
+                return `<img src="${user.avatarUrl}" alt="Avatar">`;
             }
-            return DEFAULT_AVATAR;
+            const letter = (user?.displayName || user?.username || '?').charAt(0).toUpperCase();
+            return `<div class="avatar-placeholder">${letter}</div>`;
         }
 
         // ============================================================
-        // ОТРИСОВКА ПРОФИЛЯ В УГЛУ
+        // ПРОФИЛЬ В УГЛУ
         // ============================================================
         function renderProfileCorner() {
             const corner = document.getElementById('profileCorner');
@@ -1733,9 +1625,7 @@
                     </div>
                 `;
             } else {
-                corner.innerHTML = `
-                    <button class="profile-login-btn" onclick="openAuthModal('login')">Войти</button>
-                `;
+                corner.innerHTML = `<button class="profile-login-btn" onclick="openAuthModal('login')">Войти</button>`;
             }
         }
 
@@ -1750,8 +1640,7 @@
         // ============================================================
         function toggleProfileMenu(e) {
             e.stopPropagation();
-            const menu = document.getElementById('profileMenu');
-            menu.classList.toggle('active');
+            document.getElementById('profileMenu').classList.toggle('active');
         }
 
         document.addEventListener('click', function(e) {
@@ -1769,7 +1658,6 @@
             document.getElementById(id).classList.remove('active');
         }
 
-        // Закрытие по клику на оверлей
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', function(e) {
                 if (e.target === this) this.classList.remove('active');
@@ -1786,7 +1674,6 @@
             updateAuthModal();
             document.getElementById('authModal').classList.add('active');
             document.getElementById('authError').classList.remove('active');
-            // Очистка полей
             document.getElementById('authUsername').value = '';
             document.getElementById('authPassword').value = '';
             document.getElementById('authDisplayName').value = '';
@@ -1840,12 +1727,10 @@
                 showAuthError('Заполните все поля');
                 return;
             }
-
             if (username.length < 3) {
                 showAuthError('Юзернейм должен быть минимум 3 символа');
                 return;
             }
-
             if (password.length < 4) {
                 showAuthError('Пароль должен быть минимум 4 символа');
                 return;
@@ -1858,20 +1743,16 @@
                     showAuthError('Этот юзернейм уже занят');
                     return;
                 }
-
                 if (!displayName) {
                     showAuthError('Введите отображаемый ник');
                     return;
                 }
 
-                // ВНИМАНИЕ: сохраняем пароль в открытом виде только для прототипа!
-                // Потом заменим на сервер с хэшированием (bcrypt).
                 users[username] = {
-                    password: btoa(password), // base64 (не безопасно, но для прототипа)
+                    password: btoa(password),
                     displayName: displayName,
                     avatarUrl: null,
                     hlsBalance: 0,
-                    theme: 'dark',
                     customBackground: null,
                     createdAt: new Date().toISOString(),
                     lastLogin: new Date().toISOString(),
@@ -1881,29 +1762,24 @@
                 DB.setCurrentUser(username);
                 closeModal('authModal');
                 renderProfileCorner();
-                applyUserTheme();
                 applyUserBackground();
                 return;
             }
 
-            // Вход
             if (!users[username]) {
                 showAuthError('Пользователь не найден');
                 return;
             }
-
             if (users[username].password !== btoa(password)) {
                 showAuthError('Неверный пароль');
                 return;
             }
 
-            // Обновляем lastLogin
             users[username].lastLogin = new Date().toISOString();
             DB.saveUsers(users);
             DB.setCurrentUser(username);
             closeModal('authModal');
             renderProfileCorner();
-            applyUserTheme();
             applyUserBackground();
         }
 
@@ -1914,8 +1790,6 @@
             DB.setCurrentUser(null);
             document.getElementById('profileMenu').classList.remove('active');
             renderProfileCorner();
-            // Сбрасываем тему и фон на дефолт
-            document.body.classList.remove('light-theme');
             document.body.style.backgroundImage = "url('background.jpg')";
         }
 
@@ -1927,10 +1801,11 @@
             if (!user) return;
             document.getElementById('profileMenu').classList.remove('active');
 
-            document.getElementById('profileAvatarLarge').innerHTML = getAvatarHtml(user);
+            document.getElementById('avatarPreviewBig').innerHTML = 
+                (user.avatarUrl ? `<img src="${user.avatarUrl}" alt="Avatar">` : '') +
+                `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
+            
             document.getElementById('profileDisplayName').value = user.displayName || user.username;
-            document.getElementById('profileAvatarUrl').value = user.avatarUrl || '';
-
             document.getElementById('statUsername').textContent = user.username;
             document.getElementById('statHls').textContent = user.hlsBalance || 0;
             document.getElementById('statCreated').textContent = formatDate(user.createdAt);
@@ -1945,18 +1820,12 @@
             if (!user) return;
 
             const newDisplayName = document.getElementById('profileDisplayName').value.trim();
-            const newAvatarUrl = document.getElementById('profileAvatarUrl').value.trim();
-
             if (!newDisplayName) {
                 alert('Ник не может быть пустым');
                 return;
             }
 
-            DB.updateUser(user.username, {
-                displayName: newDisplayName,
-                avatarUrl: newAvatarUrl || null
-            });
-
+            DB.updateUser(user.username, { displayName: newDisplayName });
             renderProfileCorner();
             document.getElementById('profileSuccess').classList.add('active');
             setTimeout(() => {
@@ -1972,52 +1841,166 @@
         }
 
         // ============================================================
-        // НАСТРОЙКИ
+        // РЕДАКТОР АВАТАРА (КАДРИРОВАНИЕ)
+        // ============================================================
+        let cropImage = null;
+        let cropOffsetX = 0;
+        let cropOffsetY = 0;
+        let cropScale = 1;
+        let isCropDragging = false;
+        let cropStartX, cropStartY, cropStartOffsetX, cropStartOffsetY;
+
+        function openAvatarEditor() {
+            closeModal('profileModal');
+            document.getElementById('avatarFileInput').click();
+        }
+
+        function loadAvatarFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Файл слишком большой. Максимум 5 МБ.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    cropImage = img;
+                    cropScale = 1;
+                    cropOffsetX = 0;
+                    cropOffsetY = 0;
+                    document.getElementById('cropZoom').value = 1;
+                    drawCrop();
+                    document.getElementById('avatarEditorModal').classList.add('active');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        function drawCrop() {
+            const canvas = document.getElementById('cropCanvas');
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+
+            ctx.clearRect(0, 0, W, H);
+
+            if (!cropImage) return;
+
+            // Рассчитываем базовый масштаб, чтобы картинка заполнила canvas
+            const baseScale = Math.max(W / cropImage.width, H / cropImage.height);
+            const scale = baseScale * cropScale;
+
+            const imgW = cropImage.width * scale;
+            const imgH = cropImage.height * scale;
+            const x = (W - imgW) / 2 + cropOffsetX;
+            const y = (H - imgH) / 2 + cropOffsetY;
+
+            ctx.drawImage(cropImage, x, y, imgW, imgH);
+        }
+
+        // Зум
+        document.getElementById('cropZoom')?.addEventListener('input', function() {
+            cropScale = parseFloat(this.value);
+            drawCrop();
+        });
+
+        // Перетаскивание
+        const cropArea = document.getElementById('cropArea');
+        if (cropArea) {
+            cropArea.addEventListener('mousedown', function(e) {
+                if (!cropImage) return;
+                isCropDragging = true;
+                cropStartX = e.clientX;
+                cropStartY = e.clientY;
+                cropStartOffsetX = cropOffsetX;
+                cropStartOffsetY = cropOffsetY;
+            });
+
+            window.addEventListener('mousemove', function(e) {
+                if (!isCropDragging) return;
+                cropOffsetX = cropStartOffsetX + (e.clientX - cropStartX) * 2;
+                cropOffsetY = cropStartOffsetY + (e.clientY - cropStartY) * 2;
+                drawCrop();
+            });
+
+            window.addEventListener('mouseup', function() {
+                isCropDragging = false;
+            });
+
+            // Touch
+            cropArea.addEventListener('touchstart', function(e) {
+                if (!cropImage || e.touches.length !== 1) return;
+                isCropDragging = true;
+                cropStartX = e.touches[0].clientX;
+                cropStartY = e.touches[0].clientY;
+                cropStartOffsetX = cropOffsetX;
+                cropStartOffsetY = cropOffsetY;
+            }, { passive: true });
+
+            cropArea.addEventListener('touchmove', function(e) {
+                if (!isCropDragging || e.touches.length !== 1) return;
+                e.preventDefault();
+                cropOffsetX = cropStartOffsetX + (e.touches[0].clientX - cropStartX) * 2;
+                cropOffsetY = cropStartOffsetY + (e.touches[0].clientY - cropStartY) * 2;
+                drawCrop();
+            }, { passive: false });
+
+            cropArea.addEventListener('touchend', function() {
+                isCropDragging = false;
+            });
+        }
+
+        // Сохранение кадрированного аватара
+        function applyAvatarCrop() {
+            const user = DB.getCurrentUser();
+            if (!user || !cropImage) return;
+
+            // Создаём финальный canvas 256x256 (квадрат — обрезаем по кругу на стороне отображения)
+            const finalSize = 256;
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = finalSize;
+            finalCanvas.height = finalSize;
+            const ctx = finalCanvas.getContext('2d');
+
+            const cropCanvas = document.getElementById('cropCanvas');
+            const W = cropCanvas.width;
+            const H = cropCanvas.height;
+
+            // Находим область круга (70% от 260px визуально = 182px в реальных координатах canvas)
+            // Canvas 520x520, circle 70% => 364px
+            const circleSize = W * 0.70;
+            const circleX = (W - circleSize) / 2;
+            const circleY = (H - circleSize) / 2;
+
+            ctx.drawImage(
+                cropCanvas,
+                circleX, circleY, circleSize, circleSize,
+                0, 0, finalSize, finalSize
+            );
+
+            const dataUrl = finalCanvas.toDataURL('image/jpeg', 0.9);
+            DB.updateUser(user.username, { avatarUrl: dataUrl });
+
+            // Обновляем аватар в профиле
+            document.getElementById('avatarPreviewBig').innerHTML = 
+                `<img src="${dataUrl}" alt="Avatar"><div class="edit-overlay">ИЗМЕНИТЬ</div>`;
+            
+            renderProfileCorner();
+            closeModal('avatarEditorModal');
+        }
+
+        // ============================================================
+        // НАСТРОЙКИ (только фон, темы убраны)
         // ============================================================
         function openSettingsModal() {
             document.getElementById('profileMenu').classList.remove('active');
-            const user = DB.getCurrentUser();
-            
-            // Отметка текущей темы
-            document.getElementById('themeDark').classList.remove('active');
-            document.getElementById('themeLight').classList.remove('active');
-            
-            const currentTheme = user ? (user.theme || 'dark') : 'dark';
-            if (currentTheme === 'light') {
-                document.getElementById('themeLight').classList.add('active');
-            } else {
-                document.getElementById('themeDark').classList.add('active');
-            }
-
             document.getElementById('settingsModal').classList.add('active');
-        }
-
-        function setTheme(theme) {
-            document.getElementById('themeDark').classList.remove('active');
-            document.getElementById('themeLight').classList.remove('active');
-
-            if (theme === 'light') {
-                document.body.classList.add('light-theme');
-                document.getElementById('themeLight').classList.add('active');
-            } else {
-                document.body.classList.remove('light-theme');
-                document.getElementById('themeDark').classList.add('active');
-            }
-
-            const user = DB.getCurrentUser();
-            if (user) {
-                DB.updateUser(user.username, { theme: theme });
-            }
-        }
-
-        function applyUserTheme() {
-            const user = DB.getCurrentUser();
-            const theme = user ? (user.theme || 'dark') : 'dark';
-            if (theme === 'light') {
-                document.body.classList.add('light-theme');
-            } else {
-                document.body.classList.remove('light-theme');
-            }
         }
 
         function uploadBg(event) {
@@ -2033,11 +2016,8 @@
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
                 document.body.style.backgroundImage = `url(${dataUrl})`;
-                
                 const user = DB.getCurrentUser();
-                if (user) {
-                    DB.updateUser(user.username, { customBackground: dataUrl });
-                }
+                if (user) DB.updateUser(user.username, { customBackground: dataUrl });
             };
             reader.readAsDataURL(file);
         }
@@ -2045,9 +2025,7 @@
         function resetBg() {
             document.body.style.backgroundImage = "url('background.jpg')";
             const user = DB.getCurrentUser();
-            if (user) {
-                DB.updateUser(user.username, { customBackground: null });
-            }
+            if (user) DB.updateUser(user.username, { customBackground: null });
         }
 
         function applyUserBackground() {
@@ -2060,7 +2038,7 @@
         }
 
         // ============================================================
-        // СВОРАЧИВАНИЕ РАЗДЕЛОВ ПРАВИЛ
+        // РАЗДЕЛЫ ПРАВИЛ
         // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
@@ -2076,7 +2054,7 @@
         }
 
         // ============================================================
-        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+        // ВКЛАДКИ
         // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
@@ -2239,7 +2217,6 @@
         // ============================================================
         function init() {
             renderProfileCorner();
-            applyUserTheme();
             applyUserBackground();
             createParticles();
         }
