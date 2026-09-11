@@ -190,11 +190,7 @@
             font-weight: 700;
         }
 
-        .profile-info-block {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.25;
-        }
+        .profile-info-block { display: flex; flex-direction: column; line-height: 1.25; }
 
         .profile-name-corner {
             font-size: 0.85rem;
@@ -248,11 +244,7 @@
             transition: 0.3s ease;
         }
 
-        .profile-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .profile-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
 
         .menu-item {
             display: flex;
@@ -267,22 +259,10 @@
             transition: 0.2s;
         }
 
-        .menu-item:hover {
-            background: rgba(60, 140, 220, 0.10);
-            color: #dceaff;
-        }
+        .menu-item:hover { background: rgba(60, 140, 220, 0.10); color: #dceaff; }
+        .menu-item svg { width: 18px; height: 18px; fill: rgba(160, 200, 240, 0.55); flex-shrink: 0; }
 
-        .menu-item svg {
-            width: 18px; height: 18px;
-            fill: rgba(160, 200, 240, 0.55);
-            flex-shrink: 0;
-        }
-
-        .menu-divider {
-            height: 1px;
-            background: rgba(60, 140, 220, 0.10);
-            margin: 6px 0;
-        }
+        .menu-divider { height: 1px; background: rgba(60, 140, 220, 0.10); margin: 6px 0; }
 
         .menu-item.danger { color: #ff8b8b; }
         .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
@@ -321,6 +301,7 @@
         }
 
         .modal-overlay.active .modal { transform: scale(1); }
+        .modal.wide { max-width: 1100px; padding: 28px 32px; }
 
         .modal h3 {
             color: #a0c8f0;
@@ -349,12 +330,10 @@
             align-items: center;
             justify-content: center;
             transition: 0.2s;
+            z-index: 2;
         }
 
-        .modal-close:hover {
-            background: rgba(60, 140, 220, 0.15);
-            color: #dceaff;
-        }
+        .modal-close:hover { background: rgba(60, 140, 220, 0.15); color: #dceaff; }
 
         .form-group { margin-bottom: 18px; }
 
@@ -418,13 +397,7 @@
             color: rgba(160, 200, 240, 0.45);
         }
 
-        .form-switch a {
-            color: #8cc4ff;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
+        .form-switch a { color: #8cc4ff; cursor: pointer; font-weight: 600; text-decoration: none; }
         .form-switch a:hover { text-decoration: underline; }
 
         .form-error, .form-success {
@@ -459,22 +432,9 @@
 
         .profile-stat:last-child { border-bottom: none; }
         .profile-stat-label { color: rgba(160, 200, 240, 0.5); font-weight: 400; }
-        .profile-stat-value {
-            color: #b0d0f0;
-            font-weight: 600;
-            text-align: right;
-            max-width: 60%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        .profile-stat-value { color: #b0d0f0; font-weight: 600; text-align: right; max-width: 60%; overflow: hidden; text-overflow: ellipsis; }
 
-        /* ===== AVATAR ===== */
-        .avatar-upload-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 24px;
-        }
+        .avatar-upload-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
 
         .avatar-preview-big {
             width: 100px; height: 100px;
@@ -490,18 +450,8 @@
             position: relative;
         }
 
-        .avatar-preview-big:hover {
-            border-color: rgba(60, 140, 220, 0.45);
-            transform: scale(1.03);
-        }
-
-        .avatar-preview-big.dragover {
-            border-color: #4a9eff;
-            border-style: dashed;
-            background: rgba(74, 158, 255, 0.10);
-            transform: scale(1.05);
-        }
-
+        .avatar-preview-big:hover { border-color: rgba(60, 140, 220, 0.45); transform: scale(1.03); }
+        .avatar-preview-big.dragover { border-color: #4a9eff; border-style: dashed; background: rgba(74, 158, 255, 0.10); transform: scale(1.05); }
         .avatar-preview-big img { width: 100%; height: 100%; object-fit: cover; }
 
         .avatar-preview-big .avatar-placeholder {
@@ -522,7 +472,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== КНОПКА УДАЛЕНИЯ АВАТАРА ===== */
         .avatar-delete-btn {
             display: none;
             margin-top: 10px;
@@ -540,33 +489,15 @@
             gap: 6px;
         }
 
-        .avatar-delete-btn:hover {
-            background: rgba(255, 80, 80, 0.15);
-            border-color: rgba(255, 80, 80, 0.30);
-            color: #ffb0b0;
-            transform: translateY(-1px);
-        }
-
-        .avatar-delete-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-
+        .avatar-delete-btn:hover { background: rgba(255, 80, 80, 0.15); border-color: rgba(255, 80, 80, 0.30); color: #ffb0b0; transform: translateY(-1px); }
+        .avatar-delete-btn svg { width: 14px; height: 14px; fill: currentColor; }
         .avatar-delete-btn.visible { display: inline-flex; }
 
-        .crop-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
+        .crop-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 20px; }
 
         .crop-area {
             position: relative;
-            width: 260px;
-            height: 260px;
+            width: 260px; height: 260px;
             border-radius: 12px;
             overflow: hidden;
             background: rgba(0, 0, 0, 0.5);
@@ -576,31 +507,20 @@
         }
 
         .crop-area:active { cursor: grabbing; }
-
-        .crop-area canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
+        .crop-area canvas { display: block; width: 100%; height: 100%; }
 
         .crop-circle {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 70%;
-            height: 70%;
+            width: 70%; height: 70%;
             border-radius: 50%;
             border: 2px solid rgba(140, 200, 255, 0.8);
             box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
             pointer-events: none;
         }
 
-        .crop-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 260px;
-        }
+        .crop-controls { display: flex; align-items: center; gap: 12px; width: 260px; }
 
         .crop-controls label {
             color: rgba(160, 200, 240, 0.55);
@@ -623,8 +543,7 @@
 
         .crop-controls input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 16px; height: 16px;
             border-radius: 50%;
             background: #4a9eff;
             cursor: pointer;
@@ -632,8 +551,7 @@
         }
 
         .crop-controls input[type="range"]::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
+            width: 16px; height: 16px;
             border-radius: 50%;
             background: #4a9eff;
             cursor: pointer;
@@ -652,10 +570,7 @@
             box-shadow: 0 8px 80px rgba(0, 0, 0, 0.6);
         }
 
-        .tab-page.active {
-            display: block;
-            animation: fadeSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
+        .tab-page.active { display: block; animation: fadeSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
 
         @keyframes fadeSlide {
             0% { opacity: 0; transform: translateY(30px) scale(0.96); }
@@ -712,12 +627,7 @@
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
+        .actions { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
 
         .btn-primary {
             background: linear-gradient(135deg, #0a2a4a, #061a30);
@@ -761,34 +671,12 @@
             letter-spacing: 0.5px;
         }
 
-        .btn-telegram {
-            background: linear-gradient(135deg, #0088cc, #006699);
-            color: #ffffff;
-        }
+        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); color: #ffffff; }
+        .btn-telegram:hover { background: linear-gradient(135deg, #0099dd, #0077aa); transform: translateY(-2px); }
+        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752c4); color: #ffffff; }
+        .btn-discord:hover { background: linear-gradient(135deg, #6a77f5, #4f5ad4); transform: translateY(-2px); }
 
-        .btn-telegram:hover {
-            background: linear-gradient(135deg, #0099dd, #0077aa);
-            transform: translateY(-2px);
-        }
-
-        .btn-discord {
-            background: linear-gradient(135deg, #5865F2, #4752c4);
-            color: #ffffff;
-        }
-
-        .btn-discord:hover {
-            background: linear-gradient(135deg, #6a77f5, #4f5ad4);
-            transform: translateY(-2px);
-        }
-
-        .btn-social .icon {
-            width: 20px; height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
+        .btn-social .icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .btn-social .icon svg { width: 20px; height: 20px; fill: #ffffff; }
 
         .rules-wrapper { display: flex; flex-direction: column; gap: 12px; }
@@ -812,11 +700,7 @@
             transition: 0.3s;
         }
 
-        .rules-section:hover {
-            background: rgba(2, 8, 18, 0.50);
-            border-color: rgba(60, 140, 220, 0.06);
-        }
-
+        .rules-section:hover { background: rgba(2, 8, 18, 0.50); border-color: rgba(60, 140, 220, 0.06); }
         .rules-section:hover::before { opacity: 0.6; }
 
         .rules-header {
@@ -867,10 +751,7 @@
             padding: 0 28px;
         }
 
-        .rules-body.open {
-            max-height: 3000px;
-            padding: 0 28px 20px 28px;
-        }
+        .rules-body.open { max-height: 3000px; padding: 0 28px 20px 28px; }
 
         .rules-body .rule-item {
             padding: 6px 0 6px 22px;
@@ -894,10 +775,7 @@
             transition: 0.2s;
         }
 
-        .rules-body .rule-item:hover::before {
-            color: rgba(60, 140, 220, 0.30);
-            transform: translateX(2px);
-        }
+        .rules-body .rule-item:hover::before { color: rgba(60, 140, 220, 0.30); transform: translateX(2px); }
 
         .rules-body .rule-item strong { color: rgba(120, 180, 240, 0.30); font-weight: 600; }
 
@@ -915,13 +793,7 @@
             margin: 12px 0;
         }
 
-        .green-zone-image img {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 14px;
-            display: block;
-            margin: 0 auto;
-        }
+        .green-zone-image img { width: 100%; max-width: 600px; border-radius: 14px; display: block; margin: 0 auto; }
 
         .green-zone-image .caption {
             margin-top: 10px;
@@ -1055,12 +927,7 @@
             pointer-events: none;
         }
 
-        .map-controls {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-top: 16px;
-        }
+        .map-controls { display: flex; justify-content: center; gap: 14px; margin-top: 16px; }
 
         .map-btn {
             background: rgba(2, 8, 18, 0.60);
@@ -1075,12 +942,7 @@
             padding: 0;
         }
 
-        .map-btn:hover {
-            background: rgba(2, 8, 18, 0.80);
-            border-color: rgba(60, 140, 220, 0.12);
-            transform: translateY(-2px);
-        }
-
+        .map-btn:hover { background: rgba(2, 8, 18, 0.80); border-color: rgba(60, 140, 220, 0.12); transform: translateY(-2px); }
         .map-btn svg { width: 24px; height: 24px; fill: rgba(160, 200, 240, 0.40); transition: 0.3s; }
         .map-btn:hover svg { fill: rgba(160, 200, 240, 0.60); }
 
@@ -1098,10 +960,7 @@
             transition: 0.3s;
         }
 
-        .lore-story p:hover {
-            border-left-color: rgba(60, 140, 220, 0.08);
-            padding-left: 16px;
-        }
+        .lore-story p:hover { border-left-color: rgba(60, 140, 220, 0.08); padding-left: 16px; }
 
         .lore-story .year {
             color: rgba(100, 170, 240, 0.35);
@@ -1114,11 +973,7 @@
             letter-spacing: 1px;
         }
 
-        .lore-divider {
-            border: none;
-            border-top: 1px solid rgba(60, 140, 220, 0.04);
-            margin: 24px 0;
-        }
+        .lore-divider { border: none; border-top: 1px solid rgba(60, 140, 220, 0.04); margin: 24px 0; }
 
         .lore-block {
             background: rgba(60, 140, 220, 0.03);
@@ -1164,6 +1019,292 @@
 
         .footer strong { font-weight: 600; color: rgba(160, 200, 240, 0.35); }
 
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .admin-header h3 { margin: 0; }
+
+        .admin-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: rgba(2, 8, 18, 0.50);
+            border-radius: 12px;
+            border: 1px solid rgba(60, 140, 220, 0.08);
+        }
+
+        .admin-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .admin-stat-label {
+            font-size: 0.7rem;
+            color: rgba(160, 200, 240, 0.45);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .admin-stat-value {
+            font-size: 1.4rem;
+            color: #8cc4ff;
+            font-weight: 800;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .admin-tab {
+            padding: 8px 18px;
+            border-radius: 10px;
+            background: rgba(2, 8, 18, 0.50);
+            border: 1px solid rgba(60, 140, 220, 0.08);
+            color: rgba(160, 200, 240, 0.55);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-tab:hover { background: rgba(2, 8, 18, 0.75); color: #b0d0f0; }
+
+        .admin-tab.active {
+            background: linear-gradient(135deg, #0a2a4a, #061a30);
+            border-color: rgba(60, 140, 220, 0.25);
+            color: #dceaff;
+        }
+
+        .admin-search {
+            width: 100%;
+            background: rgba(2, 8, 18, 0.60);
+            border: 1px solid rgba(60, 140, 220, 0.10);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #dceaff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 18px;
+            transition: 0.2s;
+        }
+
+        .admin-search:focus {
+            border-color: rgba(60, 140, 220, 0.35);
+            background: rgba(2, 8, 18, 0.85);
+            box-shadow: 0 0 0 3px rgba(60, 140, 220, 0.08);
+        }
+
+        .admin-search::placeholder { color: rgba(160, 200, 240, 0.25); }
+
+        .admin-users-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 55vh;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .admin-user-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            background: rgba(2, 8, 18, 0.40);
+            border-radius: 12px;
+            border: 1px solid rgba(60, 140, 220, 0.04);
+            transition: 0.2s;
+            flex-wrap: wrap;
+        }
+
+        .admin-user-row:hover {
+            background: rgba(2, 8, 18, 0.60);
+            border-color: rgba(60, 140, 220, 0.10);
+        }
+
+        .admin-user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            background: rgba(60, 140, 220, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .admin-user-avatar .avatar-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(140, 190, 240, 0.35);
+            font-weight: 700;
+        }
+
+        .admin-user-info {
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .admin-user-display {
+            font-size: 0.9rem;
+            color: #b0d0f0;
+            font-weight: 700;
+        }
+
+        .admin-user-username {
+            font-size: 0.75rem;
+            color: rgba(160, 200, 240, 0.40);
+            font-weight: 400;
+        }
+
+        .admin-user-balance {
+            font-size: 0.85rem;
+            color: #8cc4ff;
+            font-weight: 700;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        .admin-user-balance span { color: rgba(160, 200, 240, 0.4); font-size: 0.7rem; }
+
+        .admin-user-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .admin-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+        .admin-btn-give {
+            background: rgba(80, 220, 130, 0.08);
+            border-color: rgba(80, 220, 130, 0.20);
+            color: #8be6b0;
+        }
+
+        .admin-btn-give:hover {
+            background: rgba(80, 220, 130, 0.18);
+            border-color: rgba(80, 220, 130, 0.35);
+        }
+
+        .admin-btn-take {
+            background: rgba(255, 200, 80, 0.08);
+            border-color: rgba(255, 200, 80, 0.20);
+            color: #ffd88b;
+        }
+
+        .admin-btn-take:hover {
+            background: rgba(255, 200, 80, 0.18);
+            border-color: rgba(255, 200, 80, 0.35);
+        }
+
+        .admin-btn-set {
+            background: rgba(60, 140, 220, 0.08);
+            border-color: rgba(60, 140, 220, 0.20);
+            color: #8cc4ff;
+        }
+
+        .admin-btn-set:hover {
+            background: rgba(60, 140, 220, 0.18);
+            border-color: rgba(60, 140, 220, 0.35);
+        }
+
+        .admin-btn-ban {
+            background: rgba(255, 80, 80, 0.08);
+            border-color: rgba(255, 80, 80, 0.20);
+            color: #ff8b8b;
+        }
+
+        .admin-btn-ban:hover {
+            background: rgba(255, 80, 80, 0.18);
+            border-color: rgba(255, 80, 80, 0.35);
+        }
+
+        .admin-btn-unban {
+            background: rgba(80, 220, 130, 0.08);
+            border-color: rgba(80, 220, 130, 0.20);
+            color: #8be6b0;
+        }
+
+        .admin-btn-unban:hover {
+            background: rgba(80, 220, 130, 0.18);
+            border-color: rgba(80, 220, 130, 0.35);
+        }
+
+        .admin-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(160, 200, 240, 0.30);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .admin-banned-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(255, 80, 80, 0.15);
+            border: 1px solid rgba(255, 80, 80, 0.25);
+            color: #ff8b8b;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .admin-self-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(60, 140, 220, 0.15);
+            border: 1px solid rgba(60, 140, 220, 0.25);
+            color: #8cc4ff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
         @media (max-width: 700px) {
             body { padding: 15px; }
             .header { flex-direction: column; align-items: center; text-align: center; padding: 0; gap: 12px; }
@@ -1185,8 +1326,12 @@
             .map-btn svg { width: 20px; height: 20px; }
             .profile-menu { right: 15px; left: 15px; min-width: auto; }
             .modal { padding: 24px 20px; }
+            .modal.wide { padding: 20px 16px; }
             .crop-area { width: 220px; height: 220px; }
             .crop-controls { width: 220px; }
+            .admin-user-row { padding: 10px; gap: 10px; }
+            .admin-user-actions { width: 100%; }
+            .admin-btn { flex: 1; justify-content: center; }
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -1281,7 +1426,6 @@
                             <div class="rule-item"><strong>1.4.1.</strong> Запрещены ники, нарушающие атмосферу Зоны.</div>
                         </div>
                     </div>
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1304,7 +1448,6 @@
                             <div class="rule-item"><strong>2.10.1.</strong> Запрещены нереалистичные движения в ПВП.</div>
                         </div>
                     </div>
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1324,7 +1467,6 @@
                             <div class="rule-item"><strong>3.4.1.</strong> Провокации разрешены, боевые действия — бан.</div>
                         </div>
                     </div>
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1342,7 +1484,6 @@
                             <div class="rule-item"><strong>4.6.1.</strong> Рейд не дольше <span class="highlight">40 минут</span>.</div>
                         </div>
                     </div>
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1359,7 +1500,6 @@
                             <div class="rule-item"><strong>5.5.1.</strong> Повторный гоп-стоп — через <span class="highlight">1 час</span>.</div>
                         </div>
                     </div>
-
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
@@ -1556,7 +1696,35 @@
         </div>
     </div>
 
+    <!-- ===== АДМИН-ПАНЕЛЬ ===== -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal wide">
+            <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+
+            <div class="admin-header">
+                <h3>
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1z"/></svg>
+                    Админ-панель
+                </h3>
+            </div>
+
+            <div class="admin-stats" id="adminStats"></div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-admin-tab="all" onclick="switchAdminTab('all')">Все пользователи</button>
+                <button class="admin-tab" data-admin-tab="banned" onclick="switchAdminTab('banned')">Забаненные</button>
+            </div>
+
+            <input type="text" class="admin-search" id="adminSearch" placeholder="🔍 Поиск по юзернейму..." oninput="renderAdminUsers()">
+
+            <div class="admin-users-list" id="adminUsersList"></div>
+        </div>
+    </div>
+
     <script>
+        // ============================================================
+        // ХРАНИЛИЩЕ
+        // ============================================================
         const DB = {
             getUsers() {
                 try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
@@ -1583,6 +1751,13 @@
                 return false;
             }
         };
+
+        const ADMIN_USERNAME = 'Xelkin';
+
+        function isAdmin() {
+            const user = DB.getCurrentUser();
+            return user && user.username === ADMIN_USERNAME;
+        }
 
         function getAvatarHtml(user) {
             if (user && user.avatarUrl) {
@@ -1713,7 +1888,9 @@
                     customBackground: null,
                     createdAt: new Date().toISOString(),
                     lastLogin: new Date().toISOString(),
-                    isAdmin: false
+                    isAdmin: username === ADMIN_USERNAME,
+                    isBanned: false,
+                    banReason: null
                 };
                 DB.saveUsers(users);
                 DB.setCurrentUser(username);
@@ -1725,6 +1902,7 @@
 
             if (!users[username]) { showAuthError('Пользователь не найден'); return; }
             if (users[username].password !== btoa(password)) { showAuthError('Неверный пароль'); return; }
+            if (users[username].isBanned) { showAuthError('Аккаунт заблокирован: ' + (users[username].banReason || 'без причины')); return; }
 
             users[username].lastLogin = new Date().toISOString();
             DB.saveUsers(users);
@@ -1751,11 +1929,8 @@
                 `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
             
             const deleteBtn = document.getElementById('avatarDeleteBtn');
-            if (user.avatarUrl) {
-                deleteBtn.classList.add('visible');
-            } else {
-                deleteBtn.classList.remove('visible');
-            }
+            if (user.avatarUrl) deleteBtn.classList.add('visible');
+            else deleteBtn.classList.remove('visible');
             
             document.getElementById('profileDisplayName').value = user.displayName || user.username;
             document.getElementById('statUsername').textContent = user.username;
@@ -1772,17 +1947,12 @@
             if (!user) return;
 
             const newDisplayName = document.getElementById('profileDisplayName').value.trim();
-            if (!newDisplayName) {
-                alert('Ник не может быть пустым');
-                return;
-            }
+            if (!newDisplayName) { alert('Ник не может быть пустым'); return; }
 
             DB.updateUser(user.username, { displayName: newDisplayName });
             renderProfileCorner();
             document.getElementById('profileSuccess').classList.add('active');
-            setTimeout(() => {
-                document.getElementById('profileSuccess').classList.remove('active');
-            }, 2500);
+            setTimeout(() => { document.getElementById('profileSuccess').classList.remove('active'); }, 2500);
         }
 
         function formatDate(iso) {
@@ -1796,28 +1966,19 @@
         const avatarDropZone = document.getElementById('avatarPreviewBig');
 
         avatarDropZone.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             this.classList.add('dragover');
         });
-
         avatarDropZone.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             this.classList.remove('dragover');
         });
-
         avatarDropZone.addEventListener('drop', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             this.classList.remove('dragover');
-
             const file = e.dataTransfer.files[0];
             if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                alert('Можно загрузить только изображение');
-                return;
-            }
+            if (!file.type.startsWith('image/')) { alert('Можно загрузить только изображение'); return; }
             processAvatarFile(file);
         });
 
@@ -1841,10 +2002,7 @@
         }
 
         function processAvatarFile(file) {
-            if (file.size > 5 * 1024 * 1024) {
-                alert('Файл слишком большой. Максимум 5 МБ.');
-                return;
-            }
+            if (file.size > 5 * 1024 * 1024) { alert('Файл слишком большой. Максимум 5 МБ.'); return; }
 
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -1891,10 +2049,8 @@
         cropArea.addEventListener('mousedown', function(e) {
             if (!cropImage) return;
             isCropDragging = true;
-            cropStartX = e.clientX;
-            cropStartY = e.clientY;
-            cropStartOffsetX = cropOffsetX;
-            cropStartOffsetY = cropOffsetY;
+            cropStartX = e.clientX; cropStartY = e.clientY;
+            cropStartOffsetX = cropOffsetX; cropStartOffsetY = cropOffsetY;
         });
 
         window.addEventListener('mousemove', function(e) {
@@ -1904,17 +2060,13 @@
             drawCrop();
         });
 
-        window.addEventListener('mouseup', function() {
-            isCropDragging = false;
-        });
+        window.addEventListener('mouseup', function() { isCropDragging = false; });
 
         cropArea.addEventListener('touchstart', function(e) {
             if (!cropImage || e.touches.length !== 1) return;
             isCropDragging = true;
-            cropStartX = e.touches[0].clientX;
-            cropStartY = e.touches[0].clientY;
-            cropStartOffsetX = cropOffsetX;
-            cropStartOffsetY = cropOffsetY;
+            cropStartX = e.touches[0].clientX; cropStartY = e.touches[0].clientY;
+            cropStartOffsetX = cropOffsetX; cropStartOffsetY = cropOffsetY;
         }, { passive: true });
 
         cropArea.addEventListener('touchmove', function(e) {
@@ -1925,9 +2077,7 @@
             drawCrop();
         }, { passive: false });
 
-        cropArea.addEventListener('touchend', function() {
-            isCropDragging = false;
-        });
+        cropArea.addEventListener('touchend', function() { isCropDragging = false; });
 
         function applyAvatarCrop() {
             const user = DB.getCurrentUser();
@@ -1961,13 +2111,9 @@
             closeModal('avatarEditorModal');
         }
 
-        // ============================================================
-        // УДАЛЕНИЕ АВАТАРА
-        // ============================================================
         function deleteAvatar() {
             const user = DB.getCurrentUser();
             if (!user) return;
-
             if (!confirm('Удалить аватар?')) return;
 
             DB.updateUser(user.username, { avatarUrl: null });
@@ -1978,7 +2124,6 @@
                 `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
             
             document.getElementById('avatarDeleteBtn').classList.remove('visible');
-
             renderProfileCorner();
         }
 
@@ -1990,10 +2135,7 @@
         function uploadBg(event) {
             const file = event.target.files[0];
             if (!file) return;
-            if (file.size > 3 * 1024 * 1024) {
-                alert('Файл слишком большой. Максимум 3 МБ.');
-                return;
-            }
+            if (file.size > 3 * 1024 * 1024) { alert('Файл слишком большой. Максимум 3 МБ.'); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
@@ -2019,6 +2161,205 @@
             }
         }
 
+        // ============================================================
+        // АДМИН-ПАНЕЛЬ
+        // ============================================================
+        let adminCurrentTab = 'all';
+
+        function openAdminPanel() {
+            if (!isAdmin()) return;
+            renderAdminStats();
+            renderAdminUsers();
+            document.getElementById('adminModal').classList.add('active');
+        }
+
+        function switchAdminTab(tab) {
+            adminCurrentTab = tab;
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.admin-tab[data-admin-tab="${tab}"]`).classList.add('active');
+            renderAdminUsers();
+        }
+
+        function renderAdminStats() {
+            const users = DB.getUsers();
+            const allUsers = Object.values(users);
+            const bannedCount = allUsers.filter(u => u.isBanned).length;
+            const totalHls = allUsers.reduce((sum, u) => sum + (u.hlsBalance || 0), 0);
+
+            document.getElementById('adminStats').innerHTML = `
+                <div class="admin-stat">
+                    <div class="admin-stat-label">Всего игроков</div>
+                    <div class="admin-stat-value">${allUsers.length}</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-label">Всего ХЛС</div>
+                    <div class="admin-stat-value">${totalHls}</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-label">Забанено</div>
+                    <div class="admin-stat-value" style="color:#ff8b8b;">${bannedCount}</div>
+                </div>
+            `;
+        }
+
+        function renderAdminUsers() {
+            const users = DB.getUsers();
+            const search = document.getElementById('adminSearch').value.trim().toLowerCase();
+            const list = document.getElementById('adminUsersList');
+
+            let entries = Object.entries(users).map(([username, data]) => ({ username, ...data }));
+
+            // Фильтр по вкладке
+            if (adminCurrentTab === 'banned') {
+                entries = entries.filter(u => u.isBanned);
+            }
+
+            // Поиск по юзернейму
+            if (search) {
+                entries = entries.filter(u => u.username.toLowerCase().includes(search));
+            }
+
+            // Сортировка: сначала новые
+            entries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (entries.length === 0) {
+                list.innerHTML = `<div class="admin-empty">📭 Пользователей не найдено</div>`;
+                return;
+            }
+
+            list.innerHTML = entries.map(user => {
+                const displayName = user.displayName || user.username;
+                const balance = user.hlsBalance || 0;
+                const isSelf = user.username === ADMIN_USERNAME;
+                const bannedBadge = user.isBanned ? `<span class="admin-banned-badge">Забанен</span>` : '';
+                const selfBadge = isSelf ? `<span class="admin-self-badge">Вы</span>` : '';
+
+                const banBtn = user.isBanned 
+                    ? `<button class="admin-btn admin-btn-unban" onclick="unbanUser('${user.username}')">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Разбанить
+                      </button>`
+                    : `<button class="admin-btn admin-btn-ban" onclick="banUser('${user.username}')">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Забанить
+                      </button>`;
+
+                const actionsBlock = isSelf ? '' : `
+                    <div class="admin-user-actions">
+                        <button class="admin-btn admin-btn-give" onclick="giveHls('${user.username}')">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            Дать ХЛС
+                        </button>
+                        <button class="admin-btn admin-btn-take" onclick="takeHls('${user.username}')">
+                            <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+                            Отнять
+                        </button>
+                        <button class="admin-btn admin-btn-set" onclick="setHls('${user.username}')">
+                            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                            Изменить
+                        </button>
+                        ${banBtn}
+                    </div>
+                `;
+
+                return `
+                    <div class="admin-user-row">
+                        <div class="admin-user-avatar">
+                            ${user.avatarUrl 
+                                ? `<img src="${user.avatarUrl}" alt="">` 
+                                : `<div class="avatar-placeholder">${(displayName).charAt(0).toUpperCase()}</div>`}
+                        </div>
+                        <div class="admin-user-info">
+                            <div class="admin-user-display">${escapeHtml(displayName)} ${selfBadge} ${bannedBadge}</div>
+                            <div class="admin-user-username">@${escapeHtml(user.username)}</div>
+                        </div>
+                        <div class="admin-user-balance">${balance} <span>ХЛС</span></div>
+                        ${actionsBlock}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function giveHls(username) {
+            const amount = parseInt(prompt(`Сколько ХЛС дать игроку @${username}?`));
+            if (isNaN(amount) || amount <= 0) return;
+
+            const user = DB.getUsers()[username];
+            if (!user) return;
+            DB.updateUser(username, { hlsBalance: (user.hlsBalance || 0) + amount });
+
+            renderAdminStats();
+            renderAdminUsers();
+            if (DB.getCurrentUsername() === username) renderProfileCorner();
+        }
+
+        function takeHls(username) {
+            const amount = parseInt(prompt(`Сколько ХЛС отнять у @${username}?`));
+            if (isNaN(amount) || amount <= 0) return;
+
+            const user = DB.getUsers()[username];
+            if (!user) return;
+            const newBalance = Math.max(0, (user.hlsBalance || 0) - amount);
+            DB.updateUser(username, { hlsBalance: newBalance });
+
+            renderAdminStats();
+            renderAdminUsers();
+            if (DB.getCurrentUsername() === username) renderProfileCorner();
+        }
+
+        function setHls(username) {
+            const user = DB.getUsers()[username];
+            if (!user) return;
+            const amount = parseInt(prompt(`Установить ХЛС для @${username} (текущий: ${user.hlsBalance || 0}):`));
+            if (isNaN(amount) || amount < 0) return;
+
+            DB.updateUser(username, { hlsBalance: amount });
+
+            renderAdminStats();
+            renderAdminUsers();
+            if (DB.getCurrentUsername() === username) renderProfileCorner();
+        }
+
+        function banUser(username) {
+            const reason = prompt(`Причина бана для @${username}:`);
+            if (reason === null) return;
+
+            DB.updateUser(username, { isBanned: true, banReason: reason || 'без причины' });
+
+            renderAdminStats();
+            renderAdminUsers();
+        }
+
+        function unbanUser(username) {
+            if (!confirm(`Разбанить @${username}?`)) return;
+
+            DB.updateUser(username, { isBanned: false, banReason: null });
+
+            renderAdminStats();
+            renderAdminUsers();
+        }
+
+        // Открытие админ-панели по клавише M
+        document.addEventListener('keydown', function(e) {
+            if (e.key.toLowerCase() === 'm' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                // Проверяем, что фокус не в input
+                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+
+                if (isAdmin()) {
+                    e.preventDefault();
+                    const modal = document.getElementById('adminModal');
+                    if (modal.classList.contains('active')) {
+                        closeModal('adminModal');
+                    } else {
+                        openAdminPanel();
+                    }
+                }
+            }
+        });
+
+        // ============================================================
+        // ОСТАЛЬНОЕ (правила, карта, частицы, глюки)
+        // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
             const body = section.querySelector('.rules-body');
