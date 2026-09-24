@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HLRP | Helkin Roleplay</title>
-    <link rel="icon" href="fovicon.jpg" type="image/jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Переменная для масштаба шрифта — управляется через настройки */
+        :root {
+            --font-scale: 1;
+        }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -26,12 +30,17 @@
             background-attachment: fixed;
             transition: background-position 0.15s ease-out, background-image 0.3s ease;
             will-change: background-position;
+            font-size: calc(16px * var(--font-scale));
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(2, 6, 14, 0.75);
             background: radial-gradient(ellipse at center, rgba(2, 6, 14, 0.60) 0%, rgba(0, 2, 6, 0.88) 100%);
             z-index: 0;
             pointer-events: none;
@@ -39,8 +48,10 @@
 
         #particles-container {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
@@ -58,10 +69,16 @@
         }
 
         @keyframes fall {
-            0% { transform: translateY(-10px) translateX(0) scale(1); opacity: 0.2; }
+            0% {
+                transform: translateY(-10px) translateX(0) scale(1);
+                opacity: 0.2;
+            }
             20% { opacity: 0.6; }
             80% { opacity: 0.6; }
-            100% { transform: translateY(110vh) translateX(80px) scale(0.3); opacity: 0; }
+            100% {
+                transform: translateY(110vh) translateX(80px) scale(0.3);
+                opacity: 0;
+            }
         }
 
         .main-card {
@@ -88,7 +105,11 @@
             gap: 12px;
         }
 
-        .logo-img { height: 40px; width: auto; display: block; }
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
 
         .logo {
             font-size: 2.2rem;
@@ -98,7 +119,10 @@
             text-shadow: 0 0 40px rgba(40, 140, 255, 0.08);
         }
 
-        .logo span { color: #4a9eff; }
+        .logo span {
+            color: #4a9eff;
+            text-shadow: 0 0 40px rgba(40, 140, 255, 0.15);
+        }
 
         .logo-sub {
             font-size: 0.7rem;
@@ -134,440 +158,52 @@
         .tab-link::after {
             content: '';
             position: absolute;
-            bottom: -2px; left: 0;
-            width: 0; height: 2px;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
             background: #4a9eff;
             transition: 0.4s;
         }
 
         .tab-link:hover::after { width: 100%; }
         .tab-link:hover { color: rgba(120, 180, 240, 0.50); }
-        .tab-link.active { color: #8cc4ff; text-shadow: 0 0 30px rgba(40, 140, 255, 0.10); }
+        .tab-link.active {
+            color: #8cc4ff;
+            text-shadow: 0 0 30px rgba(40, 140, 255, 0.10);
+        }
         .tab-link.active::after { width: 100%; }
 
-        .profile-corner {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(2, 8, 18, 0.60);
-            border: 1px solid rgba(60, 140, 220, 0.10);
+        /* ===== КНОПКА НАСТРОЕК В ШАПКЕ ===== */
+        .settings-btn {
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
-            padding: 8px 14px 8px 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            backdrop-filter: blur(8px);
-            user-select: none;
-        }
-
-        .profile-corner:hover {
-            background: rgba(2, 8, 18, 0.80);
-            border-color: rgba(60, 140, 220, 0.20);
-            transform: translateY(-2px);
-        }
-
-        .profile-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            overflow: hidden;
-            flex-shrink: 0;
-            border: 1px solid rgba(60, 140, 220, 0.15);
-            background: rgba(60, 140, 220, 0.10);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        .profile-avatar .avatar-placeholder {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: rgba(140, 190, 240, 0.35);
-            font-weight: 700;
-        }
-
-        .profile-info-block { display: flex; flex-direction: column; line-height: 1.25; }
-
-        .profile-name-corner {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #b0d0f0;
-            letter-spacing: 0.3px;
-        }
-
-        .profile-balance-corner {
-            font-size: 0.7rem;
-            color: rgba(160, 200, 240, 0.55);
-            font-weight: 400;
-        }
-
-        .profile-balance-corner span { color: #8cc4ff; font-weight: 700; }
-
-        .profile-login-btn {
-            background: linear-gradient(135deg, #0a2a4a, #061a30);
-            color: #b0d0f0;
-            padding: 10px 22px;
-            border-radius: 10px;
-            border: 1px solid rgba(60, 140, 220, 0.10);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        .profile-login-btn:hover {
-            background: linear-gradient(135deg, #0f3a5e, #08203a);
-            border-color: rgba(60, 140, 220, 0.20);
-            transform: translateY(-2px);
-        }
-
-        .profile-menu {
-            position: fixed;
-            top: 90px; right: 30px;
-            background: rgba(4, 10, 20, 0.95);
-            border: 1px solid rgba(60, 140, 220, 0.15);
-            border-radius: 16px;
-            min-width: 260px;
-            padding: 12px;
-            z-index: 999;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(20px);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: 0.3s ease;
-        }
-
-        .profile-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            border-radius: 10px;
-            color: #b0d0f0;
-            font-weight: 500;
-            font-size: 0.88rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .menu-item:hover { background: rgba(60, 140, 220, 0.10); color: #dceaff; }
-        .menu-item svg { width: 18px; height: 18px; fill: rgba(160, 200, 240, 0.55); flex-shrink: 0; }
-
-        .menu-divider { height: 1px; background: rgba(60, 140, 220, 0.10); margin: 6px 0; }
-
-        .menu-item.danger { color: #ff8b8b; }
-        .menu-item.danger:hover { background: rgba(255, 80, 80, 0.10); color: #ffb0b0; }
-        .menu-item.danger svg { fill: rgba(255, 120, 120, 0.7); }
-
-        /* Стиль для админ-пункта */
-        .menu-item.admin-item {
-            color: #ffd88b;
-        }
-
-        .menu-item.admin-item:hover {
-            background: rgba(255, 200, 80, 0.10);
-            color: #ffe0a0;
-        }
-
-        .menu-item.admin-item svg { fill: rgba(255, 200, 80, 0.7); }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s ease;
-            backdrop-filter: blur(8px);
-        }
-
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .modal {
-            background: rgba(6, 14, 24, 0.98);
-            border: 1px solid rgba(60, 140, 220, 0.15);
-            border-radius: 22px;
-            padding: 32px 36px;
-            max-width: 460px;
-            width: 100%;
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
-            transform: scale(0.95);
-            transition: 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-overlay.active .modal { transform: scale(1); }
-        .modal.wide { max-width: 1100px; padding: 28px 32px; }
-
-        .modal h3 {
-            color: #a0c8f0;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal h3 svg { width: 22px; height: 22px; fill: #8cc4ff; }
-
-        .modal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            background: rgba(60, 140, 220, 0.08);
-            border: none;
-            cursor: pointer;
-            color: rgba(160, 200, 240, 0.5);
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-            z-index: 2;
-        }
-
-        .modal-close:hover { background: rgba(60, 140, 220, 0.15); color: #dceaff; }
-
-        .form-group { margin-bottom: 18px; }
-
-        .form-group label {
-            display: block;
-            color: rgba(160, 200, 240, 0.55);
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .form-group input {
-            width: 100%;
             background: rgba(2, 8, 18, 0.60);
             border: 1px solid rgba(60, 140, 220, 0.10);
-            border-radius: 10px;
-            padding: 12px 16px;
-            color: #dceaff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: 0.2s;
-        }
-
-        .form-group input:focus {
-            border-color: rgba(60, 140, 220, 0.35);
-            background: rgba(2, 8, 18, 0.85);
-            box-shadow: 0 0 0 3px rgba(60, 140, 220, 0.08);
-        }
-
-        .form-group input::placeholder { color: rgba(160, 200, 240, 0.25); }
-
-        .form-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #0a2a4a, #061a30);
-            color: #b0d0f0;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(60, 140, 220, 0.10);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: 0.3s;
-            letter-spacing: 0.5px;
-            margin-top: 6px;
+            backdrop-filter: blur(8px);
         }
 
-        .form-btn:hover {
-            background: linear-gradient(135deg, #0f3a5e, #08203a);
+        .settings-btn:hover {
+            background: rgba(2, 8, 18, 0.80);
             border-color: rgba(60, 140, 220, 0.25);
             transform: translateY(-2px);
         }
 
-        .form-switch {
-            text-align: center;
-            margin-top: 18px;
-            font-size: 0.82rem;
-            color: rgba(160, 200, 240, 0.45);
-        }
-
-        .form-switch a { color: #8cc4ff; cursor: pointer; font-weight: 600; text-decoration: none; }
-        .form-switch a:hover { text-decoration: underline; }
-
-        .form-error, .form-success {
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.82rem;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .form-error {
-            background: rgba(255, 80, 80, 0.10);
-            border: 1px solid rgba(255, 80, 80, 0.20);
-            color: #ff8b8b;
-        }
-
-        .form-success {
-            background: rgba(80, 220, 130, 0.10);
-            border: 1px solid rgba(80, 220, 130, 0.20);
-            color: #8be6b0;
-        }
-
-        .form-error.active, .form-success.active { display: block; }
-
-        .profile-stat {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(60, 140, 220, 0.08);
-            font-size: 0.88rem;
-        }
-
-        .profile-stat:last-child { border-bottom: none; }
-        .profile-stat-label { color: rgba(160, 200, 240, 0.5); font-weight: 400; }
-        .profile-stat-value { color: #b0d0f0; font-weight: 600; text-align: right; max-width: 60%; overflow: hidden; text-overflow: ellipsis; }
-
-        .avatar-upload-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
-
-        .avatar-preview-big {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(60, 140, 220, 0.20);
-            background: rgba(2, 8, 18, 0.60);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .settings-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: rgba(160, 200, 240, 0.55);
             transition: 0.3s;
-            position: relative;
         }
 
-        .avatar-preview-big:hover { border-color: rgba(60, 140, 220, 0.45); transform: scale(1.03); }
-        .avatar-preview-big.dragover { border-color: #4a9eff; border-style: dashed; background: rgba(74, 158, 255, 0.10); transform: scale(1.05); }
-        .avatar-preview-big img { width: 100%; height: 100%; object-fit: cover; }
-
-        .avatar-preview-big .avatar-placeholder {
-            font-size: 2rem;
-            color: rgba(140, 190, 240, 0.35);
-            font-weight: 700;
-        }
-
-        .avatar-preview-big .edit-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: #8cc4ff;
-            font-size: 0.7rem;
-            text-align: center;
-            padding: 4px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .avatar-delete-btn {
-            display: none;
-            margin-top: 10px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            background: rgba(255, 80, 80, 0.08);
-            border: 1px solid rgba(255, 80, 80, 0.18);
-            color: #ff8b8b;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .avatar-delete-btn:hover { background: rgba(255, 80, 80, 0.15); border-color: rgba(255, 80, 80, 0.30); color: #ffb0b0; transform: translateY(-1px); }
-        .avatar-delete-btn svg { width: 14px; height: 14px; fill: currentColor; }
-        .avatar-delete-btn.visible { display: inline-flex; }
-
-        .crop-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 20px; }
-
-        .crop-area {
-            position: relative;
-            width: 260px; height: 260px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(60, 140, 220, 0.20);
-            cursor: grab;
-            user-select: none;
-        }
-
-        .crop-area:active { cursor: grabbing; }
-        .crop-area canvas { display: block; width: 100%; height: 100%; }
-
-        .crop-circle {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70%; height: 70%;
-            border-radius: 50%;
-            border: 2px solid rgba(140, 200, 255, 0.8);
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
-            pointer-events: none;
-        }
-
-        .crop-controls { display: flex; align-items: center; gap: 12px; width: 260px; }
-
-        .crop-controls label {
-            color: rgba(160, 200, 240, 0.55);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            flex-shrink: 0;
-        }
-
-        .crop-controls input[type="range"] {
-            flex: 1;
-            -webkit-appearance: none;
-            appearance: none;
-            height: 4px;
-            background: rgba(60, 140, 220, 0.20);
-            border-radius: 10px;
-            outline: none;
-        }
-
-        .crop-controls input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: #4a9eff;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
-        }
-
-        .crop-controls input[type="range"]::-moz-range-thumb {
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: #4a9eff;
-            cursor: pointer;
-            border: none;
+        .settings-btn:hover svg {
+            fill: #8cc4ff;
         }
 
         .tab-content { margin-top: 10px; }
@@ -582,7 +218,10 @@
             box-shadow: 0 8px 80px rgba(0, 0, 0, 0.6);
         }
 
-        .tab-page.active { display: block; animation: fadeSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .tab-page.active {
+            display: block;
+            animation: fadeSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
 
         @keyframes fadeSlide {
             0% { opacity: 0; transform: translateY(30px) scale(0.96); }
@@ -639,7 +278,12 @@
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .actions { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
 
         .btn-primary {
             background: linear-gradient(135deg, #0a2a4a, #061a30);
@@ -667,6 +311,18 @@
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
         }
 
+        .btn-primary .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            line-height: 1;
+        }
+
         .btn-social {
             padding: 14px 44px;
             border-radius: 50px;
@@ -683,15 +339,55 @@
             letter-spacing: 0.5px;
         }
 
-        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); color: #ffffff; }
-        .btn-telegram:hover { background: linear-gradient(135deg, #0099dd, #0077aa); transform: translateY(-2px); }
-        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752c4); color: #ffffff; }
-        .btn-discord:hover { background: linear-gradient(135deg, #6a77f5, #4f5ad4); transform: translateY(-2px); }
+        .btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: #ffffff;
+            box-shadow: 0 4px 30px rgba(0, 136, 204, 0.15);
+            border-color: rgba(0, 136, 204, 0.15);
+        }
 
-        .btn-social .icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .btn-social .icon svg { width: 20px; height: 20px; fill: #ffffff; }
+        .btn-telegram:hover {
+            background: linear-gradient(135deg, #0099dd, #0077aa);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(0, 136, 204, 0.25);
+            border-color: rgba(0, 136, 204, 0.25);
+        }
 
-        .rules-wrapper { display: flex; flex-direction: column; gap: 12px; }
+        .btn-discord {
+            background: linear-gradient(135deg, #5865F2, #4752c4);
+            color: #ffffff;
+            box-shadow: 0 4px 30px rgba(88, 101, 242, 0.15);
+            border-color: rgba(88, 101, 242, 0.15);
+        }
+
+        .btn-discord:hover {
+            background: linear-gradient(135deg, #6a77f5, #4f5ad4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.25);
+            border-color: rgba(88, 101, 242, 0.25);
+        }
+
+        .btn-social .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-social .icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        .rules-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
         .rules-section {
             background: rgba(2, 8, 18, 0.35);
@@ -705,14 +401,20 @@
         .rules-section::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 3px; height: 100%;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
             background: linear-gradient(180deg, #4a9eff, transparent);
             opacity: 0.2;
             transition: 0.3s;
         }
 
-        .rules-section:hover { background: rgba(2, 8, 18, 0.50); border-color: rgba(60, 140, 220, 0.06); }
+        .rules-section:hover {
+            background: rgba(2, 8, 18, 0.50);
+            border-color: rgba(60, 140, 220, 0.06);
+        }
+
         .rules-section:hover::before { opacity: 0.6; }
 
         .rules-header {
@@ -728,7 +430,9 @@
             z-index: 1;
         }
 
-        .rules-header:hover { background: rgba(60, 140, 220, 0.03); }
+        .rules-header:hover {
+            background: rgba(60, 140, 220, 0.03);
+        }
 
         .rules-header h2 {
             font-size: 1.1rem;
@@ -743,8 +447,18 @@
             padding: 0;
         }
 
-        .rules-header .icon-svg { width: 24px; height: 24px; flex-shrink: 0; opacity: 0.7; }
-        .rules-header .icon-svg svg { width: 100%; height: 100%; fill: #8cc4ff; }
+        .rules-header .icon-svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+
+        .rules-header .icon-svg svg {
+            width: 100%;
+            height: 100%;
+            fill: #8cc4ff;
+        }
 
         .rules-header .arrow {
             font-size: 0.8rem;
@@ -754,7 +468,9 @@
             font-weight: 300;
         }
 
-        .rules-header .arrow.open { transform: rotate(180deg); }
+        .rules-header .arrow.open {
+            transform: rotate(180deg);
+        }
 
         .rules-body {
             max-height: 0;
@@ -763,7 +479,10 @@
             padding: 0 28px;
         }
 
-        .rules-body.open { max-height: 3000px; padding: 0 28px 20px 28px; }
+        .rules-body.open {
+            max-height: 3000px;
+            padding: 0 28px 20px 28px;
+        }
 
         .rules-body .rule-item {
             padding: 6px 0 6px 22px;
@@ -776,7 +495,9 @@
             transition: 0.2s;
         }
 
-        .rules-body .rule-item:hover { color: rgba(160, 200, 240, 0.45); }
+        .rules-body .rule-item:hover {
+            color: rgba(160, 200, 240, 0.45);
+        }
 
         .rules-body .rule-item::before {
             content: '▸';
@@ -787,14 +508,30 @@
             transition: 0.2s;
         }
 
-        .rules-body .rule-item:hover::before { color: rgba(60, 140, 220, 0.30); transform: translateX(2px); }
+        .rules-body .rule-item:hover::before {
+            color: rgba(60, 140, 220, 0.30);
+            transform: translateX(2px);
+        }
 
-        .rules-body .rule-item strong { color: rgba(120, 180, 240, 0.30); font-weight: 600; }
+        .rules-body .rule-item strong {
+            color: rgba(120, 180, 240, 0.30);
+            font-weight: 600;
+        }
 
         .rules-body .rule-item .highlight {
             color: rgba(100, 170, 240, 0.40);
             font-weight: 500;
             text-shadow: 0 0 20px rgba(60, 140, 220, 0.05);
+        }
+
+        .rules-body .rule-item .example {
+            display: block;
+            padding-left: 16px;
+            margin-top: 4px;
+            color: rgba(160, 200, 240, 0.15);
+            font-style: italic;
+            font-size: 0.85rem;
+            border-left: 1px solid rgba(60, 140, 220, 0.04);
         }
 
         .green-zone-image {
@@ -805,7 +542,13 @@
             margin: 12px 0;
         }
 
-        .green-zone-image img { width: 100%; max-width: 600px; border-radius: 14px; display: block; margin: 0 auto; }
+        .green-zone-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 14px;
+            display: block;
+            margin: 0 auto;
+        }
 
         .green-zone-image .caption {
             margin-top: 10px;
@@ -814,6 +557,7 @@
             text-align: center;
         }
 
+        /* ===== РАМКА КПК ===== */
         .kpk-frame {
             background: rgba(2, 8, 18, 0.60);
             border-radius: 18px;
@@ -834,20 +578,27 @@
 
         .kpk-glitch {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 15;
             opacity: 0;
             background: repeating-linear-gradient(
                 0deg,
-                transparent 0px, transparent 2px,
-                rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px,
-                transparent 4px, transparent 6px
+                transparent 0px,
+                transparent 2px,
+                rgba(0, 0, 0, 0.05) 2px,
+                rgba(0, 0, 0, 0.05) 4px,
+                transparent 4px,
+                transparent 6px
             );
         }
 
-        .kpk-glitch.active { animation: glitchFlash 0.3s ease-out; }
+        .kpk-glitch.active {
+            animation: glitchFlash 0.3s ease-out;
+        }
 
         @keyframes glitchFlash {
             0% { opacity: 0; transform: translateX(-2px); }
@@ -860,22 +611,31 @@
 
         .kpk-glitch-color {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 14;
             opacity: 0;
             background: linear-gradient(
                 180deg,
-                transparent 0%, transparent 30%,
-                rgba(0, 200, 255, 0.03) 30%, rgba(0, 200, 255, 0.03) 32%,
-                transparent 32%, transparent 60%,
-                rgba(255, 0, 100, 0.02) 60%, rgba(255, 0, 100, 0.02) 62%,
-                transparent 62%, transparent 100%
+                transparent 0%,
+                transparent 30%,
+                rgba(0, 200, 255, 0.03) 30%,
+                rgba(0, 200, 255, 0.03) 32%,
+                transparent 32%,
+                transparent 60%,
+                rgba(255, 0, 100, 0.02) 60%,
+                rgba(255, 0, 100, 0.02) 62%,
+                transparent 62%,
+                transparent 100%
             );
         }
 
-        .kpk-glitch-color.active { animation: glitchColor 0.4s ease-out; }
+        .kpk-glitch-color.active {
+            animation: glitchColor 0.4s ease-out;
+        }
 
         @keyframes glitchColor {
             0% { opacity: 0; transform: skewX(0deg) translateX(0); }
@@ -886,7 +646,8 @@
 
         .kpk-scanline {
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, transparent, rgba(120, 200, 255, 0.05), rgba(120, 200, 255, 0.10), rgba(120, 200, 255, 0.05), transparent);
@@ -905,7 +666,8 @@
 
         .kpk-corner {
             position: absolute;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             border-color: rgba(60, 140, 220, 0.06);
             border-style: solid;
             border-width: 0;
@@ -931,21 +693,29 @@
 
         .map-container img {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             transition: none;
             transform-origin: center;
             pointer-events: none;
         }
 
-        .map-controls { display: flex; justify-content: center; gap: 14px; margin-top: 16px; }
+        .map-controls {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 16px;
+        }
 
         .map-btn {
             background: rgba(2, 8, 18, 0.60);
             border: 1px solid rgba(60, 140, 220, 0.06);
             border-radius: 50%;
-            width: 48px; height: 48px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -954,9 +724,29 @@
             padding: 0;
         }
 
-        .map-btn:hover { background: rgba(2, 8, 18, 0.80); border-color: rgba(60, 140, 220, 0.12); transform: translateY(-2px); }
-        .map-btn svg { width: 24px; height: 24px; fill: rgba(160, 200, 240, 0.40); transition: 0.3s; }
+        .map-btn:hover {
+            background: rgba(2, 8, 18, 0.80);
+            border-color: rgba(60, 140, 220, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .map-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: rgba(160, 200, 240, 0.40);
+            transition: 0.3s;
+        }
+
         .map-btn:hover svg { fill: rgba(160, 200, 240, 0.60); }
+
+        .map-hint {
+            text-align: center;
+            margin-top: 12px;
+            color: rgba(160, 200, 240, 0.15);
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
 
         .lore-story {
             color: rgba(160, 200, 240, 0.30);
@@ -972,7 +762,10 @@
             transition: 0.3s;
         }
 
-        .lore-story p:hover { border-left-color: rgba(60, 140, 220, 0.08); padding-left: 16px; }
+        .lore-story p:hover {
+            border-left-color: rgba(60, 140, 220, 0.08);
+            padding-left: 16px;
+        }
 
         .lore-story .year {
             color: rgba(100, 170, 240, 0.35);
@@ -985,7 +778,11 @@
             letter-spacing: 1px;
         }
 
-        .lore-divider { border: none; border-top: 1px solid rgba(60, 140, 220, 0.04); margin: 24px 0; }
+        .lore-divider {
+            border: none;
+            border-top: 1px solid rgba(60, 140, 220, 0.04);
+            margin: 24px 0;
+        }
 
         .lore-block {
             background: rgba(60, 140, 220, 0.03);
@@ -996,6 +793,12 @@
             font-style: italic;
             color: rgba(140, 190, 240, 0.25);
             font-weight: 300;
+            transition: 0.3s;
+        }
+
+        .lore-block:hover {
+            background: rgba(60, 140, 220, 0.05);
+            border-left-color: rgba(60, 140, 220, 0.20);
         }
 
         .info-block {
@@ -1003,6 +806,12 @@
             padding: 30px 32px;
             border-radius: 22px;
             border: 1px solid rgba(60, 140, 220, 0.02);
+            transition: 0.3s;
+        }
+
+        .info-block:hover {
+            background: rgba(2, 8, 18, 0.50);
+            border-color: rgba(60, 140, 220, 0.04);
         }
 
         .info-block h2 {
@@ -1018,6 +827,12 @@
             letter-spacing: 1px;
         }
 
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
         .footer {
             text-align: center;
             margin-top: 35px;
@@ -1027,267 +842,199 @@
             font-size: 0.75rem;
             font-weight: 300;
             letter-spacing: 2px;
+            transition: 0.3s;
         }
 
-        .footer strong { font-weight: 600; color: rgba(160, 200, 240, 0.35); }
+        .footer:hover { color: rgba(160, 200, 240, 0.45); }
+        .footer strong {
+            font-weight: 600;
+            color: rgba(160, 200, 240, 0.35);
+        }
 
-        /* ===== АДМИН-ПАНЕЛЬ ===== */
-        .admin-header {
+        /* ===== МОДАЛЬНОЕ ОКНО НАСТРОЕК ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: rgba(6, 14, 24, 0.98);
+            border: 1px solid rgba(60, 140, 220, 0.15);
+            border-radius: 22px;
+            padding: 32px 36px;
+            max-width: 460px;
+            width: 100%;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal h3 {
+            color: #a0c8f0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal h3 svg {
+            width: 22px;
+            height: 22px;
+            fill: #8cc4ff;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(60, 140, 220, 0.08);
+            border: none;
+            cursor: pointer;
+            color: rgba(160, 200, 240, 0.5);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(60, 140, 220, 0.15);
+            color: #dceaff;
+        }
+
+        /* ===== НАСТРОЙКИ ===== */
+        .settings-section {
+            margin-bottom: 24px;
+        }
+
+        .settings-section h4 {
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Размер текста */
+        .font-size-control {
+            display: flex;
+            align-items: center;
             gap: 12px;
         }
 
-        .admin-header h3 { margin: 0; }
-
-        .admin-stats {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            padding: 16px 20px;
-            background: rgba(2, 8, 18, 0.50);
-            border-radius: 12px;
-            border: 1px solid rgba(60, 140, 220, 0.08);
-        }
-
-        .admin-stat { display: flex; flex-direction: column; gap: 4px; }
-
-        .admin-stat-label {
-            font-size: 0.7rem;
-            color: rgba(160, 200, 240, 0.45);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .admin-stat-value { font-size: 1.4rem; color: #8cc4ff; font-weight: 800; }
-
-        .admin-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
-
-        .admin-tab {
-            padding: 8px 18px;
+        .font-btn {
+            width: 44px;
+            height: 44px;
             border-radius: 10px;
-            background: rgba(2, 8, 18, 0.50);
-            border: 1px solid rgba(60, 140, 220, 0.08);
-            color: rgba(160, 200, 240, 0.55);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            letter-spacing: 0.5px;
-        }
-
-        .admin-tab:hover { background: rgba(2, 8, 18, 0.75); color: #b0d0f0; }
-
-        .admin-tab.active {
-            background: linear-gradient(135deg, #0a2a4a, #061a30);
-            border-color: rgba(60, 140, 220, 0.25);
-            color: #dceaff;
-        }
-
-        .admin-search {
-            width: 100%;
             background: rgba(2, 8, 18, 0.60);
             border: 1px solid rgba(60, 140, 220, 0.10);
-            border-radius: 10px;
-            padding: 12px 16px;
-            color: #dceaff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            margin-bottom: 18px;
-            transition: 0.2s;
-        }
-
-        .admin-search:focus {
-            border-color: rgba(60, 140, 220, 0.35);
-            background: rgba(2, 8, 18, 0.85);
-            box-shadow: 0 0 0 3px rgba(60, 140, 220, 0.08);
-        }
-
-        .admin-search::placeholder { color: rgba(160, 200, 240, 0.25); }
-
-        .admin-users-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 55vh;
-            overflow-y: auto;
-            padding-right: 6px;
-        }
-
-        .admin-user-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 14px;
-            background: rgba(2, 8, 18, 0.40);
-            border-radius: 12px;
-            border: 1px solid rgba(60, 140, 220, 0.04);
-            transition: 0.2s;
-            flex-wrap: wrap;
-        }
-
-        .admin-user-row:hover {
-            background: rgba(2, 8, 18, 0.60);
-            border-color: rgba(60, 140, 220, 0.10);
-        }
-
-        .admin-user-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            overflow: hidden;
-            flex-shrink: 0;
-            border: 1px solid rgba(60, 140, 220, 0.15);
-            background: rgba(60, 140, 220, 0.10);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .admin-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        .admin-user-avatar .avatar-placeholder {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(140, 190, 240, 0.35);
-            font-weight: 700;
-        }
-
-        .admin-user-info {
-            flex: 1;
-            min-width: 150px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .admin-user-display {
-            font-size: 0.9rem;
             color: #b0d0f0;
-            font-weight: 700;
-        }
-
-        .admin-user-username {
-            font-size: 0.75rem;
-            color: rgba(160, 200, 240, 0.40);
-            font-weight: 400;
-        }
-
-        .admin-user-balance {
-            font-size: 0.85rem;
-            color: #8cc4ff;
-            font-weight: 700;
-            min-width: 90px;
-            text-align: right;
-        }
-
-        .admin-user-balance span { color: rgba(160, 200, 240, 0.4); font-size: 0.7rem; }
-
-        .admin-user-actions {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .admin-btn {
-            padding: 6px 12px;
-            border-radius: 8px;
-            border: 1px solid;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            transition: 0.2s;
-            letter-spacing: 0.3px;
-            display: inline-flex;
+            transition: 0.3s;
+            display: flex;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
         }
 
-        .admin-btn svg { width: 12px; height: 12px; fill: currentColor; }
-
-        .admin-btn-give {
-            background: rgba(80, 220, 130, 0.08);
-            border-color: rgba(80, 220, 130, 0.20);
-            color: #8be6b0;
+        .font-btn:hover {
+            background: rgba(2, 8, 18, 0.85);
+            border-color: rgba(60, 140, 220, 0.25);
+            transform: translateY(-2px);
         }
 
-        .admin-btn-give:hover { background: rgba(80, 220, 130, 0.18); border-color: rgba(80, 220, 130, 0.35); }
-
-        .admin-btn-take {
-            background: rgba(255, 200, 80, 0.08);
-            border-color: rgba(255, 200, 80, 0.20);
-            color: #ffd88b;
+        .font-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .admin-btn-take:hover { background: rgba(255, 200, 80, 0.18); border-color: rgba(255, 200, 80, 0.35); }
-
-        .admin-btn-set {
-            background: rgba(60, 140, 220, 0.08);
-            border-color: rgba(60, 140, 220, 0.20);
-            color: #8cc4ff;
-        }
-
-        .admin-btn-set:hover { background: rgba(60, 140, 220, 0.18); border-color: rgba(60, 140, 220, 0.35); }
-
-        .admin-btn-ban {
-            background: rgba(255, 80, 80, 0.08);
-            border-color: rgba(255, 80, 80, 0.20);
-            color: #ff8b8b;
-        }
-
-        .admin-btn-ban:hover { background: rgba(255, 80, 80, 0.18); border-color: rgba(255, 80, 80, 0.35); }
-
-        .admin-btn-unban {
-            background: rgba(80, 220, 130, 0.08);
-            border-color: rgba(80, 220, 130, 0.20);
-            color: #8be6b0;
-        }
-
-        .admin-btn-unban:hover { background: rgba(80, 220, 130, 0.18); border-color: rgba(80, 220, 130, 0.35); }
-
-        .admin-empty {
+        .font-size-value {
+            flex: 1;
             text-align: center;
-            padding: 40px 20px;
-            color: rgba(160, 200, 240, 0.30);
-            font-size: 0.9rem;
-            font-weight: 300;
+            color: #b0d0f0;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .admin-banned-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 20px;
-            background: rgba(255, 80, 80, 0.15);
-            border: 1px solid rgba(255, 80, 80, 0.25);
+        /* Загрузка фона */
+        .bg-upload-area {
+            background: rgba(2, 8, 18, 0.60);
+            border: 2px dashed rgba(60, 140, 220, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            color: rgba(160, 200, 240, 0.55);
+            font-size: 0.85rem;
+        }
+
+        .bg-upload-area:hover {
+            background: rgba(2, 8, 18, 0.85);
+            border-color: rgba(60, 140, 220, 0.30);
+            color: #b0d0f0;
+        }
+
+        .bg-upload-area svg {
+            width: 32px;
+            height: 32px;
+            fill: rgba(160, 200, 240, 0.35);
+            margin-bottom: 8px;
+        }
+
+        .bg-reset-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 80, 80, 0.08);
+            border: 1px solid rgba(255, 80, 80, 0.18);
             color: #ff8b8b;
-            font-size: 0.65rem;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
-        .admin-self-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 20px;
-            background: rgba(60, 140, 220, 0.15);
-            border: 1px solid rgba(60, 140, 220, 0.25);
-            color: #8cc4ff;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+        .bg-reset-btn:hover {
+            background: rgba(255, 80, 80, 0.15);
+            border-color: rgba(255, 80, 80, 0.30);
         }
 
         @media (max-width: 700px) {
@@ -1305,18 +1052,13 @@
             .rules-body { padding: 0 18px; }
             .rules-body.open { padding: 0 18px 16px 18px; }
             .info-block { padding: 20px; }
+            .green-zone-image img { max-width: 100%; }
             .kpk-frame { padding: 10px; }
             .map-container { height: 320px; }
             .map-btn { width: 42px; height: 42px; }
             .map-btn svg { width: 20px; height: 20px; }
-            .profile-menu { right: 15px; left: 15px; min-width: auto; }
+            .map-controls { gap: 10px; }
             .modal { padding: 24px 20px; }
-            .modal.wide { padding: 20px 16px; }
-            .crop-area { width: 220px; height: 220px; }
-            .crop-controls { width: 220px; }
-            .admin-user-row { padding: 10px; gap: 10px; }
-            .admin-user-actions { width: 100%; }
-            .admin-btn { flex: 1; justify-content: center; }
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -1337,39 +1079,20 @@
                 <div class="logo">HL<span>RP</span></div>
                 <div class="logo-sub">Helkin Roleplay</div>
             </div>
-
             <div class="nav-tabs">
                 <button class="tab-link active" data-tab="main">Главная</button>
                 <button class="tab-link" data-tab="rules">Правила</button>
                 <button class="tab-link" data-tab="lore">Лор</button>
                 <button class="tab-link" data-tab="map">Карта</button>
-            </div>
-
-            <div id="profileCorner"></div>
-        </div>
-
-        <div class="profile-menu" id="profileMenu">
-            <div class="menu-item" onclick="openProfileModal()">
-                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                Профиль
-            </div>
-            <div class="menu-item" onclick="openSettingsModal()">
-                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                Настройки
-            </div>
-            <div class="menu-item admin-item" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;">
-                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1z"/></svg>
-                Админ-панель
-            </div>
-            <div class="menu-divider"></div>
-            <div class="menu-item danger" onclick="logout()">
-                <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-                Выйти
+                <button class="settings-btn" onclick="openSettings()" title="Настройки">
+                    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </button>
             </div>
         </div>
 
         <div class="tab-content">
 
+            <!-- ======== ГЛАВНАЯ ======== -->
             <div id="main" class="tab-page active">
                 <div class="hero">
                     <div class="hero-badge">⚡ Добро пожаловать</div>
@@ -1398,139 +1121,205 @@
                 </div>
             </div>
 
+            <!-- ======== ПРАВИЛА ======== -->
             <div id="rules" class="tab-page">
                 <div class="rules-wrapper">
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
-                                Раздел 1. Порог вхождения
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                </span>
+                                Раздел 1. Порог вхождения на сервер
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП строго с <span class="highlight">16 лет</span>.</div>
-                            <div class="rule-item"><strong>1.2.1.</strong> Год в игре описан в разделе <span class="highlight">«Лор»</span>.</div>
-                            <div class="rule-item"><strong>1.3.1.</strong> Отсутствие микрофона портит игровой процесс другим.</div>
-                            <div class="rule-item"><strong>1.4.1.</strong> Запрещены ники, нарушающие атмосферу Зоны.</div>
+                            <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП на нашем проекте строго с <span class="highlight">16 лет</span>. Если вы младше, но готовы серьёзно играть и относиться ко всему с ответственностью — мы можем вас принять.</div>
+                            <div class="rule-item"><strong>1.2.1.</strong> Согласно лору сервера — текущий год и вся хронология событий описаны в разделе <span class="highlight">«Лор»</span>. Настоятельно рекомендуем ознакомиться с ним перед началом игры.</div>
+                            <div class="rule-item"><strong>1.3.1.</strong> Если у вас отсутствует микрофон или он ужасного качества — стоит понимать, что вы портите игровой процесс другим людям.</div>
+                            <div class="rule-item"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны (например, имена поп-звёзд, политиков, мемов).</div>
+                            <div class="rule-item"><strong>1.5.1.</strong> Перед началом игры рекомендуется ознакомиться с лором сервера и основными группировками — это поможет глубже погрузиться в атмосферу и избежать случайных нарушений.</div>
                         </div>
                     </div>
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg></span>
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg>
+                                </span>
                                 Раздел 2. Общие правила
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>2.1.1.</strong> Запрещён NRP — действия вне роли.</div>
-                            <div class="rule-item"><strong>2.1.2.</strong> GRP приветствуется и вознаграждается.</div>
-                            <div class="rule-item"><strong>2.1.3.</strong> Нон-РП сообщения — через <span class="highlight">«//»</span>.</div>
-                            <div class="rule-item"><strong>2.2.1.</strong> DM — убийство без РП-причины — запрещён.</div>
-                            <div class="rule-item"><strong>2.4.1.</strong> Пауэргейминг — нереалистичные действия.</div>
-                            <div class="rule-item"><strong>2.5.1.</strong> Метагейминг — использование нон-рп информации.</div>
-                            <div class="rule-item"><strong>2.6.1.</strong> Спавнкилл — убийство на спавне (15 сек).</div>
-                            <div class="rule-item"><strong>2.7.1.</strong> Запрещено залазить на большие горы.</div>
-                            <div class="rule-item"><strong>2.8.1.</strong> Запрещён выход во время РП.</div>
-                            <div class="rule-item"><strong>2.9.1.</strong> После смерти — 15 минут на то же место.</div>
-                            <div class="rule-item"><strong>2.10.1.</strong> Запрещены нереалистичные движения в ПВП.</div>
+                            <div class="rule-item"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP. Запрещены действия, не соответствующие вашей роли и реальности игрового мира. Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.</div>
+                            <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Проект старается придерживаться канона, поэтому любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
+                            <div class="rule-item"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения после написания используйте <span class="highlight">«//»</span>. Например: <span class="example">«Админ нужна помощь//»</span></div>
+                            <div class="rule-item"><strong>2.2.1. DM (Death Match)</strong> — убийство другого игрока без РП-причины. Например: вы встретили игрока вражеской группировки, однако вы находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</div>
+                            <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас на сервере (в РП-процессе), то вы имеете право убить его, даже если он полностью безоружен.</div>
+                            <div class="rule-item"><strong>2.3.2.</strong> Однако если людей много или 1, но с направленным оружием — вы уже нарушаете правило <span class="highlight">Пауэргейминг</span>.</div>
+                            <div class="rule-item"><strong>2.4.1. Пауэргейминг (Powergaming)</strong> — действие, где игрок описывает/совершает нечто нереалистичное (мгновенное убийство без причины или игнорирование окружения). Нарушает правило реализма.</div>
+                            <div class="rule-item"><strong>2.5.1. Метагейминг (MG)</strong> — применение информации, полученной нон-рп путём (например, из Telegram или Discord в нон-рп чатах).</div>
+                            <div class="rule-item"><strong>2.6.1. Спавнкилл (Spawn Kill)</strong> — убийство на спавне группировок или сталкеров. Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право его убить или он вас.</div>
+                            <div class="rule-item"><strong>2.6.2.</strong> Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда. (Подробные правила рейдов — ниже).</div>
+                            <div class="rule-item"><strong>2.7.1. Горный геймплей (Mountain Play)</strong> — запрещено залазить на горы и передвигаться по ним, а тем более вести из них огонь (касается только очень больших гор, которые определяют границы карты).</div>
+                            <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
+                            <div class="rule-item"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
+                            <div class="rule-item"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
                         </div>
                     </div>
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></span>
-                                Раздел 3. Зелёные зоны
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
+                                </span>
+                                Раздел 3. Предупредительный выстрел
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>3.1.1.</strong> Зелёная зона — от забора базы <span class="highlight">+ 10 метров</span>.</div>
+                            <div class="rule-item"><strong>3.1.1.</strong> Предупредительным выстрелом считается, когда игрок стреляет в сторону врага, либо в небо, либо под ноги.</div>
+                            <div class="rule-item"><strong>3.2.1.</strong> Если после предупредительного выстрела убегающий человек не останавливается через <span class="highlight">5 секунд</span> — вы можете его убивать.</div>
+                            <div class="rule-item"><strong>3.3.1.</strong> Предупредительный выстрел по машине осуществляется по колёсам транспортного средства и имеет такие же правила, как и по людям.</div>
+                            <div class="rule-item"><strong>3.4.1.</strong> Если в машине находятся пассажиры — предупредительный выстрел делается по капоту или колёсам. Стрельба по салону без предупреждения считается DM.</div>
+                            <div class="rule-item"><strong>3.5.1.</strong> Запрещено делать более одного предупредительного выстрела в одного и того же игрока в течение короткого времени — это считается фейковым РП.</div>
+                        </div>
+                    </div>
+
+                    <div class="rules-section">
+                        <div class="rules-header" onclick="toggleSection(this)">
+                            <h2>
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                                </span>
+                                Раздел 4. Правила зелёных зон
+                            </h2>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="rules-body">
+                            <div class="rule-item"><strong>4.1.1.</strong> Зелёная зона — это безопасное пространство, где боевые действия и насилие строго запрещены правилами сервера. Зелёная зона начинается от забора баз группировок <span class="highlight">+ 10 метров</span> от него. <span class="example">(Исключение: во время рейда или штурма боевые действия возможны)</span></div>
+
                             <div class="green-zone-image">
-                                <img src="green_zone.jpg" alt="Зелёная зона">
-                                <div class="caption">Пример зелёной зоны</div>
+                                <img src="green_zone.jpg" alt="Зелёная зона — КПП военных">
+                                <div class="caption">Пример зелёной зоны (КПП военных)</div>
                             </div>
-                            <div class="rule-item"><strong>3.2.1.</strong> Кулачные бои — с одобрения главного.</div>
-                            <div class="rule-item"><strong>3.3.1.</strong> Запрещено носить оружие в руках в ЗЗ.</div>
-                            <div class="rule-item"><strong>3.4.1.</strong> Провокации разрешены, боевые действия — бан.</div>
+
+                            <div class="rule-item"><strong>4.2.1.</strong> На территории зелёной зоны можно проводить кулачные бои, но только после одобрения главного на территории ЗЗ.</div>
+                            <div class="rule-item"><strong>4.3.1.</strong> Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div>
+                            <div class="rule-item"><strong>4.4.1.</strong> Провокации, оскорбления и угрозы в зелёной зоне разрешены, но любые боевые действия (даже ответные) караются баном. Если вас оскорбляют — вызывайте администратора.</div>
                         </div>
                     </div>
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg></span>
-                                Раздел 4. Рейды и штурмы
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
+                                </span>
+                                Раздел 5. Правила рейдов и штурма
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>4.1.1.</strong> Рейд — только после <span class="highlight">одобрения админов</span>.</div>
-                            <div class="rule-item"><strong>4.2.1.</strong> Запрещено покидать место столкновения.</div>
-                            <div class="rule-item"><strong>4.3.1.</strong> После смерти — оставаться на спавне.</div>
-                            <div class="rule-item"><strong>4.4.1.</strong> Рейд против отсутствующей группировки запрещён.</div>
-                            <div class="rule-item"><strong>4.5.1.</strong> Предупреждение за <span class="highlight">5 минут</span> до рейда.</div>
-                            <div class="rule-item"><strong>4.6.1.</strong> Рейд не дольше <span class="highlight">40 минут</span>.</div>
+                            <div class="rule-item"><strong>5.1.1.</strong> Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере.</div>
+                            <div class="rule-item"><strong>5.2.1.</strong> Во время рейда или штурма запрещается покидать место столкновения.</div>
+                            <div class="rule-item"><strong>5.3.1.</strong> После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div>
+                            <div class="rule-item"><strong>5.4.1.</strong> Рейд нельзя начать против группировки, которой нету на сервере, или если их количество в меньшинстве.</div>
+                            <div class="rule-item"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
+                            <div class="rule-item"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
                         </div>
                     </div>
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
-                                Раздел 5. Гоп-стопы
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                                </span>
+                                Раздел 6. Правила ГОП-СТОПОВ
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>5.1.1.</strong> Одиночкам запрещено проводить гоп-стопы.</div>
-                            <div class="rule-item"><strong>5.2.1.</strong> Гоп-стоп — группой от <span class="highlight">3-х человек</span>.</div>
-                            <div class="rule-item"><strong>5.3.1.</strong> Максимум <span class="highlight">2 предмета</span>.</div>
-                            <div class="rule-item"><strong>5.4.1.</strong> Добивать лежачего без причины запрещено.</div>
-                            <div class="rule-item"><strong>5.5.1.</strong> Повторный гоп-стоп — через <span class="highlight">1 час</span>.</div>
+                            <div class="rule-item"><strong>6.1.1.</strong> Одиночкам запрещено проводить гоп-стопы в любом виде.</div>
+                            <div class="rule-item"><strong>6.2.1.</strong> Гоп-стоп может совершиться только если в группе тех, кто собирается гоп-стопить, не менее <span class="highlight">3-х человек</span>.</div>
+                            <div class="rule-item"><strong>6.3.1.</strong> При гоп-стопе запрещено отбирать всё имущество жертвы — максимум <span class="highlight">2 предмета</span> или оружие с патронами. Полный обдир считается NRP.</div>
+                            <div class="rule-item"><strong>6.4.1.</strong> Если жертва оказывает сопротивление и погибает — гоп-стоп считается завершённым. Добивать лежачего без причины запрещено.</div>
+                            <div class="rule-item"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
                         </div>
                     </div>
+
                     <div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
-                                <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
-                                Раздел 6. Общие запреты
+                                <span class="icon-svg">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                </span>
+                                Раздел 7. Общие запреты
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>6.1.1.</strong> Читы, баги, эксплойты — <span class="highlight">перманентный бан</span>.</div>
-                            <div class="rule-item"><strong>6.2.1.</strong> Запрещён Rage Quit во время боя.</div>
-                            <div class="rule-item"><strong>6.3.1.</strong> Запрещён спам и нецензурная лексика.</div>
-                            <div class="rule-item"><strong>6.4.1.</strong> Ники, нарушающие сеттинг, запрещены.</div>
-                            <div class="rule-item"><strong>6.5.1.</strong> Запрещено блокирование проходов.</div>
-                            <div class="rule-item"><strong>6.6.1.</strong> Запрещён сленг и отсылки к поп-культуре в РП.</div>
+                            <div class="rule-item"><strong>7.1.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
+                            <div class="rule-item"><strong>7.2.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
+                            <div class="rule-item"><strong>7.3.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
+                            <div class="rule-item"><strong>7.4.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
+                            <div class="rule-item"><strong>7.5.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
+                            <div class="rule-item"><strong>7.6.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
+            <!-- ======== ЛОР ======== -->
             <div id="lore" class="tab-page">
-                <div class="info-block">
-                    <h2>📖 Лор Зоны</h2>
-                    <div class="lore-story">
-                        <p>Слушай, новичок. Всё началось не с аварии, нет. Та, чернобыльская, была лишь ширмой.</p>
-                        <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое?</p>
-                        <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, мутантами и артефактами. А те учёные стали единым О-Сознанием и создали Монолит.</p>
-                        <hr class="lore-divider">
-                        <p><span class="year">✦ 2011 год</span> — Зону лихорадило. Группировка «Чистое небо» отправила к ЧАЭС бойца по прозвищу Шрам. Им нужно было остановить сталкера – Стрелка. Шрам его ранил, но опоздал. Грянул Второй Сверхвыброс – и «Чистое небо» стёрло с карты Зоны.</p>
-                        <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет Стрелка. А когда нашёл... понял, что Стрелок – это он сам.</p>
-                        <hr class="lore-divider">
-                        <p>А потом настала тишина. Не добрая, нет. Зубы скрежещет тишина.</p>
-                        <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Зона молчит. И это молчание страшнее любого Выброса.</p>
-                        <div class="lore-block">«Зона не прощает ошибок. Но она даёт шанс тем, кто готов рискнуть...»</div>
+                <div class="content-grid">
+                    <div class="info-block">
+                        <h2>📖 Лор Зоны</h2>
+                        <div class="lore-story">
+
+                            <p>Слушай, новичок. Всё началось не с аварии, нет. Та, чернобыльская, была лишь ширмой.</p>
+
+                            <p><span class="year">✦ 1986 год</span> — Сразу после взрыва сюда приехали не только ликвидаторы. В подземных бункерах открылись лаборатории. Учёные хотели дотянуться до ноосферы – до самого разума Земли, слышал такое? Они думали, что управляют мыслями, а на самом деле копали могилу.</p>
+
+                            <p><span class="year">✦ 2006 год</span> — Грянул Первый Выброс. Это был не просто взрыв. Это был крик самой планеты. Зона родилась в тот миг – с аномалиями, которые плюют на законы физики, с мутантами, что и снятся только в кошмарах, и с артефактами, за которые люди убивают друг друга. А те учёные... они не умерли. Стали единым О-Сознанием. И создали Монолит, чтобы дурить сталкерам головы, уводя их от правды к центру.</p>
+
+                            <hr class="lore-divider">
+
+                            <p><span class="year">✦ 2011 год</span> — Зону лихорадило. Выбросы шли один за другим. Группировка «Чистое небо» отправила к ЧАЭС бойца по прозвищу Шрам. Им нужно было остановить одного настырного сталкера – Стрелка. Этот псих решил, что дойдёт до самого сердца. Шрам его ранил, но опоздал. Грянул Второй Сверхвыброс – и «Чистое небо» стёрло с карты Зоны.</p>
+
+                            <p><span class="year">✦ 2012 год</span> — К нам пришёл Меченый. Он не помнил даже своего имени. Думал, что ищет этого самого Стрелка. А когда нашёл... понял, что Стрелок – это он сам. О-Сознание промыло ему мозги и сделало марионеткой. Но Меченый выстоял. Он уничтожил Выжигатель Мозгов, прорвался к центру и разбил купол Монолита. Открыл дорогу к ЧАЭС для всех – и для людей, и для тварей. Это был переломный год.</p>
+
+                            <p><span class="year">✦ 2012 год</span> — Военные решили: «Хватит, Зона будет нашей». Операция «Фарватер». Послали вертолёты. Красиво, грозно... Ни один не вернулся. В Припять отправили майора Дегтярёва – умного, злого, с упёртым взглядом. Он раскопал, что вертушки побили новые аномалии. Вместе с тем же Стрелком он выбрался из города живым, а Стрелка потом пристроили к учёным. С тех пор его имя стало легендой.</p>
+
+                            <hr class="lore-divider">
+
+                            <p>А потом настала тишина. Не добрая, нет. Зубы скрежещет тишина.</p>
+
+                            <p>Зона жила своей жизнью. Сталкеры шли за хабаром, «Долг» грызся со «Свободой» за то, что делать с этой землёй. Монолитовцы, которых Меченый вырубил из-под контроля, очнулись и бродили вокруг, потерянные, ища новую веру. Проходили годы. Кто-то умирал, кто-то уходил, кто-то сходил с ума. Зона менялась медленно, но неумолимо – как старый зверь, который зализывает раны и ждёт.</p>
+
+                            <p><span class="year">✦ 2020 год</span> — За кордоном – своя жизнь, свои войны, свои беды. А здесь, внутри, всё осталось по-старому. Всё те же аномалии, те же твари, тот же запах горелого металла и мокрой земли по утрам. Никто не знает, что будет дальше. Зона молчит. И это молчание страшнее любого Выброса.</p>
+
+                            <div class="lore-block">
+                                «Зона не прощает ошибок. Но она даёт шанс тем, кто готов рискнуть...»
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ======== КАРТА ======== -->
             <div id="map" class="tab-page">
                 <div style="text-align: center; margin-bottom: 16px;">
                     <h2 style="color: #a0c8f0; font-weight: 700; letter-spacing: 1px; font-size: 1.5rem;">🗺️ Карта Зоны</h2>
-                    <p style="color: rgba(160, 200, 240, 0.20); font-size: 0.85rem; font-weight: 300;">Карта всей зоны</p>
+                    <p style="color: rgba(160, 200, 240, 0.20); font-size: 0.85rem; font-weight: 300;">Карта зоны на момент 2020 года.</p>
                 </div>
 
                 <div class="kpk-frame">
@@ -1559,6 +1348,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
+                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.</div>
             </div>
 
         </div>
@@ -1566,773 +1356,156 @@
         <div class="footer">
             <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны</p>
         </div>
+
     </div>
 
-    <div class="modal-overlay" id="authModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('authModal')">✕</button>
-            <h3 id="authTitle">🔑 Вход</h3>
-            <div class="form-error" id="authError"></div>
-            <div class="form-group" id="usernameGroup">
-                <label>Юзернейм</label>
-                <input type="text" id="authUsername" placeholder="Введите юзернейм" maxlength="20">
-            </div>
-            <div class="form-group" id="displayNameGroup" style="display:none;">
-                <label>Отображаемый ник</label>
-                <input type="text" id="authDisplayName" placeholder="Введите ник" maxlength="25">
-            </div>
-            <div class="form-group">
-                <label>Пароль</label>
-                <input type="password" id="authPassword" placeholder="Введите пароль">
-            </div>
-            <button class="form-btn" onclick="submitAuth()" id="authSubmitBtn">Войти</button>
-            <div class="form-switch">
-                <span id="authSwitchText">Нет аккаунта?</span> 
-                <a onclick="toggleAuthMode()" id="authSwitchLink">Зарегистрироваться</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="profileModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
-            <h3>
-                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                Мой профиль
-            </h3>
-
-            <div class="avatar-upload-area">
-                <div class="avatar-preview-big" id="avatarPreviewBig" onclick="openAvatarEditor()">
-                    <div class="edit-overlay">ИЗМЕНИТЬ</div>
-                </div>
-                <button class="avatar-delete-btn" id="avatarDeleteBtn" onclick="deleteAvatar()">
-                    <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-                    Удалить аватар
-                </button>
-            </div>
-
-            <div class="form-group">
-                <label>Отображаемый ник</label>
-                <input type="text" id="profileDisplayName" placeholder="Ваш ник" maxlength="25">
-            </div>
-
-            <button class="form-btn" onclick="saveProfile()">Сохранить</button>
-            <div class="form-success" id="profileSuccess">✅ Профиль обновлён!</div>
-
-            <div class="menu-divider" style="margin: 20px 0;"></div>
-
-            <div class="profile-stat">
-                <span class="profile-stat-label">Юзернейм</span>
-                <span class="profile-stat-value" id="statUsername">—</span>
-            </div>
-            <div class="profile-stat">
-                <span class="profile-stat-label">ХЛС</span>
-                <span class="profile-stat-value" id="statHls">0</span>
-            </div>
-            <div class="profile-stat">
-                <span class="profile-stat-label">Дата регистрации</span>
-                <span class="profile-stat-value" id="statCreated">—</span>
-            </div>
-            <div class="profile-stat">
-                <span class="profile-stat-label">Последний вход</span>
-                <span class="profile-stat-value" id="statLastLogin">—</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="avatarEditorModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('avatarEditorModal')">✕</button>
-            <h3>
-                <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
-                Кадрировать аватар
-            </h3>
-
-            <div class="crop-wrapper">
-                <div class="crop-area" id="cropArea">
-                    <canvas id="cropCanvas" width="520" height="520"></canvas>
-                    <div class="crop-circle"></div>
-                </div>
-                <div class="crop-controls">
-                    <label>Зум</label>
-                    <input type="range" id="cropZoom" min="0.5" max="3" step="0.01" value="1">
-                </div>
-            </div>
-
-            <button class="form-btn" onclick="applyAvatarCrop()">Сохранить аватар</button>
-            <input type="file" id="avatarFileInput" accept="image/*" style="display:none;" onchange="loadAvatarFile(event)">
-        </div>
-    </div>
-
+    <!-- ===== МОДАЛЬНОЕ ОКНО НАСТРОЕК ===== -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
-            <button class="modal-close" onclick="closeModal('settingsModal')">✕</button>
+            <button class="modal-close" onclick="closeSettings()">✕</button>
             <h3>
                 <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                 Настройки
             </h3>
 
-            <div style="margin-bottom: 24px;">
-                <h4 style="color: rgba(160, 200, 240, 0.55); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Свой фон</h4>
-                <div class="bg-upload-area" onclick="document.getElementById('bgFileInput').click()" style="background: rgba(2, 8, 18, 0.60); border: 2px dashed rgba(60, 140, 220, 0.15); border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: 0.3s; color: rgba(160, 200, 240, 0.55); font-size: 0.85rem;">
-                    <svg viewBox="0 0 24 24" style="width:32px;height:32px;fill:rgba(160,200,240,0.35);margin-bottom:8px;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+            <!-- Размер текста -->
+            <div class="settings-section">
+                <h4>Размер текста</h4>
+                <div class="font-size-control">
+                    <button class="font-btn" onclick="changeFontSize(-1)" id="fontMinusBtn">−</button>
+                    <div class="font-size-value" id="fontSizeValue">100%</div>
+                    <button class="font-btn" onclick="changeFontSize(1)" id="fontPlusBtn">+</button>
+                </div>
+            </div>
+
+            <!-- Фон -->
+            <div class="settings-section">
+                <h4>Свой фон</h4>
+                <div class="bg-upload-area" onclick="document.getElementById('bgFileInput').click()">
+                    <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
                     <div>Нажми, чтобы загрузить картинку</div>
                     <div style="font-size:0.7rem; margin-top:6px; opacity:0.6;">JPG, PNG, WEBP</div>
                 </div>
                 <input type="file" id="bgFileInput" accept="image/*" style="display:none;" onchange="uploadBg(event)">
-                <button class="bg-reset-btn" onclick="resetBg()" style="margin-top: 10px; width: 100%; padding: 10px; border-radius: 8px; background: rgba(255, 80, 80, 0.08); border: 1px solid rgba(255, 80, 80, 0.15); color: #ff8b8b; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer;">Сбросить фон</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="adminModal">
-        <div class="modal wide">
-            <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
-
-            <div class="admin-header">
-                <h3>
-                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1z"/></svg>
-                    Админ-панель
-                </h3>
+                <button class="bg-reset-btn" onclick="resetBg()">Сбросить фон</button>
             </div>
 
-            <div class="admin-stats" id="adminStats"></div>
-
-            <div class="admin-tabs">
-                <button class="admin-tab active" data-admin-tab="all" onclick="switchAdminTab('all')">Все пользователи</button>
-                <button class="admin-tab" data-admin-tab="banned" onclick="switchAdminTab('banned')">Забаненные</button>
+            <!-- Сброс всех настроек -->
+            <div class="settings-section">
+                <h4>Сброс</h4>
+                <button class="bg-reset-btn" onclick="resetAllSettings()" style="background: rgba(60, 140, 220, 0.08); border-color: rgba(60, 140, 220, 0.18); color: #8cc4ff;">
+                    Сбросить все настройки
+                </button>
             </div>
-
-            <input type="text" class="admin-search" id="adminSearch" placeholder="🔍 Поиск по юзернейму..." oninput="renderAdminUsers()">
-
-            <div class="admin-users-list" id="adminUsersList"></div>
         </div>
     </div>
 
     <script>
-        const DB = {
-            getUsers() {
-                try { return JSON.parse(localStorage.getItem('hlrp_users') || '{}'); } catch { return {}; }
-            },
-            saveUsers(users) { localStorage.setItem('hlrp_users', JSON.stringify(users)); },
-            getCurrentUsername() { return localStorage.getItem('hlrp_current'); },
-            setCurrentUser(username) {
-                if (username) localStorage.setItem('hlrp_current', username);
-                else localStorage.removeItem('hlrp_current');
-            },
-            getCurrentUser() {
-                const u = this.getCurrentUsername();
-                if (!u) return null;
-                const users = this.getUsers();
-                return users[u] ? { username: u, ...users[u] } : null;
-            },
-            updateUser(username, data) {
-                const users = this.getUsers();
-                if (users[username]) {
-                    users[username] = { ...users[username], ...data };
-                    this.saveUsers(users);
-                    return true;
-                }
-                return false;
-            }
-        };
+        // ============================================================
+        // НАСТРОЙКИ: РАЗМЕР ТЕКСТА
+        // ============================================================
+        const FONT_STEPS = [0.8, 0.9, 1.0, 1.1, 1.25, 1.5];
+        let currentFontStep = 2; // индекс в массиве (1.0 = 100%)
 
-        const ADMIN_USERNAME = 'Xelkin';
+        function applyFontSize(step) {
+            currentFontStep = Math.max(0, Math.min(FONT_STEPS.length - 1, step));
+            const scale = FONT_STEPS[currentFontStep];
+            document.documentElement.style.setProperty('--font-scale', scale);
 
-        function isAdmin() {
-            const user = DB.getCurrentUser();
-            return user && user.username === ADMIN_USERNAME;
+            const percent = Math.round(scale * 100);
+            document.getElementById('fontSizeValue').textContent = percent + '%';
+
+            // Кнопки disabled на краях
+            document.getElementById('fontMinusBtn').disabled = currentFontStep === 0;
+            document.getElementById('fontPlusBtn').disabled = currentFontStep === FONT_STEPS.length - 1;
+
+            localStorage.setItem('hlrp_font_step', currentFontStep);
         }
 
-        function getAvatarHtml(user) {
-            if (user && user.avatarUrl) {
-                return `<img src="${user.avatarUrl}" alt="Avatar">`;
-            }
-            const letter = (user?.displayName || user?.username || '?').charAt(0).toUpperCase();
-            return `<div class="avatar-placeholder">${letter}</div>`;
+        function changeFontSize(delta) {
+            applyFontSize(currentFontStep + delta);
         }
 
-        function renderProfileCorner() {
-            const corner = document.getElementById('profileCorner');
-            const user = DB.getCurrentUser();
-
-            if (user) {
-                const displayName = user.displayName || user.username;
-                const balance = user.hlsBalance || 0;
-                corner.innerHTML = `
-                    <div class="profile-corner" onclick="toggleProfileMenu(event)">
-                        <div class="profile-avatar">${getAvatarHtml(user)}</div>
-                        <div class="profile-info-block">
-                            <div class="profile-name-corner">${escapeHtml(displayName)}</div>
-                            <div class="profile-balance-corner"><span>${balance}</span> ХЛС</div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                corner.innerHTML = `<button class="profile-login-btn" onclick="openAuthModal('login')">Войти</button>`;
-            }
-        }
-
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        function toggleProfileMenu(e) {
-            e.stopPropagation();
-            const menu = document.getElementById('profileMenu');
-            
-            const adminItem = document.getElementById('adminMenuItem');
-            if (adminItem) {
-                adminItem.style.display = isAdmin() ? 'flex' : 'none';
-            }
-            
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('profileMenu');
-            const corner = document.getElementById('profileCorner');
-            if (menu.classList.contains('active') && !corner.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.remove('active');
-            }
-        });
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-        }
-
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) this.classList.remove('active');
-            });
-        });
-
-        let authMode = 'login';
-
-        function openAuthModal(mode) {
-            authMode = mode;
-            updateAuthModal();
-            document.getElementById('authModal').classList.add('active');
-            document.getElementById('authError').classList.remove('active');
-            document.getElementById('authUsername').value = '';
-            document.getElementById('authPassword').value = '';
-            document.getElementById('authDisplayName').value = '';
-        }
-
-        function updateAuthModal() {
-            const title = document.getElementById('authTitle');
-            const submitBtn = document.getElementById('authSubmitBtn');
-            const switchText = document.getElementById('authSwitchText');
-            const switchLink = document.getElementById('authSwitchLink');
-            const displayGroup = document.getElementById('displayNameGroup');
-
-            if (authMode === 'login') {
-                title.innerHTML = '🔑 Вход';
-                submitBtn.textContent = 'Войти';
-                switchText.textContent = 'Нет аккаунта?';
-                switchLink.textContent = 'Зарегистрироваться';
-                displayGroup.style.display = 'none';
-            } else {
-                title.innerHTML = '✨ Регистрация';
-                submitBtn.textContent = 'Создать аккаунт';
-                switchText.textContent = 'Уже есть аккаунт?';
-                switchLink.textContent = 'Войти';
-                displayGroup.style.display = 'block';
-            }
-        }
-
-        function toggleAuthMode() {
-            authMode = authMode === 'login' ? 'register' : 'login';
-            updateAuthModal();
-            document.getElementById('authError').classList.remove('active');
-        }
-
-        function showAuthError(msg) {
-            const err = document.getElementById('authError');
-            err.textContent = msg;
-            err.classList.add('active');
-        }
-
-        function submitAuth() {
-            const username = document.getElementById('authUsername').value.trim();
-            const displayName = document.getElementById('authDisplayName').value.trim();
-            const password = document.getElementById('authPassword').value;
-
-            document.getElementById('authError').classList.remove('active');
-
-            if (!username || !password) { showAuthError('Заполните все поля'); return; }
-            if (username.length < 3) { showAuthError('Юзернейм должен быть минимум 3 символа'); return; }
-            if (password.length < 4) { showAuthError('Пароль должен быть минимум 4 символа'); return; }
-
-            const users = DB.getUsers();
-
-            if (authMode === 'register') {
-                if (users[username]) { showAuthError('Этот юзернейм уже занят'); return; }
-                if (!displayName) { showAuthError('Введите отображаемый ник'); return; }
-
-                users[username] = {
-                    password: btoa(password),
-                    displayName: displayName,
-                    avatarUrl: null,
-                    hlsBalance: 0,
-                    customBackground: null,
-                    createdAt: new Date().toISOString(),
-                    lastLogin: new Date().toISOString(),
-                    isAdmin: username === ADMIN_USERNAME,
-                    isBanned: false,
-                    banReason: null
-                };
-                DB.saveUsers(users);
-                DB.setCurrentUser(username);
-                closeModal('authModal');
-                renderProfileCorner();
-                applyUserBackground();
-                return;
-            }
-
-            if (!users[username]) { showAuthError('Пользователь не найден'); return; }
-            if (users[username].password !== btoa(password)) { showAuthError('Неверный пароль'); return; }
-            if (users[username].isBanned) { showAuthError('Аккаунт заблокирован: ' + (users[username].banReason || 'без причины')); return; }
-
-            users[username].lastLogin = new Date().toISOString();
-            DB.saveUsers(users);
-            DB.setCurrentUser(username);
-            closeModal('authModal');
-            renderProfileCorner();
-            applyUserBackground();
-        }
-
-        function logout() {
-            DB.setCurrentUser(null);
-            document.getElementById('profileMenu').classList.remove('active');
-            renderProfileCorner();
-            document.body.style.backgroundImage = "url('background.jpg')";
-        }
-
-        function openProfileModal() {
-            const user = DB.getCurrentUser();
-            if (!user) return;
-            document.getElementById('profileMenu').classList.remove('active');
-
-            document.getElementById('avatarPreviewBig').innerHTML = 
-                (user.avatarUrl ? `<img src="${user.avatarUrl}" alt="Avatar">` : `<div class="avatar-placeholder">${(user.displayName || user.username).charAt(0).toUpperCase()}</div>`) +
-                `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
-            
-            const deleteBtn = document.getElementById('avatarDeleteBtn');
-            if (user.avatarUrl) deleteBtn.classList.add('visible');
-            else deleteBtn.classList.remove('visible');
-            
-            document.getElementById('profileDisplayName').value = user.displayName || user.username;
-            document.getElementById('statUsername').textContent = user.username;
-            document.getElementById('statHls').textContent = user.hlsBalance || 0;
-            document.getElementById('statCreated').textContent = formatDate(user.createdAt);
-            document.getElementById('statLastLogin').textContent = formatDate(user.lastLogin);
-
-            document.getElementById('profileSuccess').classList.remove('active');
-            document.getElementById('profileModal').classList.add('active');
-        }
-
-        function saveProfile() {
-            const user = DB.getCurrentUser();
-            if (!user) return;
-
-            const newDisplayName = document.getElementById('profileDisplayName').value.trim();
-            if (!newDisplayName) { alert('Ник не может быть пустым'); return; }
-
-            DB.updateUser(user.username, { displayName: newDisplayName });
-            renderProfileCorner();
-            document.getElementById('profileSuccess').classList.add('active');
-            setTimeout(() => { document.getElementById('profileSuccess').classList.remove('active'); }, 2500);
-        }
-
-        function formatDate(iso) {
-            if (!iso) return '—';
-            const d = new Date(iso);
-            return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) 
-                + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        const avatarDropZone = document.getElementById('avatarPreviewBig');
-
-        avatarDropZone.addEventListener('dragover', function(e) {
-            e.preventDefault(); e.stopPropagation();
-            this.classList.add('dragover');
-        });
-        avatarDropZone.addEventListener('dragleave', function(e) {
-            e.preventDefault(); e.stopPropagation();
-            this.classList.remove('dragover');
-        });
-        avatarDropZone.addEventListener('drop', function(e) {
-            e.preventDefault(); e.stopPropagation();
-            this.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (!file) return;
-            if (!file.type.startsWith('image/')) { alert('Можно загрузить только изображение'); return; }
-            processAvatarFile(file);
-        });
-
-        let cropImage = null;
-        let cropOffsetX = 0;
-        let cropOffsetY = 0;
-        let cropScale = 1;
-        let isCropDragging = false;
-        let cropStartX, cropStartY, cropStartOffsetX, cropStartOffsetY;
-
-        function openAvatarEditor() {
-            closeModal('profileModal');
-            document.getElementById('avatarFileInput').click();
-        }
-
-        function loadAvatarFile(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            processAvatarFile(file);
-            event.target.value = '';
-        }
-
-        function processAvatarFile(file) {
-            if (file.size > 5 * 1024 * 1024) { alert('Файл слишком большой. Максимум 5 МБ.'); return; }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    cropImage = img;
-                    cropScale = 1;
-                    cropOffsetX = 0;
-                    cropOffsetY = 0;
-                    document.getElementById('cropZoom').value = 1;
-                    drawCrop();
-                    closeModal('profileModal');
-                    document.getElementById('avatarEditorModal').classList.add('active');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function drawCrop() {
-            const canvas = document.getElementById('cropCanvas');
-            const ctx = canvas.getContext('2d');
-            const W = canvas.width, H = canvas.height;
-
-            ctx.clearRect(0, 0, W, H);
-            if (!cropImage) return;
-
-            const baseScale = Math.max(W / cropImage.width, H / cropImage.height);
-            const scale = baseScale * cropScale;
-            const imgW = cropImage.width * scale;
-            const imgH = cropImage.height * scale;
-            const x = (W - imgW) / 2 + cropOffsetX;
-            const y = (H - imgH) / 2 + cropOffsetY;
-
-            ctx.drawImage(cropImage, x, y, imgW, imgH);
-        }
-
-        document.getElementById('cropZoom').addEventListener('input', function() {
-            cropScale = parseFloat(this.value);
-            drawCrop();
-        });
-
-        const cropArea = document.getElementById('cropArea');
-        cropArea.addEventListener('mousedown', function(e) {
-            if (!cropImage) return;
-            isCropDragging = true;
-            cropStartX = e.clientX; cropStartY = e.clientY;
-            cropStartOffsetX = cropOffsetX; cropStartOffsetY = cropOffsetY;
-        });
-
-        window.addEventListener('mousemove', function(e) {
-            if (!isCropDragging) return;
-            cropOffsetX = cropStartOffsetX + (e.clientX - cropStartX) * 2;
-            cropOffsetY = cropStartOffsetY + (e.clientY - cropStartY) * 2;
-            drawCrop();
-        });
-
-        window.addEventListener('mouseup', function() { isCropDragging = false; });
-
-        cropArea.addEventListener('touchstart', function(e) {
-            if (!cropImage || e.touches.length !== 1) return;
-            isCropDragging = true;
-            cropStartX = e.touches[0].clientX; cropStartY = e.touches[0].clientY;
-            cropStartOffsetX = cropOffsetX; cropStartOffsetY = cropOffsetY;
-        }, { passive: true });
-
-        cropArea.addEventListener('touchmove', function(e) {
-            if (!isCropDragging || e.touches.length !== 1) return;
-            e.preventDefault();
-            cropOffsetX = cropStartOffsetX + (e.touches[0].clientX - cropStartX) * 2;
-            cropOffsetY = cropStartOffsetY + (e.touches[0].clientY - cropStartY) * 2;
-            drawCrop();
-        }, { passive: false });
-
-        cropArea.addEventListener('touchend', function() { isCropDragging = false; });
-
-        function applyAvatarCrop() {
-            const user = DB.getCurrentUser();
-            if (!user || !cropImage) return;
-
-            const finalSize = 256;
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = finalSize;
-            finalCanvas.height = finalSize;
-            const ctx = finalCanvas.getContext('2d');
-
-            const cropCanvas = document.getElementById('cropCanvas');
-            const W = cropCanvas.width;
-            const H = cropCanvas.height;
-
-            const circleSize = W * 0.70;
-            const circleX = (W - circleSize) / 2;
-            const circleY = (H - circleSize) / 2;
-
-            ctx.drawImage(cropCanvas, circleX, circleY, circleSize, circleSize, 0, 0, finalSize, finalSize);
-
-            const dataUrl = finalCanvas.toDataURL('image/jpeg', 0.9);
-            DB.updateUser(user.username, { avatarUrl: dataUrl });
-
-            document.getElementById('avatarPreviewBig').innerHTML = 
-                `<img src="${dataUrl}" alt="Avatar"><div class="edit-overlay">ИЗМЕНИТЬ</div>`;
-            
-            document.getElementById('avatarDeleteBtn').classList.add('visible');
-            
-            renderProfileCorner();
-            closeModal('avatarEditorModal');
-        }
-
-        function deleteAvatar() {
-            const user = DB.getCurrentUser();
-            if (!user) return;
-            if (!confirm('Удалить аватар?')) return;
-
-            DB.updateUser(user.username, { avatarUrl: null });
-
-            const firstLetter = (user.displayName || user.username).charAt(0).toUpperCase();
-            document.getElementById('avatarPreviewBig').innerHTML = 
-                `<div class="avatar-placeholder">${firstLetter}</div>` +
-                `<div class="edit-overlay">ИЗМЕНИТЬ</div>`;
-            
-            document.getElementById('avatarDeleteBtn').classList.remove('visible');
-            renderProfileCorner();
-        }
-
-        function openSettingsModal() {
-            document.getElementById('profileMenu').classList.remove('active');
-            document.getElementById('settingsModal').classList.add('active');
-        }
-
+        // ============================================================
+        // НАСТРОЙКИ: ФОН
+        // ============================================================
         function uploadBg(event) {
             const file = event.target.files[0];
             if (!file) return;
-            if (file.size > 3 * 1024 * 1024) { alert('Файл слишком большой. Максимум 3 МБ.'); return; }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Файл слишком большой. Максимум 5 МБ.');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
                 document.body.style.backgroundImage = `url(${dataUrl})`;
-                const user = DB.getCurrentUser();
-                if (user) DB.updateUser(user.username, { customBackground: dataUrl });
+                localStorage.setItem('hlrp_custom_bg', dataUrl);
             };
             reader.readAsDataURL(file);
         }
 
         function resetBg() {
             document.body.style.backgroundImage = "url('background.jpg')";
-            const user = DB.getCurrentUser();
-            if (user) DB.updateUser(user.username, { customBackground: null });
+            localStorage.removeItem('hlrp_custom_bg');
         }
 
-        function applyUserBackground() {
-            const user = DB.getCurrentUser();
-            if (user && user.customBackground) {
-                document.body.style.backgroundImage = `url(${user.customBackground})`;
+        // ============================================================
+        // СБРОС ВСЕХ НАСТРОЕК
+        // ============================================================
+        function resetAllSettings() {
+            if (!confirm('Сбросить все настройки?')) return;
+            localStorage.removeItem('hlrp_custom_bg');
+            localStorage.removeItem('hlrp_font_step');
+            document.body.style.backgroundImage = "url('background.jpg')";
+            applyFontSize(2);
+        }
+
+        // ============================================================
+        // ОТКРЫТИЕ/ЗАКРЫТИЕ НАСТРОЕК
+        // ============================================================
+        function openSettings() {
+            document.getElementById('settingsModal').classList.add('active');
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').classList.remove('active');
+        }
+
+        // Закрытие по клику на оверлей
+        document.getElementById('settingsModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSettings();
+        });
+
+        // ============================================================
+        // ЗАГРУЗКА НАСТРОЕК ПРИ СТАРТЕ
+        // ============================================================
+        function loadSettings() {
+            // Размер шрифта
+            const savedFontStep = localStorage.getItem('hlrp_font_step');
+            if (savedFontStep !== null) {
+                applyFontSize(parseInt(savedFontStep));
             } else {
-                document.body.style.backgroundImage = "url('background.jpg')";
+                applyFontSize(2);
+            }
+
+            // Кастомный фон
+            const savedBg = localStorage.getItem('hlrp_custom_bg');
+            if (savedBg) {
+                document.body.style.backgroundImage = `url(${savedBg})`;
             }
         }
 
         // ============================================================
-        // АДМИН-ПАНЕЛЬ
-        // ============================================================
-        let adminCurrentTab = 'all';
-
-        function openAdminPanel() {
-            if (!isAdmin()) return;
-            document.getElementById('profileMenu').classList.remove('active');
-            renderAdminStats();
-            renderAdminUsers();
-            document.getElementById('adminModal').classList.add('active');
-        }
-
-        function switchAdminTab(tab) {
-            adminCurrentTab = tab;
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.admin-tab[data-admin-tab="${tab}"]`).classList.add('active');
-            renderAdminUsers();
-        }
-
-        function renderAdminStats() {
-            const users = DB.getUsers();
-            const allUsers = Object.values(users);
-            const bannedCount = allUsers.filter(u => u.isBanned).length;
-            const totalHls = allUsers.reduce((sum, u) => sum + (u.hlsBalance || 0), 0);
-
-            document.getElementById('adminStats').innerHTML = `
-                <div class="admin-stat">
-                    <div class="admin-stat-label">Всего игроков</div>
-                    <div class="admin-stat-value">${allUsers.length}</div>
-                </div>
-                <div class="admin-stat">
-                    <div class="admin-stat-label">Всего ХЛС</div>
-                    <div class="admin-stat-value">${totalHls}</div>
-                </div>
-                <div class="admin-stat">
-                    <div class="admin-stat-label">Забанено</div>
-                    <div class="admin-stat-value" style="color:#ff8b8b;">${bannedCount}</div>
-                </div>
-            `;
-        }
-
-        function renderAdminUsers() {
-            const users = DB.getUsers();
-            const search = document.getElementById('adminSearch').value.trim().toLowerCase();
-            const list = document.getElementById('adminUsersList');
-
-            let entries = Object.entries(users).map(([username, data]) => ({ username, ...data }));
-
-            if (adminCurrentTab === 'banned') {
-                entries = entries.filter(u => u.isBanned);
-            }
-
-            if (search) {
-                entries = entries.filter(u => u.username.toLowerCase().includes(search));
-            }
-
-            entries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-            if (entries.length === 0) {
-                list.innerHTML = `<div class="admin-empty">📭 Пользователей не найдено</div>`;
-                return;
-            }
-
-            list.innerHTML = entries.map(user => {
-                const displayName = user.displayName || user.username;
-                const balance = user.hlsBalance || 0;
-                const isSelf = user.username === ADMIN_USERNAME;
-                const bannedBadge = user.isBanned ? `<span class="admin-banned-badge">Забанен</span>` : '';
-                const selfBadge = isSelf ? `<span class="admin-self-badge">Вы</span>` : '';
-
-                const banBtn = user.isBanned 
-                    ? `<button class="admin-btn admin-btn-unban" onclick="unbanUser('${user.username}')">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Разбанить
-                      </button>`
-                    : `<button class="admin-btn admin-btn-ban" onclick="banUser('${user.username}')">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Забанить
-                      </button>`;
-
-                const finalBanBtn = isSelf ? '' : banBtn;
-
-                return `
-                    <div class="admin-user-row">
-                        <div class="admin-user-avatar">
-                            ${user.avatarUrl 
-                                ? `<img src="${user.avatarUrl}" alt="">` 
-                                : `<div class="avatar-placeholder">${(displayName).charAt(0).toUpperCase()}</div>`}
-                        </div>
-                        <div class="admin-user-info">
-                            <div class="admin-user-display">${escapeHtml(displayName)} ${selfBadge} ${bannedBadge}</div>
-                            <div class="admin-user-username">@${escapeHtml(user.username)}</div>
-                        </div>
-                        <div class="admin-user-balance">${balance} <span>ХЛС</span></div>
-                        <div class="admin-user-actions">
-                            <button class="admin-btn admin-btn-give" onclick="giveHls('${user.username}')">
-                                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                                Дать ХЛС
-                            </button>
-                            <button class="admin-btn admin-btn-take" onclick="takeHls('${user.username}')">
-                                <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
-                                Отнять
-                            </button>
-                            <button class="admin-btn admin-btn-set" onclick="setHls('${user.username}')">
-                                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                                Изменить
-                            </button>
-                            ${finalBanBtn}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function giveHls(username) {
-            const amount = parseInt(prompt(`Сколько ХЛС дать игроку @${username}?`));
-            if (isNaN(amount) || amount <= 0) return;
-
-            const user = DB.getUsers()[username];
-            if (!user) return;
-            DB.updateUser(username, { hlsBalance: (user.hlsBalance || 0) + amount });
-
-            renderAdminStats();
-            renderAdminUsers();
-            renderProfileCorner();
-        }
-
-        function takeHls(username) {
-            const amount = parseInt(prompt(`Сколько ХЛС отнять у @${username}?`));
-            if (isNaN(amount) || amount <= 0) return;
-
-            const user = DB.getUsers()[username];
-            if (!user) return;
-            const newBalance = Math.max(0, (user.hlsBalance || 0) - amount);
-            DB.updateUser(username, { hlsBalance: newBalance });
-
-            renderAdminStats();
-            renderAdminUsers();
-            renderProfileCorner();
-        }
-
-        function setHls(username) {
-            const user = DB.getUsers()[username];
-            if (!user) return;
-            const amount = parseInt(prompt(`Установить ХЛС для @${username} (текущий: ${user.hlsBalance || 0}):`));
-            if (isNaN(amount) || amount < 0) return;
-
-            DB.updateUser(username, { hlsBalance: amount });
-
-            renderAdminStats();
-            renderAdminUsers();
-            renderProfileCorner();
-        }
-
-        function banUser(username) {
-            const reason = prompt(`Причина бана для @${username}:`);
-            if (reason === null) return;
-
-            DB.updateUser(username, { isBanned: true, banReason: reason || 'без причины' });
-
-            renderAdminStats();
-            renderAdminUsers();
-        }
-
-        function unbanUser(username) {
-            if (!confirm(`Разбанить @${username}?`)) return;
-
-            DB.updateUser(username, { isBanned: false, banReason: null });
-
-            renderAdminStats();
-            renderAdminUsers();
-        }
-
-        // ============================================================
-        // ОСТАЛЬНОЕ
+        // СВОРАЧИВАНИЕ РАЗДЕЛОВ
         // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
             const body = section.querySelector('.rules-body');
             const arrow = header.querySelector('.arrow');
+
             if (body.classList.contains('open')) {
                 body.classList.remove('open');
                 arrow.classList.remove('open');
@@ -2342,6 +1515,9 @@
             }
         }
 
+        // ============================================================
+        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+        // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
             main: document.getElementById('main'),
@@ -2354,22 +1530,38 @@
             btn.addEventListener('click', function() {
                 tabs.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+
                 Object.values(pages).forEach(page => page.classList.remove('active'));
+
                 const tabName = this.getAttribute('data-tab');
-                if (pages[tabName]) pages[tabName].classList.add('active');
+                if (pages[tabName]) {
+                    pages[tabName].classList.add('active');
+                }
             });
         });
 
+        // ============================================================
+        // КАРТА
+        // ============================================================
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
-        let scale = 1, translateX = 0, translateY = 0, isDragging = false;
+
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
+        let isDragging = false;
         let startX, startY, startTranslateX, startTranslateY;
-        const MAX_SCALE = 5.0, MIN_SCALE = 1.0, ZOOM_STEP = 0.2;
+
+        const MAX_SCALE = 5.0;
+        const MIN_SCALE = 1.0;
+        const ZOOM_STEP = 0.2;
 
         function clampPosition() {
-            const rect = container.getBoundingClientRect();
-            const maxX = Math.max(0, (rect.width * scale - rect.width) / 2);
-            const maxY = Math.max(0, (rect.height * scale - rect.height) / 2);
+            const containerRect = container.getBoundingClientRect();
+            const imgWidth = containerRect.width * scale;
+            const imgHeight = containerRect.height * scale;
+            const maxX = Math.max(0, (imgWidth - containerRect.width) / 2);
+            const maxY = Math.max(0, (imgHeight - containerRect.height) / 2);
             translateX = Math.min(Math.max(translateX, -maxX), maxX);
             translateY = Math.min(Math.max(translateY, -maxY), maxY);
         }
@@ -2379,115 +1571,192 @@
             mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
 
-        function zoomIn() { if (scale < MAX_SCALE) { scale = Math.min(scale + ZOOM_STEP, MAX_SCALE); updateMap(); } }
-        function zoomOut() { if (scale > MIN_SCALE) { scale = Math.max(scale - ZOOM_STEP, MIN_SCALE); updateMap(); } }
-        function resetZoom() { scale = 1; translateX = 0; translateY = 0; updateMap(); }
+        function zoomIn() {
+            if (scale < MAX_SCALE) {
+                scale = Math.min(scale + ZOOM_STEP, MAX_SCALE);
+                updateMap();
+            }
+        }
 
-        container.addEventListener('wheel', e => {
+        function zoomOut() {
+            if (scale > MIN_SCALE) {
+                scale = Math.max(scale - ZOOM_STEP, MIN_SCALE);
+                updateMap();
+            }
+        }
+
+        function resetZoom() {
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateMap();
+        }
+
+        container.addEventListener('wheel', function(e) {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
             const newScale = Math.min(Math.max(scale + delta, MIN_SCALE), MAX_SCALE);
-            if (newScale !== scale) { scale = newScale; updateMap(); }
+            if (newScale !== scale) {
+                scale = newScale;
+                updateMap();
+            }
         }, { passive: false });
 
-        container.addEventListener('mousedown', e => {
+        container.addEventListener('mousedown', function(e) {
             isDragging = true;
-            startX = e.clientX; startY = e.clientY;
-            startTranslateX = translateX; startTranslateY = translateY;
+            startX = e.clientX;
+            startY = e.clientY;
+            startTranslateX = translateX;
+            startTranslateY = translateY;
             container.style.cursor = 'grabbing';
         });
 
-        window.addEventListener('mousemove', e => {
+        window.addEventListener('mousemove', function(e) {
             if (!isDragging) return;
-            translateX = startTranslateX + (e.clientX - startX);
-            translateY = startTranslateY + (e.clientY - startY);
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            translateX = startTranslateX + dx;
+            translateY = startTranslateY + dy;
             updateMap();
         });
 
-        window.addEventListener('mouseup', () => {
+        window.addEventListener('mouseup', function() {
             isDragging = false;
             container.style.cursor = 'grab';
         });
 
         container.addEventListener('dblclick', resetZoom);
 
+        // Мультитач
         let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
-        let lastTouchDistance = 0, lastTouchScale = 1;
+        let lastTouchDistance = 0;
+        let lastTouchScale = 1;
 
-        container.addEventListener('touchstart', e => {
+        container.addEventListener('touchstart', function(e) {
             if (e.touches.length === 2) {
-                const t1 = e.touches[0], t2 = e.touches[1];
-                lastTouchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                lastTouchDistance = Math.hypot(
+                    touch1.clientX - touch2.clientX,
+                    touch1.clientY - touch2.clientY
+                );
                 lastTouchScale = scale;
-                touchStartX = (t1.clientX + t2.clientX) / 2;
-                touchStartY = (t1.clientY + t2.clientY) / 2;
+                touchStartX = (touch1.clientX + touch2.clientX) / 2;
+                touchStartY = (touch1.clientY + touch2.clientY) / 2;
                 touchTranslateX = translateX;
                 touchTranslateY = translateY;
             } else if (e.touches.length === 1) {
-                const t = e.touches[0];
-                touchStartX = t.clientX; touchStartY = t.clientY;
-                touchTranslateX = translateX; touchTranslateY = translateY;
+                const touch = e.touches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchTranslateX = translateX;
+                touchTranslateY = translateY;
             }
         }, { passive: true });
 
-        container.addEventListener('touchmove', e => {
+        container.addEventListener('touchmove', function(e) {
             e.preventDefault();
+            
             if (e.touches.length === 2) {
-                const t1 = e.touches[0], t2 = e.touches[1];
-                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.hypot(
+                    touch1.clientX - touch2.clientX,
+                    touch1.clientY - touch2.clientY
+                );
+                
                 if (lastTouchDistance > 0) {
-                    const newScale = Math.min(Math.max(lastTouchScale * (dist / lastTouchDistance), MIN_SCALE), MAX_SCALE);
-                    if (newScale !== scale) { scale = newScale; updateMap(); }
+                    const delta = currentDistance / lastTouchDistance;
+                    const newScale = Math.min(Math.max(lastTouchScale * delta, MIN_SCALE), MAX_SCALE);
+                    if (newScale !== scale) {
+                        scale = newScale;
+                        updateMap();
+                    }
                 }
-                const cx = (t1.clientX + t2.clientX) / 2;
-                const cy = (t1.clientY + t2.clientY) / 2;
-                translateX = touchTranslateX + (cx - touchStartX);
-                translateY = touchTranslateY + (cy - touchStartY);
+                
+                const centerX = (touch1.clientX + touch2.clientX) / 2;
+                const centerY = (touch1.clientY + touch2.clientY) / 2;
+                const dx = centerX - touchStartX;
+                const dy = centerY - touchStartY;
+                translateX = touchTranslateX + dx;
+                translateY = touchTranslateY + dy;
                 updateMap();
+                
             } else if (e.touches.length === 1) {
-                const t = e.touches[0];
-                translateX = touchTranslateX + (t.clientX - touchStartX);
-                translateY = touchTranslateY + (t.clientY - touchStartY);
+                const touch = e.touches[0];
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+                translateX = touchTranslateX + dx;
+                translateY = touchTranslateY + dy;
                 updateMap();
             }
         }, { passive: false });
 
-        function triggerGlitch() {
-            const g = document.getElementById('glitchLayer');
-            const gc = document.getElementById('glitchColorLayer');
-            if (g) { g.classList.remove('active'); void g.offsetWidth; g.classList.add('active'); }
-            if (gc) { gc.classList.remove('active'); void gc.offsetWidth; gc.classList.add('active'); }
-            setTimeout(triggerGlitch, Math.random() * 5000 + 3000);
-        }
-        setTimeout(triggerGlitch, 2000);
-
-        document.addEventListener('mousemove', e => {
+        // ============================================================
+        // ДИНАМИЧЕСКИЙ ФОН
+        // ============================================================
+        document.addEventListener('mousemove', function(e) {
             const x = (e.clientX / window.innerWidth - 0.5) * 15;
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
             document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-            const p = document.getElementById('particles-container');
-            if (p) p.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            
+            const particles = document.getElementById('particles-container');
+            if (particles) {
+                particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            }
         });
 
+        // ============================================================
+        // ГЛЮКИ
+        // ============================================================
+        function triggerGlitch() {
+            const glitch = document.getElementById('glitchLayer');
+            const glitchColor = document.getElementById('glitchColorLayer');
+            
+            if (glitch) {
+                glitch.classList.remove('active');
+                void glitch.offsetWidth;
+                glitch.classList.add('active');
+            }
+            
+            if (glitchColor) {
+                glitchColor.classList.remove('active');
+                void glitchColor.offsetWidth;
+                glitchColor.classList.add('active');
+            }
+            
+            const nextGlitch = Math.random() * 5000 + 3000;
+            setTimeout(triggerGlitch, nextGlitch);
+        }
+
+        setTimeout(triggerGlitch, 2000);
+
+        // ============================================================
+        // ЧАСТИЦЫ
+        // ============================================================
         function createParticles() {
-            const c = document.getElementById('particles-container');
-            for (let i = 0; i < 35; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
+            const container = document.getElementById('particles-container');
+            const count = 35;
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 const size = Math.random() * 4 + 1.5;
-                p.style.width = size + 'px';
-                p.style.height = size + 'px';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = Math.random() * 20 + 15 + 's';
-                p.style.animationDelay = Math.random() * 20 + 's';
-                p.style.opacity = Math.random() * 0.3 + 0.1;
-                c.appendChild(p);
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 20 + 15 + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(particle);
             }
         }
 
+        // ============================================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ============================================================
         function init() {
-            renderProfileCorner();
-            applyUserBackground();
+            loadSettings();
             createParticles();
         }
 
