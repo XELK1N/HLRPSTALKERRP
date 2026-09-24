@@ -10,9 +10,9 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Переменная для масштаба шрифта — управляется через настройки */
-        :root {
-            --font-scale: 1;
+        html {
+            /* Базовый размер шрифта — меняется через настройки */
+            font-size: 16px;
         }
 
         body {
@@ -30,7 +30,6 @@
             background-attachment: fixed;
             transition: background-position 0.15s ease-out, background-image 0.3s ease;
             will-change: background-position;
-            font-size: calc(16px * var(--font-scale));
         }
 
         body::before {
@@ -79,6 +78,19 @@
                 transform: translateY(110vh) translateX(80px) scale(0.3);
                 opacity: 0;
             }
+        }
+
+        /* ============================================
+           ГЛАВНЫЙ КОНТЕЙНЕР — масштабируется через transform
+           ============================================ */
+        #main {
+            transform-origin: center center;
+            transition: transform 0.25s ease;
+        }
+
+        /* Для плавности скролла при изменении размеров */
+        html {
+            scroll-behavior: smooth;
         }
 
         .main-card {
@@ -174,7 +186,7 @@
         }
         .tab-link.active::after { width: 100%; }
 
-        /* ===== КНОПКА НАСТРОЕК В ШАПКЕ ===== */
+        /* Кнопка настроек в шапке */
         .settings-btn {
             width: 44px;
             height: 44px;
@@ -557,7 +569,6 @@
             text-align: center;
         }
 
-        /* ===== РАМКА КПК ===== */
         .kpk-frame {
             background: rgba(2, 8, 18, 0.60);
             border-radius: 18px;
@@ -931,7 +942,6 @@
             color: #dceaff;
         }
 
-        /* ===== НАСТРОЙКИ ===== */
         .settings-section {
             margin-bottom: 24px;
         }
@@ -945,14 +955,14 @@
             margin-bottom: 12px;
         }
 
-        /* Размер текста */
-        .font-size-control {
+        /* Слайдеры */
+        .slider-control {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .font-btn {
+        .slider-btn {
             width: 44px;
             height: 44px;
             border-radius: 10px;
@@ -967,27 +977,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
-        .font-btn:hover {
+        .slider-btn:hover {
             background: rgba(2, 8, 18, 0.85);
             border-color: rgba(60, 140, 220, 0.25);
             transform: translateY(-2px);
         }
 
-        .font-btn:disabled {
+        .slider-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
             transform: none;
         }
 
-        .font-size-value {
+        .slider-value {
             flex: 1;
             text-align: center;
             color: #b0d0f0;
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 1px;
+        }
+
+        /* Прогресс-бар */
+        .slider-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(60, 140, 220, 0.10);
+            border-radius: 10px;
+            margin-top: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0a5a9e, #4a9eff);
+            border-radius: 10px;
+            transition: width 0.25s ease;
         }
 
         /* Загрузка фона */
@@ -1071,7 +1100,7 @@
 
     <div id="particles-container"></div>
 
-    <div class="main-card">
+    <div class="main-card" id="main">
 
         <div class="header">
             <div class="logo-area">
@@ -1093,7 +1122,7 @@
         <div class="tab-content">
 
             <!-- ======== ГЛАВНАЯ ======== -->
-            <div id="main" class="tab-page active">
+            <div id="main-tab" class="tab-page active">
                 <div class="hero">
                     <div class="hero-badge">⚡ Добро пожаловать</div>
                     <h1>НАЧНИ СВОЮ<br><span class="hl">ИСТОРИЮ</span></h1>
@@ -1348,7 +1377,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
-                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.</div>
+                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и круси колёсико для приближения и отдаления.</div>
             </div>
 
         </div>
@@ -1371,11 +1400,23 @@
             <!-- Размер текста -->
             <div class="settings-section">
                 <h4>Размер текста</h4>
-                <div class="font-size-control">
-                    <button class="font-btn" onclick="changeFontSize(-1)" id="fontMinusBtn">−</button>
-                    <div class="font-size-value" id="fontSizeValue">100%</div>
-                    <button class="font-btn" onclick="changeFontSize(1)" id="fontPlusBtn">+</button>
+                <div class="slider-control">
+                    <button class="slider-btn" onclick="changeFontSize(-1)" id="fontMinusBtn">−</button>
+                    <div class="slider-value" id="fontSizeValue">100%</div>
+                    <button class="slider-btn" onclick="changeFontSize(1)" id="fontPlusBtn">+</button>
                 </div>
+                <div class="slider-bar"><div class="slider-bar-fill" id="fontBarFill"></div></div>
+            </div>
+
+            <!-- Размер интерфейса -->
+            <div class="settings-section">
+                <h4>Размер интерфейса</h4>
+                <div class="slider-control">
+                    <button class="slider-btn" onclick="changeInterfaceSize(-1)" id="uiMinusBtn">−</button>
+                    <div class="slider-value" id="uiSizeValue">100%</div>
+                    <button class="slider-btn" onclick="changeInterfaceSize(1)" id="uiPlusBtn">+</button>
+                </div>
+                <div class="slider-bar"><div class="slider-bar-fill" id="uiBarFill"></div></div>
             </div>
 
             <!-- Фон -->
@@ -1390,7 +1431,7 @@
                 <button class="bg-reset-btn" onclick="resetBg()">Сбросить фон</button>
             </div>
 
-            <!-- Сброс всех настроек -->
+            <!-- Сброс -->
             <div class="settings-section">
                 <h4>Сброс</h4>
                 <button class="bg-reset-btn" onclick="resetAllSettings()" style="background: rgba(60, 140, 220, 0.08); border-color: rgba(60, 140, 220, 0.18); color: #8cc4ff;">
@@ -1402,20 +1443,30 @@
 
     <script>
         // ============================================================
-        // НАСТРОЙКИ: РАЗМЕР ТЕКСТА
+        // НАСТРОЙКИ
         // ============================================================
-        const FONT_STEPS = [0.8, 0.9, 1.0, 1.1, 1.25, 1.5];
-        let currentFontStep = 2; // индекс в массиве (1.0 = 100%)
+        const FONT_STEPS = [0.8, 0.9, 1.0, 1.1, 1.25, 1.5, 1.75];
+        const UI_STEPS = [0.85, 1.0, 1.15, 1.3];
 
+        let currentFontStep = 2;   // 100%
+        let currentUIStep = 1;     // 100%
+
+        // ---------------------------
+        // РАЗМЕР ТЕКСТА (через html font-size)
+        // ---------------------------
         function applyFontSize(step) {
             currentFontStep = Math.max(0, Math.min(FONT_STEPS.length - 1, step));
             const scale = FONT_STEPS[currentFontStep];
-            document.documentElement.style.setProperty('--font-scale', scale);
+
+            // Меняем базовый размер шрифта на <html>
+            document.documentElement.style.fontSize = (16 * scale) + 'px';
 
             const percent = Math.round(scale * 100);
             document.getElementById('fontSizeValue').textContent = percent + '%';
 
-            // Кнопки disabled на краях
+            const fillPercent = ((currentFontStep) / (FONT_STEPS.length - 1)) * 100;
+            document.getElementById('fontBarFill').style.width = fillPercent + '%';
+
             document.getElementById('fontMinusBtn').disabled = currentFontStep === 0;
             document.getElementById('fontPlusBtn').disabled = currentFontStep === FONT_STEPS.length - 1;
 
@@ -1426,9 +1477,39 @@
             applyFontSize(currentFontStep + delta);
         }
 
-        // ============================================================
-        // НАСТРОЙКИ: ФОН
-        // ============================================================
+        // ---------------------------
+        // РАЗМЕР ИНТЕРФЕЙСА (через transform scale)
+        // ---------------------------
+        function applyInterfaceSize(step) {
+            currentUIStep = Math.max(0, Math.min(UI_STEPS.length - 1, step));
+            const scale = UI_STEPS[currentUIStep];
+
+            // Масштабируем весь контент
+            const mainEl = document.getElementById('main');
+            mainEl.style.transform = `scale(${scale})`;
+
+            // Подгоняем высоту body, чтобы скролл работал корректно
+            document.body.style.minHeight = `${scale * 100}vh`;
+
+            const percent = Math.round(scale * 100);
+            document.getElementById('uiSizeValue').textContent = percent + '%';
+
+            const fillPercent = ((currentUIStep) / (UI_STEPS.length - 1)) * 100;
+            document.getElementById('uiBarFill').style.width = fillPercent + '%';
+
+            document.getElementById('uiMinusBtn').disabled = currentUIStep === 0;
+            document.getElementById('uiPlusBtn').disabled = currentUIStep === UI_STEPS.length - 1;
+
+            localStorage.setItem('hlrp_ui_step', currentUIStep);
+        }
+
+        function changeInterfaceSize(delta) {
+            applyInterfaceSize(currentUIStep + delta);
+        }
+
+        // ---------------------------
+        // ФОН
+        // ---------------------------
         function uploadBg(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1452,20 +1533,22 @@
             localStorage.removeItem('hlrp_custom_bg');
         }
 
-        // ============================================================
-        // СБРОС ВСЕХ НАСТРОЕК
-        // ============================================================
+        // ---------------------------
+        // СБРОС ВСЕГО
+        // ---------------------------
         function resetAllSettings() {
             if (!confirm('Сбросить все настройки?')) return;
             localStorage.removeItem('hlrp_custom_bg');
             localStorage.removeItem('hlrp_font_step');
+            localStorage.removeItem('hlrp_ui_step');
             document.body.style.backgroundImage = "url('background.jpg')";
             applyFontSize(2);
+            applyInterfaceSize(1);
         }
 
-        // ============================================================
-        // ОТКРЫТИЕ/ЗАКРЫТИЕ НАСТРОЕК
-        // ============================================================
+        // ---------------------------
+        // ОТКРЫТИЕ / ЗАКРЫТИЕ
+        // ---------------------------
         function openSettings() {
             document.getElementById('settingsModal').classList.add('active');
         }
@@ -1474,24 +1557,23 @@
             document.getElementById('settingsModal').classList.remove('active');
         }
 
-        // Закрытие по клику на оверлей
         document.getElementById('settingsModal').addEventListener('click', function(e) {
             if (e.target === this) closeSettings();
         });
 
-        // ============================================================
+        // ---------------------------
         // ЗАГРУЗКА НАСТРОЕК ПРИ СТАРТЕ
-        // ============================================================
+        // ---------------------------
         function loadSettings() {
-            // Размер шрифта
-            const savedFontStep = localStorage.getItem('hlrp_font_step');
-            if (savedFontStep !== null) {
-                applyFontSize(parseInt(savedFontStep));
-            } else {
-                applyFontSize(2);
-            }
+            // Шрифт
+            const savedFont = localStorage.getItem('hlrp_font_step');
+            applyFontSize(savedFont !== null ? parseInt(savedFont) : 2);
 
-            // Кастомный фон
+            // Интерфейс
+            const savedUI = localStorage.getItem('hlrp_ui_step');
+            applyInterfaceSize(savedUI !== null ? parseInt(savedUI) : 1);
+
+            // Фон
             const savedBg = localStorage.getItem('hlrp_custom_bg');
             if (savedBg) {
                 document.body.style.backgroundImage = `url(${savedBg})`;
@@ -1520,7 +1602,7 @@
         // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
-            main: document.getElementById('main'),
+            main: document.getElementById('main-tab'),
             rules: document.getElementById('rules'),
             lore: document.getElementById('lore'),
             map: document.getElementById('map')
@@ -1627,7 +1709,6 @@
 
         container.addEventListener('dblclick', resetZoom);
 
-        // Мультитач
         let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
         let lastTouchDistance = 0;
         let lastTouchScale = 1;
@@ -1656,7 +1737,7 @@
 
         container.addEventListener('touchmove', function(e) {
             e.preventDefault();
-            
+
             if (e.touches.length === 2) {
                 const touch1 = e.touches[0];
                 const touch2 = e.touches[1];
@@ -1664,7 +1745,7 @@
                     touch1.clientX - touch2.clientX,
                     touch1.clientY - touch2.clientY
                 );
-                
+
                 if (lastTouchDistance > 0) {
                     const delta = currentDistance / lastTouchDistance;
                     const newScale = Math.min(Math.max(lastTouchScale * delta, MIN_SCALE), MAX_SCALE);
@@ -1673,7 +1754,7 @@
                         updateMap();
                     }
                 }
-                
+
                 const centerX = (touch1.clientX + touch2.clientX) / 2;
                 const centerY = (touch1.clientY + touch2.clientY) / 2;
                 const dx = centerX - touchStartX;
@@ -1681,7 +1762,7 @@
                 translateX = touchTranslateX + dx;
                 translateY = touchTranslateY + dy;
                 updateMap();
-                
+
             } else if (e.touches.length === 1) {
                 const touch = e.touches[0];
                 const dx = touch.clientX - touchStartX;
@@ -1699,7 +1780,7 @@
             const x = (e.clientX / window.innerWidth - 0.5) * 15;
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
             document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-            
+
             const particles = document.getElementById('particles-container');
             if (particles) {
                 particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
@@ -1712,19 +1793,19 @@
         function triggerGlitch() {
             const glitch = document.getElementById('glitchLayer');
             const glitchColor = document.getElementById('glitchColorLayer');
-            
+
             if (glitch) {
                 glitch.classList.remove('active');
                 void glitch.offsetWidth;
                 glitch.classList.add('active');
             }
-            
+
             if (glitchColor) {
                 glitchColor.classList.remove('active');
                 void glitchColor.offsetWidth;
                 glitchColor.classList.add('active');
             }
-            
+
             const nextGlitch = Math.random() * 5000 + 3000;
             setTimeout(triggerGlitch, nextGlitch);
         }
