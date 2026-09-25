@@ -80,7 +80,6 @@
             100% { transform: translateY(110vh) translateX(80px) scale(0.3); opacity: 0; }
         }
 
-        /* ===== МАСШТАБИРУЕМЫЙ КОНТЕЙНЕР ===== */
         #main {
             transform-origin: center center;
             transition: transform 0.25s ease;
@@ -179,7 +178,6 @@
         }
         .tab-link.active::after { width: 100%; }
 
-        /* Кнопка настроек в шапке */
         .settings-btn {
             width: 44px;
             height: 44px;
@@ -1055,7 +1053,7 @@
         }
 
         /* ============================================
-           МОБИЛЬНАЯ ВЕРСИЯ — ПРИЯТНЕЕ И УДОБНЕЕ
+           МОБИЛЬНАЯ ВЕРСИЯ
            ============================================ */
         @media (max-width: 768px) {
             body {
@@ -1068,18 +1066,20 @@
                 padding: 0;
             }
 
-            /* Шапка — вертикальная компоновка */
+            /* Шапка — кнопка настроек в углу */
             .header {
                 flex-direction: column;
                 align-items: stretch;
                 gap: 16px;
                 margin-bottom: 24px;
                 padding: 0;
+                position: relative;
             }
 
             .logo-area {
                 justify-content: center;
                 flex-wrap: wrap;
+                padding-right: 60px;
             }
 
             .logo {
@@ -1095,7 +1095,7 @@
                 font-size: 0.6rem;
             }
 
-            /* Навигация — сетка на 2 колонки */
+            /* Навигация — сетка на 4 колонки */
             .nav-tabs {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -1126,20 +1126,22 @@
                 color: #b0d8ff;
             }
 
-            /* Кнопка настроек — на всю ширину */
+            /* Кнопка настроек — компактная в правом верхнем углу */
             .settings-btn {
-                width: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 44px;
                 height: 44px;
-                border-radius: 10px;
+                border-radius: 12px;
+                z-index: 10;
             }
 
-            /* Страницы — меньше padding */
             .tab-page {
                 padding: 24px 18px;
                 border-radius: 20px;
             }
 
-            /* Герой */
             .hero h1 {
                 font-size: 2.4rem;
                 letter-spacing: -0.5px;
@@ -1161,7 +1163,6 @@
                 margin-bottom: 16px;
             }
 
-            /* Кнопки — на всю ширину, крупнее */
             .actions {
                 flex-direction: column;
                 gap: 12px;
@@ -1175,169 +1176,56 @@
                 border-radius: 14px;
             }
 
-            /* Правила — увеличенные области нажатия */
-            .rules-wrapper {
-                gap: 10px;
-            }
-
-            .rules-section {
-                border-radius: 14px;
-            }
-
-            .rules-header {
-                padding: 16px 18px;
-                gap: 10px;
-            }
-
-            .rules-header h2 {
-                font-size: 0.9rem;
-                gap: 10px;
-                line-height: 1.3;
-            }
-
-            .rules-header .icon-svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .rules-header .arrow {
-                font-size: 0.7rem;
-            }
-
-            .rules-body {
-                padding: 0 18px;
-            }
-
-            .rules-body.open {
-                padding: 0 18px 16px 18px;
-            }
-
+            .rules-wrapper { gap: 10px; }
+            .rules-section { border-radius: 14px; }
+            .rules-header { padding: 16px 18px; gap: 10px; }
+            .rules-header h2 { font-size: 0.9rem; gap: 10px; line-height: 1.3; }
+            .rules-header .icon-svg { width: 20px; height: 20px; }
+            .rules-header .arrow { font-size: 0.7rem; }
+            .rules-body { padding: 0 18px; }
+            .rules-body.open { padding: 0 18px 16px 18px; }
             .rules-body .rule-item {
                 font-size: 0.85rem;
                 padding: 8px 0 8px 22px;
                 line-height: 1.55;
             }
 
-            /* Лор */
-            .info-block {
-                padding: 22px 18px;
-                border-radius: 18px;
-            }
+            .info-block { padding: 22px 18px; border-radius: 18px; }
+            .info-block h2 { font-size: 1.2rem; margin-bottom: 16px; }
+            .lore-story { font-size: 0.85rem; line-height: 1.8; }
+            .lore-story .year { font-size: 0.75rem; }
 
-            .info-block h2 {
-                font-size: 1.2rem;
-                margin-bottom: 16px;
-            }
+            .kpk-frame { padding: 10px; border-radius: 14px; }
+            .map-container { height: 280px; }
+            .map-controls { gap: 10px; margin-top: 12px; }
+            .map-btn { width: 48px; height: 48px; }
+            .map-btn svg { width: 22px; height: 22px; }
+            .map-hint { font-size: 0.7rem; margin-top: 10px; }
 
-            .lore-story {
-                font-size: 0.85rem;
-                line-height: 1.8;
-            }
+            .modal { padding: 24px 20px; border-radius: 18px; }
+            .modal h3 { font-size: 1.15rem; margin-bottom: 18px; }
+            .modal-close { top: 14px; right: 14px; }
 
-            .lore-story .year {
-                font-size: 0.75rem;
-            }
+            .slider-btn { width: 48px; height: 48px; font-size: 1.3rem; }
+            .slider-value { font-size: 1.05rem; }
 
-            /* Карта */
-            .kpk-frame {
-                padding: 10px;
-                border-radius: 14px;
-            }
+            .bg-upload-area { padding: 20px 16px; font-size: 0.8rem; }
+            .bg-reset-btn { padding: 14px; font-size: 0.85rem; }
 
-            .map-container {
-                height: 280px;
-            }
-
-            .map-controls {
-                gap: 10px;
-                margin-top: 12px;
-            }
-
-            .map-btn {
-                width: 48px;
-                height: 48px;
-            }
-
-            .map-btn svg {
-                width: 22px;
-                height: 22px;
-            }
-
-            .map-hint {
-                font-size: 0.7rem;
-                margin-top: 10px;
-            }
-
-            /* Модальное окно */
-            .modal {
-                padding: 24px 20px;
-                border-radius: 18px;
-            }
-
-            .modal h3 {
-                font-size: 1.15rem;
-                margin-bottom: 18px;
-            }
-
-            .modal-close {
-                top: 14px;
-                right: 14px;
-            }
-
-            /* Слайдеры */
-            .slider-btn {
-                width: 48px;
-                height: 48px;
-                font-size: 1.3rem;
-            }
-
-            .slider-value {
-                font-size: 1.05rem;
-            }
-
-            /* Загрузка фона */
-            .bg-upload-area {
-                padding: 20px 16px;
-                font-size: 0.8rem;
-            }
-
-            .bg-reset-btn {
-                padding: 14px;
-                font-size: 0.85rem;
-            }
-
-            /* Футер */
             .footer {
                 font-size: 0.68rem;
                 letter-spacing: 1px;
                 margin-top: 24px;
             }
 
-            /* Картинка зелёной зоны */
-            .green-zone-image {
-                padding: 8px;
-                margin: 10px 0;
-            }
-
-            .green-zone-image img {
-                max-width: 100%;
-            }
+            .green-zone-image { padding: 8px; margin: 10px 0; }
+            .green-zone-image img { max-width: 100%; }
         }
 
-        /* Очень маленькие телефоны */
         @media (max-width: 380px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .tab-link {
-                font-size: 0.65rem;
-                padding: 10px 2px;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .tab-link { font-size: 0.65rem; padding: 10px 2px; }
+            .logo { font-size: 1.5rem; }
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -1371,7 +1259,6 @@
 
         <div class="tab-content">
 
-            <!-- ======== ГЛАВНАЯ ======== -->
             <div id="main-tab" class="tab-page active">
                 <div class="hero">
                     <div class="hero-badge">⚡ Добро пожаловать</div>
@@ -1400,7 +1287,6 @@
                 </div>
             </div>
 
-            <!-- ======== ПРАВИЛА ======== -->
             <div id="rules" class="tab-page">
                 <div class="rules-wrapper">
 
@@ -1556,7 +1442,6 @@
                 </div>
             </div>
 
-            <!-- ======== ЛОР ======== -->
             <div id="lore" class="tab-page">
                 <div class="content-grid">
                     <div class="info-block">
@@ -1594,7 +1479,6 @@
                 </div>
             </div>
 
-            <!-- ======== КАРТА ======== -->
             <div id="map" class="tab-page">
                 <div style="text-align: center; margin-bottom: 16px;">
                     <h2 style="color: #a0c8f0; font-weight: 700; letter-spacing: 1px; font-size: 1.5rem;">🗺️ Карта Зоны</h2>
@@ -1688,9 +1572,6 @@
     </div>
 
     <script>
-        // ============================================================
-        // НАСТРОЙКИ
-        // ============================================================
         const FONT_STEPS = [0.8, 0.9, 1.0, 1.1, 1.25, 1.5, 1.75];
         const UI_STEPS = [0.85, 1.0, 1.15, 1.3];
 
@@ -1801,9 +1682,6 @@
             }
         }
 
-        // ============================================================
-        // СВОРАЧИВАНИЕ РАЗДЕЛОВ
-        // ============================================================
         function toggleSection(header) {
             const section = header.parentElement;
             const body = section.querySelector('.rules-body');
@@ -1818,9 +1696,6 @@
             }
         }
 
-        // ============================================================
-        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
-        // ============================================================
         const tabs = document.querySelectorAll('.tab-link');
         const pages = {
             main: document.getElementById('main-tab'),
@@ -1843,9 +1718,6 @@
             });
         });
 
-        // ============================================================
-        // КАРТА
-        // ============================================================
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
 
@@ -1994,9 +1866,6 @@
             }
         }, { passive: false });
 
-        // ============================================================
-        // ДИНАМИЧЕСКИЙ ФОН
-        // ============================================================
         document.addEventListener('mousemove', function(e) {
             const x = (e.clientX / window.innerWidth - 0.5) * 15;
             const y = (e.clientY / window.innerHeight - 0.5) * 15;
@@ -2008,9 +1877,6 @@
             }
         });
 
-        // ============================================================
-        // ГЛЮКИ
-        // ============================================================
         function triggerGlitch() {
             const glitch = document.getElementById('glitchLayer');
             const glitchColor = document.getElementById('glitchColorLayer');
@@ -2033,9 +1899,6 @@
 
         setTimeout(triggerGlitch, 2000);
 
-        // ============================================================
-        // ЧАСТИЦЫ
-        // ============================================================
         function createParticles() {
             const container = document.getElementById('particles-container');
             const count = 35;
@@ -2054,9 +1917,6 @@
             }
         }
 
-        // ============================================================
-        // ИНИЦИАЛИЗАЦИЯ
-        // ============================================================
         function init() {
             loadSettings();
             createParticles();
