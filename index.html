@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HLRP | Helkin Roleplay</title>
 
-    <!-- FAVICON .ICO -->
     <link rel="icon" href="fovicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="fovicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="fovicon.ico">
@@ -1052,130 +1051,26 @@
             border-color: rgba(255, 80, 80, 0.30);
         }
 
-        /* ============================================
-           МОБИЛЬНАЯ ВЕРСИЯ
-           ============================================ */
         @media (max-width: 768px) {
-            body {
-                padding: 12px;
-                align-items: flex-start;
-                padding-top: 20px;
-            }
-
-            .main-card {
-                padding: 0;
-            }
-
-            /* Шапка — кнопка настроек в углу */
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 16px;
-                margin-bottom: 24px;
-                padding: 0;
-                position: relative;
-            }
-
-            .logo-area {
-                justify-content: center;
-                flex-wrap: wrap;
-                padding-right: 60px;
-            }
-
-            .logo {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
-
-            .logo-img {
-                height: 32px;
-            }
-
-            .logo-sub {
-                font-size: 0.6rem;
-            }
-
-            /* Навигация — сетка на 4 колонки */
-            .nav-tabs {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-                width: 100%;
-                justify-content: stretch;
-            }
-
-            .tab-link {
-                font-size: 0.7rem;
-                padding: 12px 4px;
-                text-align: center;
-                letter-spacing: 0.5px;
-                background: rgba(2, 8, 18, 0.50);
-                border: 1px solid rgba(60, 140, 220, 0.06);
-                border-radius: 10px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                transition: 0.2s;
-            }
-
+            body { padding: 12px; align-items: flex-start; padding-top: 20px; }
+            .main-card { padding: 0; }
+            .header { flex-direction: column; align-items: stretch; gap: 16px; margin-bottom: 24px; padding: 0; position: relative; }
+            .logo-area { justify-content: center; flex-wrap: wrap; padding-right: 60px; }
+            .logo { font-size: 1.8rem; letter-spacing: 2px; }
+            .logo-img { height: 32px; }
+            .logo-sub { font-size: 0.6rem; }
+            .nav-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; justify-content: stretch; }
+            .tab-link { font-size: 0.7rem; padding: 12px 4px; text-align: center; letter-spacing: 0.5px; background: rgba(2, 8, 18, 0.50); border: 1px solid rgba(60, 140, 220, 0.06); border-radius: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: 0.2s; }
             .tab-link::after { display: none; }
-
-            .tab-link.active {
-                background: rgba(10, 40, 80, 0.85);
-                border-color: rgba(60, 140, 220, 0.25);
-                color: #b0d8ff;
-            }
-
-            /* Кнопка настроек — компактная в правом верхнем углу */
-            .settings-btn {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 44px;
-                height: 44px;
-                border-radius: 12px;
-                z-index: 10;
-            }
-
-            .tab-page {
-                padding: 24px 18px;
-                border-radius: 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.4rem;
-                letter-spacing: -0.5px;
-            }
-
-            .hero h2 {
-                font-size: 0.85rem;
-                letter-spacing: 4px;
-            }
-
-            .hero-desc {
-                font-size: 0.92rem;
-                margin: 20px auto 28px;
-            }
-
-            .hero-badge {
-                font-size: 0.6rem;
-                padding: 4px 16px;
-                margin-bottom: 16px;
-            }
-
-            .actions {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .btn-primary, .btn-social {
-                width: 100%;
-                padding: 16px 24px;
-                font-size: 0.9rem;
-                justify-content: center;
-                border-radius: 14px;
-            }
-
+            .tab-link.active { background: rgba(10, 40, 80, 0.85); border-color: rgba(60, 140, 220, 0.25); color: #b0d8ff; }
+            .settings-btn { position: absolute; top: 0; right: 0; width: 44px; height: 44px; border-radius: 12px; z-index: 10; }
+            .tab-page { padding: 24px 18px; border-radius: 20px; }
+            .hero h1 { font-size: 2.4rem; letter-spacing: -0.5px; }
+            .hero h2 { font-size: 0.85rem; letter-spacing: 4px; }
+            .hero-desc { font-size: 0.92rem; margin: 20px auto 28px; }
+            .hero-badge { font-size: 0.6rem; padding: 4px 16px; margin-bottom: 16px; }
+            .actions { flex-direction: column; gap: 12px; }
+            .btn-primary, .btn-social { width: 100%; padding: 16px 24px; font-size: 0.9rem; justify-content: center; border-radius: 14px; }
             .rules-wrapper { gap: 10px; }
             .rules-section { border-radius: 14px; }
             .rules-header { padding: 16px 18px; gap: 10px; }
@@ -1184,40 +1079,25 @@
             .rules-header .arrow { font-size: 0.7rem; }
             .rules-body { padding: 0 18px; }
             .rules-body.open { padding: 0 18px 16px 18px; }
-            .rules-body .rule-item {
-                font-size: 0.85rem;
-                padding: 8px 0 8px 22px;
-                line-height: 1.55;
-            }
-
+            .rules-body .rule-item { font-size: 0.85rem; padding: 8px 0 8px 22px; line-height: 1.55; }
             .info-block { padding: 22px 18px; border-radius: 18px; }
             .info-block h2 { font-size: 1.2rem; margin-bottom: 16px; }
             .lore-story { font-size: 0.85rem; line-height: 1.8; }
             .lore-story .year { font-size: 0.75rem; }
-
             .kpk-frame { padding: 10px; border-radius: 14px; }
             .map-container { height: 280px; }
             .map-controls { gap: 10px; margin-top: 12px; }
             .map-btn { width: 48px; height: 48px; }
             .map-btn svg { width: 22px; height: 22px; }
             .map-hint { font-size: 0.7rem; margin-top: 10px; }
-
             .modal { padding: 24px 20px; border-radius: 18px; }
             .modal h3 { font-size: 1.15rem; margin-bottom: 18px; }
             .modal-close { top: 14px; right: 14px; }
-
             .slider-btn { width: 48px; height: 48px; font-size: 1.3rem; }
             .slider-value { font-size: 1.05rem; }
-
             .bg-upload-area { padding: 20px 16px; font-size: 0.8rem; }
             .bg-reset-btn { padding: 14px; font-size: 0.85rem; }
-
-            .footer {
-                font-size: 0.68rem;
-                letter-spacing: 1px;
-                margin-top: 24px;
-            }
-
+            .footer { font-size: 0.68rem; letter-spacing: 1px; margin-top: 24px; }
             .green-zone-image { padding: 8px; margin: 10px 0; }
             .green-zone-image img { max-width: 100%; }
         }
@@ -1334,6 +1214,13 @@
                             <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
                             <div class="rule-item"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
                             <div class="rule-item"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
+                            <div class="rule-item"><strong>2.11.1.</strong> Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div>
+                            <div class="rule-item"><strong>2.12.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
+                            <div class="rule-item"><strong>2.13.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
+                            <div class="rule-item"><strong>2.14.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
+                            <div class="rule-item"><strong>2.15.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
+                            <div class="rule-item"><strong>2.16.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
+                            <div class="rule-item"><strong>2.17.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
                         </div>
                     </div>
 
@@ -1397,6 +1284,9 @@
                             <div class="rule-item"><strong>5.4.1.</strong> Рейд нельзя начать против группировки, которой нету на сервере, или если их количество в меньшинстве.</div>
                             <div class="rule-item"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
                             <div class="rule-item"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
+                            <div class="rule-item"><strong>5.7.1.</strong> Перед началом рейда нужно найти одну из причин нападения:</div>
+                            <div class="rule-item"><strong>1.</strong> Хищение одного из членов группировки.</div>
+                            <div class="rule-item"><strong>2.</strong> Если группировку выбили из её основной базы — они вправе её отбить.</div>
                         </div>
                     </div>
 
@@ -1425,17 +1315,14 @@
                                 <span class="icon-svg">
                                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                 </span>
-                                Раздел 7. Общие запреты
+                                Раздел 7. Мета-бойцы
                             </h2>
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>7.1.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
-                            <div class="rule-item"><strong>7.2.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
-                            <div class="rule-item"><strong>7.3.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
-                            <div class="rule-item"><strong>7.4.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
-                            <div class="rule-item"><strong>7.5.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
-                            <div class="rule-item"><strong>7.6.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
+                            <div class="rule-item"><strong>7.1.1.</strong> Мета-бойцы — это NPC (охрана базы для группировок), находятся на зелёной зоне (базе) фракций.</div>
+                            <div class="rule-item"><strong>7.2.1.</strong> Мета-бойцы исчезают при рейде или штурме.</div>
+                            <div class="rule-item"><strong>7.3.1.</strong> Из-за того что на территории ЗЗ находятся мета-бойцы, <span class="highlight">ЗАПРЕЩАЕТСЯ</span> нарушать правила ЗЗ. Нарушение этих правил расценивается как пауэргейминг.</div>
                         </div>
                     </div>
 
@@ -1522,7 +1409,6 @@
 
     </div>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО НАСТРОЕК ===== -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
             <button class="modal-close" onclick="closeSettings()">✕</button>
