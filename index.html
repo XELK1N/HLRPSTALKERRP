@@ -597,6 +597,7 @@
         .rules-section:nth-child(8) { animation-delay: 0.30s; }
         .rules-section:nth-child(9) { animation-delay: 0.34s; }
         .rules-section:nth-child(10) { animation-delay: 0.38s; }
+        .rules-section:nth-child(11) { animation-delay: 0.42s; }
 
         .rules-header {
             padding: 1.05rem 1.5rem 1.05rem 1.7rem;
@@ -735,6 +736,49 @@
             color: var(--ink-3);
             text-align: center;
         }
+
+        /* ===== НАКАЗАНИЯ ===== */
+        .rule-item[data-pun]::after {
+            display: table;
+            margin-top: 0.5rem;
+            font-family: var(--f-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.4;
+            padding: 0.12rem 0.7rem;
+            border-radius: 3px;
+            border: 1px solid var(--c);
+            background: var(--bg-c);
+            color: var(--c);
+        }
+
+        .rule-item[data-pun="w"]  { --c: #8cc4ff; --bg-c: rgba(140, 196, 255, 0.10); }
+        .rule-item[data-pun="1"]  { --c: #f0c05a; --bg-c: rgba(240, 192, 90, 0.10); }
+        .rule-item[data-pun="3"]  { --c: #f0a24a; --bg-c: rgba(240, 162, 74, 0.10); }
+        .rule-item[data-pun="7"]  { --c: #ff8a55; --bg-c: rgba(255, 138, 85, 0.11); }
+        .rule-item[data-pun="14"] { --c: #ff6b4a; --bg-c: rgba(255, 107, 74, 0.12); }
+        .rule-item[data-pun="p"]  { --c: #ff4d5e; --bg-c: rgba(255, 77, 94, 0.13); }
+
+        .rule-item[data-pun="w"]::after  { content: "Предупреждение"; }
+        .rule-item[data-pun="1"]::after  { content: "Бан на 1 день"; }
+        .rule-item[data-pun="3"]::after  { content: "Бан на 3 дня"; }
+        .rule-item[data-pun="7"]::after  { content: "Бан на 7 дней"; }
+        .rule-item[data-pun="14"]::after { content: "Бан на 14 дней"; }
+        .rule-item[data-pun="p"]::after  { content: "Перманентный бан"; }
+
+        .rules-note {
+            margin-bottom: 1.1rem;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid rgba(240, 192, 90, 0.35);
+            border-left: 3px solid #f0c05a;
+            border-radius: 4px;
+            background: rgba(240, 192, 90, 0.07);
+            color: var(--ink);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .rules-note p + p { margin-top: 0.35rem; }
 
         /* ===== КАРТА ===== */
         .kpk-frame {
@@ -1327,6 +1371,11 @@
                     <button class="tool-btn" type="button" id="expandAll">Развернуть все</button>
                     <button class="tool-btn" type="button" id="collapseAll">Свернуть все</button>
                 </div>
+                <div class="rules-note">
+                    <p>Если вы получите 3 предупреждения, администрация может выдать вам бан по своему усмотрению.</p>
+                    <p>Перманентный бан выдаётся за использование читов, за слишком частое использование багов игры, а также если вы получили бан 3 раза.</p>
+                    <p>Не согласны с наказанием — подайте апелляцию в специальном канале на Discord-сервере проекта.</p>
+                </div>
                 <div class="rules-empty" id="rulesEmpty">Ничего не найдено. Попробуйте другое слово.</div>
                 <div class="rules-wrapper">
 
@@ -1343,8 +1392,8 @@
                         <div class="rules-body">
                             <div class="rule-item"><strong>1.1.1.</strong> Сталкер РП на нашем проекте строго с <span class="highlight">16 лет</span>. Если вы младше, но готовы серьёзно играть и относиться ко всему с ответственностью — мы можем вас принять.</div>
                             <div class="rule-item"><strong>1.2.1.</strong> Согласно лору сервера — текущий год и вся хронология событий описаны в разделе <span class="highlight">«Лор»</span>. Настоятельно рекомендуем ознакомиться с ним перед началом игры.</div>
-                            <div class="rule-item"><strong>1.3.1.</strong> Если у вас отсутствует микрофон или он ужасного качества — стоит понимать, что вы портите игровой процесс другим людям.</div>
-                            <div class="rule-item"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны (например, имена поп-звёзд, политиков, мемов).</div>
+                            <div class="rule-item" data-pun="w"><strong>1.3.1.</strong> Если у вас отсутствует микрофон или он ужасного качества — стоит понимать, что вы портите игровой процесс другим людям.</div>
+                            <div class="rule-item" data-pun="w"><strong>1.4.1.</strong> Запрещено использовать ники, оскорбляющие других игроков или нарушающие атмосферу Зоны (например, имена поп-звёзд, политиков, мемов).</div>
                             <div class="rule-item"><strong>1.5.1.</strong> Перед началом игры рекомендуется ознакомиться с лором сервера и основными группировками — это поможет глубже погрузиться в атмосферу и избежать случайных нарушений.</div>
                         </div>
                     </div>
@@ -1360,28 +1409,28 @@
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP. Запрещены действия, не соответствующие вашей роли и реальности игрового мира. Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.</div>
+                            <div class="rule-item" data-pun="1"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP. Запрещены действия, не соответствующие вашей роли и реальности игрового мира. Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.</div>
                             <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Проект старается придерживаться канона, поэтому любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
-                            <div class="rule-item"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения после написания используйте <span class="highlight">«//»</span>. Например: <span class="example">«Админ нужна помощь//»</span></div>
-                            <div class="rule-item"><strong>2.2.1. DM (Death Match)</strong> — убийство другого игрока без РП-причины. Например: вы встретили игрока вражеской группировки, однако вы находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения после написания используйте <span class="highlight">«//»</span>. Например: <span class="example">«Админ нужна помощь//»</span></div>
+                            <div class="rule-item" data-pun="7"><strong>2.2.1. DM (Death Match)</strong> — убийство другого игрока без РП-причины. Например: вы встретили игрока вражеской группировки, однако вы находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</div>
                             <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас на сервере (в РП-процессе), то вы имеете право убить его, даже если он полностью безоружен.</div>
-                            <div class="rule-item"><strong>2.3.2.</strong> Однако если людей много или 1, но с направленным оружием — вы уже нарушаете правило <span class="highlight">Пауэргейминг</span>.</div>
-                            <div class="rule-item"><strong>2.4.1. Пауэргейминг (Powergaming)</strong> — действие, где игрок описывает/совершает нечто нереалистичное (мгновенное убийство без причины или игнорирование окружения). Нарушает правило реализма.</div>
-                            <div class="rule-item"><strong>2.5.1. Метагейминг (MG)</strong> — применение информации, полученной нон-рп путём (например, из Telegram или Discord в нон-рп чатах).</div>
-                            <div class="rule-item"><strong>2.6.1. Спавнкилл (Spawn Kill)</strong> — убийство на спавне группировок или сталкеров. Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право его убить или он вас.</div>
-                            <div class="rule-item"><strong>2.6.2.</strong> Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда. (Подробные правила рейдов — ниже).</div>
-                            <div class="rule-item"><strong>2.7.1. Горный геймплей (Mountain Play)</strong> — запрещено залазить на горы и передвигаться по ним, а тем более вести из них огонь (касается только очень больших гор, которые определяют границы карты).</div>
-                            <div class="rule-item"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
-                            <div class="rule-item"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
-                            <div class="rule-item"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
-                            <div class="rule-item"><strong>2.11.1.</strong> Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div>
-                            <div class="rule-item"><strong>2.12.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
-                            <div class="rule-item"><strong>2.13.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
-                            <div class="rule-item"><strong>2.14.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
-                            <div class="rule-item"><strong>2.15.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
-                            <div class="rule-item"><strong>2.16.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
-                            <div class="rule-item"><strong>2.17.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
-                            <div class="rule-item"><strong>2.18.1.</strong> Запрещено в РП-процессе называть друг друга по никнейму.</div>
+                            <div class="rule-item" data-pun="1"><strong>2.3.2.</strong> Однако если людей много или 1, но с направленным оружием — вы уже нарушаете правило <span class="highlight">Пауэргейминг</span>.</div>
+                            <div class="rule-item" data-pun="1"><strong>2.4.1. Пауэргейминг (Powergaming)</strong> — действие, где игрок описывает/совершает нечто нереалистичное (мгновенное убийство без причины или игнорирование окружения). Нарушает правило реализма.</div>
+                            <div class="rule-item" data-pun="3"><strong>2.5.1. Метагейминг (MG)</strong> — применение информации, полученной нон-рп путём (например, из Telegram или Discord в нон-рп чатах).</div>
+                            <div class="rule-item" data-pun="3"><strong>2.6.1. Спавнкилл (Spawn Kill)</strong> — убийство на спавне группировок или сталкеров. Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право его убить или он вас.</div>
+                            <div class="rule-item" data-pun="1"><strong>2.6.2.</strong> Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда. (Подробные правила рейдов — ниже).</div>
+                            <div class="rule-item" data-pun="1"><strong>2.7.1. Горный геймплей (Mountain Play)</strong> — запрещено залазить на горы и передвигаться по ним, а тем более вести из них огонь (касается только очень больших гор, которые определяют границы карты).</div>
+                            <div class="rule-item" data-pun="1"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.11.1.</strong> Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div>
+                            <div class="rule-item" data-pun="p"><strong>2.12.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
+                            <div class="rule-item" data-pun="3"><strong>2.13.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
+                            <div class="rule-item" data-pun="1"><strong>2.14.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.15.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
+                            <div class="rule-item" data-pun="1"><strong>2.16.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
+                            <div class="rule-item" data-pun="w"><strong>2.17.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
+                            <div class="rule-item" data-pun="w"><strong>2.18.1.</strong> Запрещено в РП-процессе называть друг друга по никнейму.</div>
                         </div>
                     </div>
 
@@ -1398,9 +1447,9 @@
                         <div class="rules-body">
                             <div class="rule-item"><strong>3.1.1.</strong> Предупредительным выстрелом считается, когда игрок стреляет в сторону врага, либо в небо, либо под ноги.</div>
                             <div class="rule-item"><strong>3.2.1.</strong> Если после предупредительного выстрела убегающий человек не останавливается через <span class="highlight">5 секунд</span> — вы можете его убивать.</div>
-                            <div class="rule-item"><strong>3.3.1.</strong> Предупредительный выстрел по машине осуществляется по колёсам транспортного средства и имеет такие же правила, как и по людям.</div>
-                            <div class="rule-item"><strong>3.4.1.</strong> Если в машине находятся пассажиры — предупредительный выстрел делается по капоту или колёсам. Стрельба по салону без предупреждения считается DM.</div>
-                            <div class="rule-item"><strong>3.5.1.</strong> Запрещено делать более одного предупредительного выстрела в одного и того же игрока в течение короткого времени — это считается фейковым РП.</div>
+                            <div class="rule-item" data-pun="w"><strong>3.3.1.</strong> Предупредительный выстрел по машине осуществляется по колёсам транспортного средства и имеет такие же правила, как и по людям.</div>
+                            <div class="rule-item" data-pun="7"><strong>3.4.1.</strong> Если в машине находятся пассажиры — предупредительный выстрел делается по капоту или колёсам. Стрельба по салону без предупреждения считается DM.</div>
+                            <div class="rule-item" data-pun="w"><strong>3.5.1.</strong> Запрещено делать более одного предупредительного выстрела в одного и того же игрока в течение короткого времени — это считается фейковым РП.</div>
                         </div>
                     </div>
 
@@ -1422,9 +1471,9 @@
                                 <div class="caption">Пример зелёной зоны (КПП военных)</div>
                             </div>
 
-                            <div class="rule-item"><strong>4.2.1.</strong> На территории зелёной зоны можно проводить кулачные бои, но только после одобрения главного на территории ЗЗ.</div>
-                            <div class="rule-item"><strong>4.3.1.</strong> Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div>
-                            <div class="rule-item"><strong>4.4.1.</strong> Провокации, оскорбления и угрозы в зелёной зоне разрешены, но любые боевые действия (даже ответные) караются баном. Если вас оскорбляют — вызывайте администратора.</div>
+                            <div class="rule-item" data-pun="w"><strong>4.2.1.</strong> На территории зелёной зоны можно проводить кулачные бои, но только после одобрения главного на территории ЗЗ.</div>
+                            <div class="rule-item" data-pun="w"><strong>4.3.1.</strong> Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div>
+                            <div class="rule-item" data-pun="7"><strong>4.4.1.</strong> Провокации, оскорбления и угрозы в зелёной зоне разрешены, но любые боевые действия (даже ответные) караются баном. Если вас оскорбляют — вызывайте администратора.</div>
                         </div>
                     </div>
 
@@ -1439,18 +1488,22 @@
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>5.1.1.</strong> Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере.</div>
-                            <div class="rule-item"><strong>5.2.1.</strong> Во время рейда или штурма запрещается покидать место столкновения.</div>
-                            <div class="rule-item"><strong>5.3.1.</strong> После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div>
-                            <div class="rule-item"><strong>5.4.1.</strong> Для начала рейда необходимо, чтобы в сети находились минимум по <span class="highlight">3 человека</span> от каждой воюющей группировки.</div>
-                            <div class="rule-item"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
-                            <div class="rule-item"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
-                            <div class="rule-item"><strong>5.7.1.</strong> Перед началом рейда нужно найти одну из причин нападения:</div>
+                            <div class="rule-item" data-pun="14"><strong>5.1.1.</strong> Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div>
+                            <div class="rule-item" data-pun="1"><strong>5.2.1.</strong> Во время рейда или штурма запрещается покидать место столкновения.</div>
+                            <div class="rule-item" data-pun="1"><strong>5.3.1.</strong> После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div>
+                            <div class="rule-item" data-pun="7"><strong>5.4.1.</strong> Для начала рейда необходимо, чтобы в сети находились минимум по <span class="highlight">3 человека</span> от каждой воюющей группировки.</div>
+                            <div class="rule-item" data-pun="3"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
+                            <div class="rule-item" data-pun="3"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
+                            <div class="rule-item" data-pun="7"><strong>5.7.1.</strong> Перед началом рейда нужно найти одну из причин нападения:</div>
                             <div class="rule-item"><strong>1.</strong> Официальная война между группировками.</div>
                             <div class="rule-item"><strong>2.</strong> Экономический ущерб.</div>
                             <div class="rule-item"><strong>3.</strong> Захват стратегически важных объектов.</div>
                             <div class="rule-item"><strong>4.</strong> Ответная мера.</div>
                             <div class="rule-item"><strong>5.</strong> Конфликты в РП.</div>
+                            <div class="rule-item"><strong>5.8.1.</strong> Если с обороняющейся стороны начинается стрельба, атакующая сторона вправе начать рейд досрочно, не дожидаясь окончания <span class="highlight">5 минут</span> из п. 5.5.1.</div>
+                            <div class="rule-item" data-pun="w"><strong>5.9.1.</strong> Время объявления рейда и время его начала должны быть зафиксированы скриншотом, а желательно и видео.</div>
+                            <div class="rule-item" data-pun="7"><strong>5.10.1.</strong> Помогать в рейде могут только те, с кем у группировки <span class="highlight">официально дружеские отношения</span>. Сталкеры помогать не могут. Исключение — сталкеры, которые часто контактируют с этой группировкой.</div>
+                            <div class="rule-item" data-pun="3"><strong>5.11.1.</strong> Разрешён только <span class="highlight">1 рейд</span> на одну группировку за одну сессию.</div>
                         </div>
                     </div>
 
@@ -1465,11 +1518,11 @@
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item"><strong>6.1.1.</strong> Одиночкам запрещено проводить гоп-стопы в любом виде.</div>
-                            <div class="rule-item"><strong>6.2.1.</strong> Гоп-стоп может совершиться только если в группе тех, кто собирается гоп-стопить, не менее <span class="highlight">3-х человек</span>.</div>
-                            <div class="rule-item"><strong>6.3.1.</strong> При гоп-стопе запрещено отбирать всё имущество жертвы — максимум <span class="highlight">2 предмета</span> или оружие с патронами. Полный обдир считается NRP.</div>
-                            <div class="rule-item"><strong>6.4.1.</strong> Если жертва оказывает сопротивление и погибает — гоп-стоп считается завершённым. Добивать лежачего без причины запрещено.</div>
-                            <div class="rule-item"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
+                            <div class="rule-item" data-pun="3"><strong>6.1.1.</strong> Одиночкам запрещено проводить гоп-стопы в любом виде.</div>
+                            <div class="rule-item" data-pun="3"><strong>6.2.1.</strong> Гоп-стоп может совершиться только если в группе тех, кто собирается гоп-стопить, не менее <span class="highlight">2-х человек</span>.</div>
+                            <div class="rule-item" data-pun="3"><strong>6.3.1.</strong> При гоп-стопе запрещено отбирать всё имущество жертвы — максимум <span class="highlight">2 предмета</span> или оружие с патронами. Полный обдир считается NRP.</div>
+                            <div class="rule-item" data-pun="1"><strong>6.4.1.</strong> Если жертва оказывает сопротивление и погибает — гоп-стоп считается завершённым. Добивать лежачего без причины запрещено.</div>
+                            <div class="rule-item" data-pun="3"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
                         </div>
                     </div>
 
@@ -1486,7 +1539,7 @@
                         <div class="rules-body">
                             <div class="rule-item"><strong>7.1.1.</strong> Мета-бойцы — это NPC (охрана базы для группировок), находятся на зелёной зоне (базе) фракций.</div>
                             <div class="rule-item"><strong>7.2.1.</strong> Мета-бойцы исчезают при рейде или штурме.</div>
-                            <div class="rule-item"><strong>7.3.1.</strong> Из-за того что на территории ЗЗ находятся мета-бойцы, <span class="highlight">ЗАПРЕЩАЕТСЯ</span> нарушать правила ЗЗ. Нарушение этих правил расценивается как пауэргейминг.</div>
+                            <div class="rule-item" data-pun="3"><strong>7.3.1.</strong> Из-за того что на территории ЗЗ находятся мета-бойцы, <span class="highlight">ЗАПРЕЩАЕТСЯ</span> нарушать правила ЗЗ. Нарушение этих правил расценивается как пауэргейминг.</div>
                         </div>
                     </div>
 <div class="rules-section">
@@ -1501,21 +1554,23 @@
     </div>
     <div class="rules-body">
         <div class="rule-item"><strong>8.1. Основное положение</strong></div>
-        <div class="rule-item"><strong>8.1.1.</strong> Покинуть группировку или перейти в другую можно только после <span class="highlight">3-х дней</span> нахождения в ней. Исключение: если вы лидер или заместитель — вы должны найти себе замену и продержаться на посту не менее <span class="highlight">5 дней</span>.</div>
+        <div class="rule-item" data-pun="1"><strong>8.1.1.</strong> Покинуть группировку или перейти в другую можно только после <span class="highlight">3-х дней</span> нахождения в ней. Исключение: если вы лидер или заместитель — вы должны найти себе замену и продержаться на посту не менее <span class="highlight">5 дней</span>.</div>
         <div class="rule-item"><strong>8.1.2.</strong> Монолит враждебен абсолютно ко всем группировкам.</div>
         <div class="rule-item"><strong>8.1.3.</strong> Если ваша группировка находится в состоянии войны с другой группировкой, вы вправе открыть огонь по её членам при встрече. Исключение — зелёные зоны, где действуют правила раздела 4.</div>
         <div class="rule-item"><strong>8.2. Дезертирство</strong></div>
         <div class="rule-item"><strong>8.2.1.</strong> Дезертирство — это самовольный, несогласованный с командованием уход из группировки, побег с поста, переход к врагу или исчезновение без предупреждения. Обычный выход по договорённости с лидером дезертирством не считается.</div>
-        <div class="rule-item"><strong>8.2.2.</strong> Дезертир обязан отыграть уход в IC: побег, подстава, конфликт с командиром, переход на сторону врага. Просто выйти из фракции в меню — <span class="highlight">запрещено</span>.</div>
-        <div class="rule-item"><strong>8.2.3.</strong> Запрещено дезертировать:
+        <div class="rule-item" data-pun="1"><strong>8.2.2.</strong> Дезертир обязан отыграть уход в IC: побег, подстава, конфликт с командиром, переход на сторону врага. Просто выйти из фракции в меню — <span class="highlight">запрещено</span>.</div>
+        <div class="rule-item" data-pun="3"><strong>8.2.3.</strong> Запрещено дезертировать:
             <span class="example">— во время обороны базы или рейда;</span>
             <span class="example">— в течение 3 дней после вступления в группировку;</span>
             <span class="example">— находясь под арестом;</span>
             <span class="example">— ради обхода наказания, троллинга или слива информации (метагейм).</span>
         </div>
-        <div class="rule-item"><strong>8.2.4.</strong> Если дезертир забирает с собой имущество группировки (оружие, броню, деньги, документы) — это считается кражей и усиливает последствия.</div>
+        <div class="rule-item" data-pun="14"><strong>8.2.4.</strong> Если дезертир забирает с собой имущество группировки (оружие, броню, деньги, документы) — это считается кражей и усиливает последствия.</div>
         <div class="rule-item"><strong>8.2.5.</strong> Последствия для дезертира: розыск (КОС-статус), потеря званий и доступов, месть со стороны бывших товарищей, требование выдачи у новой фракции. Амнистия возможна только через РП: выкуп, услуга, возврат имущества или решение лидера.</div>
         <div class="rule-item"><strong>8.2.6.</strong> Если члена группировки взяли в плен и заставили принудительно войти в состав вражеской группировки, то другие члены группировки могут вызволить товарища и вернуть к себе.</div>
+        <div class="rule-item"><strong>8.3. Плен</strong></div>
+        <div class="rule-item" data-pun="3"><strong>8.3.1.</strong> У пленного можно отобрать только оружие, рацию и другие предметы, которые могут навредить.</div>
     </div>
 </div>
                     <div class="rules-section">
@@ -1530,13 +1585,20 @@
     </div>
     <div class="rules-body">
         <div class="rule-item"><strong>9.1.1. РПК (RPK, Role Play Kill)</strong> — это ролевая смерть персонажа, которая приводит к его перманентной (необратимой) гибели без возможности возрождения. Это крайняя мера, которая применяется по решению администрации сервера как следствие серьёзных ролевых нарушений.</div>
-        <div class="rule-item"><strong>9.2.1.</strong> Для совершения РПК требуется не менее <span class="highlight">2 членов группировки</span>, а сам приговор должен быть записан (зафиксирован на видео/в КПК).</div>
-        <div class="rule-item"><strong>9.3.1.</strong> РПК можно провести только по нескольким причинам:</div>
+        <div class="rule-item"><strong>9.1.2.</strong> РПК — это не убийство в перестрелке, а ролевая казнь по приговору. Она проводится только по одной из причин из п. 9.3.1 и считается действительной лишь после <span class="highlight">одобрения администрации</span>. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div>
+        <div class="rule-item" data-pun="14"><strong>9.2.1.</strong> Для совершения РПК требуется не менее <span class="highlight">2 членов группировки</span>, а сам приговор должен быть записан на камеру (подробный порядок — в пп. 9.4.1–9.4.4).</div>
+        <div class="rule-item" data-pun="14"><strong>9.3.1.</strong> РПК можно провести только по нескольким причинам:</div>
         <div class="rule-item"><strong>1.</strong> Предательство группировки.</div>
         <div class="rule-item"><strong>2.</strong> Крупный долг.</div>
         <div class="rule-item"><strong>3.</strong> Нападение на группировку.</div>
         <div class="rule-item"><strong>4.</strong> Месть за своего напарника.</div>
         <div class="rule-item"><strong>5.</strong> Угроза раскрытия секрета.</div>
+        <div class="rule-item" data-pun="14"><strong>9.4.1.</strong> Администрация одобряет РПК только тогда, когда жертвы <span class="highlight">связаны и стоят возле стены</span>, а перед ними зачитывают приговор на камеру.</div>
+        <div class="rule-item" data-pun="7"><strong>9.4.2.</strong> Приговор должен быть зачитан вслух и содержать причину РПК из списка в п. 9.3.1.</div>
+        <div class="rule-item" data-pun="7"><strong>9.4.3.</strong> Длина записи — <span class="highlight">от 1 до 3 минут</span>. Слишком короткая запись (меньше 1 минуты) и запись длиннее 3 минут не принимаются.</div>
+        <div class="rule-item" data-pun="1"><strong>9.4.4.</strong> Запись приговора нужно отправить администратору сразу после завершения РП-сессии.</div>
+        <div class="rule-item" data-pun="3"><strong>9.5.1.</strong> После РПК нельзя вступать в группировки в течение <span class="highlight">3 дней</span>.</div>
+        <div class="rule-item"><strong>9.6.1.</strong> После РПК игрок может сразу создать нового персонажа. Группировка и позывной погибшего персонажа стираются.</div>
     </div>
 </div>
 
@@ -1552,8 +1614,36 @@
     </div>
     <div class="rules-body">
         <div class="rule-item"><strong>10.1.1.</strong> Амнезиак — это общее название препаратов, используемых для стирания или изменения памяти.</div>
-        <div class="rule-item"><strong>10.2.1.</strong> Человек, получивший дозу амнезиака, теряет сознание и забывает всё, что с ним произошло за последние <span class="highlight">30 минут</span> (забываются все знакомства и происшествия в течение 30 минут).</div>
-        <div class="rule-item"><strong>10.3.1.</strong> Игрок, который вкалывает кому-либо амнезиак, должен проговорить, что он сейчас сделает и как это повлияет на того, кому вкалывают амнезиак.</div>
+        <div class="rule-item" data-pun="3"><strong>10.2.1.</strong> Человек, получивший дозу амнезиака, теряет сознание и забывает всё, что с ним произошло за последние <span class="highlight">30 минут</span> (забываются все знакомства и происшествия в течение 30 минут).</div>
+        <div class="rule-item" data-pun="w"><strong>10.3.1.</strong> Игрок, который вкалывает кому-либо амнезиак, должен проговорить, что он сейчас сделает и как это повлияет на того, кому вкалывают амнезиак.</div>
+    </div>
+</div>
+
+<div class="rules-section">
+    <div class="rules-header" onclick="toggleSection(this)">
+        <h2>
+            <span class="icon-svg">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+            </span>
+            Раздел 11. Правила смерти
+        </h2>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="rules-body">
+        <div class="rule-item"><strong>11.1. Общие положения</strong></div>
+        <div class="rule-item" data-pun="3"><strong>11.1.1.</strong> После смерти ваш персонаж забывает обстоятельства и причину смерти.</div>
+        <div class="rule-item" data-pun="7"><strong>11.1.2.</strong> Запрещено использовать информацию, полученную до смерти, против убийцы или его группировки (в том числе его имя, внешность и место, где вас убили). Это называется метагейминг и наказывается.</div>
+        <div class="rule-item" data-pun="3"><strong>11.1.3.</strong> После смерти персонаж забывает всё, что произошло за последние <span class="highlight">15 минут</span> до гибели.</div>
+        <div class="rule-item" data-pun="1"><strong>11.1.4.</strong> После смерти вы обязаны вернуться на точку возрождения или в место, указанное правилами сервера, и не имеете права возвращаться на место смерти в течение <span class="highlight">15 минут</span>.</div>
+        <div class="rule-item"><strong>11.2. Мародёрство и имущество</strong></div>
+        <div class="rule-item" data-pun="w"><strong>11.2.1.</strong> Запрещено требовать возврата потерянных вещей, если смерть произошла по правилам RP.</div>
+        <div class="rule-item"><strong>11.3. Новая жизнь</strong></div>
+        <div class="rule-item" data-pun="3"><strong>11.3.1.</strong> После возрождения вы продолжаете играть за прежнего персонажа «с чистого листа» и без воспоминаний о смерти.</div>
+        <div class="rule-item" data-pun="7"><strong>11.3.2.</strong> Нельзя мстить за прошлую смерть, ссылаясь на знания из прошлой жизни.</div>
+        <div class="rule-item" data-pun="7"><strong>11.3.3.</strong> Запрещено намеренно умирать ради телепортации, быстрого возрождения или обхода игровых механик.</div>
+        <div class="rule-item"><strong>11.4. Исключения</strong></div>
+        <div class="rule-item"><strong>11.4.1.</strong> Если смерть произошла из-за бага, вылета или вины администрации, обратитесь в поддержку. Решение о возврате вещей принимает администратор. В таком случае вы можете вернуться на место смерти и откатить ситуацию, а ограничение из п. 11.1.4 не действует. <span class="highlight">Исключение:</span> если это произошло во время рейда, возврат на место и откат ситуации запрещены.</div>
+        <div class="rule-item"><strong>11.4.2.</strong> Смерть от рук читера или нарушителя правил не считается RP-смертью. Подайте жалобу с доказательствами (запись, скриншоты).</div>
     </div>
 </div>
 
@@ -2041,69 +2131,4 @@
                 const m = t.textContent.trim().match(/^Раздел\s+(\d+)\.\s*(.*)$/);
                 if (!m) return;
                 const wrap = document.createElement('span');
-                wrap.className = 'sec-title';
-                const no = document.createElement('span');
-                no.className = 'sec-no';
-                no.textContent = m[1].padStart(2, '0');
-                const name = document.createElement('span');
-                name.className = 'sec-name';
-                name.textContent = m[2];
-                wrap.append(no, name);
-                h.replaceChild(wrap, t);
-            });
-
-            const sections = document.querySelectorAll('.rules-section');
-            const empty = document.getElementById('rulesEmpty');
-
-            function setAll(open) {
-                sections.forEach(sec => {
-                    sec.querySelector('.rules-body').classList.toggle('open', open);
-                    sec.querySelector('.arrow').classList.toggle('open', open);
-                });
-            }
-
-            document.getElementById('expandAll').addEventListener('click', () => setAll(true));
-            document.getElementById('collapseAll').addEventListener('click', () => setAll(false));
-
-            document.getElementById('rulesSearch').addEventListener('input', function () {
-                const q = this.value.trim().toLowerCase();
-                let found = 0;
-                sections.forEach(sec => {
-                    const items = sec.querySelectorAll('.rule-item');
-                    const pics = sec.querySelectorAll('.green-zone-image');
-                    const body = sec.querySelector('.rules-body');
-                    const arrow = sec.querySelector('.arrow');
-                    if (!q) {
-                        sec.style.display = '';
-                        items.forEach(i => { i.style.display = ''; i.classList.remove('match'); });
-                        pics.forEach(p => { p.style.display = ''; });
-                        return;
-                    }
-                    let hits = 0;
-                    items.forEach(i => {
-                        const hit = i.textContent.toLowerCase().includes(q);
-                        i.style.display = hit ? '' : 'none';
-                        i.classList.toggle('match', hit);
-                        if (hit) hits++;
-                    });
-                    pics.forEach(p => { p.style.display = 'none'; });
-                    sec.style.display = hits ? '' : 'none';
-                    body.classList.toggle('open', hits > 0);
-                    arrow.classList.toggle('open', hits > 0);
-                    found += hits;
-                });
-                empty.classList.toggle('show', q !== '' && found === 0);
-            });
-        }
-
-        function init() {
-            loadSettings();
-            createParticles();
-            setupRulesUI();
-        }
-
-        init();
-    </script>
-
-</body>
-</html>
+                wrap.className = 'sec-title'
