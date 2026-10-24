@@ -1304,6 +1304,174 @@
             }
             .particle, .kpk-scanline { display: none; }
         }
+
+        /* ===== АККАУНТ, БАЛАНС ХЛС И МАГАЗИН ===== */
+        [hidden] { display: none !important; }
+
+        .nav-tabs { gap: 1.5rem; }
+
+        .account { display: flex; align-items: center; margin-left: 0.4rem; }
+
+        .btn-sm { --cut: 8px; padding: 0.55rem 1.1rem; font-size: 0.95rem; gap: 0.55rem; white-space: nowrap; }
+
+        .acc-user {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.3rem 0.35rem 0.3rem 0.3rem;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .acc-ava {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background-color: var(--blue-deep);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-display);
+            font-size: 1.1rem;
+            color: var(--blue-2);
+        }
+
+        .acc-meta { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+
+        .acc-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink);
+            max-width: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .acc-bal { font-family: var(--f-mono); font-size: 0.75rem; color: var(--blue-2); white-space: nowrap; }
+
+        .acc-out {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background: rgba(2, 8, 18, 0.6);
+            border: 1px solid var(--line);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.25s;
+        }
+
+        .acc-out svg { width: 17px; height: 17px; fill: var(--ink-3); transition: fill 0.25s; }
+        .acc-out:hover { background: rgba(255, 80, 80, 0.12); border-color: rgba(255, 80, 80, 0.35); }
+        .acc-out:hover svg { fill: #ff9b9b; }
+
+        .wallet {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.2rem 2rem;
+            flex-wrap: wrap;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 1.6rem;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--blue);
+            border-radius: 6px;
+        }
+
+        .wallet-guest p { margin-bottom: 0.9rem; color: var(--ink-2); max-width: 46ch; line-height: 1.6; }
+        .wallet-label { font-size: 0.9rem; color: var(--ink-3); margin-bottom: 0.3rem; }
+
+        .wallet-amount { display: flex; align-items: baseline; gap: 0.6rem; font-family: var(--f-display); }
+
+        .wallet-amount b {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .wallet-amount span { font-size: 1.2rem; letter-spacing: 0.1em; color: var(--blue); }
+
+        .wallet-status { font-size: 0.85rem; color: var(--ink-3); margin-top: 0.5rem; min-height: 1.3em; }
+        .wallet-status.err { color: #ff9b9b; }
+
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+
+        .shop-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 1.1rem 1.2rem;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .shop-card h3 { font-family: var(--f-display); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.03em; color: var(--ink); }
+        .shop-card p { flex: 1; font-size: 0.92rem; line-height: 1.6; color: var(--ink-3); }
+        .shop-price { font-family: var(--f-display); font-size: 1.15rem; color: var(--blue-2); }
+        .shop-card .tool-btn[disabled], .wallet .tool-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+        .shop-empty {
+            text-align: center;
+            padding: 2.4rem 1rem;
+            color: var(--ink-3);
+            border: 1px dashed var(--line-2);
+            border-radius: 6px;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            z-index: 1200;
+            max-width: calc(100% - 32px);
+            padding: 0.8rem 1.2rem;
+            background: rgba(6, 14, 26, 0.98);
+            border: 1px solid var(--line-2);
+            border-radius: 6px;
+            color: var(--ink);
+            font-size: 0.9rem;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7);
+            transform: translate(-50%, 20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
+
+        .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+        .btn-sm:focus-visible, .acc-out:focus-visible, .tool-btn:focus-visible, .tab-link:focus-visible {
+            outline: 2px solid var(--blue-2);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+            .tab-link { font-size: 0.8rem; letter-spacing: 0; padding: 0.7rem 1px; }
+            .account { grid-column: 1 / -1; order: -1; margin: 0; }
+            .account .btn-sm, .acc-user { width: 100%; }
+            .acc-meta { flex: 1; }
+            .acc-name { max-width: none; font-size: 0.95rem; }
+            .wallet { padding: 1.1rem; }
+            .wallet-amount b { font-size: 2.4rem; }
+            .wallet .tool-btn { width: 100%; }
+            .shop-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 380px) {
+            .tab-link { font-size: 0.72rem; }
+        }
     </style>
 </head>
 <body>
@@ -1323,6 +1491,23 @@
                 <button class="tab-link" data-tab="rules">Правила</button>
                 <button class="tab-link" data-tab="lore">Лор</button>
                 <button class="tab-link" data-tab="map">Карта</button>
+                <button class="tab-link" data-tab="shop">Магазин</button>
+                <div class="account" id="account">
+                    <button class="btn-social btn-discord btn-sm" id="accLogin" type="button">
+                        <span class="icon"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .378-.3.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.378.3a.077.077 0 0 1-.006.128 13.107 13.107 0 0 1-1.873.892.077.077 0 0 0-.041.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+                        Войти через Discord
+                    </button>
+                    <div class="acc-user" id="accUser" hidden>
+                        <div class="acc-ava" id="accAva" aria-hidden="true"></div>
+                        <div class="acc-meta">
+                            <span class="acc-name" id="accName"></span>
+                            <span class="acc-bal" id="accBal">— ХЛС</span>
+                        </div>
+                        <button class="acc-out" id="accOut" type="button" title="Выйти" aria-label="Выйти из аккаунта">
+                            <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                        </button>
+                    </div>
+                </div>
                 <button class="settings-btn" onclick="openSettings()" title="Настройки">
                     <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                 </button>
@@ -1723,6 +1908,32 @@
                 <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.</div>
             </div>
 
+            <div id="shop" class="tab-page">
+                <div class="page-head">
+                    <h2>🛒 Магазин</h2>
+                    <p>Здесь можно тратить ХЛС — внутриигровую валюту проекта.</p>
+                </div>
+
+                <div class="wallet">
+                    <div class="wallet-guest" id="walletGuest">
+                        <p>Войди через Discord, чтобы увидеть свой баланс ХЛС.</p>
+                        <button class="btn-social btn-discord btn-sm" id="walletLogin" type="button">
+                            <span class="icon"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .378-.3.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.378.3a.077.077 0 0 1-.006.128 13.107 13.107 0 0 1-1.873.892.077.077 0 0 0-.041.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+                            Войти через Discord
+                        </button>
+                    </div>
+                    <div class="wallet-user" id="walletUser" hidden>
+                        <div class="wallet-label">Твой баланс</div>
+                        <div class="wallet-amount"><b id="walletAmount">—</b><span>ХЛС</span></div>
+                        <div class="wallet-status" id="walletStatus" role="status" aria-live="polite"></div>
+                    </div>
+                    <button class="tool-btn" id="walletRefresh" type="button" hidden>Обновить</button>
+                </div>
+
+                <div class="shop-grid" id="shopGrid"></div>
+                <div class="shop-empty" id="shopEmpty">Товаров пока нет. Когда они появятся, ты увидишь их здесь.</div>
+            </div>
+
         </div>
 
         <div class="footer">
@@ -1730,6 +1941,8 @@
         </div>
 
     </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
@@ -1786,7 +1999,8 @@
                 main: document.getElementById('main-tab'),
                 rules: document.getElementById('rules'),
                 lore: document.getElementById('lore'),
-                map: document.getElementById('map')
+                map: document.getElementById('map'),
+                shop: document.getElementById('shop')
             };
 
             function openTab(name) {
@@ -1799,6 +2013,8 @@
             tabs.forEach(function (btn) {
                 btn.addEventListener('click', function () { openTab(btn.getAttribute('data-tab')); });
             });
+
+            window.hlrpOpenTab = openTab;
         })();
     </script>
 
@@ -2201,6 +2417,199 @@
         }
 
         init();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script>
+        /* ===== Вход через Discord, баланс ХЛС и магазин ===== */
+        (function () {
+            'use strict';
+
+            // ВСТАВЬ СВОИ ЗНАЧЕНИЯ (Supabase → Project Settings → API).
+            // Публичный (anon / publishable) ключ можно хранить в коде сайта. Секретный ключ сюда НЕЛЬЗЯ.
+            var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
+            var SUPABASE_ANON_KEY = 'ВСТАВЬ_ПУБЛИЧНЫЙ_КЛЮЧ_СЮДА';
+
+            var CURRENCY = 'ХЛС';
+            var REFRESH_MS = 30000;
+
+            // Товары магазина. Пока пусто. Пример карточки:
+            // { id: 'medkit', name: 'Аптечка', desc: 'Лечит раны.', price: 500 }
+            var SHOP_ITEMS = [];
+
+            var keyOk = SUPABASE_ANON_KEY.indexOf('ВСТАВЬ') !== 0;
+            var sb = null;
+            if (keyOk && window.supabase && window.supabase.createClient) {
+                sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+
+            function $(id) { return document.getElementById(id); }
+            var el = {
+                accLogin: $('accLogin'), accUser: $('accUser'), accAva: $('accAva'),
+                accName: $('accName'), accBal: $('accBal'), accOut: $('accOut'),
+                walletGuest: $('walletGuest'), walletUser: $('walletUser'), walletLogin: $('walletLogin'),
+                walletAmount: $('walletAmount'), walletStatus: $('walletStatus'), walletRefresh: $('walletRefresh'),
+                shopGrid: $('shopGrid'), shopEmpty: $('shopEmpty'), toast: $('toast')
+            };
+
+            var state = { user: null, balance: null, loading: false, error: false };
+
+            function fmt(n) { return Number(n).toLocaleString('ru-RU'); }
+
+            var toastTimer = null;
+            function toast(msg) {
+                el.toast.textContent = msg;
+                el.toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(function () { el.toast.classList.remove('show'); }, 3500);
+            }
+
+            // Ник и аватар берём только для показа. Для доступа к данным они не используются.
+            function displayName(u) {
+                var m = (u && u.user_metadata) || {};
+                return m.full_name || m.name || m.user_name || 'Сталкер';
+            }
+
+            function avatarUrl(u) {
+                var m = (u && u.user_metadata) || {};
+                var url = String(m.avatar_url || m.picture || '');
+                if (!/^https:\/\/cdn\.discordapp\.com\//.test(url)) return '';
+                return url.replace(/["'()\\\s]/g, '');
+            }
+
+            function render() {
+                var u = state.user;
+                el.accLogin.hidden = !!u;
+                el.accUser.hidden = !u;
+                el.walletGuest.hidden = !!u;
+                el.walletUser.hidden = !u;
+                el.walletRefresh.hidden = !u;
+                if (!u) return;
+
+                var name = displayName(u);
+                var url = avatarUrl(u);
+                el.accName.textContent = name;
+                if (url) {
+                    el.accAva.style.backgroundImage = 'url("' + url + '")';
+                    el.accAva.textContent = '';
+                } else {
+                    el.accAva.style.backgroundImage = '';
+                    el.accAva.textContent = name.charAt(0).toUpperCase();
+                }
+
+                var text = state.balance === null ? '—' : fmt(state.balance);
+                el.accBal.textContent = text + ' ' + CURRENCY;
+                el.walletAmount.textContent = text;
+
+                el.walletStatus.className = 'wallet-status' + (state.error ? ' err' : '');
+                el.walletStatus.textContent = state.loading ? 'Обновляю…'
+                    : state.error ? 'Не удалось загрузить баланс. Нажми «Обновить».' : '';
+                el.walletRefresh.disabled = state.loading;
+            }
+
+            function loadBalance() {
+                if (!sb || !state.user || state.loading) return;
+                state.loading = true;
+                state.error = false;
+                render();
+                sb.rpc('my_balance').then(function (res) {
+                    if (res.error) throw res.error;
+                    state.balance = Number(res.data) || 0;
+                }).catch(function (e) {
+                    console.error('Баланс:', e);
+                    state.error = true;
+                }).then(function () {
+                    state.loading = false;
+                    render();
+                });
+            }
+
+            function login() {
+                if (!sb) {
+                    toast(keyOk ? 'Не удалось подключить вход. Обнови страницу.' : 'Вход через Discord пока не настроен.');
+                    return;
+                }
+                try {
+                    if ($('shop').classList.contains('active')) localStorage.setItem('hlrp_return_tab', 'shop');
+                } catch (e) {}
+                sb.auth.signInWithOAuth({
+                    provider: 'discord',
+                    options: { redirectTo: window.location.origin + '/', scopes: 'identify' }
+                }).then(function (res) {
+                    if (res && res.error) toast('Не удалось начать вход. Попробуй ещё раз.');
+                });
+            }
+
+            function logout() {
+                if (!sb) return;
+                sb.auth.signOut().then(function () {
+                    state.user = null;
+                    state.balance = null;
+                    state.error = false;
+                    render();
+                });
+            }
+
+            // После входа возвращаем в магазин, если вход начали оттуда.
+            function restoreTab() {
+                try {
+                    if (localStorage.getItem('hlrp_return_tab') === 'shop') {
+                        localStorage.removeItem('hlrp_return_tab');
+                        if (window.hlrpOpenTab) window.hlrpOpenTab('shop');
+                    }
+                } catch (e) {}
+            }
+
+            function renderShop() {
+                el.shopGrid.textContent = '';
+                SHOP_ITEMS.forEach(function (it) {
+                    var card = document.createElement('div');
+                    card.className = 'shop-card';
+                    var h = document.createElement('h3'); h.textContent = it.name;
+                    var p = document.createElement('p'); p.textContent = it.desc || '';
+                    var price = document.createElement('div'); price.className = 'shop-price';
+                    price.textContent = fmt(it.price) + ' ' + CURRENCY;
+                    var btn = document.createElement('button');
+                    btn.className = 'tool-btn'; btn.type = 'button'; btn.disabled = true;
+                    btn.textContent = 'Скоро'; btn.title = 'Покупки пока недоступны';
+                    card.appendChild(h); card.appendChild(p); card.appendChild(price); card.appendChild(btn);
+                    el.shopGrid.appendChild(card);
+                });
+                el.shopEmpty.hidden = SHOP_ITEMS.length > 0;
+            }
+
+            el.accLogin.addEventListener('click', login);
+            el.walletLogin.addEventListener('click', login);
+            el.accOut.addEventListener('click', logout);
+            el.walletRefresh.addEventListener('click', loadBalance);
+
+            var shopTab = document.querySelector('.tab-link[data-tab="shop"]');
+            if (shopTab) shopTab.addEventListener('click', loadBalance);
+
+            setInterval(function () {
+                if (state.user && !document.hidden) loadBalance();
+            }, REFRESH_MS);
+
+            if (sb) {
+                sb.auth.onAuthStateChange(function (event, session) {
+                    var user = session && session.user ? session.user : null;
+                    // запросы к Supabase внутри этого обработчика делаем с задержкой, чтобы не зависнуть
+                    setTimeout(function () {
+                        var changed = (user ? user.id : null) !== (state.user ? state.user.id : null);
+                        state.user = user;
+                        if (!user) { state.balance = null; state.error = false; }
+                        render();
+                        if (user) {
+                            if (changed || event === 'SIGNED_IN') loadBalance();
+                            restoreTab();
+                        }
+                    }, 0);
+                });
+            }
+
+            render();
+            renderShop();
+        })();
     </script>
 
 </body>
