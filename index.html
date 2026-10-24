@@ -2428,7 +2428,7 @@
             // ВСТАВЬ СВОИ ЗНАЧЕНИЯ (Supabase → Project Settings → API).
             // Публичный (anon / publishable) ключ можно хранить в коде сайта. Секретный ключ сюда НЕЛЬЗЯ.
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
-            var SUPABASE_ANON_KEY = 'sb_publishable_BiH-rAkjgZR4fR-oMibawA_PNjc-yOw';
+            var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 30000;
@@ -2437,7 +2437,7 @@
             // { id: 'medkit', name: 'Аптечка', desc: 'Лечит раны.', price: 500 }
             var SHOP_ITEMS = [];
 
-            var keyOk = SUPABASE_ANON_KEY.indexOf('sb_publishable_BiH-rAkjgZR4fR-oMibawA_PNjc-yOw') !== 0;
+            var keyOk = SUPABASE_ANON_KEY.indexOf('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU') !== 0;
             var sb = null;
             if (keyOk && window.supabase && window.supabase.createClient) {
                 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
