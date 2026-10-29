@@ -2436,8 +2436,7 @@
             // Товары магазина. Пока пусто. Пример карточки:
             // { id: 'medkit', name: 'Аптечка', desc: 'Лечит раны.', price: 500 }
             var SHOP_ITEMS = [];
-
-            var keyOk = SUPABASE_ANON_KEY.indexOf('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU') !== 0;
+            var keyOk = /^(eyJ|sb_publishable_)/.test(SUPABASE_ANON_KEY);
             var sb = null;
             if (keyOk && window.supabase && window.supabase.createClient) {
                 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
