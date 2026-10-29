@@ -2148,7 +2148,7 @@
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v6</p>
         </div>
 
     </div>
@@ -2643,6 +2643,7 @@
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
+            var BUILD = 'v6';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 30000;
 
@@ -2739,9 +2740,9 @@
 
             function login() {
                 if (!sb) {
-                    if (!keyOk) toast('Вход через Discord пока не настроен: не вписан публичный ключ.', 7000);
-                    else if (!window.supabase) toast('Не загрузилась библиотека входа. Отключи VPN или блокировщик и обнови страницу.', 8000);
-                    else toast('Не удалось подключить вход. Обнови страницу.', 6000);
+                    if (!keyOk) toast('Вход через Discord пока не настроен: не вписан публичный ключ. [' + BUILD + ']', 7000);
+                    else if (!window.supabase) toast('Не загрузилась библиотека входа. Отключи VPN или блокировщик и обнови страницу. [' + BUILD + ']', 8000);
+                    else toast('Не удалось подключить вход. Обнови страницу. [' + BUILD + ']', 6000);
                     return;
                 }
                 try {
@@ -3080,4 +3081,4 @@
     </script>
 
 </body>
-    </html>
+                                                                        </html>
