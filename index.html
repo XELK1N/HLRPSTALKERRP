@@ -2148,7 +2148,7 @@
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v6</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v7</p>
         </div>
 
     </div>
@@ -2643,7 +2643,7 @@
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v6';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v7';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 30000;
 
@@ -2750,7 +2750,7 @@
                 } catch (e) {}
                 sb.auth.signInWithOAuth({
                     provider: 'discord',
-                    options: { redirectTo: window.location.origin + '/', scopes: 'identify' }
+                    options: { redirectTo: window.location.origin + window.location.pathname.replace(/index\.html$/, ''), scopes: 'identify' }
                 }).then(function (res) {
                     if (res && res.error) toast('Не удалось начать вход: ' + res.error.message, 9000);
                 }).catch(function (e) {
@@ -3081,4 +3081,4 @@
     </script>
 
 </body>
-                                                                        </html>
+    </html>                                                       </html>
