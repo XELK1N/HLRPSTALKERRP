@@ -1472,6 +1472,201 @@
         @media (max-width: 380px) {
             .tab-link { font-size: 0.72rem; }
         }
+
+        /* ===== ТОЧКИ НА КАРТЕ ===== */
+        .map-markers {
+            position: absolute;
+            inset: 0;
+            transform-origin: center;
+            pointer-events: none;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: 0;
+            background: none;
+            cursor: pointer;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%) scale(var(--inv, 1));
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .map-point i {
+            position: relative;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--c, #8aa0b8);
+            border: 2px solid rgba(3, 8, 16, 0.85);
+            box-shadow: 0 0 14px var(--c, #8aa0b8);
+            transition: transform 0.2s;
+        }
+
+        .map-point i::after {
+            content: '';
+            position: absolute;
+            inset: -7px;
+            border-radius: 50%;
+            border: 1px solid var(--c, #8aa0b8);
+            animation: pointPing 2.6s ease-out infinite;
+        }
+
+        @keyframes pointPing {
+            0% { transform: scale(0.55); opacity: 0.85; }
+            100% { transform: scale(1.7); opacity: 0; }
+        }
+
+        .map-point:hover i, .map-point:focus-visible i, .map-point.is-active i { transform: scale(1.4); }
+        .map-point:focus-visible { outline: 2px solid var(--blue-2); outline-offset: -6px; border-radius: 50%; }
+
+        .map-point::before {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.25rem 0.6rem;
+            background: rgba(6, 14, 26, 0.96);
+            border: 1px solid var(--line-2);
+            border-radius: 4px;
+            color: var(--ink);
+            font-family: var(--f-body);
+            font-size: 0.78rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .map-point:hover::before, .map-point:focus-visible::before, .map-point.is-active::before { opacity: 1; }
+
+        .point-panel {
+            position: absolute;
+            z-index: 30;
+            top: 14px;
+            right: 14px;
+            width: min(340px, calc(100% - 28px));
+            max-height: calc(100% - 28px);
+            overflow-y: auto;
+            padding: 1.2rem 1.25rem 1.1rem;
+            background: rgba(6, 14, 26, 0.96);
+            border: 1px solid var(--line-2);
+            border-left: 3px solid var(--c, var(--blue));
+            border-radius: 6px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            cursor: default;
+        }
+
+        .point-close {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.7rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: rgba(74, 158, 255, 0.09);
+            border: 1px solid var(--line);
+            color: var(--ink-2);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .point-close:hover { background: rgba(74, 158, 255, 0.2); color: #ffffff; }
+        .point-close:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 2px; }
+
+        .point-panel h3 {
+            font-family: var(--f-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            line-height: 1.15;
+            color: var(--ink);
+            padding-right: 2.4rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .point-owner {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 0.85rem;
+            margin-bottom: 0.9rem;
+            background: rgba(74, 158, 255, 0.06);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .point-dot {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--c, #8aa0b8);
+            box-shadow: 0 0 10px var(--c, #8aa0b8);
+        }
+
+        .point-owner-label { font-size: 0.78rem; color: var(--ink-3); }
+        .point-owner-name { font-family: var(--f-display); font-size: 1.2rem; letter-spacing: 0.03em; color: var(--ink); line-height: 1.2; }
+        .point-owner-since { font-size: 0.8rem; color: var(--ink-3); margin-top: 0.1rem; }
+
+        .point-desc { font-size: 0.95rem; line-height: 1.65; color: var(--ink-2); margin-bottom: 1rem; }
+
+        .point-hist-title { font-family: var(--f-display); font-size: 1.05rem; letter-spacing: 0.03em; color: var(--ink); margin-bottom: 0.6rem; }
+
+        .point-hist {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+            padding-left: 1rem;
+            border-left: 1px solid var(--line);
+        }
+
+        .point-hist li { position: relative; font-size: 0.9rem; line-height: 1.6; color: var(--ink-2); }
+
+        .point-hist li::before {
+            content: '';
+            position: absolute;
+            left: -1.28rem;
+            top: 0.5em;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--c, var(--blue));
+        }
+
+        .point-hist b { display: block; font-family: var(--f-mono); font-size: 0.78rem; font-weight: 500; color: var(--blue-2); }
+
+        .edit-badge {
+            position: absolute;
+            z-index: 25;
+            left: 12px;
+            bottom: 12px;
+            padding: 0.45rem 0.8rem;
+            background: rgba(6, 14, 26, 0.96);
+            border: 1px solid var(--line-2);
+            border-radius: 6px;
+            font-family: var(--f-mono);
+            font-size: 0.8rem;
+            color: var(--blue-2);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .point-panel { top: auto; right: 8px; left: 8px; bottom: 8px; width: auto; max-height: 62%; }
+            .point-panel h3 { font-size: 1.3rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .map-point i::after { animation: none; opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
@@ -1883,7 +2078,23 @@
                     <div class="kpk-frame-inner">
                         <div class="map-container" id="mapContainer">
                             <img src="map.jpg" alt="Карта Зоны" id="mapImage">
+                            <div class="map-markers" id="mapMarkers"></div>
                         </div>
+                        <aside class="point-panel" id="pointPanel" hidden aria-live="polite">
+                            <button class="point-close" id="pointClose" type="button" aria-label="Закрыть">✕</button>
+                            <h3 id="pointName"></h3>
+                            <div class="point-owner">
+                                <span class="point-dot" id="pointDot"></span>
+                                <div>
+                                    <div class="point-owner-label">Сейчас контролирует</div>
+                                    <div class="point-owner-name" id="pointOwner"></div>
+                                    <div class="point-owner-since" id="pointSince" hidden></div>
+                                </div>
+                            </div>
+                            <p class="point-desc" id="pointDesc"></p>
+                            <div class="point-hist-title" id="pointHistTitle">История</div>
+                            <ol class="point-hist" id="pointHist"></ol>
+                        </aside>
                         <div class="kpk-glitch" id="glitchLayer"></div>
                         <div class="kpk-glitch-color" id="glitchColorLayer"></div>
                         <div class="kpk-scanline"></div>
@@ -1905,7 +2116,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
-                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.</div>
+                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.<br>Нажми на точку, чтобы узнать, чья это база и какая у неё история.</div>
             </div>
 
             <div id="shop" class="tab-page">
@@ -2175,6 +2386,7 @@
         function updateMap() {
             clampPosition();
             mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            if (window.hlrpMapSync) window.hlrpMapSync(scale, translateX, translateY);
         }
 
         function zoomIn() {
@@ -2420,6 +2632,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script>window.supabase || document.write('<script src="https://unpkg.com/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"><\/script>');</script>
     <script>
         /* ===== Вход через Discord, баланс ХЛС и магазин ===== */
         (function () {
@@ -2436,7 +2649,8 @@
             // Товары магазина. Пока пусто. Пример карточки:
             // { id: 'medkit', name: 'Аптечка', desc: 'Лечит раны.', price: 500 }
             var SHOP_ITEMS = [];
-            var keyOk = /^(eyJ|sb_publishable_)/.test(SUPABASE_ANON_KEY);
+
+            var keyOk = /^(eyJ|sb_publishable_)/.test(SUPABASE_ANON_KEY);  // true, если вписан настоящий публичный ключ
             var sb = null;
             if (keyOk && window.supabase && window.supabase.createClient) {
                 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -2456,11 +2670,11 @@
             function fmt(n) { return Number(n).toLocaleString('ru-RU'); }
 
             var toastTimer = null;
-            function toast(msg) {
+            function toast(msg, ms) {
                 el.toast.textContent = msg;
                 el.toast.classList.add('show');
                 clearTimeout(toastTimer);
-                toastTimer = setTimeout(function () { el.toast.classList.remove('show'); }, 3500);
+                toastTimer = setTimeout(function () { el.toast.classList.remove('show'); }, ms || 3500);
             }
 
             // Ник и аватар берём только для показа. Для доступа к данным они не используются.
@@ -2525,7 +2739,9 @@
 
             function login() {
                 if (!sb) {
-                    toast(keyOk ? 'Не удалось подключить вход. Обнови страницу.' : 'Вход через Discord пока не настроен.');
+                    if (!keyOk) toast('Вход через Discord пока не настроен: не вписан публичный ключ.', 7000);
+                    else if (!window.supabase) toast('Не загрузилась библиотека входа. Отключи VPN или блокировщик и обнови страницу.', 8000);
+                    else toast('Не удалось подключить вход. Обнови страницу.', 6000);
                     return;
                 }
                 try {
@@ -2535,7 +2751,9 @@
                     provider: 'discord',
                     options: { redirectTo: window.location.origin + '/', scopes: 'identify' }
                 }).then(function (res) {
-                    if (res && res.error) toast('Не удалось начать вход. Попробуй ещё раз.');
+                    if (res && res.error) toast('Не удалось начать вход: ' + res.error.message, 9000);
+                }).catch(function (e) {
+                    toast('Ошибка входа: ' + (e && e.message ? e.message : e), 9000);
                 });
             }
 
@@ -2606,10 +2824,260 @@
                 });
             }
 
+            // Если после входа вернули на сайт с ошибкой, показываем её текст.
+            try {
+                var back = new URLSearchParams(window.location.search + '&' + window.location.hash.replace(/^#/, ''));
+                var backErr = back.get('error_description') || back.get('error');
+                if (backErr) {
+                    toast('Ошибка входа: ' + backErr.replace(/\+/g, ' '), 12000);
+                    window.history.replaceState(null, '', window.location.pathname);
+                }
+            } catch (e) {}
+
             render();
             renderShop();
         })();
     </script>
 
+    <script>
+        /* ===== Точки на карте: чья база и её история ===== */
+        (function () {
+            'use strict';
+
+            // Цвет точки зависит от того, кто контролирует базу. Новые группировки добавляй сюда.
+            var OWNER_COLORS = {
+                'Одиночки': '#9ec9ff',
+                'Долг': '#ff6b5e',
+                'Свобода': '#6fd08c',
+                'Бандиты': '#e0b84c',
+                'Экологи': '#5ee0d0',
+                'Монолит': '#b184ff',
+                'Военные': '#c9a46a'
+            };
+            var DEFAULT_COLOR = '#8aa0b8';
+
+            // ТОЧКИ НА КАРТЕ.
+            // x и y: положение в процентах от картинки (x слева направо, y сверху вниз, от 0 до 100).
+            // owner: кто контролирует базу сейчас, since: с какого времени (необязательно).
+            // history: события по порядку, новые добавляй в конец.
+            // Положение точек выставлено по карте. Описания и история — заготовки, замени их своими.
+            // color: необязательный свой цвет точки (по умолчанию берётся цвет владельца).
+            var MAP_POINTS = [
+                {
+                    id: 'depot', name: 'Депо', x: 44.5, y: 10.7, owner: 'Никто',
+                    description: 'Заброшенное железнодорожное депо на севере. К нему с запада подходит ветка, а в тёмных ангарах легко потерять ориентир.',
+                    history: [
+                        { date: '2006', text: 'После Первого Выброса депо опустело, а оставшаяся техника так и стоит на путях.' }
+                    ]
+                },
+                {
+                    id: 'checkpoint', name: 'Северное КПП', x: 54.5, y: 32.2, owner: 'Военные',
+                    description: 'Контрольно-пропускной пункт на главной дороге. Отсюда начинается путь в глубь Зоны, и здесь проверяют всех, кто идёт с севера.',
+                    history: [
+                        { date: '2012', text: 'После операции «Фарватер» военные укрепляют пост и берут дорогу под контроль.' }
+                    ]
+                },
+                {
+                    id: 'pigfarm', name: 'Свиноферма', x: 39.9, y: 55.7, owner: 'Никто',
+                    description: 'Заброшенная ферма к западу от дороги. Два длинных корпуса давно пусты, но сталкеры иногда ночуют здесь, если не успели дойти до лагеря.',
+                    history: [
+                        { date: '2006', text: 'Ферму бросают в первые дни после Выброса. С тех пор в корпусах никто не живёт постоянно.' }
+                    ]
+                },
+                {
+                    id: 'burnt', name: 'Сгоревший хутор', x: 60.4, y: 55.7, owner: 'Никто',
+                    description: 'Остатки хутора на выжженной земле к востоку от дороги. Дома сгорели много лет назад, а что именно произошло, никто не помнит.',
+                    history: [
+                        { date: '2006', text: 'Хутор выгорает в ночь Первого Выброса. Землю вокруг с тех пор не берёт ни трава, ни кустарник.' }
+                    ]
+                },
+                {
+                    id: 'embankment', name: 'Насыпь', x: 49.1, y: 63.7, owner: 'Никто',
+                    description: 'Железнодорожная насыпь пересекает местность поперёк и служит хорошим укрытием при перестрелках. Дорога проходит через неё по узкому проходу.',
+                    history: []
+                },
+                {
+                    id: 'elevator', name: 'Элеватор', x: 35.3, y: 67.4, owner: 'Никто',
+                    description: 'Старый зерновой элеватор, возвышающийся над окрестностями. С верха хорошо видны дорога и подходы с запада.',
+                    history: []
+                },
+                {
+                    id: 'atp', name: 'АТП', x: 57.4, y: 71.5, owner: 'Никто',
+                    description: 'Бывшее автотранспортное предприятие с гаражами и мастерскими. Сталкеры заглядывают сюда за запчастями и оставленным хабаром.',
+                    history: []
+                },
+                {
+                    id: 'anomaly', name: 'Аномалия', x: 33.6, y: 78.5, owner: 'Никто', color: '#4fc3ff',
+                    description: 'Яркая аномалия у западной границы. Свечение видно издалека, а подходить близко опасно. Артефакты рядом ценятся высоко.',
+                    history: []
+                },
+                {
+                    id: 'derebas', name: 'Деребас', x: 39.8, y: 83.5, owner: 'Никто',
+                    description: 'Небольшая деревня у юго-западной границы. Крепкие дома используют как привал по пути на север.',
+                    history: []
+                },
+                {
+                    id: 'sidor', name: 'Сидор', x: 33.6, y: 83.2, owner: 'Одиночки',
+                    description: 'Бункер торговца, к которому тянутся почти все новички. Здесь можно купить снаряжение, продать находки и получить первое задание.',
+                    history: [
+                        { date: '2006', text: 'Торговец обустраивает бункер и открывает торговлю для всех, кто попал в Зону.' }
+                    ]
+                },
+                {
+                    id: 'bald', name: 'Проплешина', x: 59.5, y: 89.8, owner: 'Никто',
+                    description: 'Открытая безлесная площадка, где почти ничего не растёт. Ходят слухи, что почва здесь отравлена.',
+                    history: []
+                },
+                {
+                    id: 'oksop', name: 'Оксоп', x: 50.5, y: 90.6, owner: 'Никто',
+                    description: 'Группа построек у дороги. Назначение никто точно не помнит, но сталкеры используют их как опорный пункт.',
+                    history: []
+                },
+                {
+                    id: 'dymyatki', name: 'Димятки', x: 50.5, y: 97.6, owner: 'Никто',
+                    description: 'Небольшой посёлок на самом юге, рядом с въездом на территорию. Первое место, где встречаются те, кто только вошёл в Зону.',
+                    history: []
+                }
+            ];
+
+            var container = document.getElementById('mapContainer');
+            var img = document.getElementById('mapImage');
+            var layer = document.getElementById('mapMarkers');
+            var panel = document.getElementById('pointPanel');
+            var frameInner = container.parentNode;
+            var els = {
+                name: document.getElementById('pointName'), owner: document.getElementById('pointOwner'),
+                since: document.getElementById('pointSince'), dot: document.getElementById('pointDot'),
+                desc: document.getElementById('pointDesc'), hist: document.getElementById('pointHist'),
+                histTitle: document.getElementById('pointHistTitle'), close: document.getElementById('pointClose')
+            };
+
+            var editMode = /[?&]edit=1/.test(window.location.search);
+            var buttons = {};
+            var downX = 0, downY = 0;
+
+            function colorOf(owner) { return OWNER_COLORS[owner] || DEFAULT_COLOR; }
+            function pointColor(p) { return p.color || colorOf(p.owner); }
+
+            // Где на экране лежит сама картинка (она вписана в контейнер с полями).
+            function imageRect() {
+                var cw = container.clientWidth, ch = container.clientHeight;
+                var nw = img.naturalWidth || cw, nh = img.naturalHeight || ch;
+                var r = Math.min(cw / nw, ch / nh);
+                var w = nw * r, h = nh * r;
+                return { left: (cw - w) / 2, top: (ch - h) / 2, w: w, h: h, cw: cw, ch: ch };
+            }
+
+            function layout() {
+                var g = imageRect();
+                MAP_POINTS.forEach(function (p) {
+                    var b = buttons[p.id];
+                    b.style.left = (g.left + p.x / 100 * g.w) + 'px';
+                    b.style.top = (g.top + p.y / 100 * g.h) + 'px';
+                });
+            }
+
+            window.hlrpMapSync = function (s, tx, ty) {
+                layer.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + s + ')';
+                layer.style.setProperty('--inv', String(1 / s));
+            };
+
+            function closePoint() {
+                panel.hidden = true;
+                Object.keys(buttons).forEach(function (k) { buttons[k].classList.remove('is-active'); });
+            }
+
+            function openPoint(p) {
+                var color = pointColor(p);
+                panel.style.setProperty('--c', color);
+                els.dot.style.setProperty('--c', color);
+                els.name.textContent = p.name;
+                els.owner.textContent = p.owner || 'Никто';
+                els.since.hidden = !p.since;
+                els.since.textContent = p.since ? 'с ' + p.since : '';
+                els.desc.textContent = p.description || 'Описание пока не добавлено.';
+
+                els.hist.textContent = '';
+                (p.history || []).forEach(function (h) {
+                    var li = document.createElement('li');
+                    var b = document.createElement('b'); b.textContent = h.date;
+                    var t = document.createElement('span'); t.textContent = h.text;
+                    li.appendChild(b); li.appendChild(t);
+                    els.hist.appendChild(li);
+                });
+                els.histTitle.hidden = !(p.history && p.history.length);
+                els.hist.hidden = els.histTitle.hidden;
+
+                Object.keys(buttons).forEach(function (k) { buttons[k].classList.toggle('is-active', k === p.id); });
+                panel.hidden = false;
+                panel.scrollTop = 0;
+                if (panel.scrollIntoView) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+
+            MAP_POINTS.forEach(function (p) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'map-point';
+                b.setAttribute('data-name', p.name);
+                b.setAttribute('aria-label', p.name + '. Контролирует: ' + (p.owner || 'никто'));
+                b.style.setProperty('--c', pointColor(p));
+                b.appendChild(document.createElement('i'));
+
+                // не запускаем перетаскивание карты мышью с самой точки
+                b.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+                b.addEventListener('dblclick', function (e) { e.stopPropagation(); });
+                b.addEventListener('pointerdown', function (e) { downX = e.clientX; downY = e.clientY; });
+                b.addEventListener('click', function (e) {
+                    // если карту тащили, а не нажимали, панель не открываем (клавиатура: detail === 0)
+                    if (e.detail !== 0 && Math.hypot(e.clientX - downX, e.clientY - downY) > 8) return;
+                    openPoint(p);
+                });
+
+                buttons[p.id] = b;
+                layer.appendChild(b);
+            });
+
+            els.close.addEventListener('click', closePoint);
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePoint(); });
+
+            if (img.complete) layout();
+            img.addEventListener('load', layout);
+            window.addEventListener('resize', layout);
+            if (window.ResizeObserver) new ResizeObserver(layout).observe(container);
+            layout();
+
+            /* Режим расстановки: открой сайт с ?edit=1 в конце адреса, нажми на карту в нужном месте,
+               и координаты скопируются. Их впиши в x и y нужной точки выше. */
+            if (editMode) {
+                var badge = document.createElement('div');
+                badge.className = 'edit-badge';
+                badge.textContent = 'Режим расстановки: нажми на карту';
+                frameInner.appendChild(badge);
+
+                container.addEventListener('pointerdown', function (e) { downX = e.clientX; downY = e.clientY; });
+                container.addEventListener('click', function (e) {
+                    if (e.target.closest && e.target.closest('.map-point')) return;
+                    if (Math.hypot(e.clientX - downX, e.clientY - downY) > 8) return;
+                    var r = container.getBoundingClientRect();
+                    var ratio = r.width / container.clientWidth || 1;
+                    var px = (e.clientX - r.left) / ratio, py = (e.clientY - r.top) / ratio;
+                    var g = imageRect();
+                    // обратное преобразование: translate + scale вокруг центра контейнера
+                    var lx = (px - g.cw / 2 - translateX) / scale + g.cw / 2;
+                    var ly = (py - g.ch / 2 - translateY) / scale + g.ch / 2;
+                    var x = Math.min(100, Math.max(0, (lx - g.left) / g.w * 100));
+                    var y = Math.min(100, Math.max(0, (ly - g.top) / g.h * 100));
+                    var text = 'x: ' + x.toFixed(1) + ', y: ' + y.toFixed(1);
+                    badge.textContent = text;
+                    try {
+                        navigator.clipboard.writeText(text).then(function () {
+                            badge.textContent = text + ' (скопировано)';
+                        }).catch(function () {});
+                    } catch (err) {}
+                });
+            }
+        })();
+    </script>
+
 </body>
-</html>
+    </html>
