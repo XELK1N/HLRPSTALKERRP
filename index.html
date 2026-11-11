@@ -2266,6 +2266,152 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 .hl-herologo,.hl-hcta{display:none!important}
 @media(max-width:768px){.hl-burger{margin-left:auto!important}}
 </style>
+
+<style id="hl-rules">
+/* Правила: наглядные подпункты, пометки, категории */
+.rules-body.open{max-height:40000px!important}
+.rules-section:nth-child(12){animation-delay:.46s}
+.rules-section:nth-child(13){animation-delay:.5s}
+
+.rules-body .rule-item>strong:first-child{display:inline-block;margin-right:.6em;padding:.05rem .55rem;font-family:var(--f-mono);font-size:.82em;font-weight:500;color:var(--blue-2);white-space:nowrap;border:1px solid var(--line-2);border-radius:999px;background:rgba(43,182,255,.1)}
+.rule-title{font-weight:600;color:#fff}
+
+.rule-group{position:relative;max-width:92ch;padding:.7rem 0;border-top:1px solid rgba(80,150,230,.09)}
+.rule-group:first-child{border-top:0}
+.rules-body .rule-group>.rule-item{max-width:none;padding:.3rem 0;border-top:0}
+.rule-group.match{background:rgba(74,158,255,.09);border-radius:12px;margin:0 -.7rem;padding-left:.7rem;padding-right:.7rem}
+
+.rule-group.has-sub{margin:.7rem 0;padding:.95rem 1.1rem 1.05rem;border:1px solid var(--line);border-radius:16px;background:rgba(43,182,255,.04)}
+.rule-group.has-sub:first-child{border-top:1px solid var(--line)}
+.rules-body .rule-main{padding-bottom:.55rem}
+.rules-body .rule-main>strong:first-child{background:rgba(43,182,255,.2);border-color:rgba(43,182,255,.55);color:#fff;font-weight:700}
+
+.rules-body .rule-sub{position:relative;margin-left:1.1rem;padding:.55rem 0 .55rem 1.8rem}
+.rules-body .rule-sub::before{content:"";position:absolute;left:0;top:-.2rem;bottom:0;width:1.2rem;
+ background:linear-gradient(var(--line-2),var(--line-2)) left top/2px 100% no-repeat,linear-gradient(var(--line-2),var(--line-2)) left 1.55rem/100% 2px no-repeat}
+.rules-body .rule-sub.rule-last::before{bottom:auto;height:1.7rem}
+.rules-body .rule-sub>strong:first-child{font-size:.74em;color:var(--ink-3);background:none;border-color:var(--line)}
+
+.note{display:block;margin-top:.6rem;padding:.5rem .85rem;font-size:.92rem;font-weight:300;font-style:normal;line-height:1.6;color:var(--ink-2);border:1px solid var(--nl);border-left:3px solid var(--nc);border-radius:10px;background:var(--nb)}
+.note b{display:inline-block;margin-right:.7rem;padding:.05rem .6rem;font:700 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#04101c;background:var(--nc);border-radius:999px}
+.note-ex{--nc:#8cc4ff;--nb:rgba(140,196,255,.07);--nl:rgba(140,196,255,.25)}
+.note-exc{--nc:#f0a24a;--nb:rgba(240,162,74,.08);--nl:rgba(240,162,74,.28)}
+.note-cl{--nc:#6fd08c;--nb:rgba(111,208,140,.08);--nl:rgba(111,208,140,.26)}
+.note-warn{--nc:#ff6b4a;--nb:rgba(255,107,74,.09);--nl:rgba(255,107,74,.3)}
+
+.rule-list{list-style:none;counter-reset:rl;display:grid;gap:.35rem;margin:.7rem 0 .2rem;padding:0}
+.rule-list li{counter-increment:rl;display:flex;align-items:baseline;gap:.75rem;padding:.4rem .8rem;border:1px solid var(--line);border-radius:10px;background:rgba(43,182,255,.06)}
+.rule-list li::before{content:counter(rl);flex:none;min-width:1.4em;text-align:center;font:700 .78rem var(--f-mono);color:var(--blue-2)}
+
+.rule-cat-block{margin:.4rem 0 .6rem}
+.rule-cat{display:flex;align-items:center;gap:.75rem;margin:1rem 0 .2rem;padding:.6rem .95rem;font-family:var(--f-display);font-size:1.12rem;font-weight:600;color:#fff;border-left:3px solid var(--blue);border-radius:12px;background:linear-gradient(90deg,rgba(43,182,255,.18),transparent)}
+.rule-cat span{padding:.1rem .6rem;font:700 .8rem var(--f-mono);color:var(--blue-2);border:1px solid var(--line-2);border-radius:999px}
+
+@media(max-width:768px){
+ .rule-group.has-sub{padding:.8rem .75rem .9rem}
+ .rules-body .rule-sub{margin-left:.4rem;padding-left:1.4rem}
+ .rule-cat{font-size:1rem}
+}
+</style>
+
+<style id="hl-kpk">
+/* ===== КПК: шапка прибора ===== */
+.kpk-top{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:.8rem 1.4rem;max-width:1200px;margin:0 auto 1.2rem;padding:.9rem .6rem .55rem 1.1rem;overflow:hidden;border:1px solid var(--line-2);border-radius:16px;background:linear-gradient(180deg,rgba(10,22,40,.92),rgba(5,10,19,.92));box-shadow:0 0 40px rgba(43,182,255,.07),inset 0 1px 0 rgba(143,230,255,.12)}
+.kpk-top::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:repeating-linear-gradient(135deg,rgba(43,182,255,.6) 0 8px,transparent 8px 16px);opacity:.55}
+.kpk-id{display:flex;align-items:center;gap:.7rem;margin-right:auto}
+.kpk-led{width:9px;height:9px;border-radius:50%;background:#3fe08a;box-shadow:0 0 10px #3fe08a;animation:kpkLed 2.4s ease-in-out infinite}
+@keyframes kpkLed{50%{opacity:.3}}
+.kpk-id b{font:800 1.25rem var(--f-display);letter-spacing:.22em;color:#fff}
+.kpk-id span{font:500 .68rem var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.kpk-seg{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(2,8,18,.65)}
+.kpk-seg button{padding:.55rem 1.3rem;border:0;border-radius:999px;background:none;color:var(--ink-3);font:700 .74rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.25s}
+.kpk-seg button:hover{color:#fff}
+.kpk-seg button.on{color:#fff;background:rgba(43,182,255,.2);box-shadow:0 0 18px rgba(43,182,255,.25),inset 0 0 0 1px rgba(43,182,255,.5)}
+.kpk-seg button:focus-visible{outline:2px solid var(--blue-2);outline-offset:2px}
+.kpk-clock{padding:0 .8rem;font:700 1rem var(--f-mono);letter-spacing:.12em;color:var(--blue-2);font-variant-numeric:tabular-nums}
+
+/* ===== КПК: таблица отношений ===== */
+.rel-board{--lab:clamp(110px,15%,170px);--rh:58px;--hh:96px;position:relative;max-width:1200px;margin:0 auto;padding:1.4rem 1.4rem 1.5rem;border:1px solid var(--line-2);border-radius:18px;background:rgba(4,10,20,.74);box-shadow:0 0 50px rgba(43,182,255,.07),inset 0 0 70px rgba(0,20,45,.35);overflow:hidden}
+.rel-board::before{content:"";position:absolute;inset:9px;pointer-events:none;opacity:.5;border-radius:12px;
+ background:linear-gradient(var(--blue),var(--blue)) top left/14px 1px no-repeat,linear-gradient(var(--blue),var(--blue)) top left/1px 14px no-repeat,
+ linear-gradient(var(--blue),var(--blue)) top right/14px 1px no-repeat,linear-gradient(var(--blue),var(--blue)) top right/1px 14px no-repeat,
+ linear-gradient(var(--blue),var(--blue)) bottom left/14px 1px no-repeat,linear-gradient(var(--blue),var(--blue)) bottom left/1px 14px no-repeat,
+ linear-gradient(var(--blue),var(--blue)) bottom right/14px 1px no-repeat,linear-gradient(var(--blue),var(--blue)) bottom right/1px 14px no-repeat}
+.rel-top{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:.9rem 1.5rem;margin-bottom:1.1rem}
+.rel-title{margin:0;text-align:left;font:700 1.55rem var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.rel-title small{display:block;margin-bottom:.3rem;font:500 .68rem var(--f-mono);letter-spacing:.2em;color:var(--blue-2)}
+.rel-readout{display:flex;align-items:center;gap:.5rem;min-height:2.3rem;padding:.35rem 1rem;border:1px solid var(--line);border-radius:999px;background:rgba(2,8,18,.65);font:500 .8rem var(--f-mono);color:var(--ink-2)}
+.rel-readout b{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cf,#fff)}
+.rel-scroll{padding-right:0}
+
+.rel-corner,.rel-labels{background:none}
+.rel-heads{gap:4px;padding:0}
+.rel-labels{gap:4px;padding:0}
+.rel-cells{gap:4px;border:0;background:none}
+.rel-head span{left:42%;bottom:10px;font:700 .78rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);transition:color .2s,text-shadow .2s}
+.rel-label{padding-right:.9rem;font:700 .8rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);transition:color .2s,text-shadow .2s}
+.rel-head.hl-col span,.rel-label.hl-row{color:#fff;text-shadow:0 0 14px rgba(43,182,255,.9)}
+
+.rel-board [data-level]{--cb:rgba(140,172,204,.08);--cf:#9fb6cf;--ce:rgba(140,172,204,.22)}
+.rel-board [data-level="Союз"]{--cb:rgba(43,214,255,.13);--cf:#7fe8ff;--ce:rgba(43,214,255,.4)}
+.rel-board [data-level="Друг"]{--cb:rgba(111,208,140,.14);--cf:#8fe6a6;--ce:rgba(111,208,140,.4)}
+.rel-board [data-level="Нейтрал"]{--cb:rgba(140,172,204,.08);--cf:#9fb6cf;--ce:rgba(140,172,204,.22)}
+.rel-board [data-level="Враг"]{--cb:rgba(255,138,85,.14);--cf:#ffa070;--ce:rgba(255,138,85,.45)}
+.rel-board [data-level="Война"]{--cb:rgba(255,77,94,.17);--cf:#ff7584;--ce:rgba(255,77,94,.55)}
+
+.rel-board .rel-cell{position:relative;padding:0 .2rem;border:1px solid var(--ce);border-radius:9px;background:var(--cb);color:var(--cf);font:700 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;transition:filter .2s,box-shadow .2s,transform .2s}
+.rel-board .rel-cell.diag{border-style:dashed;border-color:rgba(255,255,255,.1);background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 6px,transparent 6px 12px);color:transparent;font-size:0}
+.rel-board .rel-cell.diag::after{content:"—";font-size:1rem;color:rgba(255,255,255,.25)}
+.rel-board .rel-cell.in-line{filter:brightness(1.35)}
+.rel-board .rel-cell.hot{z-index:1;filter:brightness(1.6);box-shadow:0 0 0 2px rgba(255,255,255,.85),0 0 22px var(--ce);transform:scale(1.04)}
+.rel-board .rel-cell.diag.hot{box-shadow:0 0 0 2px rgba(255,255,255,.4);filter:none;transform:none}
+
+.rel-legend{gap:.55rem;margin-top:1.4rem}
+.rel-legend span{display:inline-flex;align-items:center;gap:.5rem;min-width:0;padding:.4rem .95rem;border:1px solid var(--ce);border-radius:999px;background:var(--cb);color:var(--cf);font:700 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.rel-legend span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cf);box-shadow:0 0 8px var(--cf)}
+.rel-status{margin-top:.9rem;font:500 .72rem var(--f-mono);letter-spacing:.08em;color:var(--ink-3)}
+
+/* ===== КПК: карта ===== */
+#viewMap .page-head{max-width:1200px;margin:0 auto 1rem;text-align:left}
+#viewMap .page-head h2{font-size:1.55rem;letter-spacing:.06em;text-transform:uppercase}
+.kpk-frame{max-width:1200px;margin:0 auto;padding:.7rem;border:1px solid var(--line-2);border-radius:18px;background:rgba(3,8,16,.82);box-shadow:0 0 50px rgba(43,182,255,.08),inset 0 0 60px rgba(0,20,45,.3)}
+.kpk-frame-inner{border-radius:12px;border-color:var(--line-2)}
+.kpk-frame-inner::after{content:"";position:absolute;inset:0;z-index:11;pointer-events:none;box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
+.kpk-corner{border-color:rgba(143,230,255,.6)}
+.map-coords{position:absolute;right:12px;bottom:12px;z-index:25;padding:.4rem .8rem;border:1px solid var(--line-2);border-radius:999px;background:rgba(6,14,26,.92);font:500 .74rem var(--f-mono);letter-spacing:.06em;color:var(--blue-2);font-variant-numeric:tabular-nums;pointer-events:none}
+.map-controls{max-width:1200px;margin:1rem auto 0}
+.map-btn{width:46px;height:46px;border-radius:50%}
+.map-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;max-width:1200px;margin:1rem auto 0}
+.map-legend span{display:inline-flex;align-items:center;gap:.55rem;padding:.35rem .85rem;border:1px solid var(--line);border-radius:999px;background:rgba(2,8,18,.6);font:500 .74rem var(--f-body);color:var(--ink-2)}
+.map-legend i{width:10px;height:10px;border-radius:50%;background:var(--c);border:1px solid rgba(255,255,255,.55);box-shadow:0 0 8px var(--c)}
+.map-hint{max-width:72ch;margin:.9rem auto 0}
+
+.map-point i{border-color:rgba(255,255,255,.9);box-shadow:0 0 0 2px rgba(0,0,0,.55),0 0 14px var(--c,#8aa0b8)}
+
+.point-panel{border-radius:14px;border-color:var(--line-2);border-left:3px solid var(--c,var(--blue))}
+.point-panel::before{content:"Досье точки";display:block;margin-bottom:.55rem;font:700 .64rem var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--blue-2)}
+.point-panel h3{text-transform:uppercase;letter-spacing:.05em}
+.point-owner{border-radius:10px;border-left:3px solid var(--c,var(--blue))}
+.point-owner-label{font:500 .66rem var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.point-owner-name{text-transform:uppercase;letter-spacing:.05em}
+.point-hist b{letter-spacing:.1em}
+
+@media(max-width:768px){
+ .kpk-top{padding:.85rem .5rem .5rem .8rem;gap:.6rem}
+ .kpk-id span{display:none}
+ .kpk-seg{flex:1}.kpk-seg button{flex:1;padding:.6rem .5rem}
+ .kpk-clock{padding:0 .3rem}
+ .rel-board{--lab:98px;--rh:50px;--hh:92px;padding:1.1rem .75rem 1.2rem}
+ .rel-title{font-size:1.2rem}
+ .rel-readout{width:100%;border-radius:14px}
+ .rel-board .rel-cell{font-size:.62rem;border-radius:7px}
+ .rel-label{font-size:.7rem;padding-right:.6rem}
+ .rel-head span{font-size:.68rem}
+ .map-coords{display:none}
+ #viewMap .page-head h2{font-size:1.25rem}
+}
+@media(prefers-reduced-motion:reduce){.kpk-led{animation:none}}
+</style>
 </head>
 <body>
 
@@ -2357,8 +2503,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                 </div>
                 <div class="rules-empty" id="rulesEmpty">Ничего не найдено. Попробуйте другое слово.</div>
                 <div class="rules-wrapper">
-
-                    <div class="rules-section">
+<div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
                                 <span class="icon-svg">
@@ -2376,44 +2521,18 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                             <div class="rule-item"><strong>1.5.1.</strong> Перед началом игры рекомендуется ознакомиться с лором сервера и основными группировками — это поможет глубже погрузиться в атмосферу и избежать случайных нарушений.</div>
                         </div>
                     </div>
-
-                    <div class="rules-section">
-                        <div class="rules-header" onclick="toggleSection(this)">
-                            <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg>
-                                </span>
-                                Раздел 2. Общие правила
-                            </h2>
-                            <span class="arrow">▼</span>
-                        </div>
-                        <div class="rules-body">
-                            <div class="rule-item" data-pun="1"><strong>2.1.1. NRP (Non-RolePlay)</strong> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. Запрещён NRP. Запрещены действия, не соответствующие вашей роли и реальности игрового мира. Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.</div>
-                            <div class="rule-item"><strong>2.1.2. GRP (Great RP)</strong> — Отличное РП. Проект старается придерживаться канона, поэтому любые интересные и каноничные отыгровки приветствуются и даже могут вознаграждаться.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.1.3.</strong> При написании в чат нон-рп сообщения после написания используйте <span class="highlight">«//»</span>. Например: <span class="example">«Админ нужна помощь//»</span></div>
-                            <div class="rule-item" data-pun="7"><strong>2.2.1. DM (Death Match)</strong> — убийство другого игрока без РП-причины. Например: вы встретили игрока вражеской группировки, однако вы находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</div>
-                            <div class="rule-item"><strong>2.3.1.</strong> Если игрок оскорбил вас на сервере (в РП-процессе), то вы имеете право убить его, даже если он полностью безоружен.</div>
-                            <div class="rule-item" data-pun="1"><strong>2.3.2.</strong> Однако если людей много или 1, но с направленным оружием — вы уже нарушаете правило <span class="highlight">Пауэргейминг</span>.</div>
-                            <div class="rule-item" data-pun="1"><strong>2.4.1. Пауэргейминг (Powergaming)</strong> — действие, где игрок описывает/совершает нечто нереалистичное (мгновенное убийство без причины или игнорирование окружения). Нарушает правило реализма.</div>
-                            <div class="rule-item" data-pun="3"><strong>2.5.1. Метагейминг (MG)</strong> — применение информации, полученной нон-рп путём (например, из Telegram или Discord в нон-рп чатах).</div>
-                            <div class="rule-item" data-pun="3"><strong>2.6.1. Спавнкилл (Spawn Kill)</strong> — убийство на спавне группировок или сталкеров. Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право его убить или он вас.</div>
-                            <div class="rule-item" data-pun="1"><strong>2.6.2.</strong> Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда. (Подробные правила рейдов — ниже).</div>
-                            <div class="rule-item" data-pun="1"><strong>2.7.1. Горный геймплей (Mountain Play)</strong> — запрещено залазить на горы и передвигаться по ним, а тем более вести из них огонь (касается только очень больших гор, которые определяют границы карты).</div>
-                            <div class="rule-item" data-pun="1"><strong>2.8.1.</strong> Запрещено выходить во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.9.1.</strong> Когда вас убили на каком-то месте — вы не можете прийти на то же место в течение <span class="highlight">15 минут</span>.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.10.1.</strong> Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.11.1.</strong> Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div>
-                            <div class="rule-item" data-pun="p"><strong>2.12.1.</strong> Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div>
-                            <div class="rule-item" data-pun="3"><strong>2.13.1.</strong> Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div>
-                            <div class="rule-item" data-pun="1"><strong>2.14.1.</strong> Запрещён спам в текстовый и голосовой чат, а также использование нецензурной лексики в адрес других игроков вне РП-контекста.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.15.1.</strong> Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т.п.).</div>
-                            <div class="rule-item" data-pun="1"><strong>2.16.1.</strong> Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div>
-                            <div class="rule-item" data-pun="w"><strong>2.17.1.</strong> Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div>
-                            <div class="rule-item" data-pun="w"><strong>2.18.1.</strong> Запрещено в РП-процессе называть друг друга по никнейму.</div>
-                        </div>
-                    </div>
-
-                    <div class="rules-section">
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg></span>
+Раздел 2. Общие правила
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.1.1.</strong><span class="rule-title">NRP (Non-RolePlay)</span> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. NRP запрещён.</div><div class="rule-item rule-sub"><strong>2.1.2.</strong>Запрещены действия, не соответствующие вашей роли и реальности игрового мира.<span class="note note-ex"><b>Пример</b>тяжелораненый персонаж бегает и дерётся как здоровый; сталкер использует вещи и технологии, которых нет в Зоне; нападение без какой-либо РП-причины.</span></div><div class="rule-item rule-sub"><strong>2.1.3.</strong>Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.<span class="note note-ex"><b>Пример</b>персонаж остаётся в роли и в проигрышной ситуации, а не выходит из РП ради выгоды.</span></div><div class="rule-item rule-sub rule-last" data-pun="w"><strong>2.1.4.</strong>Нон-РП сообщение в чате нужно заканчивать знаком <span class="highlight">«//»</span>.<span class="note note-ex"><b>Пример</b>«Админ, нужна помощь//»</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>2.2.1.</strong><span class="rule-title">DM (Death Match)</span> — убийство другого игрока без РП-причины.<span class="note note-ex"><b>Пример</b>вы встретили игрока вражеской группировки, однако находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.3.1.</strong><span class="rule-title">Пауэргейминг (Powergaming)</span> — преувеличение возможностей своего персонажа, отсутствие страха за жизнь.<span class="note note-ex"><b>Пример</b>сопротивление в плену, перестрелка одного игрока с двумя игроками.</span></div><div class="rule-item rule-sub"><strong>2.3.2.</strong>Пленением считается, когда у вас изъяли оружие, средства связи и сковали вас в наручники.</div><div class="rule-item rule-sub"><strong>2.3.3.</strong>Под прицелом запрещено врать про звание, группировку и позывной.<span class="note note-exc"><b>Исключение</b>секретные группировки (Искра) могут врать даже под угрозой жизни.</span></div><div class="rule-item rule-sub rule-last"><strong>2.3.4.</strong>Если вас берёт в плен один человек, вы можете попытаться спастись. При неудаче ваш персонаж получает РПК.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.4.1.</strong><span class="rule-title">Метагейминг (MG, Meta)</span> — использование РП-информации, полученной не РП-путём (например, из Telegram или Discord).</div><div class="rule-item rule-sub"><strong>2.4.2.</strong>Метой считаются знания о названиях секретной группировки, её численности и составе.</div><div class="rule-item rule-sub"><strong>2.4.3.</strong>Метой считаются неигровые знания о направлении и движении врагов, наведение товарищей на свой труп, передача информации, приводящей к PvP.</div><div class="rule-item rule-sub"><strong>2.4.4.</strong>Вы не можете знать то, что не знает ваш РП-персонаж. Узнавайте всё по РП.</div><div class="rule-item rule-sub"><strong>2.4.5.</strong>Метой считаются знания, повлёкшие РП-казни людей.<span class="note note-cl"><b>Уточнение</b>если нарушение произошло и информация была признана метой, будет произведён откат РП-ситуации.</span></div><div class="rule-item rule-sub"><strong>2.4.6.</strong>Метой являются мета-заговоры о битвах.<span class="note note-ex"><b>Пример</b>лидеры группировок соглашаются на битву возле определённой территории — это мета-сговор.</span></div><div class="rule-item rule-sub rule-last"><strong>2.4.7.</strong>Метой считается перенос личной неприязни из внешних источников в игру.<span class="note note-ex"><b>Пример</b>после конфликта в личных сообщениях — намеренная травля, охота и прочие враждебные действия.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.5.1.</strong><span class="rule-title">Спавнкилл (Spawn Kill)</span> — убийство игроков прямо на их месте спавна.<span class="note note-exc"><b>Исключение</b>от Предбанника до ЮКПП — перманентная ЗЗ.</span></div><div class="rule-item rule-sub rule-last"><strong>2.5.2.</strong>Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право убить игрока, или он вас.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>2.6.1.</strong><span class="rule-title">Тимкилл (Team Kill)</span> — убийство своих товарищей, не влекущее за собой никакого РП-контекста.<span class="note note-exc"><b>Исключение</b>самооборона от агрессивных действий.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.7.1.</strong>Запрещено выходить из игры во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.8.1.</strong>Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.9.1.</strong>Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="p"><strong>2.10.1.</strong>Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>2.11.1.</strong>Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.12.1.</strong><span class="rule-title">Спам</span> — Запрещён спам в текстовый и голосовой чат.<span class="note note-ex"><b>Пример</b>многократное повторение одного сообщения, флуд, посторонние звуки и музыка в голосовом чате.</span></div><div class="rule-item rule-sub rule-last"><strong>2.12.2.</strong>Запрещено использование нецензурной лексики и оскорблений в адрес других игроков вне РП-контекста.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.13.1.</strong>Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т. п.).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.14.1.</strong>Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.15.1.</strong>Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.16.1.</strong>Запрещено в РП-процессе называть друг друга по никнейму.</div></div>
+</div>
+</div>
+<div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
                                 <span class="icon-svg">
@@ -2431,62 +2550,29 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                             <div class="rule-item" data-pun="w"><strong>3.5.1.</strong> Запрещено делать более одного предупредительного выстрела в одного и того же игрока в течение короткого времени — это считается фейковым РП.</div>
                         </div>
                     </div>
-
-                    <div class="rules-section">
-                        <div class="rules-header" onclick="toggleSection(this)">
-                            <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-                                </span>
-                                Раздел 4. Правила зелёных зон
-                            </h2>
-                            <span class="arrow">▼</span>
-                        </div>
-                        <div class="rules-body">
-                            <div class="rule-item"><strong>4.1.1.</strong> Зелёная зона — это безопасное пространство, где боевые действия и насилие строго запрещены правилами сервера. Зелёная зона начинается от забора баз группировок <span class="highlight">+ 10 метров</span> от него. <span class="example">(Исключение: во время рейда или штурма боевые действия возможны)</span></div>
-
-                            <div class="green-zone-image">
-                                <img src="green_zone.jpg" alt="Зелёная зона — КПП военных">
-                                <div class="caption">Пример зелёной зоны (КПП военных)</div>
-                            </div>
-
-                            <div class="rule-item" data-pun="w"><strong>4.2.1.</strong> На территории зелёной зоны можно проводить кулачные бои, но только после одобрения главного на территории ЗЗ.</div>
-                            <div class="rule-item" data-pun="w"><strong>4.3.1.</strong> Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div>
-                            <div class="rule-item" data-pun="7"><strong>4.4.1.</strong> Провокации, оскорбления и угрозы в зелёной зоне разрешены, но любые боевые действия (даже ответные) караются баном. Если вас оскорбляют — вызывайте администратора.</div>
-                        </div>
-                    </div>
-
-                    <div class="rules-section">
-                        <div class="rules-header" onclick="toggleSection(this)">
-                            <h2>
-                                <span class="icon-svg">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>
-                                </span>
-                                Раздел 5. Правила рейдов и штурма
-                            </h2>
-                            <span class="arrow">▼</span>
-                        </div>
-                        <div class="rules-body">
-                            <div class="rule-item" data-pun="14"><strong>5.1.1.</strong> Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div>
-                            <div class="rule-item" data-pun="1"><strong>5.2.1.</strong> Во время рейда или штурма запрещается покидать место столкновения.</div>
-                            <div class="rule-item" data-pun="1"><strong>5.3.1.</strong> После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div>
-                            <div class="rule-item" data-pun="7"><strong>5.4.1.</strong> Для начала рейда необходимо, чтобы в сети находились минимум по <span class="highlight">3 человека</span> от каждой воюющей группировки.</div>
-                            <div class="rule-item" data-pun="3"><strong>5.5.1.</strong> Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div>
-                            <div class="rule-item" data-pun="3"><strong>5.6.1.</strong> Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div>
-                            <div class="rule-item" data-pun="7"><strong>5.7.1.</strong> Перед началом рейда нужно найти одну из причин нападения:</div>
-                            <div class="rule-item"><strong>1.</strong> Официальная война между группировками.</div>
-                            <div class="rule-item"><strong>2.</strong> Экономический ущерб.</div>
-                            <div class="rule-item"><strong>3.</strong> Захват стратегически важных объектов.</div>
-                            <div class="rule-item"><strong>4.</strong> Ответная мера.</div>
-                            <div class="rule-item"><strong>5.</strong> Конфликты в РП.</div>
-                            <div class="rule-item"><strong>5.8.1.</strong> Если с обороняющейся стороны начинается стрельба, атакующая сторона вправе начать рейд досрочно, не дожидаясь окончания <span class="highlight">5 минут</span> из п. 5.5.1.</div>
-                            <div class="rule-item" data-pun="w"><strong>5.9.1.</strong> Время объявления рейда и время его начала должны быть зафиксированы скриншотом, а желательно и видео.</div>
-                            <div class="rule-item" data-pun="7"><strong>5.10.1.</strong> Помогать в рейде могут только те, с кем у группировки <span class="highlight">официально дружеские отношения</span>. Сталкеры помогать не могут. Исключение — сталкеры, которые часто контактируют с этой группировкой.</div>
-                            <div class="rule-item" data-pun="3"><strong>5.11.1.</strong> Разрешён только <span class="highlight">1 рейд</span> на одну группировку за одну сессию.</div>
-                        </div>
-                    </div>
-
-                    <div class="rules-section">
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 4. Правила зелёных зон
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>4.1.1.</strong><span class="rule-title">Green Zone (ЗЗ)</span> — зелёная зона, которую охраняют мета-бойцы; место, где запрещены какие-либо виды убийств и грабежей.</div><div class="rule-item rule-sub"><strong>4.1.2.</strong><span class="rule-title">Мета-бойцы</span> — неигровые охранники ЗЗ, которые не дают грабить, убивать и стрелять (подробнее — в разделе 7).</div><div class="rule-item rule-sub rule-last"><strong>4.1.3.</strong>Зелёная зона начинается от забора базы группировки <span class="highlight">+ 10 метров</span> от него.<span class="note note-exc"><b>Исключение</b>во время рейда или штурма боевые действия возможны.</span></div><div class="green-zone-image"><img src="green_zone.jpg" alt="Зелёная зона — КПП военных"><div class="caption">Пример зелёной зоны (КПП военных)</div></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>4.2.1.</strong>Каждая ЗЗ является постоянной базой определённой группировки, которая имеет полную власть над ней.<span class="note note-ex"><b>Пример</b>Депо, Деревня Новичков, ЮКПП и т. д.</span></div><div class="rule-item rule-sub rule-last"><strong>4.2.2.</strong>Главные в ЗЗ — игроки группировки, которая владеет этой базой. Стратегические точки не могут быть базами.<span class="note note-ex"><b>Пример</b>СКПП, АТП, Элеватор.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>4.3.1.</strong>В ЗЗ запрещены любые агрессивные действия или гопстоп со стороны третьих лиц. Агрессией считается:<ol class="rule-list"><li>приказ сложить оружие;</li><li>удары руками и ногами;</li><li>словесная угроза жизни;</li><li>приказ скинуть все деньги.</li></ol><span class="note note-exc"><b>Исключение</b>разрешена самооборона, если вы получили физический урон или ваша свобода ограничивается.</span><span class="note note-exc"><b>Исключение</b>группировка, владеющая этой ЗЗ, имеет полное право на любые действия в рамках РП.</span></div><div class="rule-item rule-sub rule-last"><strong>4.3.2.</strong>Запрещается при NLR бежать через ЮКПП. Военным разрешается сначала потребовать выхода с ЗЗ, а далее — на усмотрение (подробнее про NLR — в разделе 11).</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="w"><strong>4.4.1.</strong>В ЗЗ разрешена кулачная драка с обязательным согласием обеих сторон на нейтральной ЗЗ. Согласием является взаимное нанесение урона. Так можно выяснить взаимоотношения или конфликт.<span class="note note-cl"><b>Уточнение</b>драка не может длиться больше <span class="highlight">3 минут</span>.</span></div><div class="rule-item rule-sub"><strong>4.4.2.</strong>Кулачная драка идёт до момента, когда оппонент говорит, что не может продолжать бой, либо выдохся.</div><div class="rule-item rule-sub"><strong>4.4.3.</strong>Добивать или убивать запрещено.</div><div class="rule-item rule-sub rule-last"><strong>4.4.4.</strong>Драку можно проводить только после одобрения главного на территории ЗЗ.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="7"><strong>4.5.1.</strong>В ЗЗ абсолютно всем запрещено открывать огонь из огнестрельного оружия, кроме главных в этой ЗЗ. Любые боевые действия (даже ответные) караются баном.<span class="note note-exc"><b>Исключение</b>ивент с мутантами, открытие ЗЗ (см. раздел 12), рейд или штурм.</span></div><div class="rule-item rule-sub" data-pun="w"><strong>4.5.2.</strong>Запрещено носить оружие в руках в зелёной зоне — оно должно быть убрано в слот или за спину. Исключение — если вы только зашли и ещё не успели убрать.</div><div class="rule-item rule-sub rule-last"><strong>4.5.3.</strong>Провокации и оскорбления в ЗЗ разрешены, но отвечать на них оружием или силой нельзя. Если вас оскорбляют — вызывайте администратора.</div></div>
+</div>
+</div>
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 5. Правила рейдов и штурма
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>5.1.1.</strong><span class="rule-title">Рейд</span> — нападение на базу в результате войны группировок или с целью наживы.</div><div class="rule-item rule-sub rule-last"><strong>5.1.2.</strong><span class="rule-title">Штурм</span> — нападение на базу с целью вызволения заложника или захвата определённого человека в плен.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="14"><strong>5.2.1.</strong>Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div><div class="rule-item rule-sub rule-last"><strong>5.2.2.</strong>Перед проведением рейда или штурма атакующая сторона должна предупредить хоста. Без разрешения хоста ничего делать нельзя.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>5.3.1.</strong>Во время рейда или штурма запрещается покидать место столкновения.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>5.4.1.</strong>После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div><div class="rule-item rule-sub rule-last"><strong>5.4.2.</strong>Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.5.1.</strong>Для начала рейда необходимо, чтобы в сети находились минимум по <span class="highlight">3 человека</span> от каждой воюющей группировки.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.6.1.</strong>Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.7.1.</strong>Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.8.1.</strong>Перед началом рейда нужно найти одну из причин нападения:<ol class="rule-list"><li>Официальная война между группировками.</li><li>Экономический ущерб.</li><li>Захват стратегически важных объектов.</li><li>Ответная мера.</li><li>Конфликты в РП.</li></ol></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.9.1.</strong>Если с обороняющейся стороны начинается стрельба, атакующая сторона вправе начать рейд досрочно, не дожидаясь окончания <span class="highlight">5 минут</span> из п. 5.6.1.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>5.10.1.</strong>Время объявления рейда и время его начала должны быть зафиксированы скриншотом, а желательно и видео.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="7"><strong>5.11.1.</strong>Помогать в рейде могут только те, с кем у группировки <span class="highlight">официально дружеские отношения</span>. Сталкеры помогать не могут. Исключение — сталкеры, которые часто контактируют с этой группировкой.</div><div class="rule-item rule-sub rule-last"><strong>5.11.2.</strong>Запрещено помогать одной из сторон, если рейд или штурм уже начался.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>5.12.1.</strong>Рейд не может быть произведён на ЮКПП.</div><div class="rule-item rule-sub rule-last" data-pun="3"><strong>5.12.2.</strong>Разрешён только <span class="highlight">1 рейд</span> на одну группировку за одну сессию.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.13.1.</strong>Если рейд проводит нейтральная группировка против тех, с кем у неё нет войны, они автоматически становятся врагами и объявляется война.</div></div>
+</div>
+</div>
+<div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
                                 <span class="icon-svg">
@@ -2504,8 +2590,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                             <div class="rule-item" data-pun="3"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
                         </div>
                     </div>
-
-                    <div class="rules-section">
+<div class="rules-section">
                         <div class="rules-header" onclick="toggleSection(this)">
                             <h2>
                                 <span class="icon-svg">
@@ -2522,65 +2607,27 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                         </div>
                     </div>
 <div class="rules-section">
-    <div class="rules-header" onclick="toggleSection(this)">
-        <h2>
-            <span class="icon-svg">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H8v-2h3v2zm0-4H8V9h3v4zm4 4h-3v-2h3v2zm0-4h-3V9h3v4z"/></svg>
-            </span>
-            Раздел 8. Правила группировок
-        </h2>
-        <span class="arrow">▼</span>
-    </div>
-    <div class="rules-body">
-        <div class="rule-item"><strong>8.1. Основное положение</strong></div>
-        <div class="rule-item" data-pun="1"><strong>8.1.1.</strong> Покинуть группировку или перейти в другую можно только после <span class="highlight">3-х дней</span> нахождения в ней. Исключение: если вы лидер или заместитель — вы должны найти себе замену и продержаться на посту не менее <span class="highlight">5 дней</span>.</div>
-        <div class="rule-item"><strong>8.1.2.</strong> Монолит враждебен абсолютно ко всем группировкам.</div>
-        <div class="rule-item"><strong>8.1.3.</strong> Если ваша группировка находится в состоянии войны с другой группировкой, вы вправе открыть огонь по её членам при встрече. Исключение — зелёные зоны, где действуют правила раздела 4.</div>
-        <div class="rule-item"><strong>8.2. Дезертирство</strong></div>
-        <div class="rule-item"><strong>8.2.1.</strong> Дезертирство — это самовольный, несогласованный с командованием уход из группировки, побег с поста, переход к врагу или исчезновение без предупреждения. Обычный выход по договорённости с лидером дезертирством не считается.</div>
-        <div class="rule-item" data-pun="1"><strong>8.2.2.</strong> Дезертир обязан отыграть уход в IC: побег, подстава, конфликт с командиром, переход на сторону врага. Просто выйти из фракции в меню — <span class="highlight">запрещено</span>.</div>
-        <div class="rule-item" data-pun="3"><strong>8.2.3.</strong> Запрещено дезертировать:
-            <span class="example">— во время обороны базы или рейда;</span>
-            <span class="example">— в течение 3 дней после вступления в группировку;</span>
-            <span class="example">— находясь под арестом;</span>
-            <span class="example">— ради обхода наказания, троллинга или слива информации (метагейм).</span>
-        </div>
-        <div class="rule-item"><strong>8.2.4.</strong> Если дезертир забирает с собой имущество группировки (оружие, броню, деньги, документы) — это считается кражей и усиливает последствия.</div>
-        <div class="rule-item"><strong>8.2.5.</strong> Последствия для дезертира: розыск (КОС-статус), потеря званий и доступов, месть со стороны бывших товарищей, требование выдачи у новой фракции. Амнистия возможна только через РП: выкуп, услуга, возврат имущества или решение лидера.</div>
-        <div class="rule-item"><strong>8.2.6.</strong> Если члена группировки взяли в плен и заставили принудительно войти в состав вражеской группировки, то другие члены группировки могут вызволить товарища и вернуть к себе.</div>
-        <div class="rule-item"><strong>8.3. Плен</strong></div>
-        <div class="rule-item" data-pun="3"><strong>8.3.1.</strong> У пленного можно отобрать только оружие, рацию и другие предметы, которые могут навредить.</div>
-    </div>
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 8. Правила группировок
+</h2>
+<span class="arrow">▼</span>
 </div>
-                    <div class="rules-section">
-    <div class="rules-header" onclick="toggleSection(this)">
-        <h2>
-            <span class="icon-svg">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </span>
-            Раздел 9. Правила РПК
-        </h2>
-        <span class="arrow">▼</span>
-    </div>
-    <div class="rules-body">
-        <div class="rule-item"><strong>9.1.1. РПК (RPK, Role Play Kill)</strong> — это ролевая смерть персонажа, которая приводит к его перманентной (необратимой) гибели без возможности возрождения. Это крайняя мера, которая применяется по решению администрации сервера как следствие серьёзных ролевых нарушений.</div>
-        <div class="rule-item"><strong>9.1.2.</strong> РПК — это не убийство в перестрелке, а ролевая казнь по приговору. Она проводится только по одной из причин из п. 9.3.1 и считается действительной лишь после <span class="highlight">одобрения администрации</span>. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div>
-        <div class="rule-item" data-pun="14"><strong>9.2.1.</strong> Для совершения РПК требуется не менее <span class="highlight">2 членов группировки</span>, а сам приговор должен быть записан на камеру (подробный порядок — в пп. 9.4.1–9.4.4).</div>
-        <div class="rule-item" data-pun="14"><strong>9.3.1.</strong> РПК можно провести только по нескольким причинам:</div>
-        <div class="rule-item"><strong>1.</strong> Предательство группировки.</div>
-        <div class="rule-item"><strong>2.</strong> Крупный долг.</div>
-        <div class="rule-item"><strong>3.</strong> Нападение на группировку.</div>
-        <div class="rule-item"><strong>4.</strong> Месть за своего напарника.</div>
-        <div class="rule-item"><strong>5.</strong> Угроза раскрытия секрета.</div>
-        <div class="rule-item" data-pun="14"><strong>9.4.1.</strong> Администрация одобряет РПК только тогда, когда жертвы <span class="highlight">связаны и стоят возле стены</span>, а перед ними зачитывают приговор на камеру.</div>
-        <div class="rule-item" data-pun="7"><strong>9.4.2.</strong> Приговор должен быть зачитан вслух и содержать причину РПК из списка в п. 9.3.1.</div>
-        <div class="rule-item" data-pun="7"><strong>9.4.3.</strong> Длина записи — <span class="highlight">от 1 до 3 минут</span>. Слишком короткая запись (меньше 1 минуты) и запись длиннее 3 минут не принимаются.</div>
-        <div class="rule-item" data-pun="1"><strong>9.4.4.</strong> Запись приговора нужно отправить администратору сразу после завершения РП-сессии.</div>
-        <div class="rule-item" data-pun="3"><strong>9.5.1.</strong> После РПК нельзя вступать в группировки в течение <span class="highlight">3 дней</span>.</div>
-        <div class="rule-item"><strong>9.6.1.</strong> После РПК игрок может сразу создать нового персонажа. Группировка и позывной погибшего персонажа стираются.</div>
-    </div>
+<div class="rules-body">
+<div class="rule-cat-block"><div class="rule-cat"><span>8.1</span>Основное положение</div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>8.1.1.</strong>Покинуть группировку или перейти в другую можно только после <span class="highlight">3-х дней</span> нахождения в ней.<span class="note note-exc"><b>Исключение</b>если вы лидер или заместитель — вы должны найти себе замену и продержаться на посту не менее <span class="highlight">5 дней</span>.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.1.2.</strong>Монолит враждебен абсолютно ко всем группировкам.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.1.3.</strong>Если ваша группировка находится в состоянии войны с другой группировкой, вы вправе открыть огонь по её членам при встрече.<span class="note note-exc"><b>Исключение</b>зелёные зоны, где действуют правила раздела 4.</span></div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>8.2</span>Дезертирство</div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.2.1.</strong><span class="rule-title">Дезертирство</span> — самовольный, несогласованный с командованием уход из группировки, побег с поста, переход к врагу или исчезновение без предупреждения. Обычный выход по договорённости с лидером дезертирством не считается.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>8.2.2.</strong>Дезертир обязан отыграть уход в IC: побег, подстава, конфликт с командиром, переход на сторону врага. Просто выйти из фракции в меню — <span class="highlight">запрещено</span>.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>8.2.3.</strong>Запрещено дезертировать:<ol class="rule-list"><li>во время обороны базы или рейда;</li><li>в течение 3 дней после вступления в группировку;</li><li>находясь под арестом;</li><li>ради обхода наказания, троллинга или слива информации (метагейм).</li></ol></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.2.4.</strong>Если дезертир забирает с собой имущество группировки (оружие, броню, деньги, документы) — это считается кражей и усиливает последствия.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.2.5.</strong>Последствия для дезертира: розыск (КОС-статус), потеря званий и доступов, месть со стороны бывших товарищей, требование выдачи у новой фракции. Амнистия возможна только через РП: выкуп, услуга, возврат имущества или решение лидера.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.2.6.</strong>Если члена группировки взяли в плен и заставили принудительно войти в состав вражеской группировки, то другие члены группировки могут вызволить товарища и вернуть к себе.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>8.3</span>Плен</div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>8.3.1.</strong>У пленного можно отобрать только оружие, рацию и другие предметы, которые могут навредить.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>8.4</span>Взаимоотношения группировок</div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.4.1.</strong>Группировки, у которых идеология конфликтует с другой, не могут подписать дружбу или союз.<span class="note note-exc"><b>Исключение</b>торговый нейтралитет или ролевые компромиссы.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>8.4.2.</strong>Если вы видите группу нейтральной группировки вместе с враждебной (с которой у вас война), вы можете напасть на обе группы, при условии что они были в одном отряде.<span class="note note-cl"><b>Уточнение</b>это испортит отношения с нейтральной группировкой и является причиной войны.</span></div></div></div>
 </div>
-
+</div>
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 9. Правила РПК
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>9.1.1.</strong><span class="rule-title">РПК (RPK, Role Play Kill)</span> — ролевая смерть персонажа, которая приводит к его перманентной (необратимой) гибели без возможности возрождения. Это крайняя мера, которая применяется по решению администрации сервера как следствие серьёзных ролевых нарушений.</div><div class="rule-item rule-sub rule-last"><strong>9.1.2.</strong>РПК — это не убийство в перестрелке, а ролевая казнь по приговору. Она проводится только по одной из причин из п. 9.3.1 и считается действительной лишь после <span class="highlight">одобрения администрации</span>. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="14"><strong>9.2.1.</strong>Для совершения РПК требуется не менее <span class="highlight">2 членов группировки</span>, а сам приговор должен быть записан на камеру (подробный порядок — в пп. 9.4.1–9.4.4).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="14"><strong>9.3.1.</strong>РПК можно провести только по нескольким причинам:<ol class="rule-list"><li>Предательство группировки.</li><li>Крупный долг.</li><li>Нападение на группировку.</li><li>Месть за своего напарника.</li><li>Угроза раскрытия секрета.</li></ol></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="14"><strong>9.4.1.</strong>Администрация одобряет РПК только тогда, когда жертвы <span class="highlight">связаны и стоят возле стены</span>, а перед ними зачитывают приговор на камеру.</div><div class="rule-item rule-sub" data-pun="7"><strong>9.4.2.</strong>Приговор должен быть зачитан вслух и содержать причину РПК из списка в п. 9.3.1.</div><div class="rule-item rule-sub" data-pun="7"><strong>9.4.3.</strong>Длина записи — <span class="highlight">от 1 до 3 минут</span>. Слишком короткая запись (меньше 1 минуты) и запись длиннее 3 минут не принимаются.</div><div class="rule-item rule-sub rule-last" data-pun="1"><strong>9.4.4.</strong>Запись приговора нужно отправить администратору сразу после завершения РП-сессии.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>9.5.1.</strong>После РПК нельзя вступать в группировки в течение <span class="highlight">3 дней</span>.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>9.6.1.</strong>После РПК игрок может сразу создать нового персонажа. Группировка и позывной погибшего персонажа стираются.</div></div>
+</div>
+</div>
 <div class="rules-section">
     <div class="rules-header" onclick="toggleSection(this)">
         <h2>
@@ -2597,36 +2644,40 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
         <div class="rule-item" data-pun="w"><strong>10.3.1.</strong> Игрок, который вкалывает кому-либо амнезиак, должен проговорить, что он сейчас сделает и как это повлияет на того, кому вкалывают амнезиак.</div>
     </div>
 </div>
-
 <div class="rules-section">
-    <div class="rules-header" onclick="toggleSection(this)">
-        <h2>
-            <span class="icon-svg">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
-            </span>
-            Раздел 11. Правила смерти
-        </h2>
-        <span class="arrow">▼</span>
-    </div>
-    <div class="rules-body">
-        <div class="rule-item"><strong>11.1. Общие положения</strong></div>
-        <div class="rule-item" data-pun="3"><strong>11.1.1.</strong> После смерти ваш персонаж забывает обстоятельства и причину смерти.</div>
-        <div class="rule-item" data-pun="7"><strong>11.1.2.</strong> Запрещено использовать информацию, полученную до смерти, против убийцы или его группировки (в том числе его имя, внешность и место, где вас убили). Это называется метагейминг и наказывается.</div>
-        <div class="rule-item" data-pun="3"><strong>11.1.3.</strong> После смерти персонаж забывает всё, что произошло за последние <span class="highlight">15 минут</span> до гибели.</div>
-        <div class="rule-item" data-pun="1"><strong>11.1.4.</strong> После смерти вы обязаны вернуться на точку возрождения или в место, указанное правилами сервера, и не имеете права возвращаться на место смерти в течение <span class="highlight">15 минут</span>.</div>
-        <div class="rule-item"><strong>11.2. Мародёрство и имущество</strong></div>
-        <div class="rule-item" data-pun="w"><strong>11.2.1.</strong> Запрещено требовать возврата потерянных вещей, если смерть произошла по правилам RP.</div>
-        <div class="rule-item"><strong>11.3. Новая жизнь</strong></div>
-        <div class="rule-item" data-pun="3"><strong>11.3.1.</strong> После возрождения вы продолжаете играть за прежнего персонажа «с чистого листа» и без воспоминаний о смерти.</div>
-        <div class="rule-item" data-pun="7"><strong>11.3.2.</strong> Нельзя мстить за прошлую смерть, ссылаясь на знания из прошлой жизни.</div>
-        <div class="rule-item" data-pun="7"><strong>11.3.3.</strong> Запрещено намеренно умирать ради телепортации, быстрого возрождения или обхода игровых механик.</div>
-        <div class="rule-item"><strong>11.4. Исключения</strong></div>
-        <div class="rule-item"><strong>11.4.1.</strong> Если смерть произошла из-за бага, вылета или вины администрации, обратитесь в поддержку. Решение о возврате вещей принимает администратор. В таком случае вы можете вернуться на место смерти и откатить ситуацию, а ограничение из п. 11.1.4 не действует. <span class="highlight">Исключение:</span> если это произошло во время рейда, возврат на место и откат ситуации запрещены.</div>
-        <div class="rule-item"><strong>11.4.2.</strong> Смерть от рук читера или нарушителя правил не считается RP-смертью. Подайте жалобу с доказательствами (запись, скриншоты).</div>
-    </div>
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 11. Правила смерти
+</h2>
+<span class="arrow">▼</span>
 </div>
-
-                </div>
+<div class="rules-body">
+<div class="rule-cat-block"><div class="rule-cat"><span>11.1</span>Общие положения</div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>11.1.1.</strong>После смерти ваш персонаж забывает обстоятельства и причину смерти.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>11.1.2.</strong>Запрещено использовать информацию, полученную до смерти, против убийцы или его группировки (в том числе его имя, внешность и место, где вас убили). Это называется метагейминг и наказывается.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>11.1.3.</strong>После смерти персонаж забывает всё, что произошло за последние <span class="highlight">15 минут</span> до гибели.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>11.1.4.</strong>После смерти вы обязаны вернуться на точку возрождения или в место, указанное правилами сервера, и не имеете права возвращаться на место смерти в течение <span class="highlight">15 минут</span>.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>11.2</span>Мародёрство и имущество</div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>11.2.1.</strong>Запрещено требовать возврата потерянных вещей, если смерть произошла по правилам RP.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>11.3</span>Новая жизнь</div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>11.3.1.</strong>После возрождения вы продолжаете играть за прежнего персонажа «с чистого листа» и без воспоминаний о смерти.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>11.3.2.</strong>Нельзя мстить за прошлую смерть, ссылаясь на знания из прошлой жизни.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>11.3.3.</strong>Запрещено намеренно умирать ради телепортации, быстрого возрождения или обхода игровых механик.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>11.4</span>No Life Rules (NLR)</div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>11.4.1.</strong><span class="rule-title">No Life Rules (NLR)</span> — в случае тяжёлого ранения вашего персонажа вас уносят на базу вашей группировки. Вы забываете всё, что было за <span class="highlight">15 минут</span> до ранения. Персонаж может знать, чем его ранило (огнестрел или осколки), но не помнит, как их получил.</div><div class="rule-item rule-sub"><strong>11.4.2.</strong>В течение <span class="highlight">5 минут</span> вам необходимо находиться на своей базе. Нужно отыграть своё ранение.</div><div class="rule-item rule-sub rule-last"><strong>11.4.3.</strong>Запрещается при NLR бежать через ЮКПП (подробнее — п. 4.3.2).</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>11.5</span>Исключения</div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>11.5.1.</strong>Если смерть произошла из-за бага, вылета или вины администрации, обратитесь в поддержку. Решение о возврате вещей принимает администратор. В таком случае вы можете вернуться на место смерти и откатить ситуацию, а ограничение из п. 11.1.4 не действует.<span class="note note-exc"><b>Исключение</b>если это произошло во время рейда, возврат на место и откат ситуации запрещены.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>11.5.2.</strong>Смерть от рук читера или нарушителя правил не считается RP-смертью. Подайте жалобу с доказательствами (запись, скриншоты).</div></div></div>
+</div>
+</div>
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 12. Красная зона (КЗ)
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>12.1.1.</strong><span class="rule-title">Red Zone (КЗ) — Красная зона</span> — открытая ЗЗ или территория, на которой происходят боевые действия, а также приведение заложника в КПЗ.<span class="note note-exc"><b>Исключение</b>стрельба по мутантам или зомбированным не считается открытием КЗ.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>12.2.1.</strong><span class="rule-title">Открытие ЗЗ</span> — ЗЗ открывается при определённых условиях. При открытии ЗЗ все мета-бойцы исчезают, а территория становится небезопасной.</div><div class="rule-item rule-sub"><strong>12.2.2.</strong>ЗЗ открывается в случае стрельбы или провокации из неё, либо самой стрельбой по людям вне ЗЗ.</div><div class="rule-item rule-sub rule-last"><strong>12.2.3.</strong>ЗЗ остаётся открытой в течение <span class="highlight">5 минут</span> с последнего выстрела владельцев ЗЗ. Продлением является получение урона от выстрелов.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>12.3.1.</strong><span class="rule-title">Боевые действия в КЗ</span> — Если на территории ведётся стрельба, КЗ объявляется на всей территории, и там можно убивать агрессивно настроенных.<span class="note note-exc"><b>Исключение</b>если человек не представляет опасности, сдаётся или скидывает оружие, его можно пленить или выгнать из зоны соприкосновения. Убивать просто так нейтральных или дружественных людей запрещено.</span><span class="note note-exc"><b>Исключение</b>убивать вражеских солдат, даже пленных, можно — РПК этим не является. Обоснование: война группировок.</span></div><div class="rule-item rule-sub rule-last"><strong>12.3.2.</strong>На территории КЗ запрещено РПК. Необходимо вывезти заложника из опасной зоны.</div></div>
+</div>
+</div>
+<div class="rules-section">
+<div class="rules-header" onclick="toggleSection(this)">
+<h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
+Раздел 13. Захват точек и война группировок
+</h2>
+<span class="arrow">▼</span>
+</div>
+<div class="rules-body">
+<div class="rule-cat-block"><div class="rule-cat"><span>13.1</span>Общие положения</div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.1.1.</strong>Каждая контрольная точка имеет своё стратегическое назначение. Покушение на неё — акт агрессии со стороны атакующей группировки и причина для вражды или войны.<span class="note note-exc"><b>Исключение</b>если союзная или дружеская группировка захватывает точку по обоюдному согласию, отношения не ухудшаются.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.1.2.</strong>Во время захвата точки вся зона стратегического объекта является КЗ.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>13.2</span>Порядок захвата</div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.2.1.</strong>Точку можно захватывать раз в <span class="highlight">5 минут</span>. Если на вашу точку покушались, вы можете её отбить (даётся <span class="highlight">10 минут</span> на контратаку).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.2.2.</strong>Вы должны объявить о захвате точки в КПК.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.2.3.</strong>Атакующим необходимо удерживать точку <span class="highlight">15 минут</span>, после чего они могут покинуть её или защищать.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.2.4.</strong>Если вашу точку захватила нейтральная или враждебная группировка, вы можете объявить им войну и отбить точку.</div></div></div><div class="rule-cat-block"><div class="rule-cat"><span>13.3</span>Союзники и одиночки</div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>13.3.1.</strong>На захват точки можно брать с собой только одну союзную группировку.</div><div class="rule-item rule-sub rule-last"><strong>13.3.2.</strong>Обороняющимся тоже можно брать одну союзную группировку на контратаку.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>13.3.3.</strong>Одиночкам запрещено захватывать какие-либо точки, использовать их в своих целях, а также участвовать в захватах точек или их отбитии.</div></div></div>
+</div>
+</div>
+</div>
             </div>
 
             <div id="lore" class="tab-page">
@@ -2667,14 +2718,22 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
             </div>
 
             <div id="map" class="tab-page">
-                <div class="kpk-nav">
+                <div class="kpk-top">
+                    <div class="kpk-id"><i class="kpk-led"></i><b>КПК</b><span>Сталкер ID · HLRP</span></div>
+                    <div class="kpk-seg" role="tablist" aria-label="Раздел КПК">
+                        <button type="button" role="tab" data-v="rel" class="on" aria-selected="true">Отношения</button>
+                        <button type="button" role="tab" data-v="map" aria-selected="false">Карта</button>
+                    </div>
+                    <div class="kpk-clock" id="kpkClock" aria-hidden="true">--:--</div>
+                </div>
+                <div class="kpk-nav" hidden>
                     <button class="kpk-arrow" id="kpkToRel" type="button" hidden>← Отношения</button>
                     <button class="kpk-arrow kpk-arrow-right" id="kpkToMap" type="button">Карта →</button>
                 </div>
 
                 <div id="viewRelations">
                     <div class="rel-board">
-                        <h3 class="rel-title">Таблица отношений группировок Зоны (КПК)</h3>
+                        <div class="rel-top"><h3 class="rel-title"><small>КПК · Дипломатия</small>Отношения группировок</h3><div class="rel-readout" id="kpkReadout" role="status" aria-live="polite">Наведи или нажми на ячейку таблицы</div></div>
                         <p class="rel-hint">Таблица шире экрана: листай её вбок →</p>
                         <div class="rel-scroll">
                             <div class="rel-layout" id="relLayout"></div>
@@ -2686,7 +2745,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 
                 <div id="viewMap" hidden>
                 <div class="page-head">
-                    <h2>🗺️ Карта Зоны</h2>
+                    <h2>Карта Зоны</h2>
                     <p>Карта зоны на момент 2020 года.</p>
                 </div>
 
@@ -2717,7 +2776,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                         <div class="kpk-corner kpk-corner-tl"></div>
                         <div class="kpk-corner kpk-corner-tr"></div>
                         <div class="kpk-corner kpk-corner-bl"></div>
-                        <div class="kpk-corner kpk-corner-br"></div>
+                        <div class="kpk-corner kpk-corner-br"></div><div class="map-coords" id="mapCoords">X — · Y —</div>
                     </div>
                 </div>
 
@@ -2732,6 +2791,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
                     </button>
                 </div>
+                <div class="map-legend" id="mapLegend" aria-label="Легенда карты"></div>
                 <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.<br>Нажми на точку, чтобы узнать, чья это база и какая у неё история.</div>
                 </div>
             </div>
@@ -2767,7 +2827,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v13</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v15</p>
         </div>
 
     </div>
@@ -3215,23 +3275,26 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                 const q = this.value.trim().toLowerCase();
                 let found = 0;
                 sections.forEach(sec => {
-                    const items = sec.querySelectorAll('.rule-item');
+                    const units = sec.querySelectorAll('.rule-unit, .rules-body > .rule-item');
                     const pics = sec.querySelectorAll('.green-zone-image');
+                    const blocks = sec.querySelectorAll('.rule-cat-block');
                     const body = sec.querySelector('.rules-body');
                     const arrow = sec.querySelector('.arrow');
                     if (!q) {
                         sec.style.display = '';
-                        items.forEach(i => { i.style.display = ''; i.classList.remove('match'); });
+                        units.forEach(i => { i.style.display = ''; i.classList.remove('match'); });
+                        blocks.forEach(b => { b.style.display = ''; });
                         pics.forEach(p => { p.style.display = ''; });
                         return;
                     }
                     let hits = 0;
-                    items.forEach(i => {
+                    units.forEach(i => {
                         const hit = i.textContent.toLowerCase().includes(q);
                         i.style.display = hit ? '' : 'none';
                         i.classList.toggle('match', hit);
                         if (hit) hits++;
                     });
+                    blocks.forEach(b => { b.style.display = b.querySelector('.rule-unit.match') ? '' : 'none'; });
                     pics.forEach(p => { p.style.display = 'none'; });
                     sec.style.display = hits ? '' : 'none';
                     body.classList.toggle('open', hits > 0);
@@ -3263,7 +3326,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v13';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v15';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 15000;
 
@@ -4351,5 +4414,86 @@ matchMedia('(min-width:769px)').addEventListener('change',function(q){if(q.match
 <script id="hl-layout-js">
 (function(){var bd=document.querySelector('.hero-badge');if(bd)bd.textContent='Добро пожаловать'})();
 </script>
+<script id="hl-kpk-js">
+(function(){
+ function $(i){return document.getElementById(i)}
+
+ /* часы */
+ var clk=$('kpkClock');
+ function tick(){ if(clk){ var d=new Date(); clk.textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); } }
+ tick(); setInterval(tick,15000);
+
+ /* вкладки КПК: управляют прежними скрытыми кнопками */
+ var seg=document.querySelectorAll('.kpk-seg button');
+ function setSeg(v){ seg.forEach(function(b){ var on=b.getAttribute('data-v')===v; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); }); }
+ seg.forEach(function(b){
+  b.addEventListener('click',function(){
+   var v=b.getAttribute('data-v');
+   if(v==='map' && $('viewMap').hidden) $('kpkToMap').click();
+   if(v==='rel' && $('viewRelations').hidden) $('kpkToRel').click();
+   setSeg(v);
+  });
+ });
+
+ /* таблица: перекрестие и подпись */
+ var layout=$('relLayout'), readout=$('kpkReadout');
+ var DEF='Наведи или нажми на ячейку таблицы';
+ function cells(){ return layout.querySelectorAll('.rel-cells .rel-cell'); }
+ function decorate(){
+  var n=layout.querySelectorAll('.rel-label').length||7;
+  cells().forEach(function(c,i){ c.classList.toggle('diag', Math.floor(i/n)===i%n); });
+ }
+ new MutationObserver(decorate).observe(layout,{childList:true});
+ decorate();
+
+ function clear(){
+  layout.querySelectorAll('.hl-row,.hl-col,.in-line,.hot').forEach(function(n){ n.classList.remove('hl-row','hl-col','in-line','hot'); });
+  readout.textContent=DEF;
+ }
+ function focusCell(cell){
+  var cs=Array.prototype.slice.call(cells());
+  var labels=layout.querySelectorAll('.rel-label'), heads=layout.querySelectorAll('.rel-head');
+  var n=labels.length||7, idx=cs.indexOf(cell);
+  if(idx<0) return;
+  var r=Math.floor(idx/n), c=idx%n;
+  clear();
+  cs.forEach(function(x,i){ if(Math.floor(i/n)===r||i%n===c) x.classList.add('in-line'); });
+  cell.classList.add('hot');
+  if(labels[r]) labels[r].classList.add('hl-row');
+  if(heads[c]) heads[c].classList.add('hl-col');
+  var a=labels[r]?labels[r].textContent:'', b=labels[c]?labels[c].textContent:'';
+  readout.textContent='';
+  if(r===c){ readout.textContent=a+' — свои'; return; }
+  readout.appendChild(document.createTextNode(a+' ↔ '+b+': '));
+  var lv=document.createElement('b'); lv.setAttribute('data-level',cell.getAttribute('data-level')||''); lv.textContent=cell.getAttribute('data-level')||'';
+  readout.appendChild(lv);
+ }
+ layout.addEventListener('mouseover',function(e){ var c=e.target.closest&&e.target.closest('.rel-cell'); if(c) focusCell(c); });
+ layout.addEventListener('click',function(e){ var c=e.target.closest&&e.target.closest('.rel-cell'); if(c) focusCell(c); });
+ layout.addEventListener('mouseleave',clear);
+
+ /* легенда карты (цвета те же, что у точек) */
+ var LEG=[['Одиночки','#c5beb0'],['Долг','#6b1710'],['Свобода','#6fd08c'],['Бандиты','#10100e'],['ОКСОП','#3e6947'],['Нейтралы','#d0d6dd'],['Проводник','#ffd166']];
+ var lg=$('mapLegend');
+ if(lg) LEG.forEach(function(p){ var s=document.createElement('span'); var i=document.createElement('i'); i.style.setProperty('--c',p[1]); s.appendChild(i); s.appendChild(document.createTextNode(p[0])); lg.appendChild(s); });
+
+ /* координаты под курсором */
+ var mc=$('mapContainer'), mi=$('mapImage'), out=$('mapCoords');
+ if(mc&&mi&&out){
+  mc.addEventListener('mousemove',function(e){
+   try{
+    var cw=mc.clientWidth, ch=mc.clientHeight, nw=mi.naturalWidth||cw, nh=mi.naturalHeight||ch;
+    var r=Math.min(cw/nw,ch/nh), w=nw*r, h=nh*r, left=(cw-w)/2, top=(ch-h)/2;
+    var b=mc.getBoundingClientRect(), k=b.width/cw||1;
+    var px=(e.clientX-b.left)/k, py=(e.clientY-b.top)/k;
+    var lx=(px-cw/2-translateX)/scale+cw/2, ly=(py-ch/2-translateY)/scale+ch/2;
+    var x=(lx-left)/w*100, y=(ly-top)/h*100;
+    out.textContent=(x<0||x>100||y<0||y>100)?'X — · Y —':'X '+x.toFixed(1)+' · Y '+y.toFixed(1);
+   }catch(_){}
+  });
+  mc.addEventListener('mouseleave',function(){ out.textContent='X — · Y —'; });
+ }
+})();
+</script>
 </body>
-                    </html>
+    </html>
