@@ -2412,6 +2412,18 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 }
 @media(prefers-reduced-motion:reduce){.kpk-led{animation:none}}
 </style>
+<style id="hl-perf">
+/* плавность карты */
+body{transition:background-image .3s ease!important;will-change:auto!important}
+#particles-container{transition:none!important}
+body.on-map .particle{animation-play-state:paused}
+.map-container{contain:layout paint;touch-action:none;overscroll-behavior:contain}
+.map-container img{will-change:transform;backface-visibility:hidden;image-rendering:auto}
+.map-markers{will-change:transform}
+.kpk-frame-inner.is-moving .kpk-scanline,.kpk-frame-inner.is-moving .map-point i::after{animation-play-state:paused}
+.kpk-frame-inner.is-moving .kpk-glitch,.kpk-frame-inner.is-moving .kpk-glitch-color{animation:none}
+.map-point i{transition:none}
+</style>
 </head>
 <body>
 
@@ -2497,9 +2509,9 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                     <button class="tool-btn" type="button" id="collapseAll">Свернуть все</button>
                 </div>
                 <div class="rules-note">
-                    <p>Если вы получите 3 предупреждения, администрация может выдать вам бан по своему усмотрению.</p>
-                    <p>Перманентный бан выдаётся за использование читов, за слишком частое использование багов игры, а также если вы получили бан 3 раза.</p>
-                    <p>Не согласны с наказанием — подайте апелляцию в специальном канале на Discord-сервере проекта.</p>
+                    <p>При достижении 5 варнов вы автоматически получаете перманентный бан. Если у вас будет 3 или больше банов, администрация вправе вас забанить пермачом.</p>
+                    <p>Администрации вместо бана на n-ное количество дней может выдавать варн (предупреждение).</p>
+                    <p>Незнание правил не освобождает вас от ответственности!</p>
                 </div>
                 <div class="rules-empty" id="rulesEmpty">Ничего не найдено. Попробуйте другое слово.</div>
                 <div class="rules-wrapper">
@@ -2529,7 +2541,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 <span class="arrow">▼</span>
 </div>
 <div class="rules-body">
-<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.1.1.</strong><span class="rule-title">NRP (Non-RolePlay)</span> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. NRP запрещён.</div><div class="rule-item rule-sub"><strong>2.1.2.</strong>Запрещены действия, не соответствующие вашей роли и реальности игрового мира.<span class="note note-ex"><b>Пример</b>тяжелораненый персонаж бегает и дерётся как здоровый; сталкер использует вещи и технологии, которых нет в Зоне; нападение без какой-либо РП-причины.</span></div><div class="rule-item rule-sub"><strong>2.1.3.</strong>Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.<span class="note note-ex"><b>Пример</b>персонаж остаётся в роли и в проигрышной ситуации, а не выходит из РП ради выгоды.</span></div><div class="rule-item rule-sub rule-last" data-pun="w"><strong>2.1.4.</strong>Нон-РП сообщение в чате нужно заканчивать знаком <span class="highlight">«//»</span>.<span class="note note-ex"><b>Пример</b>«Админ, нужна помощь//»</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>2.2.1.</strong><span class="rule-title">DM (Death Match)</span> — убийство другого игрока без РП-причины.<span class="note note-ex"><b>Пример</b>вы встретили игрока вражеской группировки, однако находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.3.1.</strong><span class="rule-title">Пауэргейминг (Powergaming)</span> — преувеличение возможностей своего персонажа, отсутствие страха за жизнь.<span class="note note-ex"><b>Пример</b>сопротивление в плену, перестрелка одного игрока с двумя игроками.</span></div><div class="rule-item rule-sub"><strong>2.3.2.</strong>Пленением считается, когда у вас изъяли оружие, средства связи и сковали вас в наручники.</div><div class="rule-item rule-sub"><strong>2.3.3.</strong>Под прицелом запрещено врать про звание, группировку и позывной.<span class="note note-exc"><b>Исключение</b>секретные группировки (Искра) могут врать даже под угрозой жизни.</span></div><div class="rule-item rule-sub rule-last"><strong>2.3.4.</strong>Если вас берёт в плен один человек, вы можете попытаться спастись. При неудаче ваш персонаж получает РПК.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.4.1.</strong><span class="rule-title">Метагейминг (MG, Meta)</span> — использование РП-информации, полученной не РП-путём (например, из Telegram или Discord).</div><div class="rule-item rule-sub"><strong>2.4.2.</strong>Метой считаются знания о названиях секретной группировки, её численности и составе.</div><div class="rule-item rule-sub"><strong>2.4.3.</strong>Метой считаются неигровые знания о направлении и движении врагов, наведение товарищей на свой труп, передача информации, приводящей к PvP.</div><div class="rule-item rule-sub"><strong>2.4.4.</strong>Вы не можете знать то, что не знает ваш РП-персонаж. Узнавайте всё по РП.</div><div class="rule-item rule-sub"><strong>2.4.5.</strong>Метой считаются знания, повлёкшие РП-казни людей.<span class="note note-cl"><b>Уточнение</b>если нарушение произошло и информация была признана метой, будет произведён откат РП-ситуации.</span></div><div class="rule-item rule-sub"><strong>2.4.6.</strong>Метой являются мета-заговоры о битвах.<span class="note note-ex"><b>Пример</b>лидеры группировок соглашаются на битву возле определённой территории — это мета-сговор.</span></div><div class="rule-item rule-sub rule-last"><strong>2.4.7.</strong>Метой считается перенос личной неприязни из внешних источников в игру.<span class="note note-ex"><b>Пример</b>после конфликта в личных сообщениях — намеренная травля, охота и прочие враждебные действия.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.5.1.</strong><span class="rule-title">Спавнкилл (Spawn Kill)</span> — убийство игроков прямо на их месте спавна.<span class="note note-exc"><b>Исключение</b>от Предбанника до ЮКПП — перманентная ЗЗ.</span></div><div class="rule-item rule-sub rule-last"><strong>2.5.2.</strong>Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право убить игрока, или он вас.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>2.6.1.</strong><span class="rule-title">Тимкилл (Team Kill)</span> — убийство своих товарищей, не влекущее за собой никакого РП-контекста.<span class="note note-exc"><b>Исключение</b>самооборона от агрессивных действий.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.7.1.</strong>Запрещено выходить из игры во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.8.1.</strong>Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.9.1.</strong>Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="p"><strong>2.10.1.</strong>Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>2.11.1.</strong>Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.12.1.</strong><span class="rule-title">Спам</span> — Запрещён спам в текстовый и голосовой чат.<span class="note note-ex"><b>Пример</b>многократное повторение одного сообщения, флуд, посторонние звуки и музыка в голосовом чате.</span></div><div class="rule-item rule-sub rule-last"><strong>2.12.2.</strong>Запрещено использование нецензурной лексики и оскорблений в адрес других игроков вне РП-контекста.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.13.1.</strong>Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т. п.).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.14.1.</strong>Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.15.1.</strong>Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.16.1.</strong>Запрещено в РП-процессе называть друг друга по никнейму.</div></div>
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.1.1.</strong><span class="rule-title">NRP (Non-RolePlay)</span> — действие, нарушающее логику игры или сеттинга, совершённое без отыгрыша роли. NRP запрещён.</div><div class="rule-item rule-sub"><strong>2.1.2.</strong>Запрещены действия, не соответствующие вашей роли и реальности игрового мира.<span class="note note-ex"><b>Пример</b>тяжелораненый персонаж бегает и дерётся как здоровый; сталкер использует вещи и технологии, которых нет в Зоне; нападение без какой-либо РП-причины.</span></div><div class="rule-item rule-sub"><strong>2.1.3.</strong>Игрок обязан отыгрывать выбранную роль правдоподобно, даже если это невыгодно.<span class="note note-ex"><b>Пример</b>персонаж остаётся в роли и в проигрышной ситуации, а не выходит из РП ради выгоды.</span></div><div class="rule-item rule-sub rule-last" data-pun="w"><strong>2.1.4.</strong>Нон-РП сообщение в чате нужно заканчивать знаком <span class="highlight">«//»</span>.<span class="note note-ex"><b>Пример</b>«Админ, нужна помощь//»</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>2.2.1.</strong><span class="rule-title">DM (Death Match)</span> — убийство другого игрока без РП-причины.<span class="note note-ex"><b>Пример</b>вы встретили игрока вражеской группировки, однако находитесь вне состояния войны и не можете стрелять в первые секунды встречи.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.3.1.</strong><span class="rule-title">Пауэргейминг (Powergaming)</span> — преувеличение возможностей своего персонажа, отсутствие страха за жизнь.<span class="note note-ex"><b>Пример</b>сопротивление в плену, перестрелка одного игрока с двумя игроками.</span></div><div class="rule-item rule-sub"><strong>2.3.2.</strong>Пленением считается, когда у вас изъяли оружие, средства связи и сковали вас в наручники.</div><div class="rule-item rule-sub"><strong>2.3.3.</strong>Под прицелом запрещено врать про звание, группировку и позывной.<span class="note note-exc"><b>Исключение</b>секретные группировки (Искра) могут врать даже под угрозой жизни.</span></div><div class="rule-item rule-sub rule-last"><strong>2.3.4.</strong>Если вас берёт в плен один человек, вы можете попытаться спастись. При неудаче ваш персонаж получает РПК.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.4.1.</strong><span class="rule-title">Метагейминг (MG, Meta)</span> — использование РП-информации, полученной не РП-путём (например, из Telegram или Discord).</div><div class="rule-item rule-sub"><strong>2.4.2.</strong>Метой считаются знания о названиях секретной группировки, её численности и составе.</div><div class="rule-item rule-sub"><strong>2.4.3.</strong>Метой считаются неигровые знания о направлении и движении врагов, наведение товарищей на свой труп, передача информации, приводящей к PvP.</div><div class="rule-item rule-sub"><strong>2.4.4.</strong>Вы не можете знать то, что не знает ваш РП-персонаж. Узнавайте всё по РП.</div><div class="rule-item rule-sub"><strong>2.4.5.</strong>Метой считаются знания, повлёкшие РП-казни людей.<span class="note note-cl"><b>Уточнение</b>если нарушение произошло и информация была признана метой, будет произведён откат РП-ситуации.</span></div><div class="rule-item rule-sub"><strong>2.4.6.</strong>Метой являются мета-заговоры о битвах.<span class="note note-ex"><b>Пример</b>лидеры группировок соглашаются на битву возле определённой территории — это мета-сговор.</span></div><div class="rule-item rule-sub rule-last"><strong>2.4.7.</strong>Метой считается перенос личной неприязни из внешних источников в игру.<span class="note note-ex"><b>Пример</b>после конфликта в личных сообщениях — намеренная травля, охота и прочие враждебные действия.</span></div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="3"><strong>2.5.1.</strong><span class="rule-title">Спавнкилл (Spawn Kill)</span> — убийство игроков прямо на их месте спавна.<span class="note note-exc"><b>Исключение</b>от Предбанника до ЮКПП — перманентная ЗЗ.</span></div><div class="rule-item rule-sub rule-last"><strong>2.5.2.</strong>Со спавна должно пройти как минимум <span class="highlight">15 секунд</span>, чтобы вы имели право убить игрока, или он вас.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>2.6.1.</strong><span class="rule-title">Тимкилл (Team Kill)</span> — убийство своих товарищей, не влекущее за собой никакого РП-контекста.<span class="note note-exc"><b>Исключение</b>самооборона от агрессивных действий.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.7.1.</strong>Запрещено выходить из игры во время РП-процесса или перестрелки. Если у вас вылетел интернет или игра — вы должны отписаться на форуме о том, что случилось.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.8.1.</strong>Запрещено резко приседать или делать невозможные движения во время ПВП. Любая драка или перестрелка должна выглядеть реалистично.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.9.1.</strong>Если какой-то игрок выходит из РП и начинает вести диалог в нон-РП, и это не касается жалобы или разбора жалоб — вы по РП должны признать его сумасшедшим и сами не должны выходить из роли.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="p"><strong>2.10.1.</strong>Запрещено использовать любые сторонние программы, читы, баги и ошибки игры для получения преимущества. За нарушение — <span class="highlight">перманентный бан</span>.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>2.11.1.</strong>Запрещено намеренное создание лагов, дизконнект во время боя или РП-ситуации для избежания последствий (<span class="highlight">Rage Quit</span>).</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>2.12.1.</strong><span class="rule-title">Спам</span> — Запрещён спам в текстовый и голосовой чат.<span class="note note-ex"><b>Пример</b>многократное повторение одного сообщения, флуд, посторонние звуки и музыка в голосовом чате.</span></div><div class="rule-item rule-sub rule-last"><strong>2.12.2.</strong>Запрещено использование нецензурной лексики и оскорблений в адрес других игроков вне РП-контекста.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.13.1.</strong>Запрещено создавать персонажей с именами, оскорбляющими других игроков или нарушающими сеттинг игры (например, «Putin», «BTS_Stan» и т. п.).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>2.14.1.</strong>Запрещено намеренное блокирование проходов, спавнов и важных точек карты без РП-причины.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.15.1.</strong>Запрещено использовать сленг и отсылки к современной поп-культуре внутри РП-процесса (например, говорить про TikTok или iPhone в Зоне).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>2.16.1.</strong>Запрещено в РП-процессе называть друг друга по никнейму.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>2.17.1.</strong>Запрещено Fun-RP или действия 18+ без согласия.<span class="note note-cl"><b>Уточнение</b>Fun-RP — это действия без РП-обоснования, нацеленные на смех. Также нельзя отрезать/бить гениталии, отыгрывать фетишизм/насилие.</span></div></div>
 </div>
 </div>
 <div class="rules-section">
@@ -2553,7 +2565,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 <div class="rules-section">
 <div class="rules-header" onclick="toggleSection(this)">
 <h2><span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></span>
-Раздел 4. Правила зелёных зон
+Раздел 4. Зелёная зона (ЗЗ)
 </h2>
 <span class="arrow">▼</span>
 </div>
@@ -2569,7 +2581,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 <span class="arrow">▼</span>
 </div>
 <div class="rules-body">
-<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>5.1.1.</strong><span class="rule-title">Рейд</span> — нападение на базу в результате войны группировок или с целью наживы.</div><div class="rule-item rule-sub rule-last"><strong>5.1.2.</strong><span class="rule-title">Штурм</span> — нападение на базу с целью вызволения заложника или захвата определённого человека в плен.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="14"><strong>5.2.1.</strong>Рейд можно начать только после <span class="highlight">одобрения администрации</span> на сервере. Одобрение запрашивается в игровом чате или в Discord, но не в голосовом чате во время РП.</div><div class="rule-item rule-sub rule-last"><strong>5.2.2.</strong>Перед проведением рейда или штурма атакующая сторона должна предупредить хоста. Без разрешения хоста ничего делать нельзя.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>5.3.1.</strong>Во время рейда или штурма запрещается покидать место столкновения.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="1"><strong>5.4.1.</strong>После смерти вы обязаны оставаться на спавне до окончания рейда или штурма.</div><div class="rule-item rule-sub rule-last"><strong>5.4.2.</strong>Если вас убили во время штурма или рейда вашей базы — вы должны оставаться на спавне и ждать окончания рейда.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.5.1.</strong>Для начала рейда необходимо, чтобы в сети находились минимум по <span class="highlight">3 человека</span> от каждой воюющей группировки.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.6.1.</strong>Перед началом рейда необходимо предупредить противников в голосовой чат или текстом за <span class="highlight">5 минут</span> до начала.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.7.1.</strong>Рейд не должен длиться более <span class="highlight">40 минут</span> с момента первого выстрела. По истечении времени стороны обязаны прекратить огонь и разойтись.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.8.1.</strong>Перед началом рейда нужно найти одну из причин нападения:<ol class="rule-list"><li>Официальная война между группировками.</li><li>Экономический ущерб.</li><li>Захват стратегически важных объектов.</li><li>Ответная мера.</li><li>Конфликты в РП.</li></ol></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.9.1.</strong>Если с обороняющейся стороны начинается стрельба, атакующая сторона вправе начать рейд досрочно, не дожидаясь окончания <span class="highlight">5 минут</span> из п. 5.6.1.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="w"><strong>5.10.1.</strong>Время объявления рейда и время его начала должны быть зафиксированы скриншотом, а желательно и видео.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="7"><strong>5.11.1.</strong>Помогать в рейде могут только те, с кем у группировки <span class="highlight">официально дружеские отношения</span>. Сталкеры помогать не могут. Исключение — сталкеры, которые часто контактируют с этой группировкой.</div><div class="rule-item rule-sub rule-last"><strong>5.11.2.</strong>Запрещено помогать одной из сторон, если рейд или штурм уже начался.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>5.12.1.</strong>Рейд не может быть произведён на ЮКПП.</div><div class="rule-item rule-sub rule-last" data-pun="3"><strong>5.12.2.</strong>Разрешён только <span class="highlight">1 рейд</span> на одну группировку за одну сессию.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.13.1.</strong>Если рейд проводит нейтральная группировка против тех, с кем у неё нет войны, они автоматически становятся врагами и объявляется война.</div></div>
+<div class="rule-group rule-unit has-sub"><div class="rule-item rule-main"><strong>5.1.1.</strong><span class="rule-title">Рейд</span> — нападение на базу в результате войны группировок или с целью наживы.</div><div class="rule-item rule-sub rule-last"><strong>5.1.2.</strong><span class="rule-title">Штурм</span> — нападение на базу с целью вызволения заложника или захвата определённого человека в плен с РП-причиной.</div></div><div class="rule-group rule-unit has-sub"><div class="rule-item rule-main" data-pun="7"><strong>5.2.1.</strong>Запрещено помогать какой-либо из сторон, если рейд/штурм уже начался.</div><div class="rule-item rule-sub rule-last"><strong>5.2.2.</strong>При рейде нейтральной группировкой на тех, с кем у неё нет войны, они автоматически становятся врагами и объявляется война.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.3.1.</strong>Рейд не может быть произведён на ЮКПП или базы секретных группировок (Искра).</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="14"><strong>5.4.1.</strong>Перед проведением рейда/штурма атакующая сторона должна предупредить хоста. Без разрешения хоста ничего делать нельзя.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.5.1.</strong>Атакующая сторона должна уведомить группировку, на которую нападает: объявить условия и причины рейда/штурма. Также необходимо иметь откат или скриншот объявления и разведки.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.6.1.</strong>После объявления рейда/штурма сторона атаки должна отойти не менее чем на <span class="highlight">100 м</span> от базы противника. На рейд даётся <span class="highlight">10 минут</span>, на штурм — <span class="highlight">15 минут</span>. Хост скажет, когда можно начинать.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>5.7.1.</strong>Запрещено покидать игру во время рейда/штурма.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>5.8.1.</strong>После того как вас убили, вы не должны появляться на базе до момента окончания рейда.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.9.1.</strong>Смерть во время рейда с обеих сторон не является РПК.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.10.1.</strong>Заложника во время штурма трогать запрещено: нельзя его убивать или прятать, он должен сидеть в КПЗ.<span class="note note-cl"><b>Уточнение</b>если заложник умер, его судьба зависит от того, кто победил: победа атакующей стороны — реанимация, победа обороняющейся стороны — РПК.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="3"><strong>5.11.1.</strong>На базу группировки может быть повторно совершён только один рейд/штурм.<span class="note note-cl"><b>Уточнение</b>КД: штурм — раз в 2 РП, рейд — раз в 3 РП на одну группировку.</span></div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.12.1.</strong>Атакующая сторона может стрелять по всем, кто находится в ЗЗ, после начала рейда/штурма.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.13.1.</strong>Запрещено брать на рейд/штурм более одной союзной группировки.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single"><strong>5.14.1.</strong>Окончание рейда/штурма сообщает хост.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="7"><strong>5.15.1.</strong>Штурм может быть объявлен при наличии явных доказательств оскорбления вашей группировки и её лидера. Доказательства (скриншот/откат) необходимо предоставить хосту.</div></div><div class="rule-group rule-unit"><div class="rule-item rule-single" data-pun="1"><strong>5.16.1.</strong>Для проведения рейда/штурма и у обороняющейся, и у атакующей стороны должно быть в сети более одного члена именно той группировки, на которую объявляется рейд (союзники не в счёт).<span class="note note-cl"><b>Уточнение</b>это выясняется по РП, путём разведки.</span></div></div>
 </div>
 </div>
 <div class="rules-section">
@@ -2583,11 +2595,16 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                             <span class="arrow">▼</span>
                         </div>
                         <div class="rules-body">
-                            <div class="rule-item" data-pun="3"><strong>6.1.1.</strong> Одиночкам запрещено проводить гоп-стопы в любом виде.</div>
-                            <div class="rule-item" data-pun="3"><strong>6.2.1.</strong> Гоп-стоп может совершиться только если в группе тех, кто собирается гоп-стопить, не менее <span class="highlight">2-х человек</span>.</div>
-                            <div class="rule-item" data-pun="3"><strong>6.3.1.</strong> При гоп-стопе запрещено отбирать всё имущество жертвы — максимум <span class="highlight">2 предмета</span> или оружие с патронами. Полный обдир считается NRP.</div>
-                            <div class="rule-item" data-pun="1"><strong>6.4.1.</strong> Если жертва оказывает сопротивление и погибает — гоп-стоп считается завершённым. Добивать лежачего без причины запрещено.</div>
-                            <div class="rule-item" data-pun="3"><strong>6.5.1.</strong> Повторный гоп-стоп одного и того же игрока в течение <span class="highlight">1 часа</span> запрещён — это считается гриферством.</div>
+<div class="rule-item"><strong>6.1.1.</strong> Гоп-стоп — агрессивное действие с целью остановки человека/группы и получения с них наживы.</div>
+<div class="rule-item" data-pun="3"><strong>6.2.1.</strong> Сталкеры не могут промышлять гоп-стопом.</div>
+<div class="rule-item" data-pun="3"><strong>6.3.1.</strong> Гоп-стопом можно заниматься только от <span class="highlight">2 человек</span> в группе.</div>
+<div class="rule-item" data-pun="1"><strong>6.4.1.</strong> Гоп-стопом могут заниматься группировки в силу своей идеологии.<span class="note note-ex"><b>Пример</b>Бандиты, Военные.</span></div>
+<div class="rule-item" data-pun="3"><strong>6.5.1.</strong> Нужно оставить одно огнестрельное оружие для самообороны и <span class="highlight">1000 рублей</span>.</div>
+<div class="rule-item" data-pun="3"><strong>6.6.1.</strong> Гоп-стоп на ЗЗ запрещён.<span class="note note-exc"><b>Исключение</b>если гопающая сторона находится на своей ЗЗ, им можно (например, Бандиты или Военные).</span></div>
+<div class="rule-item"><strong>6.7.1.</strong> Похожее фракционное снаряжение является причиной для задержания.<span class="note note-ex"><b>Пример</b>если военные стрелялись с бандитами и видят ещё одного, похожего на бандита, они могут его задержать.</span><span class="note note-ex"><b>Пример</b>камуфляжная расцветка конкретной группировки: чёрная — Бандиты, голубая — Искра (ЧН), зелёная — Свобода, красная — Долг, тёмно-зелёная — Военные, бежевая — Нейтралы.</span></div>
+<div class="rule-item"><strong>6.8.1.</strong> Предупредительным выстрелом является любой выстрел под ноги/в воздух без глушителя.</div>
+<div class="rule-item" data-pun="3"><strong>6.9.1.</strong> Запрещено наносить увечья, несовместимые с дальнейшей жизнедеятельностью.<span class="note note-ex"><b>Пример</b>отрезание ноги/руки.</span><span class="note note-exc"><b>Исключение</b>вы можете сломать руку или ногу, если жертва вас не слушается и всячески пытается затянуть время или сбежать.</span></div>
+
                         </div>
                     </div>
 <div class="rules-section">
@@ -2827,7 +2844,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v15</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v17.2</p>
         </div>
 
     </div>
@@ -2898,6 +2915,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
                 if (!pages[name]) return;
                 Object.keys(pages).forEach(function (k) { pages[k].classList.remove('active'); });
                 pages[name].classList.add('active');
+                document.body.classList.toggle('on-map', name === 'map');
                 tabs.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-tab') === name); });
             }
 
@@ -3042,6 +3060,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 
         const container = document.getElementById('mapContainer');
         const mapImage = document.getElementById('mapImage');
+        const mapFrame = container.parentNode;
 
         let scale = 1;
         let translateX = 0;
@@ -3051,56 +3070,78 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 
         const MAX_SCALE = 5.0;
         const MIN_SCALE = 1.0;
-        const ZOOM_STEP = 0.2;
+
+        // размеры контейнера кэшируем: чтение размеров при каждом движении вызывало лишние пересчёты вёрстки
+        let cw = container.clientWidth, ch = container.clientHeight;
+        let mapRaf = 0, movingTimer = 0;
+
+        function measureMap() { cw = container.clientWidth; ch = container.clientHeight; scheduleMap(); }
+        if (window.ResizeObserver) new ResizeObserver(measureMap).observe(container);
+        window.addEventListener('resize', measureMap);
 
         function clampPosition() {
-            const containerRect = container.getBoundingClientRect();
-            const imgWidth = containerRect.width * scale;
-            const imgHeight = containerRect.height * scale;
-            const maxX = Math.max(0, (imgWidth - containerRect.width) / 2);
-            const maxY = Math.max(0, (imgHeight - containerRect.height) / 2);
+            const maxX = Math.max(0, (cw * scale - cw) / 2);
+            const maxY = Math.max(0, (ch * scale - ch) / 2);
             translateX = Math.min(Math.max(translateX, -maxX), maxX);
             translateY = Math.min(Math.max(translateY, -maxY), maxY);
         }
 
-        function updateMap() {
+        function renderMap() {
+            mapRaf = 0;
             clampPosition();
-            mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            mapImage.style.transform = 'translate3d(' + translateX + 'px,' + translateY + 'px,0) scale(' + scale + ')';
             if (window.hlrpMapSync) window.hlrpMapSync(scale, translateX, translateY);
         }
 
-        function zoomIn() {
-            if (scale < MAX_SCALE) {
-                scale = Math.min(scale + ZOOM_STEP, MAX_SCALE);
-                updateMap();
-            }
+        // все изменения применяются не чаще одного раза за кадр
+        function scheduleMap() { if (!mapRaf) mapRaf = requestAnimationFrame(renderMap); }
+        function updateMap() { scheduleMap(); }
+
+        // пока карту двигают, ставим на паузу фоновые анимации (сканлайн, пульсация точек)
+        function markMoving() {
+            mapFrame.classList.add('is-moving');
+            clearTimeout(movingTimer);
+            movingTimer = setTimeout(function () { mapFrame.classList.remove('is-moving'); }, 160);
         }
 
-        function zoomOut() {
-            if (scale > MIN_SCALE) {
-                scale = Math.max(scale - ZOOM_STEP, MIN_SCALE);
-                updateMap();
-            }
+        // зум к точке (px, py считаются от центра контейнера), поэтому карта приближается туда, куда указывает курсор
+        function zoomAt(newScale, px, py) {
+            newScale = Math.min(Math.max(newScale, MIN_SCALE), MAX_SCALE);
+            if (newScale === scale) return;
+            const k = newScale / scale;
+            translateX = px - (px - translateX) * k;
+            translateY = py - (py - translateY) * k;
+            scale = newScale;
+            markMoving();
+            scheduleMap();
         }
+
+        function zoomIn() { zoomAt(scale * 1.25, 0, 0); }
+        function zoomOut() { zoomAt(scale / 1.25, 0, 0); }
 
         function resetZoom() {
             scale = 1;
             translateX = 0;
             translateY = 0;
-            updateMap();
+            scheduleMap();
         }
 
-        container.addEventListener('wheel', function(e) {
+        function localPoint(clientX, clientY) {
+            const r = container.getBoundingClientRect();
+            const ratio = r.width / cw || 1;
+            return { x: (clientX - r.left) / ratio - cw / 2, y: (clientY - r.top) / ratio - ch / 2 };
+        }
+
+        container.addEventListener('wheel', function (e) {
             e.preventDefault();
-            const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
-            const newScale = Math.min(Math.max(scale + delta, MIN_SCALE), MAX_SCALE);
-            if (newScale !== scale) {
-                scale = newScale;
-                updateMap();
-            }
+            let d = e.deltaY;
+            if (e.deltaMode === 1) d *= 33;
+            d = Math.max(-120, Math.min(120, d));
+            const p = localPoint(e.clientX, e.clientY);
+            zoomAt(scale * Math.exp(-d * 0.0018), p.x, p.y);
         }, { passive: false });
 
-        container.addEventListener('mousedown', function(e) {
+        container.addEventListener('mousedown', function (e) {
             isDragging = true;
             startX = e.clientX;
             startY = e.clientY;
@@ -3109,95 +3150,76 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
             container.style.cursor = 'grabbing';
         });
 
-        window.addEventListener('mousemove', function(e) {
+        window.addEventListener('mousemove', function (e) {
             if (!isDragging) return;
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            translateX = startTranslateX + dx;
-            translateY = startTranslateY + dy;
-            updateMap();
+            translateX = startTranslateX + (e.clientX - startX);
+            translateY = startTranslateY + (e.clientY - startY);
+            markMoving();
+            scheduleMap();
         });
 
-        window.addEventListener('mouseup', function() {
+        window.addEventListener('mouseup', function () {
             isDragging = false;
             container.style.cursor = 'grab';
         });
 
         container.addEventListener('dblclick', resetZoom);
 
-        let touchStartX, touchStartY, touchTranslateX, touchTranslateY;
-        let lastTouchDistance = 0;
-        let lastTouchScale = 1;
+        let lastTouchDistance = 0, lastCX = 0, lastCY = 0;
 
-        container.addEventListener('touchstart', function(e) {
+        container.addEventListener('touchstart', function (e) {
             if (e.touches.length === 2) {
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                lastTouchDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
-                lastTouchScale = scale;
-                touchStartX = (touch1.clientX + touch2.clientX) / 2;
-                touchStartY = (touch1.clientY + touch2.clientY) / 2;
-                touchTranslateX = translateX;
-                touchTranslateY = translateY;
+                const t1 = e.touches[0], t2 = e.touches[1];
+                lastTouchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                lastCX = (t1.clientX + t2.clientX) / 2;
+                lastCY = (t1.clientY + t2.clientY) / 2;
             } else if (e.touches.length === 1) {
-                const touch = e.touches[0];
-                touchStartX = touch.clientX;
-                touchStartY = touch.clientY;
-                touchTranslateX = translateX;
-                touchTranslateY = translateY;
+                lastTouchDistance = 0;
+                lastCX = e.touches[0].clientX;
+                lastCY = e.touches[0].clientY;
             }
         }, { passive: true });
 
-        container.addEventListener('touchmove', function(e) {
+        container.addEventListener('touchmove', function (e) {
             e.preventDefault();
-
             if (e.touches.length === 2) {
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                const currentDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
-
+                const t1 = e.touches[0], t2 = e.touches[1];
+                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const cx = (t1.clientX + t2.clientX) / 2;
+                const cy = (t1.clientY + t2.clientY) / 2;
                 if (lastTouchDistance > 0) {
-                    const delta = currentDistance / lastTouchDistance;
-                    const newScale = Math.min(Math.max(lastTouchScale * delta, MIN_SCALE), MAX_SCALE);
-                    if (newScale !== scale) {
-                        scale = newScale;
-                        updateMap();
-                    }
+                    const p = localPoint(cx, cy);
+                    zoomAt(scale * (dist / lastTouchDistance), p.x, p.y);
                 }
-
-                const centerX = (touch1.clientX + touch2.clientX) / 2;
-                const centerY = (touch1.clientY + touch2.clientY) / 2;
-                const dx = centerX - touchStartX;
-                const dy = centerY - touchStartY;
-                translateX = touchTranslateX + dx;
-                translateY = touchTranslateY + dy;
-                updateMap();
-
+                translateX += cx - lastCX;
+                translateY += cy - lastCY;
+                lastTouchDistance = dist;
+                lastCX = cx;
+                lastCY = cy;
             } else if (e.touches.length === 1) {
-                const touch = e.touches[0];
-                const dx = touch.clientX - touchStartX;
-                const dy = touch.clientY - touchStartY;
-                translateX = touchTranslateX + dx;
-                translateY = touchTranslateY + dy;
-                updateMap();
+                const t = e.touches[0];
+                translateX += t.clientX - lastCX;
+                translateY += t.clientY - lastCY;
+                lastCX = t.clientX;
+                lastCY = t.clientY;
             }
+            markMoving();
+            scheduleMap();
         }, { passive: false });
 
-        document.addEventListener('mousemove', function(e) {
-            const x = (e.clientX / window.innerWidth - 0.5) * 15;
-            const y = (e.clientY / window.innerHeight - 0.5) * 15;
-            document.body.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-
+        // параллакс фона: не чаще раза за кадр и не на вкладке карты (там он только мешал плавности)
+        let parX = 0, parY = 0, parRaf = 0;
+        function applyParallax() {
+            parRaf = 0;
+            if (document.body.classList.contains('on-map')) return;
+            document.body.style.backgroundPosition = 'calc(50% + ' + parX + 'px) calc(50% + ' + parY + 'px)';
             const particles = document.getElementById('particles-container');
-            if (particles) {
-                particles.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            }
+            if (particles) particles.style.transform = 'translate(' + (parX * 0.3) + 'px, ' + (parY * 0.3) + 'px)';
+        }
+        document.addEventListener('mousemove', function (e) {
+            parX = (e.clientX / window.innerWidth - 0.5) * 15;
+            parY = (e.clientY / window.innerHeight - 0.5) * 15;
+            if (!parRaf) parRaf = requestAnimationFrame(applyParallax);
         });
 
         function triggerGlitch() {
@@ -3326,7 +3348,7 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v15';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v17.2';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 15000;
 
@@ -4496,4 +4518,12 @@ matchMedia('(min-width:769px)').addEventListener('change',function(q){if(q.match
 })();
 </script>
 </body>
-    </html>
+</html>
+<!--
+    ВАЖНО ДЛЯ ВСЕХ ИИ И РАЗРАБОТЧИКОВ: при КАЖДОМ запросе и любом новом обновлении этого файла обязательно
+    повышайте версию сборки и указывайте её в названии файла (например, index_17.2.html).
+    Правило повышения: небольшое изменение (правка текста, мелкий фикс) — следующее дробное число
+    (17.1 -> 17.2 -> 17.3); крупное обновление (новый раздел, redesign, новая функция) — следующее целое
+    (17.3 -> 18). Версию нужно обновить в трёх местах: в названии файла, в метке «сборка vNN» в подвале
+    и в переменной BUILD в скрипте. Не сохраняйте файл просто как index.html.
+-->
