@@ -2412,6 +2412,55 @@ body{display:block!important;padding:0!important;min-height:100vh;min-height:100
 }
 @media(prefers-reduced-motion:reduce){.kpk-led{animation:none}}
 </style>
+
+<style id="hl-topup">
+.topup{margin-bottom:1.6rem;padding:1.2rem 1.4rem;border:1px solid var(--line-2);border-left:3px solid #3fe08a;border-radius:20px;background:var(--panel-2)}
+.topup-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.topup-head h3{font-family:var(--f-display);font-size:1.3rem;font-weight:700;letter-spacing:.03em;color:#fff;margin-bottom:.25rem}
+.topup-head p{font-size:.92rem;line-height:1.6;color:var(--ink-3);max-width:62ch}
+.topup-head p b{color:var(--blue-2);font-weight:600}
+.topup-body{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.topup-guest p{color:var(--ink-2);line-height:1.6}
+.topup-label{display:block;margin-bottom:.45rem;font:700 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.topup-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.topup-row input{flex:1 1 200px;max-width:280px;padding:.8rem 1.1rem;background:rgba(2,8,18,.7);border:1px solid var(--line);border-radius:999px;color:var(--ink);font:600 1.05rem var(--f-mono);transition:border-color .25s,box-shadow .25s}
+.topup-row input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,182,255,.16)}
+.topup-sum{font-size:1rem;color:var(--ink-2)}
+.topup-sum b{font:700 1.5rem var(--f-display);color:#fff;font-variant-numeric:tabular-nums}
+.topup-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:.8rem 0}
+.topup-note{margin-bottom:1rem;font-size:.85rem;line-height:1.55;color:var(--ink-3)}
+.topup-status{min-height:1.3em;margin-top:.7rem;font-size:.88rem;color:var(--ink-3)}
+.topup-status.err{color:#ff9b9b}
+.topup-sub{margin:1.5rem 0 .7rem;font-family:var(--f-display);font-size:1.05rem;letter-spacing:.04em;color:var(--ink)}
+.topup-list{display:grid;gap:.7rem}
+.topup-empty{padding:1rem;text-align:center;font-size:.9rem;color:var(--ink-3);border:1px dashed var(--line-2);border-radius:14px}
+.tu-card{padding:1rem 1.1rem;border:1px solid var(--line);border-radius:16px;background:rgba(2,8,18,.5)}
+.tu-card.is-new{border-color:rgba(240,192,90,.45);background:rgba(240,192,90,.05)}
+.tu-top{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.tu-title{font:600 1rem var(--f-display);letter-spacing:.03em;color:#fff}
+.tu-title span{margin-left:.5rem;font:500 .8rem var(--f-mono);color:var(--ink-3)}
+.tu-badge{padding:.12rem .7rem;font:700 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--c);border-radius:999px;color:var(--c);background:var(--b)}
+.tu-badge[data-s="new"]{--c:#f0c05a;--b:rgba(240,192,90,.1)}
+.tu-badge[data-s="claimed"]{--c:#8cc4ff;--b:rgba(140,196,255,.1)}
+.tu-badge[data-s="done"]{--c:#7dffb0;--b:rgba(79,227,154,.1)}
+.tu-badge[data-s="rejected"]{--c:#ff7584;--b:rgba(255,77,94,.12)}
+.tu-badge[data-s="cancelled"]{--c:#9fb6cf;--b:rgba(140,172,204,.08)}
+.tu-meta{margin-top:.45rem;font-size:.88rem;line-height:1.55;color:var(--ink-3)}
+.tu-pay{margin-top:.9rem;padding:.9rem 1rem;border:1px solid var(--line-2);border-radius:14px;background:rgba(43,182,255,.06)}
+.tu-pay ol{margin:.2rem 0 .8rem 1.2rem;display:grid;gap:.35rem;font-size:.92rem;line-height:1.55;color:var(--ink-2)}
+.tu-pay ol b{color:#fff;font-weight:600}
+.tu-cardnum{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.5rem 0 .8rem}
+.tu-cardnum code{padding:.4rem .9rem;font:700 1.15rem var(--f-mono);letter-spacing:.1em;color:#fff;border:1px solid var(--line-2);border-radius:10px;background:rgba(2,8,18,.7);user-select:all}
+.tu-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.tu-actions .tool-btn.ok{background:rgba(46,125,50,.35);border-color:rgba(111,208,140,.55);color:#d6ffe3}
+@media(max-width:768px){
+ .topup{padding:1rem}
+ .topup-head .tool-btn{width:100%}
+ .topup-row input{max-width:none}
+ .tu-cardnum code{font-size:1rem;letter-spacing:.06em}
+ .tu-actions .tool-btn{flex:1}
+}
+</style>
 <style id="hl-perf">
 /* плавность карты */
 body{transition:background-image .3s ease!important;will-change:auto!important}
@@ -2835,6 +2884,35 @@ body.on-map .particle{animation-play-state:paused}
                     <button class="tool-btn" id="walletRefresh" type="button" hidden>Обновить</button>
                 </div>
 
+
+                <section class="topup" id="topup" aria-labelledby="topupTitle">
+                    <div class="topup-head">
+                        <div>
+                            <h3 id="topupTitle">Пополнить ХЛС за рубли</h3>
+                            <p>Курс: <b>1 ХЛС = 0,35 ₽</b>. Оплата переводом по СБП на карту, зачисление после проверки администратором.</p>
+                        </div>
+                        <button class="tool-btn" id="topupToggle" type="button" aria-expanded="false" aria-controls="topupBody">Пополнить</button>
+                    </div>
+                    <div class="topup-body" id="topupBody" hidden>
+                        <div class="topup-guest" id="topupGuest">
+                            <p>Чтобы пополнить баланс, сначала войди через Discord: ХЛС зачисляются на твой аккаунт.</p>
+                        </div>
+                        <div class="topup-user" id="topupUser" hidden>
+                            <label class="topup-label" for="topupInput">Сколько ХЛС нужно</label>
+                            <div class="topup-row">
+                                <input type="number" id="topupInput" inputmode="numeric" min="50" max="20000" step="1" placeholder="Например: 1000" autocomplete="off">
+                                <div class="topup-sum">К оплате: <b id="topupRub">0,00</b> ₽</div>
+                            </div>
+                            <div class="topup-chips" id="topupChips"></div>
+                            <div class="topup-note">Минимум 50 ХЛС, максимум 20 000 за одну заявку. Сумма в рублях считается автоматически, по курсу 0,35 ₽ за 1 ХЛС.</div>
+                            <button class="btn-primary btn-sm" id="topupCreate" type="button">Создать заявку</button>
+                            <div class="topup-status" id="topupStatus" role="status" aria-live="polite"></div>
+                            <h4 class="topup-sub">Мои заявки</h4>
+                            <div class="topup-list" id="topupList"></div>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="sx-filters" id="shopFilters"></div>
                 <div class="sx-grid" id="shopGrid"></div>
                 <div class="shop-empty" id="shopEmpty">Товаров пока нет. Когда они появятся, ты увидишь их здесь.</div>
@@ -2844,7 +2922,7 @@ body.on-map .particle{animation-play-state:paused}
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v17.3</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v18</p>
         </div>
 
     </div>
@@ -3348,7 +3426,7 @@ body.on-map .particle{animation-play-state:paused}
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v17.3';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v18';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 15000;
 
@@ -4397,6 +4475,228 @@ body.on-map .particle{animation-play-state:paused}
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && current) closeItem(); });
 
             loadItems();
+        })();
+    </script>
+
+
+    <script>
+        /* ===== Пополнение ХЛС за рубли (перевод по СБП на карту, подтверждает администратор) ===== */
+        (function () {
+            'use strict';
+
+            var app = window.hlrpApp;
+            var sb = window.hlrpSb;
+            if (!app) return;
+
+            // Реквизиты. Их видят все, кто откроет блок пополнения. Чтобы поменять карту, измени эту строку.
+            var CARD = '2204320402033916';
+            var RATE_KOP = 35;       // 1 ХЛС = 35 копеек (= 0,35 ₽). Должно совпадать с функцией create_topup в базе
+            var MIN_HLS = 50, MAX_HLS = 20000;
+            var QUICK = [100, 500, 1000, 2000, 5000];
+
+            function $(id) { return document.getElementById(id); }
+            function mk(tag, cls, text) {
+                var e = document.createElement(tag);
+                if (cls) e.className = cls;
+                if (text !== undefined && text !== null) e.textContent = text;
+                return e;
+            }
+            function rub(kop) {
+                return (kop / 100).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+            function cardPretty() { return CARD.replace(/(\d{4})(?=\d)/g, '$1 '); }
+
+            var body = $('topupBody'), toggle = $('topupToggle');
+            var input = $('topupInput'), rubOut = $('topupRub'), statusEl = $('topupStatus'), listEl = $('topupList');
+            var createBtn = $('topupCreate');
+            var busy = false, loaded = false;
+
+            function setStatus(text, err) {
+                statusEl.textContent = text || '';
+                statusEl.className = 'topup-status' + (err ? ' err' : '');
+            }
+
+            function readHls() {
+                var n = parseInt(input.value, 10);
+                return isFinite(n) ? n : 0;
+            }
+
+            function recalc() {
+                var n = readHls();
+                rubOut.textContent = rub(Math.max(0, n) * RATE_KOP);
+            }
+
+            function syncAuth() {
+                var u = !!app.state.user;
+                $('topupGuest').hidden = u;
+                $('topupUser').hidden = !u;
+                if (u && !body.hidden && !loaded) loadList();
+                if (!u) loaded = false;
+            }
+
+            // ---------- список заявок ----------
+            var STATUS = {
+                new: 'Ждёт оплаты', claimed: 'Проверяется', done: 'Зачислено',
+                rejected: 'Отклонена', cancelled: 'Отменена'
+            };
+
+            function fmtDate(iso) {
+                try { return new Date(iso).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); }
+                catch (e) { return ''; }
+            }
+
+            function copy(text, okMsg) {
+                function fallback() {
+                    var t = document.createElement('textarea');
+                    t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+                    document.body.appendChild(t); t.select();
+                    try { document.execCommand('copy'); app.toast(okMsg); } catch (e) { app.toast('Не удалось скопировать, выдели текст вручную.'); }
+                    document.body.removeChild(t);
+                }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(function () { app.toast(okMsg); }).catch(fallback);
+                } else fallback();
+            }
+
+            function card(t) {
+                var isNew = t.status === 'new';
+                var c = mk('div', 'tu-card' + (isNew ? ' is-new' : ''));
+                var top = mk('div', 'tu-top');
+                var title = mk('div', 'tu-title', app.fmt(t.hls) + ' ХЛС');
+                title.appendChild(mk('span', '', 'заявка №' + t.id));
+                top.appendChild(title);
+                var badge = mk('span', 'tu-badge', STATUS[t.status] || t.status);
+                badge.setAttribute('data-s', t.status);
+                top.appendChild(badge);
+                c.appendChild(top);
+
+                var meta = mk('div', 'tu-meta', 'К оплате ' + rub(t.rub_kop) + ' ₽ · создана ' + fmtDate(t.created_at));
+                c.appendChild(meta);
+                if (t.status === 'rejected' && t.reject_reason) c.appendChild(mk('div', 'tu-meta', 'Причина: ' + t.reject_reason));
+                if (t.status === 'claimed') c.appendChild(mk('div', 'tu-meta', 'Администратор проверяет перевод. ХЛС придут на баланс сразу после подтверждения.'));
+
+                if (isNew) {
+                    var pay = mk('div', 'tu-pay');
+                    var ol = document.createElement('ol');
+                    var li1 = document.createElement('li'); li1.innerHTML = 'Переведи ровно <b></b> по СБП на карту:'; li1.querySelector('b').textContent = rub(t.rub_kop) + ' ₽';
+                    var li2 = document.createElement('li'); li2.textContent = 'Сохрани чек или скриншот перевода.';
+                    var li3 = document.createElement('li'); li3.innerHTML = 'Нажми «Я оплатил(а)» и отправь чек администрации в Discord, указав номер заявки <b></b>.'; li3.querySelector('b').textContent = '№' + t.id;
+                    ol.appendChild(li1); ol.appendChild(li2); ol.appendChild(li3);
+                    pay.appendChild(ol);
+
+                    var num = mk('div', 'tu-cardnum');
+                    num.appendChild(mk('code', '', cardPretty()));
+                    var cp = mk('button', 'tool-btn', 'Скопировать номер');
+                    cp.type = 'button';
+                    cp.addEventListener('click', function () { copy(CARD, 'Номер карты скопирован'); });
+                    num.appendChild(cp);
+                    // номер карты показываем сразу под первым пунктом
+                    ol.insertBefore(mk('li', ''), li2).appendChild(num);
+                    pay.appendChild(mk('div', 'tu-meta', 'Переводи строго указанную сумму: по ней администратор находит твой платёж. Если перевёл другую сумму, напиши администрации.'));
+
+                    var act = mk('div', 'tu-actions');
+                    var paid = mk('button', 'tool-btn ok', 'Я оплатил(а)');
+                    paid.type = 'button';
+                    paid.addEventListener('click', function () { act_call('mark_topup_paid', t.id, 'Отметил оплату. Теперь отправь чек администрации в Discord.'); });
+                    var cancel = mk('button', 'tool-btn', 'Отменить заявку');
+                    cancel.type = 'button';
+                    cancel.addEventListener('click', function () { act_call('cancel_topup', t.id, 'Заявка отменена.'); });
+                    act.appendChild(paid); act.appendChild(cancel);
+                    pay.appendChild(act);
+                    c.appendChild(pay);
+                }
+                return c;
+            }
+
+            function renderList(rows) {
+                listEl.textContent = '';
+                if (!rows.length) { listEl.appendChild(mk('div', 'topup-empty', 'Заявок пока нет.')); return; }
+                rows.forEach(function (t) { listEl.appendChild(card(t)); });
+            }
+
+            function loadList() {
+                if (!sb || !app.state.user) return;
+                loaded = true;
+                sb.from('topups').select('id,hls,rub_kop,status,reject_reason,created_at')
+                    .order('id', { ascending: false }).limit(8).then(function (res) {
+                        if (res.error) throw res.error;
+                        renderList(res.data || []);
+                    }).catch(function (e) {
+                        console.error('Заявки на пополнение:', e);
+                        loaded = false;
+                        listEl.textContent = '';
+                        listEl.appendChild(mk('div', 'topup-empty', 'Не удалось загрузить заявки. Проверь, что выполнен supabase_topup.sql.'));
+                    });
+            }
+
+            var ERR = {
+                not_logged_in: 'Нужно войти через Discord.',
+                bad_amount: 'Укажи количество ХЛС от ' + MIN_HLS + ' до ' + MAX_HLS + '.',
+                too_many: 'У тебя уже есть 3 неоплаченные заявки. Оплати или отмени их.',
+                not_found: 'Заявка не найдена или уже обработана.'
+            };
+
+            function act_call(fn, id, okText) {
+                if (!sb || busy) return;
+                busy = true;
+                sb.rpc(fn, { p_id: id }).then(function (res) {
+                    if (res.error) throw res.error;
+                    var d = res.data || {};
+                    if (!d.ok) { app.toast(ERR[d.error] || 'Не получилось.', 5000); return; }
+                    app.toast(okText, 6000);
+                }).catch(function (e) {
+                    console.error(fn, e);
+                    app.toast('Ошибка. Попробуй ещё раз.', 5000);
+                }).then(function () { busy = false; loadList(); });
+            }
+
+            function create() {
+                if (!sb || busy) return;
+                var n = readHls();
+                if (n < MIN_HLS || n > MAX_HLS) { setStatus(ERR.bad_amount, true); return; }
+                busy = true;
+                createBtn.disabled = true;
+                setStatus('Создаю заявку…');
+                sb.rpc('create_topup', { p_hls: n }).then(function (res) {
+                    if (res.error) throw res.error;
+                    var d = res.data || {};
+                    if (!d.ok) { setStatus(ERR[d.error] || 'Не удалось создать заявку.', true); return; }
+                    input.value = '';
+                    recalc();
+                    setStatus('Заявка №' + d.id + ' создана. Реквизиты ниже, в списке заявок.');
+                }).catch(function (e) {
+                    console.error('create_topup:', e);
+                    setStatus('Ошибка. Проверь, что выполнен supabase_topup.sql, и попробуй ещё раз.', true);
+                }).then(function () { busy = false; createBtn.disabled = false; loadList(); });
+            }
+
+            QUICK.forEach(function (n) {
+                var b = mk('button', 'sx-chip', app.fmt(n) + ' ХЛС');
+                b.type = 'button';
+                b.addEventListener('click', function () { input.value = String(n); recalc(); });
+                $('topupChips').appendChild(b);
+            });
+
+            toggle.addEventListener('click', function () {
+                var open = body.hidden;
+                body.hidden = !open;
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.textContent = open ? 'Свернуть' : 'Пополнить';
+                if (open) { syncAuth(); if (app.state.user) loadList(); }
+            });
+            input.addEventListener('input', recalc);
+            input.addEventListener('keydown', function (e) { if (e.key === 'Enter') create(); });
+            createBtn.addEventListener('click', create);
+
+            // следим за входом и выходом: блок перерисовывается вместе с остальным сайтом
+            var prevRender = window.hlrpOnRender;
+            window.hlrpOnRender = function () { if (prevRender) prevRender(); syncAuth(); };
+
+            // пока блок открыт, обновляем статусы заявок раз в 20 секунд (чтобы увидеть подтверждение)
+            setInterval(function () { if (!document.hidden && !body.hidden && app.state.user) loadList(); }, 20000);
+
+            recalc();
+            syncAuth();
         })();
     </script>
 
