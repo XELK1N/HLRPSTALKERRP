@@ -2922,7 +2922,7 @@ body.on-map .particle{animation-play-state:paused}
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v18</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v19</p>
         </div>
 
     </div>
@@ -3426,7 +3426,7 @@ body.on-map .particle{animation-play-state:paused}
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v18';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v19';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 15000;
 
@@ -3435,6 +3435,7 @@ body.on-map .particle{animation-play-state:paused}
             var SHOP_ITEMS = [];
 
             var keyOk = /^(eyJ|sb_publishable_)/.test(SUPABASE_ANON_KEY);  // true, если вписан настоящий публичный ключ
+            window.hlrpSbCfg = keyOk ? { url: SUPABASE_URL, key: SUPABASE_ANON_KEY } : null;  // для запросов без клиента (точки на карте)
             var sb = null;
             if (keyOk && window.supabase && window.supabase.createClient) {
                 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -3643,7 +3644,8 @@ body.on-map .particle{animation-play-state:paused}
                 'Экологи': '#5ee0d0',
                 'Монолит': '#b184ff',
                 'ОКСОП': '#3e6947',
-                'Нейтралы': '#d0d6dd'
+                'Нейтралы': '#d0d6dd',
+                'Чистое Небо': '#4aa3df'
             };
             var DEFAULT_COLOR = '#8aa0b8';
 
@@ -3747,6 +3749,9 @@ body.on-map .particle{animation-play-state:paused}
 
             var editMode = /[?&]edit=1/.test(window.location.search);
             var buttons = {};
+            var currentPoint = null;
+            var BASE_HISTORY = {};
+            MAP_POINTS.forEach(function (p) { BASE_HISTORY[p.id] = (p.history || []).slice(); });
             var downX = 0, downY = 0;
 
             function colorOf(owner) { return OWNER_COLORS[owner] || DEFAULT_COLOR; }
@@ -3776,11 +3781,13 @@ body.on-map .particle{animation-play-state:paused}
             };
 
             function closePoint() {
+                currentPoint = null;
                 panel.hidden = true;
                 Object.keys(buttons).forEach(function (k) { buttons[k].classList.remove('is-active'); });
             }
 
             function openPoint(p) {
+                currentPoint = p;
                 var color = pointColor(p);
                 panel.style.setProperty('--c', color);
                 els.dot.style.setProperty('--c', color);
@@ -3830,6 +3837,46 @@ body.on-map .particle{animation-play-state:paused}
                 buttons[p.id] = b;
                 layer.appendChild(b);
             });
+
+            /* Владельцы точек приходят из базы (их меняет бот командой /точка_владелец) и накладываются на значения выше. */
+            function applyOwners(rows) {
+                var byId = {};
+                (rows || []).forEach(function (r) { byId[r.id] = r; });
+                MAP_POINTS.forEach(function (p) {
+                    var r = byId[p.id];
+                    if (!r || p.locked) return;
+                    p.owner = r.owner || '';
+                    p.since = r.since || '';
+                    p.history = BASE_HISTORY[p.id].concat(Array.isArray(r.history) ? r.history : []);
+                    var b = buttons[p.id];
+                    if (b) {
+                        b.style.setProperty('--c', pointColor(p));
+                        b.setAttribute('aria-label', p.name + '. Контролирует: ' + (p.owner || 'никто'));
+                    }
+                });
+                if (currentPoint && !panel.hidden) openPoint(currentPoint);
+            }
+
+            // Читаем таблицу напрямую через REST, без клиента supabase-js: клиент ждёт инициализации входа
+            // и мог зависать, из-за чего владельцы точек не обновлялись.
+            var ownersBusy = false;
+            function loadOwners() {
+                var cfg = window.hlrpSbCfg;
+                if (!cfg || ownersBusy || !window.fetch) return;
+                ownersBusy = true;
+                var url = cfg.url + '/rest/v1/map_points?select=id,owner,since,history&_=' + Date.now();
+                fetch(url, { headers: { apikey: cfg.key, Authorization: 'Bearer ' + cfg.key }, cache: 'no-store' })
+                    .then(function (r) {
+                        if (!r.ok) return r.text().then(function (t) { throw new Error(r.status + ' ' + t); });
+                        return r.json();
+                    })
+                    .then(function (rows) { applyOwners(rows); window.hlrpPointsLoaded = rows.length; })
+                    .catch(function (e) { console.error('Точки на карте:', e); })
+                    .then(function () { ownersBusy = false; });
+            }
+            loadOwners();
+            setInterval(function () { if (!document.hidden) loadOwners(); }, 30000);
+            window.addEventListener('load', loadOwners);  // клиент базы создаётся в соседнем скрипте и мог не успеть к первому вызову
 
             els.close.addEventListener('click', closePoint);
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePoint(); });
