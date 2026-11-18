@@ -2786,17 +2786,8 @@ body.on-map .particle{animation-play-state:paused}
             <div id="map" class="tab-page">
                 <div class="kpk-top">
                     <div class="kpk-id"><i class="kpk-led"></i><b>КПК</b><span>Сталкер ID · HLRP</span></div>
-                    <div class="kpk-seg" role="tablist" aria-label="Раздел КПК">
-                        <button type="button" role="tab" data-v="rel" class="on" aria-selected="true">Отношения</button>
-                        <button type="button" role="tab" data-v="map" aria-selected="false">Карта</button>
-                    </div>
                     <div class="kpk-clock" id="kpkClock" aria-hidden="true">--:--</div>
                 </div>
-                <div class="kpk-nav" hidden>
-                    <button class="kpk-arrow" id="kpkToRel" type="button" hidden>← Отношения</button>
-                    <button class="kpk-arrow kpk-arrow-right" id="kpkToMap" type="button">Карта →</button>
-                </div>
-
                 <div id="viewRelations">
                     <div class="rel-board">
                         <div class="rel-top"><h3 class="rel-title"><small>КПК · Дипломатия</small>Отношения группировок</h3><div class="rel-readout" id="kpkReadout" role="status" aria-live="polite">Наведи или нажми на ячейку таблицы</div></div>
@@ -2809,57 +2800,6 @@ body.on-map .particle{animation-play-state:paused}
                     <div class="rel-status" id="relStatus" role="status" aria-live="polite"></div>
                 </div>
 
-                <div id="viewMap" hidden>
-                <div class="page-head">
-                    <h2>Карта Зоны</h2>
-                    <p>Карта зоны на момент 2020 года.</p>
-                </div>
-
-                <div class="kpk-frame">
-                    <div class="kpk-frame-inner">
-                        <div class="map-container" id="mapContainer">
-                            <img src="map.jpg" alt="Карта Зоны" id="mapImage">
-                            <div class="map-markers" id="mapMarkers"></div>
-                        </div>
-                        <aside class="point-panel" id="pointPanel" hidden aria-live="polite">
-                            <button class="point-close" id="pointClose" type="button" aria-label="Закрыть">✕</button>
-                            <h3 id="pointName"></h3>
-                            <div class="point-owner">
-                                <span class="point-dot" id="pointDot"></span>
-                                <div>
-                                    <div class="point-owner-label" id="pointOwnerLabel">Сейчас контролирует</div>
-                                    <div class="point-owner-name" id="pointOwner"></div>
-                                    <div class="point-owner-since" id="pointSince" hidden></div>
-                                </div>
-                            </div>
-                            <p class="point-desc" id="pointDesc"></p>
-                            <div class="point-hist-title" id="pointHistTitle">История</div>
-                            <ol class="point-hist" id="pointHist"></ol>
-                        </aside>
-                        <div class="kpk-glitch" id="glitchLayer"></div>
-                        <div class="kpk-glitch-color" id="glitchColorLayer"></div>
-                        <div class="kpk-scanline"></div>
-                        <div class="kpk-corner kpk-corner-tl"></div>
-                        <div class="kpk-corner kpk-corner-tr"></div>
-                        <div class="kpk-corner kpk-corner-bl"></div>
-                        <div class="kpk-corner kpk-corner-br"></div><div class="map-coords" id="mapCoords">X — · Y —</div>
-                    </div>
-                </div>
-
-                <div class="map-controls">
-                    <button onclick="zoomIn()" class="map-btn" title="Приблизить">
-                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
-                    </button>
-                    <button onclick="resetZoom()" class="map-btn" title="Сбросить">
-                        <svg viewBox="0 0 24 24"><path d="M12 5c-3.87 0-7 3.13-7 7h2c0-2.76 2.24-5 5-5s5 2.24 5 5-2.24 5-5 5c-1.13 0-2.16-.37-3-1l1-1-4 2 4 4 1-1c1.16 1.16 2.75 2 4.5 2 3.87 0 7-3.13 7-7s-3.13-7-7-7z"/><path d="M10 9l-4 2 4 4 1-1-2-3 2-3-1-1z"/></svg>
-                    </button>
-                    <button onclick="zoomOut()" class="map-btn" title="Отдалить">
-                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M7 9h5v1H7z"/></svg>
-                    </button>
-                </div>
-                <div class="map-legend" id="mapLegend" aria-label="Легенда карты"></div>
-                <div class="map-hint">🖱️ Зажми и тащи, чтобы перемещаться по карте. Нажми 2 раза чтобы сбросить положение карты и крути колёсико для приближения и отдаления.<br>Нажми на точку, чтобы узнать, чья это база и какая у неё история.</div>
-                </div>
             </div>
 
             <div id="shop" class="tab-page">
@@ -2922,7 +2862,7 @@ body.on-map .particle{animation-play-state:paused}
         </div>
 
         <div class="footer">
-            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v19</p>
+            <p>© 2026 <strong>HLRP · Helkin Roleplay</strong> | Сделано с любовью для Зоны | сборка v20</p>
         </div>
 
     </div>
@@ -3136,156 +3076,7 @@ body.on-map .particle{animation-play-state:paused}
             }
         }
 
-        const container = document.getElementById('mapContainer');
-        const mapImage = document.getElementById('mapImage');
-        const mapFrame = container.parentNode;
-
-        let scale = 1;
-        let translateX = 0;
-        let translateY = 0;
-        let isDragging = false;
-        let startX, startY, startTranslateX, startTranslateY;
-
-        const MAX_SCALE = 5.0;
-        const MIN_SCALE = 1.0;
-
-        // размеры контейнера кэшируем: чтение размеров при каждом движении вызывало лишние пересчёты вёрстки
-        let cw = container.clientWidth, ch = container.clientHeight;
-        let mapRaf = 0, movingTimer = 0;
-
-        function measureMap() { cw = container.clientWidth; ch = container.clientHeight; scheduleMap(); }
-        if (window.ResizeObserver) new ResizeObserver(measureMap).observe(container);
-        window.addEventListener('resize', measureMap);
-
-        function clampPosition() {
-            const maxX = Math.max(0, (cw * scale - cw) / 2);
-            const maxY = Math.max(0, (ch * scale - ch) / 2);
-            translateX = Math.min(Math.max(translateX, -maxX), maxX);
-            translateY = Math.min(Math.max(translateY, -maxY), maxY);
-        }
-
-        function renderMap() {
-            mapRaf = 0;
-            clampPosition();
-            mapImage.style.transform = 'translate3d(' + translateX + 'px,' + translateY + 'px,0) scale(' + scale + ')';
-            if (window.hlrpMapSync) window.hlrpMapSync(scale, translateX, translateY);
-        }
-
-        // все изменения применяются не чаще одного раза за кадр
-        function scheduleMap() { if (!mapRaf) mapRaf = requestAnimationFrame(renderMap); }
-        function updateMap() { scheduleMap(); }
-
-        // пока карту двигают, ставим на паузу фоновые анимации (сканлайн, пульсация точек)
-        function markMoving() {
-            mapFrame.classList.add('is-moving');
-            clearTimeout(movingTimer);
-            movingTimer = setTimeout(function () { mapFrame.classList.remove('is-moving'); }, 160);
-        }
-
-        // зум к точке (px, py считаются от центра контейнера), поэтому карта приближается туда, куда указывает курсор
-        function zoomAt(newScale, px, py) {
-            newScale = Math.min(Math.max(newScale, MIN_SCALE), MAX_SCALE);
-            if (newScale === scale) return;
-            const k = newScale / scale;
-            translateX = px - (px - translateX) * k;
-            translateY = py - (py - translateY) * k;
-            scale = newScale;
-            markMoving();
-            scheduleMap();
-        }
-
-        function zoomIn() { zoomAt(scale * 1.25, 0, 0); }
-        function zoomOut() { zoomAt(scale / 1.25, 0, 0); }
-
-        function resetZoom() {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            scheduleMap();
-        }
-
-        function localPoint(clientX, clientY) {
-            const r = container.getBoundingClientRect();
-            const ratio = r.width / cw || 1;
-            return { x: (clientX - r.left) / ratio - cw / 2, y: (clientY - r.top) / ratio - ch / 2 };
-        }
-
-        container.addEventListener('wheel', function (e) {
-            e.preventDefault();
-            let d = e.deltaY;
-            if (e.deltaMode === 1) d *= 33;
-            d = Math.max(-120, Math.min(120, d));
-            const p = localPoint(e.clientX, e.clientY);
-            zoomAt(scale * Math.exp(-d * 0.0018), p.x, p.y);
-        }, { passive: false });
-
-        container.addEventListener('mousedown', function (e) {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            startTranslateX = translateX;
-            startTranslateY = translateY;
-            container.style.cursor = 'grabbing';
-        });
-
-        window.addEventListener('mousemove', function (e) {
-            if (!isDragging) return;
-            translateX = startTranslateX + (e.clientX - startX);
-            translateY = startTranslateY + (e.clientY - startY);
-            markMoving();
-            scheduleMap();
-        });
-
-        window.addEventListener('mouseup', function () {
-            isDragging = false;
-            container.style.cursor = 'grab';
-        });
-
-        container.addEventListener('dblclick', resetZoom);
-
-        let lastTouchDistance = 0, lastCX = 0, lastCY = 0;
-
-        container.addEventListener('touchstart', function (e) {
-            if (e.touches.length === 2) {
-                const t1 = e.touches[0], t2 = e.touches[1];
-                lastTouchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                lastCX = (t1.clientX + t2.clientX) / 2;
-                lastCY = (t1.clientY + t2.clientY) / 2;
-            } else if (e.touches.length === 1) {
-                lastTouchDistance = 0;
-                lastCX = e.touches[0].clientX;
-                lastCY = e.touches[0].clientY;
-            }
-        }, { passive: true });
-
-        container.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-            if (e.touches.length === 2) {
-                const t1 = e.touches[0], t2 = e.touches[1];
-                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const cx = (t1.clientX + t2.clientX) / 2;
-                const cy = (t1.clientY + t2.clientY) / 2;
-                if (lastTouchDistance > 0) {
-                    const p = localPoint(cx, cy);
-                    zoomAt(scale * (dist / lastTouchDistance), p.x, p.y);
-                }
-                translateX += cx - lastCX;
-                translateY += cy - lastCY;
-                lastTouchDistance = dist;
-                lastCX = cx;
-                lastCY = cy;
-            } else if (e.touches.length === 1) {
-                const t = e.touches[0];
-                translateX += t.clientX - lastCX;
-                translateY += t.clientY - lastCY;
-                lastCX = t.clientX;
-                lastCY = t.clientY;
-            }
-            markMoving();
-            scheduleMap();
-        }, { passive: false });
-
-        // параллакс фона: не чаще раза за кадр и не на вкладке карты (там он только мешал плавности)
+        // параллакс фона: не чаще раза за кадр
         let parX = 0, parY = 0, parRaf = 0;
         function applyParallax() {
             parRaf = 0;
@@ -3426,7 +3217,7 @@ body.on-map .particle{animation-play-state:paused}
             var SUPABASE_URL = 'https://hqwwaaqcoxnnaopqyrcg.supabase.co';
             var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxd3dhYXFjb3hubmFvcHF5cmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYxMDYsImV4cCI6MjEwODQ0MjEwNn0.Hvxu3FkG7-9LpI9RwkjMC7tCRq9zkYu8ArMIYYL1HWU';
 
-            var BUILD = 'v19';  // метка версии: помогает понять, какая версия сайта сейчас открыта
+            var BUILD = 'v20';  // метка версии: помогает понять, какая версия сайта сейчас открыта
             var CURRENCY = 'ХЛС';
             var REFRESH_MS = 15000;
 
@@ -3435,7 +3226,6 @@ body.on-map .particle{animation-play-state:paused}
             var SHOP_ITEMS = [];
 
             var keyOk = /^(eyJ|sb_publishable_)/.test(SUPABASE_ANON_KEY);  // true, если вписан настоящий публичный ключ
-            window.hlrpSbCfg = keyOk ? { url: SUPABASE_URL, key: SUPABASE_ANON_KEY } : null;  // для запросов без клиента (точки на карте)
             var sb = null;
             if (keyOk && window.supabase && window.supabase.createClient) {
                 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -3631,296 +3421,6 @@ body.on-map .particle{animation-play-state:paused}
     </script>
 
     <script>
-        /* ===== Точки на карте: чья база и её история ===== */
-        (function () {
-            'use strict';
-
-            // Цвет точки зависит от того, кто контролирует базу. Новые группировки добавляй сюда.
-            var OWNER_COLORS = {
-                'Одиночки': '#c5beb0',
-                'Долг': '#6b1710',
-                'Свобода': '#6fd08c',
-                'Бандиты': '#10100e',
-                'Экологи': '#5ee0d0',
-                'Монолит': '#b184ff',
-                'ОКСОП': '#3e6947',
-                'Нейтралы': '#d0d6dd',
-                'Чистое Небо': '#4aa3df'
-            };
-            var DEFAULT_COLOR = '#8aa0b8';
-
-            // ТОЧКИ НА КАРТЕ.
-            // x и y: положение в процентах от картинки (x слева направо, y сверху вниз, от 0 до 100).
-            // owner: кто контролирует базу сейчас, since: с какого времени (необязательно).
-            // history: события по порядку, новые добавляй в конец.
-            // Положение точек выставлено по карте. Описания и история — заготовки, замени их своими.
-            // color: необязательный свой цвет точки (по умолчанию берётся цвет владельца).
-            // locked: true значит, что точку занять нельзя (в карточке вместо владельца будет «Занять нельзя»).
-            var MAP_POINTS = [
-                {
-                    id: 'depot', name: 'Депо', x: 31.3, y: 13.9, owner: 'Бандиты',
-                    description: 'Заброшенное железнодорожное депо на севере. К нему с запада подходит ветка. Сейчас здесь хозяйничают бандиты.',
-                    history: [
-                        { date: '2006', text: 'После Первого Выброса депо опустело, а оставшаяся техника так и стоит на путях.' }
-                    ]
-                },
-                {
-                    id: 'flea', name: 'Барахолка', x: 66.4, y: 9.4, owner: 'Свобода',
-                    description: 'Стихийный рынок напротив Депо, где сталкеры меняются хабаром. Территорию держит «Свобода».',
-                    history: []
-                },
-                {
-                    id: 'cemetery', name: 'Кладбище техники', x: 31.0, y: 24.8, owner: 'Бандиты',
-                    description: 'Свалка разбитой и брошенной техники слева от дороги, между Депо и Северным КПП. Бандиты держат её под контролем и прячут здесь добычу.',
-                    history: []
-                },
-                {
-                    id: 'checkpoint', name: 'Северное КПП', x: 53.8, y: 33.0, owner: 'Долг',
-                    description: 'Контрольно-пропускной пункт на главной дороге. Отсюда начинается путь в глубь Зоны. Сейчас пост держит «Долг».',
-                    history: [
-                        { date: '2012', text: 'Пост переходит под контроль «Долга», который берёт дорогу под охрану.' }
-                    ]
-                },
-                {
-                    id: 'pigfarm', name: 'Свиноферма', x: 31.9, y: 44.1, owner: 'Нейтралы',
-                    description: 'Заброшенная ферма к западу от дороги. Сейчас здесь обосновались нейтралы, которые не примыкают ни к одной группировке.',
-                    history: [
-                        { date: '2006', text: 'Ферму бросают в первые дни после Выброса. С тех пор в корпусах никто не живёт постоянно.' }
-                    ]
-                },
-                {
-                    id: 'burnt', name: 'Сгоревший хутор', x: 56.3, y: 46.5, owner: 'Бандиты',
-                    description: 'Остатки хутора на выжженной земле к востоку от дороги. Дома сгорели много лет назад, а что именно произошло, никто не помнит. Теперь здесь селятся одиночки.',
-                    history: [
-                        { date: '2006', text: 'Хутор выгорает в ночь Первого Выброса. Землю вокруг с тех пор не берёт ни трава, ни кустарник.' }
-                    ]
-                },
-                {
-                    id: 'embankment', name: 'Насыпь', x: 43.8, y: 51.9, owner: 'ОКСОП',
-                    description: 'Железнодорожная насыпь пересекает местность поперёк и служит хорошим укрытием при перестрелках. Дорога проходит через неё по узкому проходу. Сейчас насыпь держит ОКСОП.',
-                    history: []
-                },
-                {
-                    id: 'elevator', name: 'Элеватор', x: 23.1, y: 57.4, owner: 'Бандиты',
-                    description: 'Старый зерновой элеватор, возвышающийся над окрестностями. С верха хорошо видны дорога и подходы с запада. Под присмотром одиночек.',
-                    history: []
-                },
-                {
-                    id: 'atp', name: 'АТП', x: 75.3, y: 59.6, owner: 'Бандиты',
-                    description: 'Бывшее автотранспортное предприятие с гаражами и мастерскими. Одиночки заглядывают сюда за запчастями и оставленным хабаром.',
-                    history: []
-                },
-                {
-                    id: 'derebas', name: 'Деребас', x: 23.3, y: 70.2, owner: 'Одиночки',
-                    description: 'Небольшая деревня у юго-западной границы. Крепкие дома используют сталкеры-одиночки как привал по пути на север.',
-                    history: []
-                },
-                {
-                    id: 'sidor', name: 'Сидор', x: 13.0, y: 69.6, owner: 'Одиночки',
-                    description: 'Бункер торговца, к которому тянутся почти все новички. Здесь можно купить снаряжение, продать находки и получить первое задание.',
-                    history: [
-                        { date: '2006', text: 'Торговец обустраивает бункер и открывает торговлю для всех, кто попал в Зону.' }
-                    ]
-                },
-                {
-                    id: 'south_checkpoint', name: 'Южное КПП', x: 37.0, y: 79.0, owner: 'ОКСОП',
-                    description: 'Южный пост на въезде в Зону. Бойцы ОКСОП проверяют всех, кто идёт с юга.',
-                    history: []
-                },
-                {
-                    id: 'guide', name: 'Проводник', x: 42.2, y: 89.3, owner: 'Нейтралы', color: '#ffd166', locked: true,
-                    description: 'Проводник ждёт у южных ворот и за плату выводит сталкеров безопасными тропами. Эту точку занять нельзя.',
-                    history: []
-                }
-            ];
-
-            var container = document.getElementById('mapContainer');
-            var img = document.getElementById('mapImage');
-            var layer = document.getElementById('mapMarkers');
-            var panel = document.getElementById('pointPanel');
-            var frameInner = container.parentNode;
-            var els = {
-                name: document.getElementById('pointName'), owner: document.getElementById('pointOwner'),
-                ownerLabel: document.getElementById('pointOwnerLabel'),
-                since: document.getElementById('pointSince'), dot: document.getElementById('pointDot'),
-                desc: document.getElementById('pointDesc'), hist: document.getElementById('pointHist'),
-                histTitle: document.getElementById('pointHistTitle'), close: document.getElementById('pointClose')
-            };
-
-            var editMode = /[?&]edit=1/.test(window.location.search);
-            var buttons = {};
-            var currentPoint = null;
-            var BASE_HISTORY = {};
-            MAP_POINTS.forEach(function (p) { BASE_HISTORY[p.id] = (p.history || []).slice(); });
-            var downX = 0, downY = 0;
-
-            function colorOf(owner) { return OWNER_COLORS[owner] || DEFAULT_COLOR; }
-            function pointColor(p) { return p.color || colorOf(p.owner); }
-
-            // Где на экране лежит сама картинка (она вписана в контейнер с полями).
-            function imageRect() {
-                var cw = container.clientWidth, ch = container.clientHeight;
-                var nw = img.naturalWidth || cw, nh = img.naturalHeight || ch;
-                var r = Math.min(cw / nw, ch / nh);
-                var w = nw * r, h = nh * r;
-                return { left: (cw - w) / 2, top: (ch - h) / 2, w: w, h: h, cw: cw, ch: ch };
-            }
-
-            function layout() {
-                var g = imageRect();
-                MAP_POINTS.forEach(function (p) {
-                    var b = buttons[p.id];
-                    b.style.left = (g.left + p.x / 100 * g.w) + 'px';
-                    b.style.top = (g.top + p.y / 100 * g.h) + 'px';
-                });
-            }
-
-            window.hlrpMapSync = function (s, tx, ty) {
-                layer.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + s + ')';
-                layer.style.setProperty('--inv', String(1 / s));
-            };
-
-            function closePoint() {
-                currentPoint = null;
-                panel.hidden = true;
-                Object.keys(buttons).forEach(function (k) { buttons[k].classList.remove('is-active'); });
-            }
-
-            function openPoint(p) {
-                currentPoint = p;
-                var color = pointColor(p);
-                panel.style.setProperty('--c', color);
-                els.dot.style.setProperty('--c', color);
-                els.name.textContent = p.name;
-                els.ownerLabel.textContent = p.locked ? 'Статус' : 'Сейчас контролирует';
-                els.owner.textContent = p.locked ? 'Занять нельзя' : (p.owner || 'Никто');
-                els.since.hidden = !p.since || !!p.locked;
-                els.since.textContent = p.since ? 'с ' + p.since : '';
-                els.desc.textContent = p.description || 'Описание пока не добавлено.';
-
-                els.hist.textContent = '';
-                (p.history || []).forEach(function (h) {
-                    var li = document.createElement('li');
-                    var b = document.createElement('b'); b.textContent = h.date;
-                    var t = document.createElement('span'); t.textContent = h.text;
-                    li.appendChild(b); li.appendChild(t);
-                    els.hist.appendChild(li);
-                });
-                els.histTitle.hidden = !(p.history && p.history.length);
-                els.hist.hidden = els.histTitle.hidden;
-
-                Object.keys(buttons).forEach(function (k) { buttons[k].classList.toggle('is-active', k === p.id); });
-                panel.hidden = false;
-                panel.scrollTop = 0;
-                if (panel.scrollIntoView) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-            }
-
-            MAP_POINTS.forEach(function (p) {
-                var b = document.createElement('button');
-                b.type = 'button';
-                b.className = 'map-point';
-                b.setAttribute('data-name', p.name);
-                b.setAttribute('aria-label', p.name + '. ' + (p.locked ? 'Занять нельзя' : 'Контролирует: ' + (p.owner || 'никто')));
-                b.style.setProperty('--c', pointColor(p));
-                b.appendChild(document.createElement('i'));
-
-                // не запускаем перетаскивание карты мышью с самой точки
-                b.addEventListener('mousedown', function (e) { e.stopPropagation(); });
-                b.addEventListener('dblclick', function (e) { e.stopPropagation(); });
-                b.addEventListener('pointerdown', function (e) { downX = e.clientX; downY = e.clientY; });
-                b.addEventListener('click', function (e) {
-                    // если карту тащили, а не нажимали, панель не открываем (клавиатура: detail === 0)
-                    if (e.detail !== 0 && Math.hypot(e.clientX - downX, e.clientY - downY) > 8) return;
-                    openPoint(p);
-                });
-
-                buttons[p.id] = b;
-                layer.appendChild(b);
-            });
-
-            /* Владельцы точек приходят из базы (их меняет бот командой /точка_владелец) и накладываются на значения выше. */
-            function applyOwners(rows) {
-                var byId = {};
-                (rows || []).forEach(function (r) { byId[r.id] = r; });
-                MAP_POINTS.forEach(function (p) {
-                    var r = byId[p.id];
-                    if (!r || p.locked) return;
-                    p.owner = r.owner || '';
-                    p.since = r.since || '';
-                    p.history = BASE_HISTORY[p.id].concat(Array.isArray(r.history) ? r.history : []);
-                    var b = buttons[p.id];
-                    if (b) {
-                        b.style.setProperty('--c', pointColor(p));
-                        b.setAttribute('aria-label', p.name + '. Контролирует: ' + (p.owner || 'никто'));
-                    }
-                });
-                if (currentPoint && !panel.hidden) openPoint(currentPoint);
-            }
-
-            // Читаем таблицу напрямую через REST, без клиента supabase-js: клиент ждёт инициализации входа
-            // и мог зависать, из-за чего владельцы точек не обновлялись.
-            var ownersBusy = false;
-            function loadOwners() {
-                var cfg = window.hlrpSbCfg;
-                if (!cfg || ownersBusy || !window.fetch) return;
-                ownersBusy = true;
-                var url = cfg.url + '/rest/v1/map_points?select=id,owner,since,history&_=' + Date.now();
-                fetch(url, { headers: { apikey: cfg.key, Authorization: 'Bearer ' + cfg.key }, cache: 'no-store' })
-                    .then(function (r) {
-                        if (!r.ok) return r.text().then(function (t) { throw new Error(r.status + ' ' + t); });
-                        return r.json();
-                    })
-                    .then(function (rows) { applyOwners(rows); window.hlrpPointsLoaded = rows.length; })
-                    .catch(function (e) { console.error('Точки на карте:', e); })
-                    .then(function () { ownersBusy = false; });
-            }
-            loadOwners();
-            setInterval(function () { if (!document.hidden) loadOwners(); }, 30000);
-            window.addEventListener('load', loadOwners);  // клиент базы создаётся в соседнем скрипте и мог не успеть к первому вызову
-
-            els.close.addEventListener('click', closePoint);
-            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePoint(); });
-
-            if (img.complete) layout();
-            img.addEventListener('load', layout);
-            window.addEventListener('resize', layout);
-            if (window.ResizeObserver) new ResizeObserver(layout).observe(container);
-            layout();
-
-            /* Режим расстановки: открой сайт с ?edit=1 в конце адреса, нажми на карту в нужном месте,
-               и координаты скопируются. Их впиши в x и y нужной точки выше. */
-            if (editMode) {
-                var badge = document.createElement('div');
-                badge.className = 'edit-badge';
-                badge.textContent = 'Режим расстановки: нажми на карту';
-                frameInner.appendChild(badge);
-
-                container.addEventListener('pointerdown', function (e) { downX = e.clientX; downY = e.clientY; });
-                container.addEventListener('click', function (e) {
-                    if (e.target.closest && e.target.closest('.map-point')) return;
-                    if (Math.hypot(e.clientX - downX, e.clientY - downY) > 8) return;
-                    var r = container.getBoundingClientRect();
-                    var ratio = r.width / container.clientWidth || 1;
-                    var px = (e.clientX - r.left) / ratio, py = (e.clientY - r.top) / ratio;
-                    var g = imageRect();
-                    // обратное преобразование: translate + scale вокруг центра контейнера
-                    var lx = (px - g.cw / 2 - translateX) / scale + g.cw / 2;
-                    var ly = (py - g.ch / 2 - translateY) / scale + g.ch / 2;
-                    var x = Math.min(100, Math.max(0, (lx - g.left) / g.w * 100));
-                    var y = Math.min(100, Math.max(0, (ly - g.top) / g.h * 100));
-                    var text = 'x: ' + x.toFixed(1) + ', y: ' + y.toFixed(1);
-                    badge.textContent = text;
-                    try {
-                        navigator.clipboard.writeText(text).then(function () {
-                            badge.textContent = text + ' (скопировано)';
-                        }).catch(function () {});
-                    } catch (err) {}
-                });
-            }
-        })();
-    </script>
-
-    <script>
         /* ===== КПК: отношения группировок ===== */
         (function () {
             'use strict';
@@ -4019,18 +3519,6 @@ body.on-map .particle{animation-play-state:paused}
                     setStatus('Не удалось обновить данные, показаны последние известные отношения.');
                 });
             }
-
-            function setView(v) {
-                $('viewRelations').hidden = v !== 'rel';
-                $('viewMap').hidden = v !== 'map';
-                $('kpkToMap').hidden = v !== 'rel';
-                $('kpkToRel').hidden = v !== 'map';
-                if (v === 'map') window.dispatchEvent(new Event('resize'));  // пересчитать точки на карте
-                else load();
-            }
-
-            $('kpkToMap').addEventListener('click', function () { setView('map'); });
-            $('kpkToRel').addEventListener('click', function () { setView('rel'); });
 
             var tab = document.querySelector('.tab-link[data-tab="map"]');
             if (tab) tab.addEventListener('click', function () { if (!$('viewRelations').hidden) load(); });
@@ -4792,18 +4280,6 @@ matchMedia('(min-width:769px)').addEventListener('change',function(q){if(q.match
  function tick(){ if(clk){ var d=new Date(); clk.textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); } }
  tick(); setInterval(tick,15000);
 
- /* вкладки КПК: управляют прежними скрытыми кнопками */
- var seg=document.querySelectorAll('.kpk-seg button');
- function setSeg(v){ seg.forEach(function(b){ var on=b.getAttribute('data-v')===v; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); }); }
- seg.forEach(function(b){
-  b.addEventListener('click',function(){
-   var v=b.getAttribute('data-v');
-   if(v==='map' && $('viewMap').hidden) $('kpkToMap').click();
-   if(v==='rel' && $('viewRelations').hidden) $('kpkToRel').click();
-   setSeg(v);
-  });
- });
-
  /* таблица: перекрестие и подпись */
  var layout=$('relLayout'), readout=$('kpkReadout');
  var DEF='Наведи или нажми на ячейку таблицы';
@@ -4841,28 +4317,7 @@ matchMedia('(min-width:769px)').addEventListener('change',function(q){if(q.match
  layout.addEventListener('click',function(e){ var c=e.target.closest&&e.target.closest('.rel-cell'); if(c) focusCell(c); });
  layout.addEventListener('mouseleave',clear);
 
- /* легенда карты (цвета те же, что у точек) */
- var LEG=[['Одиночки','#c5beb0'],['Долг','#6b1710'],['Свобода','#6fd08c'],['Бандиты','#10100e'],['ОКСОП','#3e6947'],['Нейтралы','#d0d6dd'],['Проводник','#ffd166']];
- var lg=$('mapLegend');
- if(lg) LEG.forEach(function(p){ var s=document.createElement('span'); var i=document.createElement('i'); i.style.setProperty('--c',p[1]); s.appendChild(i); s.appendChild(document.createTextNode(p[0])); lg.appendChild(s); });
-
- /* координаты под курсором */
- var mc=$('mapContainer'), mi=$('mapImage'), out=$('mapCoords');
- if(mc&&mi&&out){
-  mc.addEventListener('mousemove',function(e){
-   try{
-    var cw=mc.clientWidth, ch=mc.clientHeight, nw=mi.naturalWidth||cw, nh=mi.naturalHeight||ch;
-    var r=Math.min(cw/nw,ch/nh), w=nw*r, h=nh*r, left=(cw-w)/2, top=(ch-h)/2;
-    var b=mc.getBoundingClientRect(), k=b.width/cw||1;
-    var px=(e.clientX-b.left)/k, py=(e.clientY-b.top)/k;
-    var lx=(px-cw/2-translateX)/scale+cw/2, ly=(py-ch/2-translateY)/scale+ch/2;
-    var x=(lx-left)/w*100, y=(ly-top)/h*100;
-    out.textContent=(x<0||x>100||y<0||y>100)?'X — · Y —':'X '+x.toFixed(1)+' · Y '+y.toFixed(1);
-   }catch(_){}
-  });
-  mc.addEventListener('mouseleave',function(){ out.textContent='X — · Y —'; });
- }
-})();
+ })();
 </script>
 </body>
 </html>
